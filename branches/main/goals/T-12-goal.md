@@ -1,0 +1,15 @@
+- [x] 确认 task 范围（验证 scope files、读取定义）
+- [x] 确定分析深度（STANDARD）
+- [x] 执行分析（追踪代码、识别组件、8个功能集群）
+- [x] 生成文件依赖关系图（mermaid flowchart，8个subgraph集群）
+- [x] 生成任务级时序图（mermaid sequenceDiagram，keystroke→command flow）
+- [x] 生成边界/集成图（mermaid，T-04/T-05/T-10/External Systems）
+- [x] 生成数据流图（mermaid，Merged Registry + Inbox数据流）
+- [x] STANDARD 模式：调用链概要（3条主链路）+ 错误处理概要（6源+3未处理）+ 状态概要（3个状态机）
+- [x] 写出 ## File Roles 强制节（63行 = 63 scope files）
+- [x] 验证 acceptance criteria（7/7 PASS）
+- [x] 识别风险与开放问题（P2×2, P3×3, P4×1 + OQ×8）
+- [x] 写出 task-analyses/T-12-tui-hooks.md（33KB, 522行, 16 H2章节, 4 mermaid图）
+- [x] 更新 goals/T-12-goal.md
+- [x] re-execute: 补全 File Roles 14 个缺失文件 → T-12-tui-hooks-interaction.md（537行, 63 unique files, 14 new rows）
+- [x] re-execute iter2: 清理 14 行重复数据（generic "Hook — useXxx interaction behavior" 描述），63 data rows = 63 effective_scope_files ✅

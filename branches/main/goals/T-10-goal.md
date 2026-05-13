@@ -1,0 +1,15 @@
+- [x] 确认 task 范围（验证 scope files、读取定义）
+- [x] 确定分析深度（STANDARD）
+- [x] 执行深度分析（追踪代码、识别组件）
+- [x] 生成任务级流程图（mermaid flowchart for render cycle + data flow）
+- [x] 生成任务级时序图（mermaid sequenceDiagram for user input→streaming）
+- [x] 生成边界/集成图（mermaid diagram with 5 cross-task interfaces）
+- [x] 生成数据流图（mermaid flowchart for input→parse→state→render→output）
+- [x] 生成错误传播图（error sources + recovery strategies table）
+- [x] STANDARD 模式：调用链概要 + 错误处理概要 + 状态概要
+- [x] 生成文件依赖关系图（from call-graph.jsonl, mermaid with 8 subgraphs）
+- [x] 写出 ## File Roles 强制节（80 rows = 80 scope files, 0 missing）
+- [x] 验证 acceptance criteria（7/7 PASS）
+- [x] 识别风险与开放问题（P2×2 + P3×3 + P4×1, 8 open questions）
+- [x] 更新 task 状态
+- [x] 写出 task-analyses/T-10-tui-repl-ink.md（693 lines, 4 mermaid diagrams, 16 H2 sections）

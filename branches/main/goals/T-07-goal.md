@@ -1,0 +1,23 @@
+- [x] Confirm task scope (verify 55 scope files, read task definition)
+- [x] Determine analysis depth (DEEP for P1)
+- [ ] Execute deep analysis (trace code, identify components)
+- [ ] Generate task-level flowchart (DEEP required)
+- [ ] Generate task-level sequence diagram (DEEP required)
+- [ ] Generate boundary/integration diagram (DEEP required)
+- [ ] Generate data flow diagram (DEEP required)
+- [ ] Generate error propagation diagram (DEEP required)
+- [ ] Generate concurrency timeline (if concurrent code exists)
+- [ ] DEEP: Function-level detailed code analysis (every public function signature + responsibility + logic)
+- [ ] DEEP: Call chain analysis (entry->exit chains + Fan-in/Fan-out table)
+- [ ] DEEP: Temporal analysis (async orchestration + event timing + race conditions + implicit constraints)
+- [ ] DEEP: State transition analysis (state variables + transition table + terminal/error states + linkage)
+- [ ] DEEP: Error propagation analysis (error sources + propagation paths + unhandled paths + recovery strategies)
+- [ ] DEEP conditional: Concurrency model analysis (shared state + coordination patterns + deadlock risk)
+- [ ] DEEP conditional: Side effects manifest (function -> side effect type -> target -> reversibility)
+- [ ] Generate file dependency graph (from call-graph.jsonl)
+- [x] Write ## File Roles mandatory section (55 lines, one per scope file) — re-execute: patched 5 missing rows + fixed permissionSetup.ts path typo
+- [ ] Verify acceptance criteria
+- [ ] Identify risks and open questions
+- [x] Update task status (re-execute patch completed)
+- [x] Write task-analyses/T-07-permission-classifier.md (re-execute: File Roles patched)
+- [ ] Update assumptions.md if needed

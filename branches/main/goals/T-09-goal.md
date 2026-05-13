@@ -1,0 +1,27 @@
+# T-09 Goal: 认证与会话管理 (DEEP, ML-06, P1)
+
+- [x] 确认 task 范围（验证 40 scope files、读取定义）
+- [x] 确定分析深度（DEEP — P1 任务）
+- [x] 执行深度分析（追踪代码、识别组件）
+- [x] 生成任务级流程图（File Dependency Graph mermaid）
+- [x] 生成任务级时序图（Temporal Analysis mermaid sequenceDiagram）
+- [x] 生成边界/集成图（Boundary/Integration mermaid）
+- [x] 生成数据流图（3 entity paths + mermaid）
+- [x] 生成错误传播图（Error Propagation mermaid）
+- [x] 生成并发时间线（Concurrency Model — 6 shared states + 5 coordination patterns）
+- [x] DEEP 模式：完成函数级详细代码解读（26+ functions across 15 files）
+- [x] DEEP 模式：完成调用链路分析（3 chains + Fan-in/Fan-out Top 10）
+- [x] DEEP 模式：完成时序分析（T=0~5 编排图 + 3 竞态 + 3 隐式约束）
+- [x] DEEP 模式：完成状态流转分析（3 状态机：OAuth 14态/AuthMode 7态/Telemetry 7态）
+- [x] DEEP 模式：完成错误传播分析（12 错误源 + 5 恢复策略 + 3 未处理路径）
+- [x] DEEP 条件：并发模型分析（6 共享状态 + 5 协调模式 + 无死锁）
+- [x] DEEP 条件：副作用清单（11 项副作用）
+- [x] STANDARD 模式：N/A (本 task 为 DEEP)
+- [x] 生成文件依赖关系图（call-graph.jsonl 提取）
+- [x] 写出 ## File Roles 强制节（40 行数据行 = 40 scope files）
+- [x] Pattern Audit task: N/A (本 task 无 pattern_coverage)
+- [x] 验证 acceptance criteria（7/7 PASS）
+- [x] 识别风险与开放问题（P1×1, P2×2, P3×3, P4×1 + 8 open questions）
+- [x] 更新 task 状态
+- [x] 写出 task-analyses/T-09-auth-session.md（48,890 bytes, 906 lines, 17 sections）
+- [x] 更新 assumptions.md（无新增 assumption）

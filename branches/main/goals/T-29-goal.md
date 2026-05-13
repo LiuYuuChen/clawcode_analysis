@@ -1,0 +1,15 @@
+- [x] Confirm scope (7 PI-10 instances, ML-12)
+- [x] Read all 7 PI-10 catalog instance files
+- [x] Read BundledSkillDefinition type for pattern contract
+- [x] Generate File Roles table (7 rows)
+- [x] Document Analysis Findings (10 items)
+- [x] Generate File Dependency Graph (mermaid)
+- [x] Document Pattern Contract (6 conventions + 4 sub-types)
+- [x] Full verification of all 7 instances (7/7 = 100%)
+- [x] Document inferred vs verified statistics
+- [x] Verify acceptance criteria (7/7 PASS)
+- [x] Identify problems (P3×1, P4×2)
+- [x] Document open questions (3)
+- [x] Complexity assessment (TRIVIAL)
+- [x] Update instance-manifest.jsonl (7 entries: role_source=verified, verified_by=T-29)
+- [x] Write T-29-audit-pi-10.md

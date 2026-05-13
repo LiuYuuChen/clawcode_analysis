@@ -1,0 +1,10 @@
+- [x] 确认 task 范围（验证 9 scope files 存在）
+- [x] 确定分析深度（P3 → OVERVIEW）
+- [x] 实读全部 9 个 shim/vendor 文件
+- [x] 识别每个文件的代理目标和加载策略
+- [x] 生成 File Roles 表（9 行）
+- [x] 生成 Analysis Findings（10 项）
+- [x] 生成 File Dependency Graph（mermaid）
+- [x] 验证 acceptance criteria（7/7 PASS）
+- [x] 识别风险与开放问题
+- [x] 写出 task-analyses/T-41-shim-vendor-proxies.md

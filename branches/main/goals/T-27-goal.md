@@ -1,0 +1,11 @@
+- [x] 确认 task 范围（验证 scope files、读取定义）
+- [x] 确定分析深度（OVERVIEW）
+- [x] 读取所有 PI-08 catalog 实例（12 files）
+- [x] 执行 pattern audit 分析（全部 12 个实例实读验证）
+- [x] 生成文件依赖关系图（mermaid + 8 edges）
+- [x] Pattern Contract 文档化（5 约定 + 4 子类型）
+- [x] 写出 ## File Roles 强制节（12 行 = 12 实例）
+- [x] 更新 instance-manifest.jsonl（12 条 role_source→verified）
+- [x] 验证 acceptance criteria（7/7 PASS）
+- [x] 识别风险与开放问题（P4×3, OQ×3）
+- [x] 写出 task-analyses/T-27-audit-pi-08.md

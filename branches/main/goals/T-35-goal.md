@@ -1,0 +1,14 @@
+# T-35 Goal: Pattern Audit — notification-hook (PI-16)
+- [x] Confirm task scope (3 scope files + 2 catalog instances = 5 total)
+- [x] Determine analysis depth: OVERVIEW (P3 Pattern Audit)
+- [x] Read all 5 PI-16 catalog instances in full
+- [x] Verify pattern contract (6 conventions + 4 sub-types)
+- [x] Full verification: 5/5 = 100% pass rate
+- [x] Update instance-manifest.jsonl: 5 PI-16 entries role_source→verified
+- [x] Generate File Dependency Graph (mermaid + 11 edges)
+- [x] Write File Roles (5 rows = 5 catalog instances)
+- [x] Identify problems (P3×1, P4×2)
+- [x] Identify open questions (3)
+- [x] Verify acceptance criteria (7/7 PASS)
+- [x] Write task-analyses/T-35-audit-pi-16.md
+- [x] Write goals/T-35-goal.md

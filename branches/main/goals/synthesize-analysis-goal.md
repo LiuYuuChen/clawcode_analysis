@@ -1,0 +1,27 @@
+# synthesize-analysis Goal Tracker
+
+- [x] 对账式文件索引：从 metadata/JSONL/task-plan 构建应有清单并逐项核对
+- [x] 读取地图阶段：repo map + 所有 sub-map + 覆盖率报告
+- [x] 读取分析阶段：analysis report + tasks + task plan + 覆盖率报告
+- [ ] 读取执行阶段：所有 task analysis（逐个 T-NN）
+- [ ] 提取并增补全局 mermaid 图
+- [ ] 合成系统组件架构图（8-15 个组件，分层子图）
+- [ ] 合成系统级流程图（3-5 个端到端跨主线流程）
+- [ ] P1 主线汇总：对每条 P1 主线生成 summary-ML-XX.md（10 节完整结构）
+- [ ] 多维度关联发现：维度 1-6（core+secondary+shared+cross-ref+functional+gate）
+- [ ] 均衡约束：每 P1 summary 3 ≤ tasks ≤ 12；supplementary ≤ 15
+- [ ] 均衡校验：distribution table + 违反则 re-allocate
+- [ ] 补充汇总：未分配 task ≥ 3 个时生成 summary-supplementary.md
+- [ ] 文件关联：每 summary 含 ## 相关分析文件 节
+- [ ] 逐文件核验：引用 task-output-guardian-report.md PASS 结论
+- [ ] 用户场景提取：从主线+批次推导 SC-NN 场景列表
+- [ ] 用户场景综合：Overview / Capability Groups / Entry Points Map
+- [ ] 场景序列图：P1 场景 mermaid 序列图（3-8 个）
+- [ ] 完成覆盖率报告章节
+- [ ] 完成 Uncovered Files Audit 章节
+- [ ] 完成总体分析报告 final-analysis-report.md
+- [ ] 生成 file-analysis-index.jsonl（三层关联索引）
+- [ ] 生成 file-descriptions.jsonl
+- [ ] 生成 file-module-map.jsonl
+- [ ] 对账核验：主线/任务/文件覆盖率全部达标
+- [ ] 更新 metadata.json + tasks.md

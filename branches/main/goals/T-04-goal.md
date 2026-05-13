@@ -1,0 +1,22 @@
+- [x] 确认 task 范围（验证 scope files、读取定义）
+- [x] 确定分析深度（DEEP）
+- [x] 执行深度分析（追踪代码、识别组件）
+- [x] 生成任务级流程图（DEEP 必做）
+- [x] 生成任务级时序图（DEEP 必做）
+- [x] 生成边界/集成图（DEEP 必做）
+- [x] 生成数据流图（DEEP 必做）
+- [x] 生成错误传播图（DEEP 必做）
+- [x] 生成并发时间线（有并发代码时）
+- [x] DEEP 模式：完成函数级详细代码解读（每个公开函数签名+职责+逻辑）
+- [x] DEEP 模式：完成调用链路分析（entry→exit 链路 + Fan-in/Fan-out 表）
+- [x] DEEP 模式：完成时序分析（异步编排图 + 事件时序 + 竞态风险 + 隐式约束）
+- [x] DEEP 模式：完成状态流转分析（状态变量 + 转换表/图 + 终态/错误态 + 联动链）
+- [x] DEEP 模式：完成错误传播分析（错误源 + 传播路径 + 未处理路径 + 恢复策略）
+- [x] DEEP 条件：并发模型分析（共享状态 + 协调模式 + 死锁风险）
+- [x] DEEP 条件：副作用清单（Network/FS/Timer/Global state）
+- [x] 生成文件依赖关系图（从 call-graph.jsonl 提取 scope 内依赖）
+- [x] 写出 ## File Roles 强制节（7 个 scope files）
+- [x] 验证 acceptance criteria（7/7 PASS）
+- [x] 识别风险与开放问题（P1×1, P2×2, P3×3, P4×1, OQ×8）
+- [x] 更新 task 状态
+- [x] 写出 task-analyses/T-04-query-api-messages.md（17 节, 1109 行, 64KB）

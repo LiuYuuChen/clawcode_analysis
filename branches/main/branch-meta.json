@@ -1,0 +1,44 @@
+{
+  "branch_name": "main",
+  "parent": null,
+  "created_date": "2025-07-14",
+  "analysis_commit": "a5179f6588dd03cbe83a8d8b718a61875dba7b24",
+  "status": "in_progress",
+  "scope": {
+    "elevated_bls": [],
+    "all_mls": [
+      "ML-01",
+      "ML-02",
+      "ML-03",
+      "ML-04",
+      "ML-05",
+      "ML-06",
+      "ML-07",
+      "ML-08",
+      "ML-09",
+      "ML-10",
+      "ML-11",
+      "ML-12",
+      "ML-13",
+      "ML-14",
+      "ML-15"
+    ],
+    "description": "Initial full analysis of claude-code repository"
+  },
+  "steps_completed": [
+    "map-repo",
+    "sub-map-repo",
+    "trace-mainline",
+    "map-repo-guardian",
+    "analyze"
+  ],
+  "steps_remaining": [
+    "tasks",
+    "implement",
+    "implement-guardian",
+    "task-output-guardian",
+    "synthesize-analysis",
+    "publish-site"
+  ],
+  "version": 0
+}

@@ -1,0 +1,7 @@
+# .code_analysis/.gitignore — all publish-site artifacts stay out of git
+src/
+index.md
+.vitepress/
+package.json
+package-lock.json
+node_modules/

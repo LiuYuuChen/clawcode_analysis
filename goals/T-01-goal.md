@@ -1,0 +1,22 @@
+- [x] 确认 task 范围（验证 scope files、读取定义）
+- [x] 确定分析深度（DEEP）
+- [x] 执行深度分析（追踪代码、识别组件）
+- [x] 生成任务级流程图（DEEP: 四级启动流程 flowchart）
+- [x] 生成任务级时序图（DEEP: 5 participant sequenceDiagram, T=0~T=9）
+- [x] 生成边界/集成图（DEEP: 5 外部系统 + 5 跨 task 边界）
+- [x] 生成数据流图（DEEP: 3 条关键实体路径 + mermaid 数据流图）
+- [x] 生成错误传播图（DEEP: 10 错误源 + 5 传播路径 + 4 未处理路径）
+- [x] 生成并发时间线（T=0~T=9 异步编排图 + 3 竞态风险）
+- [x] DEEP 模式：完成函数级详细代码解读（10 个 scope file，全部公开函数）
+- [x] DEEP 模式：完成调用链路分析（4 entry→exit 链路 + Fan-in/Fan-out 表）
+- [x] DEEP 模式：完成时序分析（异步编排图 + 事件时序 + 竞态风险 + 隐式约束）
+- [x] DEEP 模式：完成状态流转分析（5 状态变量 + 6 转换表 + ASCII 状态机 + 4 联动链）
+- [x] DEEP 模式：完成错误传播分析（10 错误源 + 5 传播路径 + 4 未处理 + 恢复策略）
+- [x] DEEP 条件：并发模型分析（3 共享状态 + 4 协调模式 + 死锁评估）
+- [x] DEEP 条件：副作用清单（11 条副作用）
+- [x] 生成文件依赖关系图（14 行依赖关系表 + mermaid）
+- [x] 写出 ## File Roles 强制节（10/10 文件）
+- [x] 验证 acceptance criteria（7/7 PASS）
+- [x] 识别风险与开放问题（7 问题 + 6 开放问题）
+- [x] 更新 task 状态
+- [x] 写出 task-analyses/T-01-cli-entry-init.md（1034 行, 46665 bytes, 6 次追加）

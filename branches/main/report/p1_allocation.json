@@ -1,0 +1,394 @@
+{
+  "p1_allocation": [
+    {
+      "ml": "ML-01",
+      "name": "CLI 启动与命令路由",
+      "core_count": 5,
+      "related_count": 5,
+      "total": 10,
+      "core_tasks": [
+        "T-01",
+        "T-02",
+        "T-22",
+        "T-30",
+        "T-33"
+      ],
+      "related_tasks": [
+        "T-03",
+        "T-05",
+        "T-08",
+        "T-14",
+        "T-17"
+      ]
+    },
+    {
+      "ml": "ML-02",
+      "name": "查询引擎主循环",
+      "core_count": 3,
+      "related_count": 4,
+      "total": 7,
+      "core_tasks": [
+        "T-03",
+        "T-04",
+        "T-31"
+      ],
+      "related_tasks": [
+        "T-05",
+        "T-08",
+        "T-16",
+        "T-15"
+      ]
+    },
+    {
+      "ml": "ML-03",
+      "name": "工具系统注册与调度",
+      "core_count": 3,
+      "related_count": 3,
+      "total": 6,
+      "core_tasks": [
+        "T-05",
+        "T-21",
+        "T-36"
+      ],
+      "related_tasks": [
+        "T-06",
+        "T-08",
+        "T-18"
+      ]
+    },
+    {
+      "ml": "ML-04",
+      "name": "权限系统",
+      "core_count": 3,
+      "related_count": 3,
+      "total": 6,
+      "core_tasks": [
+        "T-06",
+        "T-07",
+        "T-25"
+      ],
+      "related_tasks": [
+        "T-05",
+        "T-18",
+        "T-09"
+      ]
+    },
+    {
+      "ml": "ML-05",
+      "name": "MCP 服务集成",
+      "core_count": 3,
+      "related_count": 4,
+      "total": 7,
+      "core_tasks": [
+        "T-08",
+        "T-37",
+        "T-40"
+      ],
+      "related_tasks": [
+        "T-05",
+        "T-01",
+        "T-14",
+        "T-38"
+      ]
+    },
+    {
+      "ml": "ML-06",
+      "name": "认证与会话管理",
+      "core_count": 2,
+      "related_count": 4,
+      "total": 6,
+      "core_tasks": [
+        "T-09",
+        "T-39"
+      ],
+      "related_tasks": [
+        "T-01",
+        "T-15",
+        "T-14",
+        "T-20"
+      ]
+    }
+  ],
+  "supplementary_tasks": [
+    "T-10",
+    "T-11",
+    "T-12",
+    "T-13",
+    "T-19",
+    "T-23",
+    "T-24",
+    "T-26",
+    "T-27",
+    "T-28",
+    "T-29",
+    "T-32",
+    "T-34",
+    "T-35",
+    "T-41"
+  ],
+  "all_tasks": {
+    "T-01": {
+      "ml": "ML-01",
+      "priority": "P1",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-02": {
+      "ml": "ML-01",
+      "priority": "P1",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-03": {
+      "ml": "ML-02",
+      "priority": "P1",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-04": {
+      "ml": "ML-02",
+      "priority": "P1",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-05": {
+      "ml": "ML-03",
+      "priority": "P1",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-06": {
+      "ml": "ML-04",
+      "priority": "P1",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-07": {
+      "ml": "ML-04",
+      "priority": "P1",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-08": {
+      "ml": "ML-05",
+      "priority": "P1",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-09": {
+      "ml": "ML-06",
+      "priority": "P1",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-10": {
+      "ml": "ML-07",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-11": {
+      "ml": "ML-07",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-12": {
+      "ml": "ML-07",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-13": {
+      "ml": "ML-08",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-14": {
+      "ml": "ML-09",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-15": {
+      "ml": "ML-10",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-16": {
+      "ml": "ML-11",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-17": {
+      "ml": "ML-12",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-18": {
+      "ml": "ML-13",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-19": {
+      "ml": "ML-14",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-20": {
+      "ml": "ML-15",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-21": {
+      "ml": "ML-03",
+      "priority": "P1",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-22": {
+      "ml": "ML-01",
+      "priority": "P1",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-23": {
+      "ml": "ML-07",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-24": {
+      "ml": "ML-08",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-25": {
+      "ml": "ML-04",
+      "priority": "P1",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-26": {
+      "ml": "ML-07",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-27": {
+      "ml": "ML-07",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-28": {
+      "ml": "ML-07",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-29": {
+      "ml": "ML-12",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-30": {
+      "ml": "ML-01",
+      "priority": "P1",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-31": {
+      "ml": "ML-02",
+      "priority": "P1",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-32": {
+      "ml": "ML-07",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-33": {
+      "ml": "ML-01",
+      "priority": "P1",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-34": {
+      "ml": "ML-07",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-35": {
+      "ml": "ML-07",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-36": {
+      "ml": "ML-03",
+      "priority": "P1",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-37": {
+      "ml": "ML-05",
+      "priority": "P1",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-38": {
+      "ml": "ML-09",
+      "priority": "P2",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-39": {
+      "ml": "ML-06",
+      "priority": "P1",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-40": {
+      "ml": "ML-05",
+      "priority": "P1",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    },
+    "T-41": {
+      "ml": "CROSS",
+      "priority": "P3",
+      "depth": "OVERVIEW",
+      "complexity": "N/A"
+    }
+  },
+  "ml_names": {
+    "ML-01": "CLI 启动与命令路由",
+    "ML-02": "查询引擎主循环",
+    "ML-03": "工具系统注册与调度",
+    "ML-04": "权限系统",
+    "ML-05": "MCP 服务集成",
+    "ML-06": "认证与会话管理",
+    "ML-07": "TUI 渲染与交互",
+    "ML-08": "任务系统",
+    "ML-09": "Bridge 远程模式",
+    "ML-10": "API 客户端与重试层",
+    "ML-11": "上下文与记忆管理",
+    "ML-12": "Plugin System",
+    "ML-13": "Bash/Shell Engine",
+    "ML-14": "Swarm Orchestration",
+    "ML-15": "SDK Entry Points"
+  }
+}

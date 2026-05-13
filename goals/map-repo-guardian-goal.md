@@ -1,0 +1,52 @@
+
+- [x] 验证 metadata.json 与 sub-map 文件的一致性（iteration 2: mapped=1957, sub-maps=29 ✅）
+- [x] 计算三层覆盖率 iteration 1（deep=321, standard=0, catalog=611）
+- [x] 核验追踪模式分布合理性 iteration 1（standard=0 ❌ CRITICAL）
+- [x] 读取 uncovered-files.jsonl 台账 iteration 1（1094 条分类）
+- [x] Phase A Tier 1 门控 iteration 1：ML DEEP 覆盖率 15.9% ≥ 10% ✅ PASS
+- [x] Phase A Tier 2 门控 iteration 1：ML + BL 覆盖率 15.9% < 80% ❌ FAIL_TIER2
+- [x] Phase A Tier 3 门控 iteration 1：ML + BL + Catalog 覆盖率 46.2% < 90% ❌ FAIL_TIER3
+- [x] Phase B needs-split 门控 iteration 1（1025 needs-split 条目 ❌ FAIL）
+- [x] FAIL 路径 iteration 1：创建回退工作流（4 new MLs + catalog supplement + ml-expand）
+- [x] 检查迭代轮次 ≤ 5（当前 iteration=1）
+- [x] 写出 coverage-map-report.md iteration 1
+- [x] 计算三层覆盖率 iteration 2（deep=359, standard=137, catalog=1461）
+- [x] 核验追踪模式分布合理性 iteration 2（catalog=74.7% ⚠️ WARNING DANGER zone）
+- [x] 验证 metadata.json 与 mapped-files.jsonl 一致性（1957=1957 ✅, 515166=515166 ✅）
+- [x] Phase A Tier 1 门控 iteration 2：17.8% ≥ 10% ✅ PASS
+- [x] Phase A Tier 2 门控 iteration 2：24.6% < 80% ❌ FAIL_TIER2（结构性不可修复）
+- [x] Phase A Tier 3 门控 iteration 2：96.9% ≥ 95% ✅ PASS
+- [x] Phase B needs-split 门控 iteration 2（台账清理后 0 needs-split ✅ PASS）
+- [x] 清理台账：移除 1025 条已覆盖的 needs-split 条目，仅保留 69 accept-uncovered
+- [x] 验证 accept-uncovered 比例：69/2019 = 3.4% ≤ 5% ✅
+- [x] 写出 uncovered-files.md（69 个 accept-uncovered 文件）
+- [x] 写出 coverage-map-report.md iteration 2（FAIL_TIER2）
+- [x] FAIL 路径 iteration 2：创建 iteration 3 补救工作流（catalog→standard 升级）
+- [x] 检查迭代轮次 ≤ 5（当前 iteration=2）
+- [x] catalog-to-standard-upgrade iteration 3 完成（660 文件升级, PI-05:45, PI-12:302, PI-13:203, PI-14:110）
+- [x] 计算三层覆盖率 iteration 3 recheck（deep=359, standard=797, catalog=801）
+- [x] 核验追踪模式分布合理性 iteration 3（deep=17.8% ✅, standard=39.5% ✅, catalog=39.7% ⚠️ 略超30%）
+- [x] 验证 metadata.json 与 mapped-files.jsonl 一致性（1957=1957 ✅）
+- [x] Phase A Tier 1 门控 iteration 4：17.8% ≥ 10% ✅ PASS
+- [x] Phase A Tier 2 门控 iteration 4：57.3% < 80% ❌ FAIL_TIER2
+- [x] Phase A Tier 3 门控 iteration 4：96.9% ≥ 95% ✅ PASS
+- [x] Phase B needs-split 门控 iteration 4（0 needs-split ✅ PASS）
+- [x] Phase C accept-uncovered 比例 iteration 4（69/2019=3.4% ≤ 5% ✅）
+- [x] 分析剩余 801 catalog 文件中 lines > 50 的升级候选（483 个文件可升级）
+- [x] 计算升级 >50 行文件后的预估 Tier 2（81.2% ≥ 80% ✅ 可 PASS）
+- [x] 写出 coverage-map-report.md iteration 4（FAIL_TIER2）
+- [x] FAIL 路径 iteration 4：创建 iteration 5 最终补救工作流（lines > 50 升级）
+- [x] 检查迭代轮次 ≤ 5（当前 iteration=4, 剩余 1 次）
+- [x] catalog-to-standard-upgrade iteration 5 完成（483 文件 lines>50 升级, deep=359/standard=1280/catalog=318）
+- [x] 计算三层覆盖率 iteration 5 recheck（deep=359, standard=1280, catalog=318, total=1957）
+- [x] 核验追踪模式分布合理性 iteration 5（deep=17.8% OK, standard=63.4% OK, catalog=15.8% OK）
+- [x] 验证 metadata.json 与 mapped-files.jsonl 一致性（1957=1957 ✅, catalog=318=manifest ✅）
+- [x] Phase A Tier 1 门控 iteration 5：359/2019 = 17.8% ≥ 10% ✅ PASS
+- [x] Phase A Tier 2 门控 iteration 5：1639/2019 = 81.2% ≥ 80% ✅ PASS
+- [x] Phase A Tier 3 门控 iteration 5：1957/2019 = 96.9% ≥ 95% ✅ PASS
+- [x] Phase B needs-split 门控 iteration 5（0 needs-split ✅ PASS）
+- [x] Phase C accept-uncovered 比例 iteration 5（69/2019 = 3.4% ≤ 5% ✅ PASS）
+- [x] 写出 coverage-map-report.md iteration 5（FINAL: PASS）
+- [x] 写出 uncovered-files.md（69 个 accept-uncovered 文件，人类可读汇总）
+- [x] 更新 tasks.md — map-repo-guardian 标记 [x] PASS，trace-mainline 标记 [x]
+- [x] 检查迭代轮次 ≤ 5（iteration 5 of 5，已 PASS ✅）
