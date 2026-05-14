@@ -1,25 +1,22 @@
-# T-02 Goal Tracker: 命令路由与REPL启动
-
-- [ ] 确认 task 范围（验证 scope files、读取定义）
-- [ ] 确定分析深度（DEEP）
-- [ ] 执行深度分析（追踪代码、识别组件）
-- [ ] 生成任务级流程图（DEEP 必做）
-- [ ] 生成任务级时序图（DEEP 必做）
-- [ ] 生成边界/集成图（DEEP 必做）
-- [ ] 生成数据流图（DEEP 必做）
-- [ ] 生成错误传播图（DEEP 必做）
-- [ ] 生成并发时间线（有并发代码时）
-- [ ] DEEP 模式：完成函数级详细代码解读（每个公开函数签名+职责+逻辑）
-- [ ] DEEP 模式：完成调用链路分析（entry→exit 链路 + Fan-in/Fan-out 表）
-- [ ] DEEP 模式：完成时序分析（异步编排图 + 事件时序 + 竞态风险 + 隐式约束）
-- [ ] DEEP 模式：完成状态流转分析（状态变量 + 转换表/图 + 终态/错误态 + 联动链）
-- [ ] DEEP 模式：完成错误传播分析（错误源 + 传播路径 + 未处理路径 + 恢复策略）
-- [ ] DEEP 条件：并发模型分析（有并发代码时）
-- [ ] DEEP 条件：副作用清单（有显著 I/O 时）
-- [ ] 生成文件依赖关系图（从 call-graph.jsonl 提取 scope 内依赖）
-- [ ] 写出 ## File Roles 强制节（216 个 effective scope file 一行，不可遗漏）
-- [ ] 验证 acceptance criteria
-- [ ] 识别风险与开放问题
-- [ ] 更新 task 状态
-- [ ] 写出 task-analyses/T-02-command-routing.md
-- [ ] 更新 assumptions.md
+- [x] 确认 task 范围（验证 scope files、读取定义）
+- [x] 确定分析深度（DEEP）
+- [x] 执行深度分析（追踪代码、识别组件）
+- [x] 生成任务级流程图（DEEP 必须）
+- [x] 生成任务级时序图（DEEP 必须）
+- [x] 生成边界/集成图（DEEP 必须）
+- [x] 生成数据流图（DEEP 必须）
+- [x] 生成错误传播图（DEEP 必须）
+- [x] 生成并发时间线（有并发代码时）
+- [x] DEEP 模式：完成函数级详细代码解读（每个公开函数签名+职责+逻辑）
+- [x] DEEP 模式：完成调用链路分析（entry→exit 链路 + Fan-in/Fan-out 表）
+- [x] DEEP 模式：完成时序分析（异步编排图 + 事件时序 + 竞态风险 + 隐式约束）
+- [x] DEEP 模式：完成状态流转分析（状态变量 + 转换表/图 + 终态/错误态 + 联动链）
+- [x] DEEP 模式：完成错误传播分析（错误源 + 传播路径 + 未处理路径 + 恢复策略）
+- [x] DEEP 条件：并发模型分析（有并发代码时：共享状态 + 协调模式 + 死锁风险）
+- [x] DEEP 条件：副作用清单（有显著 I/O 时：函数→副作用类型→目标→可逆性）
+- [x] 生成文件依赖关系图（从 call-graph.jsonl 提取 scope 内依赖）
+- [x] 写出 ## File Roles（每个 effective scope file 一行，不可遗漏）
+- [x] 验证 acceptance criteria（5/5 通过）
+- [x] 识别风险与开放问题（5 风险 + 4 反模式 + 6 开放问题）
+- [x] 写出 task-analyses/T-02-command-routing.md（1204 行）
+- [x] 更新 assumptions.md

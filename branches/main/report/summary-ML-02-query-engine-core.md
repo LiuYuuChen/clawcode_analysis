@@ -33,7 +33,7 @@
 |------|------|--------|---------|------|
 | T-03 | `.code_analysis/branches/main/task-analyses/T-03-query-core-loop` | P1 | DEEP | 查询核心循环 — `query.ts` 状态机、压缩管线、DI 架构、Withheld 错误机制 |
 | T-04 | `.code_analysis/branches/main/task-analyses/T-04-query-api-messages` | P1 | DEEP | API 流式层与消息处理 — `queryModel()` 巨型函数、SSE 事件循环、normalizeMessages 管线 |
-| T-31 | `.code_analysis/branches/main/task-analyses/T-31-audit-pi-12` | P3 | OVERVIEW | PI-12 utility-leaf 模式审计 — 12 个实例全部验证通过 |
+| T-31 | `.code_analysis/branches/main/task-analyses/T-31-audit-utility-leaf` | P3 | OVERVIEW | PI-12 utility-leaf 模式审计 — 12 个实例全部验证通过 |
 
 **关联任务 (Related)**：
 
@@ -383,7 +383,7 @@ queryLoop 每轮迭代
 
 → [完整分析](/branches/main/task-analyses/T-04-query-api-messages)
 
-### T-31: PI-12 Utility-Leaf 模式审计 (audit-pi-12)
+### T-31: PI-12 Utility-Leaf 模式审计 (audit-utility-leaf)
 
 **综合评述**：T-31 是一个低优先级的模式审计任务，验证 12 个 PI-12 (utility-leaf) 实例的一致性。这些实例都是查询引擎中不持有可变状态的纯函数工具模块（如 `tokenEstimation.ts`、`compactWarningState.ts` 等）。审计结论是全部 12 个实例符合 PI-12 模式规范，无违规发现。该任务与 ML-02 核心逻辑关系不大，主要价值在于确认支撑工具模块的代码质量。
 
@@ -391,7 +391,7 @@ queryLoop 每轮迭代
 
 **Top Risks**: 无显著风险（全部实例通过审计）
 
-→ [完整分析](/branches/main/task-analyses/T-31-audit-pi-12)
+→ [完整分析](/branches/main/task-analyses/T-31-audit-utility-leaf)
 
 ---
 

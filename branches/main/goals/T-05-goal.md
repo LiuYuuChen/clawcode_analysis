@@ -1,26 +1,25 @@
 - [x] 确认 task 范围（验证 scope files、读取定义）
 - [x] 确定分析深度（DEEP）
 - [x] 执行深度分析（追踪代码、识别组件）
-- [x] 生成任务级流程图（File Dependency Graph + Call Chain flowchart）
-- [x] 生成任务级时序图（Temporal sequence diagram）
-- [x] 生成边界/集成图（Boundary/Integration mermaid diagram）
-- [x] 生成数据流图（ToolUse→ToolResult + Permission Decision + Agent Recursive）
-- [x] 生成错误传播图（Error Propagation mermaid diagram）
-- [x] 生成并发时间线（Async Orchestration T=0~9 + Race Conditions）
-- [x] DEEP 模式：完成函数级详细代码解读（6大子系统逐函数解读）
-- [x] DEEP 模式：完成调用链路分析（3条链路 + Fan-in/Fan-out表 + 10热点）
-- [x] DEEP 模式：完成时序分析（T=0~9编排 + 4竞态 + 5隐式约束 + mermaid图）
-- [x] DEEP 模式：完成状态流转分析（7变量 + 转换表 + 6终态 + 跨组件联动）
-- [x] DEEP 模式：完成错误传播分析（12源 + 3未处理 + 6恢复策略 + Error-Result矩阵）
-- [x] DEEP 条件：并发模型分析（5共享状态 + 5协调模式 + 死锁评估）
-- [x] DEEP 条件：副作用清单（15项副作用 Network/FS/Subprocess/Global）
-- [x] STANDARD 模式：调用链概要 + 错误处理概要 + 状态概要（N/A, DEEP模式）
+- [x] 生成任务级流程图（DEEP 必须）
+- [x] 生成任务级时序图（DEEP 必须）
+- [x] 生成边界/集成图（DEEP 必须）
+- [x] 生成数据流图（DEEP 必须）
+- [x] 生成错误传播图（DEEP 必须）
+- [x] 生成并发时间线（有并发代码时）
+- [x] DEEP 模式：完成函数级详细代码解读（每个公开函数签名+职责+逻辑）
+- [x] DEEP 模式：完成调用链路分析（entry→exit 链路 + Fan-in/Fan-out 表）
+- [x] DEEP 模式：完成时序分析（异步编排图 + 事件时序 + 竞态风险 + 隐式约束）
+- [x] DEEP 模式：完成状态流转分析（状态变量 + 转换表/图 + 终态/错误态 + 联动链）
+- [x] DEEP 模式：完成错误传播分析（错误源 + 传播路径 + 未处理路径 + 恢复策略）
+- [x] DEEP 条件：并发模型分析（有并发代码时：共享状态 + 协调模式 + 死锁风险）
+- [x] DEEP 条件：副作用清单（有显著 I/O 时：函数→副作用类型→目标→可逆性）
+- [x] STANDARD 模式：调用链概要 + 错误处理概要 + 状态概要（N/A — DEEP mode）
 - [x] 生成文件依赖关系图（从 call-graph.jsonl 提取 scope 内依赖）
-- [x] 写出 ## File Roles 强制节（142 scope files 全部列出）
-- [x] Pattern Audit task: N/A（本 task 无 pattern_coverage）
-- [x] 验证 acceptance criteria（7/7 PASS）
-- [x] 识别风险与开放问题（7 问题 + 8 开放问题）
+- [x] 写出 ## File Roles（每个 effective scope file 一行，不可遗漏）
+- [x] Pattern Audit task: 更新 instance-manifest.jsonl（N/A — 非 Pattern Audit task）
+- [x] 验证 acceptance criteria（8/8 通过）
+- [x] 识别风险与开放问题
 - [x] 更新 task 状态
-- [x] 写出 task-analyses/T-05-tool-system-core.md（1223行, 67KB）
-- [x] 更新 assumptions.md（无新 assumption 需要追加）
-- [x] 清理临时文件（tmp_t05_p*.py 全部删除）
+- [x] 写出 task-analyses/T-05-tool-system-core.md（1044行完成）
+- [x] 更新 assumptions.md

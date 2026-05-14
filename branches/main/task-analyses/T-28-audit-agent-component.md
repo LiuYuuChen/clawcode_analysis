@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-28 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-28 -->
 # T-28 Analysis: Pattern Audit — agent-component (PI-09)
 
 ## Scope Confirmation
@@ -8,9 +8,9 @@
 - Analysis Depth: OVERVIEW
 - Pattern Coverage: PI-09 (agent-component)
 - Scope Files (confirmed):
-  - [`src/components/agents/AgentNavigationFooter.tsx`](/src/src/components/agents/AgentNavigationFooter.tsx.md) (25 lines) ✅
-  - [`src/components/agents/new-agent-creation/types.ts`](/src/src/components/agents/new-agent-creation/types.ts.md) (1 line) ✅
-  - [`src/components/agents/types.ts`](/src/src/components/agents/types.ts.md) (6 lines) ✅
+  - [`src/components/agents/AgentNavigationFooter.tsx`](/src/src/components/agents/AgentNavigationFooter.tsx) (25 lines) ✅
+  - [`src/components/agents/new-agent-creation/types.ts`](/src/src/components/agents/new-agent-creation/types.ts) (1 line) ✅
+  - [`src/components/agents/types.ts`](/src/src/components/agents/types.ts) (6 lines) ✅
 - Scope adjustments: PI-09 has 4 catalog instances. 3 are scope files; the 4th (utils.ts, 18L) will also be fully verified. All 4 will be verified (100% coverage, no sampling needed).
 - Rationale: PI-09 audit task, verifying all catalog instances conform to agent-component pattern.
 - Dependencies: T-10 (TUI main interface — already completed)

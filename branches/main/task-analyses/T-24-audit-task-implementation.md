@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-24 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-24 -->
 # T-24 Analysis: Pattern Audit — task-implementation (PI-04)
 
 ## Scope Confirmation
@@ -32,7 +32,7 @@
 
 **F-01 — Shared Task Interface**: All 7 active task implementations share the `Task` interface: `{ name: string, type: TaskType, async kill(taskId, setAppState) }`. This is the core contract of PI-04.
 
-**F-02 — Shared Infrastructure**: Common utilities consumed by all task files: `TaskStateBase`, `createTaskStateBase()`, `generateTaskId()`, `registerTask()`, `updateTaskState()` — all defined in [`src/Task.ts`](/src/src/Task.ts.md) (T-13 scope, not re-analyzed here).
+**F-02 — Shared Infrastructure**: Common utilities consumed by all task files: `TaskStateBase`, `createTaskStateBase()`, `generateTaskId()`, `registerTask()`, `updateTaskState()` — all defined in [`src/Task.ts`](/src/src/Task.ts) (T-13 scope, not re-analyzed here).
 
 **F-03 — Directory Convention Strict**: Every task type follows `src/tasks/<TaskName>/<TaskName>.tsx|.ts`. Auxiliary files (types.ts, guards.ts, killShellTasks.ts) are co-located in the same directory.
 

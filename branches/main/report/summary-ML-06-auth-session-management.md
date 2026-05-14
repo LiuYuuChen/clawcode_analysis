@@ -32,7 +32,7 @@
 | Task | 深度 | 文件 | 说明 |
 |------|------|------|------|
 | T-09 | DEEP | [T-09-auth-session](/branches/main/task-analyses/T-09-auth-session) | 认证与会话核心：40 files / 13,388 lines — auth.ts 枢纽 + OAuth PKCE + token 刷新 + SecureStorage + 遥测 + GrowthBook |
-| T-39 | OVERVIEW | [T-39-audit-pi-24](/branches/main/task-analyses/T-39-audit-pi-24) | PI-24 telemetry-module 审计：2 files / 65 lines — logger.ts (OTEL adapter) + skillLoadedEvent.ts (analytics emitter)，100% 验证通过 |
+| T-39 | OVERVIEW | [T-39-audit-telemetry-module](/branches/main/task-analyses/T-39-audit-telemetry-module) | PI-24 telemetry-module 审计：2 files / 65 lines — logger.ts (OTEL adapter) + skillLoadedEvent.ts (analytics emitter)，100% 验证通过 |
 
 **Related Tasks (关联任务)**:
 
@@ -357,7 +357,7 @@ init.ts (ML-01)
 
 **Top Risk**：P4-02 — skillLoadedEvent.ts 无 getSkillToolCommands() 错误处理
 
-**详细分析**：[T-39-audit-pi-24](/branches/main/task-analyses/T-39-audit-pi-24)
+**详细分析**：[T-39-audit-telemetry-module](/branches/main/task-analyses/T-39-audit-telemetry-module)
 
 ---
 

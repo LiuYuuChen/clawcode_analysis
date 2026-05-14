@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-40 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-40 -->
 # T-40 Analysis: Pattern Audit — service-module (PI-05)
 
 ## Scope Confirmation
@@ -8,7 +8,7 @@
 - Analysis Depth: OVERVIEW
 - Pattern Coverage: PI-05 (service-module)
 - Scope Files (confirmed):
-  - [`src/services/analytics/sinkKillswitch.ts`](/src/src/services/analytics/sinkKillswitch.ts.md) (25 lines) ✅
+  - [`src/services/analytics/sinkKillswitch.ts`](/src/src/services/analytics/sinkKillswitch.ts) (25 lines) ✅
 - Scope adjustments: None. PI-05 has exactly 13 catalog instances. All will be fully verified.
 - Rationale: Coverage gap from implement-guardian Catalog Gate FAIL. PI-05 had no audit task.
 
@@ -27,7 +27,7 @@
 | src/services/skillSearch/signals.ts | 3 | Hard-coded stub: createSkillSearchSignal() always returns null | OVERVIEW: § Pattern Audit |
 | src/services/skillSearch/telemetry.ts | 1 | Hard-coded stub: logSkillSearchTelemetry() is empty void function | OVERVIEW: § Pattern Audit |
 | src/services/tips/tipHistory.ts | 17 | Tip display tracking: records which tips were shown at which startup number, calculates sessions since last shown | OVERVIEW: § Pattern Audit |
-| src/services/tips/types.ts | 2 | Placeholder type aliases for Tip and TipContext (Record&lt;string, unknown&gt;) | OVERVIEW: § Pattern Audit |
+| src/services/tips/types.ts | 2 | Placeholder type aliases for Tip and TipContext (Record<string, unknown>) | OVERVIEW: § Pattern Audit |
 | src/services/claudeAiLimitsHook.ts | 23 | React hook that subscribes to claude.ai usage limits via listener pattern and returns current limits | OVERVIEW: § Pattern Audit |
 
 ## Analysis Findings

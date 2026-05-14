@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-35 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-35 -->
 # T-35 Analysis: Pattern Audit — notification-hook (PI-16)
 
 ## Scope Confirmation
@@ -8,9 +8,9 @@
 - Analysis Depth: OVERVIEW
 - Pattern Coverage: PI-16 (notification-hook)
 - Scope Files (confirmed):
-  - [`src/hooks/notifs/useAntOrgWarningNotification.ts`](/src/src/hooks/notifs/useAntOrgWarningNotification.ts.md) (1 line) ✅
-  - [`src/hooks/notifs/useDeprecationWarningNotification.tsx`](/src/src/hooks/notifs/useDeprecationWarningNotification.tsx.md) (43 lines) ✅
-  - [`src/hooks/notifs/useInstallMessages.tsx`](/src/src/hooks/notifs/useInstallMessages.tsx.md) (25 lines) ✅
+  - [`src/hooks/notifs/useAntOrgWarningNotification.ts`](/src/src/hooks/notifs/useAntOrgWarningNotification.ts) (1 line) ✅
+  - [`src/hooks/notifs/useDeprecationWarningNotification.tsx`](/src/src/hooks/notifs/useDeprecationWarningNotification.tsx) (43 lines) ✅
+  - [`src/hooks/notifs/useInstallMessages.tsx`](/src/src/hooks/notifs/useInstallMessages.tsx) (25 lines) ✅
 - Scope adjustments: PI-16 has 5 catalog instances (134 lines total). Full verification performed — all 5 instances read in full.
 - Rationale: PI-16 audit task, verifying all catalog instances conform to notification-hook pattern.
 - Dependencies: T-10 (TUI main interface — already completed)

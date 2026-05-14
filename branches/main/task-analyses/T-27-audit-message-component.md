@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-27 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-27 -->
 # T-27 Analysis: Pattern Audit — message-component (PI-08)
 
 ## Scope Confirmation
@@ -8,9 +8,9 @@
 - Analysis Depth: OVERVIEW
 - Pattern Coverage: PI-08 (message-component)
 - Scope Files (confirmed):
-  - [`src/components/messages/AssistantRedactedThinkingMessage.tsx`](/src/src/components/messages/AssistantRedactedThinkingMessage.tsx.md) (30 lines) ✅
-  - [`src/components/messages/CompactBoundaryMessage.tsx`](/src/src/components/messages/CompactBoundaryMessage.tsx.md) (17 lines) ✅
-  - [`src/components/messages/SnipBoundaryMessage.tsx`](/src/src/components/messages/SnipBoundaryMessage.tsx.md) (3 lines) ✅
+  - [`src/components/messages/AssistantRedactedThinkingMessage.tsx`](/src/src/components/messages/AssistantRedactedThinkingMessage.tsx) (30 lines) ✅
+  - [`src/components/messages/CompactBoundaryMessage.tsx`](/src/src/components/messages/CompactBoundaryMessage.tsx) (17 lines) ✅
+  - [`src/components/messages/SnipBoundaryMessage.tsx`](/src/src/components/messages/SnipBoundaryMessage.tsx) (3 lines) ✅
 - Scope adjustments: None. PI-08 has 12 catalog instances. All will be fully verified.
 - Rationale: PI-08 audit task, verifying all catalog instances conform to message-component pattern.
 - Dependencies: T-10 (TUI main interface — already completed)

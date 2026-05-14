@@ -9,5 +9,5 @@
 - [x] 写出 ## File Roles 强制节（10 行）
 - [x] 验证 acceptance criteria
 - [x] 识别风险与开放问题
-- [x] 写出 task-analyses/T-24-audit-pi-04.md
+- [x] 写出 task-analyses/T-24-audit-task-implementation.md
 - [x] 更新 task 状态

@@ -22,7 +22,7 @@
 | [summary-ML-02-query-engine](/branches/main/report/summary-ML-02-query-engine-core) | P1 | query.ts 的 runTools() 是 toolExecution.ts runToolUse() 的唯一调用方；AgentTool 子查询递归进入 ML-02 的 query()；两者形成 query→tool→query 递归闭环 |
 | [summary-ML-04-permission-system](/branches/main/report/summary-ML-04-permission-system) | P1 | toolExecution.ts Phase 6 调用 canUseTool()（ML-04 的 useCanUseTool.tsx）；resolveHookPermissionDecision() 位于 toolHooks.ts 但归属 ML-04；BashTool 的 speculative classifier 与 ML-04 的 auto-mode classifier 链路交汇 |
 | [summary-ML-05-mcp-integration](/branches/main/report/summary-ML-05-mcp-service-integration) | P1 | assembleToolPool() 合并内置+MCP工具池；MCPTool.ts 将 MCP server tools 转为 Tool 实例；PostToolUse hooks 对 MCP 工具输出有修改权（内置工具不行）；MCP auth 错误触发 needs-auth 状态流转 |
-| [summary-ML-13-bash-shell-engine](/branches/main/report/summary-ML-13-bash-shell-engine) | P2 | BashTool 的 bashSecurity/bashPermissions 依赖 ML-13 的 bashParser/ast 安全 walker；ShellProvider 抽象层（bashProvider/powershellProvider）由 ML-13 定义，被 BashTool 直接消费；readOnlyCommandValidation 和 dangerousCmdlets 为权限分类提供依据 |
+| [summary-ML-13-bash-shell-engine](/branches/main/task-analyses/T-18-bash-engine) | P2 | BashTool 的 bashSecurity/bashPermissions 依赖 ML-13 的 bashParser/ast 安全 walker；ShellProvider 抽象层（bashProvider/powershellProvider）由 ML-13 定义，被 BashTool 直接消费；readOnlyCommandValidation 和 dangerousCmdlets 为权限分类提供依据 |
 
 ### Task 分析
 
@@ -31,8 +31,8 @@
 | Task | 分析文件 | 深度 |
 |------|---------|------|
 | T-05 | [T-05-tool-system-core](/branches/main/task-analyses/T-05-tool-system-core) | DEEP — 工具系统核心：注册+执行+权限+结果处理（142 文件, ~58K 行） |
-| T-21 | [T-21-audit-pi-01](/branches/main/task-analyses/T-21-audit-pi-01) | OVERVIEW — PI-01 tool-instance 模式审计（77 实例, 13% 抽样验证 100% pass） |
-| T-36 | [T-36-audit-pi-18](/branches/main/task-analyses/T-36-audit-pi-18) | OVERVIEW — PI-18 computer-use-module 模式审计（2 实例, 100% 全量验证） |
+| T-21 | [T-21-audit-tool-instance](/branches/main/task-analyses/T-21-audit-tool-instance) | OVERVIEW — PI-01 tool-instance 模式审计（77 实例, 13% 抽样验证 100% pass） |
+| T-36 | [T-36-audit-computer-use-module](/branches/main/task-analyses/T-36-audit-computer-use-module) | OVERVIEW — PI-18 computer-use-module 模式审计（2 实例, 100% 全量验证） |
 
 **Related Tasks（关联主线）**：
 
@@ -366,7 +366,7 @@ query.ts 生成多个并行 tool_use blocks
 
 **Top Risk**: 跨工具 import 极少但并非为零 — AgentTool import FileReadTool/BashTool，修改这些工具的接口需注意 AgentTool 的传递依赖。
 
-→ [完整分析](/branches/main/task-analyses/T-21-audit-pi-01)
+→ [完整分析](/branches/main/task-analyses/T-21-audit-tool-instance)
 
 ### T-36: PI-18 Computer Use Module Pattern 审计
 
@@ -376,7 +376,7 @@ query.ts 生成多个并行 tool_use blocks
 
 **Top Risk**: 全局互斥锁粒度过粗 — 在多 tool_use 并发场景下，ComputerUse 操作会阻塞其他并发工具调用。lock 的 scope 应考虑按 session 或 per-operation 细化。
 
-→ [完整分析](/branches/main/task-analyses/T-36-audit-pi-18)
+→ [完整分析](/branches/main/task-analyses/T-36-audit-computer-use-module)
 
 ---
 

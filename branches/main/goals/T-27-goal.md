@@ -8,4 +8,4 @@
 - [x] 更新 instance-manifest.jsonl（12 条 role_source→verified）
 - [x] 验证 acceptance criteria（7/7 PASS）
 - [x] 识别风险与开放问题（P4×3, OQ×3）
-- [x] 写出 task-analyses/T-27-audit-pi-08.md
+- [x] 写出 task-analyses/T-27-audit-message-component.md

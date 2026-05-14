@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-26 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-26 -->
 # T-26 Analysis: Pattern Audit — ink-fork-component (PI-07)
 
 ## Scope Confirmation
@@ -8,9 +8,9 @@
 - Analysis Depth: OVERVIEW
 - Pattern Coverage: PI-07 (ink-fork-component)
 - Scope Files (confirmed):
-  - [`src/ink/components/AppContext.ts`](/src/src/ink/components/AppContext.ts.md) (21 lines) ✅
-  - [`src/ink/components/CursorDeclarationContext.ts`](/src/src/ink/components/CursorDeclarationContext.ts.md) (32 lines) ✅
-  - [`src/ink/components/Link.tsx`](/src/src/ink/components/Link.tsx.md) (42 lines) ✅
+  - [`src/ink/components/AppContext.ts`](/src/src/ink/components/AppContext.ts) (21 lines) ✅
+  - [`src/ink/components/CursorDeclarationContext.ts`](/src/src/ink/components/CursorDeclarationContext.ts) (32 lines) ✅
+  - [`src/ink/components/Link.tsx`](/src/src/ink/components/Link.tsx) (42 lines) ✅
 - Scope adjustments: None. PI-07 has 33 catalog instances. All will be fully verified.
 - Rationale: PI-07 audit task, verifying all catalog instances conform to the ink-fork-component pattern.
 - Dependencies: T-10 (TUI main interface — already completed)

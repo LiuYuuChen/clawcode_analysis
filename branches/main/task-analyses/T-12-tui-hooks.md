@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6588dd03cbe83a8d8b718a61875dba7b24 | updated: 2025-07-18 | mode: full | task: T-12 --&gt;
+<!-- analysis-version: 0 | commit: 365f23f | updated: 2025-07-25 | mode: full | task: T-12 -->
 # T-12 Analysis: TUI Hooks与交互层
 
 ## Scope Confirmation
@@ -50,49 +50,49 @@ The hooks layer is the interaction backbone of the TUI — every user keystroke,
 | src/hooks/useGlobalKeybindings.tsx | 249 | Global keybindings — registers ctrl+t (todos), ctrl+o (transcript), ctrl+e (expand), ctrl+c (exit) handlers | STANDARD: § Analysis Findings |
 | src/hooks/useSSHSession.ts | 241 | SSH session — manages SSH tunnel lifecycle for remote REPL connections with auto-reconnect | STANDARD: § Analysis Findings |
 | src/hooks/useArrowKeyHistory.tsx | 229 | Arrow key history — up/down arrow navigation through command history with modified-prefix filtering | STANDARD: § Analysis Findings |
-| src/hooks/useHistorySearch.ts | 303 | Hook — useHistorySearch interaction behavior | STANDARD: § Analysis Findings |
 | src/hooks/useIDEIntegration.tsx | 70 | IDE integration — VSCode/JetBrains extension communication bridge for file open/diagnostic/selection | STANDARD: § Analysis Findings |
 | src/hooks/useIdeAtMentioned.ts | 76 | IDE at-mention — handles @-mention file references from IDE extension for context injection | STANDARD: § Analysis Findings |
 | src/hooks/useIdeLogging.ts | 41 | IDE logging — forwards internal log events to IDE output panel for debugging | STANDARD: § Analysis Findings |
 | src/hooks/useIdeSelection.ts | 150 | IDE selection — receives selected code from IDE for context injection into prompt | STANDARD: § Analysis Findings |
-| src/hooks/useInboxPoller.ts | 969 | Hook — useInboxPoller interaction behavior | STANDARD: § Analysis Findings |
 | src/hooks/useInputBuffer.ts | 132 | Input buffer — manages raw terminal input buffering for multi-byte sequences | STANDARD: § Analysis Findings |
 | src/hooks/useIssueFlagBanner.ts | 133 | Issue flag banner — displays GitHub issue tracking integration status banner | STANDARD: § Analysis Findings |
 | src/hooks/useLogMessages.ts | 119 | Log messages — captures and routes internal log events to TUI notification layer | STANDARD: § Analysis Findings |
 | src/hooks/useLspPluginRecommendation.tsx | 194 | LSP recommendation — suggests LSP plugins based on detected project language files | STANDARD: § Analysis Findings |
 | src/hooks/useMailboxBridge.ts | 21 | Mailbox bridge — routes messages between swarm teammates via filesystem mailbox | STANDARD: § Analysis Findings |
 | src/hooks/useMainLoopModel.ts | 34 | Main loop model — tracks current AI model selection and triggers model-switch UI | STANDARD: § Analysis Findings |
-| src/hooks/useManagePlugins.ts | 304 | Hook — useManagePlugins interaction behavior | STANDARD: § Analysis Findings |
 | src/hooks/useMergedClients.ts | 23 | Merged clients — merges API client configurations (direct + Bedrock + Vertex) into single view | STANDARD: § Analysis Findings |
 | src/hooks/useMergedCommands.ts | 15 | Merged commands — merges base commands with plugin commands into unified command registry | STANDARD: § Analysis Findings |
 | src/hooks/useMergedTools.ts | 44 | Merged tools — merges base tools with MCP tools into unified tool registry | STANDARD: § Analysis Findings |
 | src/hooks/useNotifyAfterTimeout.ts | 65 | Notify after timeout — triggers desktop notification after inactivity period | STANDARD: § Analysis Findings |
-| src/hooks/usePasteHandler.ts | 285 | Hook — usePasteHandler interaction behavior | STANDARD: § Analysis Findings |
 | src/hooks/usePluginRecommendationBase.tsx | 105 | Plugin recommendation base — shared logic for plugin suggestion UI and dismiss state | STANDARD: § Analysis Findings |
 | src/hooks/usePrStatus.ts | 106 | PR status — tracks pull request status from Git and displays in TUI footer | STANDARD: § Analysis Findings |
 | src/hooks/usePromptSuggestion.ts | 177 | Prompt suggestion — generates contextual prompt completions from recent context | STANDARD: § Analysis Findings |
 | src/hooks/usePromptsFromClaudeInChrome.tsx | 71 | Chrome prompts — receives prompt suggestions from claude.ai Chrome extension via WebSocket | STANDARD: § Analysis Findings |
 | src/hooks/useQueueProcessor.ts | 68 | Queue processor — serializes and processes queued user commands from commandQueue | STANDARD: § Analysis Findings |
-| src/hooks/useRemoteSession.ts | 605 | Hook — useRemoteSession interaction behavior | STANDARD: § Analysis Findings |
-| src/hooks/useReplBridge.tsx | 723 | Hook — useReplBridgex interaction behavior | STANDARD: § Analysis Findings |
-| src/hooks/useSSHSession.ts | 241 | Hook — useSSHSession interaction behavior | STANDARD: § Analysis Findings |
 | src/hooks/useScheduledTasks.ts | 139 | Scheduled tasks — manages cron-like scheduled task execution with interval tracking | STANDARD: § Analysis Findings |
-| src/hooks/useSearchInput.ts | 364 | Hook — useSearchInput interaction behavior | STANDARD: § Analysis Findings |
 | src/hooks/useSessionBackgrounding.ts | 158 | Session backgrounding — handles session suspend/resume lifecycle on terminal focus change | STANDARD: § Analysis Findings |
 | src/hooks/useSkillImprovementSurvey.ts | 105 | Skill improvement survey — displays skill improvement survey prompts after task completion | STANDARD: § Analysis Findings |
 | src/hooks/useSkillsChange.ts | 62 | Skills change — watches for skill file changes on disk and triggers hot-reload | STANDARD: § Analysis Findings |
 | src/hooks/useSwarmInitialization.ts | 81 | Swarm init — initializes multi-agent swarm coordination (team file + role assignment) | STANDARD: § Analysis Findings |
-| src/hooks/useSwarmPermissionPoller.ts | 330 | Hook — useSwarmPermissionPoller interaction behavior | STANDARD: § Analysis Findings |
 | src/hooks/useTaskListWatcher.ts | 221 | Task list watcher — monitors background task list changes and triggers UI updates | STANDARD: § Analysis Findings |
-| src/hooks/useTasksV2.ts | 250 | Hook — useTasksV2 interaction behavior | STANDARD: § Analysis Findings |
 | src/hooks/useTeammateViewAutoExit.ts | 63 | Teammate view auto-exit — auto-exits teammate detail view on task completion | STANDARD: § Analysis Findings |
 | src/hooks/useTeleportResume.tsx | 85 | Teleport resume — resumes interrupted sessions via teleport protocol | STANDARD: § Analysis Findings |
 | src/hooks/useTerminalSize.ts | 15 | Terminal size — tracks terminal resize events and updates Ink layout columns/rows | STANDARD: § Analysis Findings |
-| src/hooks/useTextInput.ts | 529 | Hook — useTextInput interaction behavior | STANDARD: § Analysis Findings |
 | src/hooks/useTurnDiffs.ts | 213 | Turn diffs — aggregates file diffs per conversation turn for undo/review display | STANDARD: § Analysis Findings |
-| src/hooks/useVimInput.ts | 316 | Hook — useVimInput interaction behavior | STANDARD: § Analysis Findings |
-| src/hooks/useVirtualScroll.ts | 721 | Hook — useVirtualScroll interaction behavior | STANDARD: § Analysis Findings |
-| src/hooks/useVoiceIntegration.tsx | 677 | Hook — useVoiceIntegrationx interaction behavior | STANDARD: § Analysis Findings |
+| src/hooks/useAfterFirstRender.ts | 17 | ANT startup perf test hook — exits process after first Ink render with uptime timing when env var set | STANDARD: § Analysis Findings |
+| src/hooks/useApiKeyVerification.ts | 84 | API key verification state machine (5 states: loading/valid/invalid/missing/error) with security-first apiKeyHelper skip | STANDARD: § Analysis Findings |
+| src/hooks/useAwaySummary.ts | 125 | Terminal blur away summary — generates LLM summary after 5-min focus loss, GrowthBook feature-gated, injects into conversation | STANDARD: § Analysis Findings |
+| src/hooks/useClaudeCodeHintRecommendation.tsx | 128 | Plugin install recommendation from `<claude-code-hint>` tags in stderr; show-once per plugin; React Compiler output | STANDARD: § Analysis Findings |
+| src/hooks/useClipboardImageHint.ts | 77 | Clipboard image notification — detects image in clipboard on terminal focus regain, shows paste hint with cooldown debounce | STANDARD: § Analysis Findings |
+| src/hooks/useCommandKeybindings.tsx | 107 | Command keybinding handler registration — maps `command:*` keybinding actions to slash command submission; React Compiler output | STANDARD: § Analysis Findings |
+| src/hooks/useCommandQueue.ts | 15 | Thin useSyncExternalStore wrapper for unified command queue — returns frozen QueuedCommand array | STANDARD: § Analysis Findings |
+| src/hooks/useCopyOnSelect.ts | 98 | Auto-copy selection to clipboard on mouse-up or multi-click (iTerm2-like); alt-screen mode only with silent/toast modes | STANDARD: § Analysis Findings |
+| src/hooks/useDeferredHookMessages.ts | 46 | Deferred SessionStart hook messages — non-blocking REPL startup, injects hook context asynchronously before first API request | STANDARD: § Analysis Findings |
+| src/hooks/useDiffData.ts | 110 | Git diff data fetcher on demand — provides structured DiffData (stats + hunks) with per-file truncation (400 lines max) | STANDARD: § Analysis Findings |
+| src/hooks/useDirectConnect.ts | 229 | Direct connect session manager for SDK/remote mode — bidirectional message relay, tool permission bridging, graceful shutdown | STANDARD: § Analysis Findings |
+| src/hooks/useDoublePress.ts | 62 | Generic double-press detection hook with 800ms timeout — calls different callbacks on first vs second press | STANDARD: § Analysis Findings |
+| src/hooks/useExitOnCtrlCD.ts | 95 | Ctrl+C/Ctrl+D double-press exit handler — shows 'press again' message on first press, exits on second; hardcoded, non-rebindable | STANDARD: § Analysis Findings |
+| src/hooks/useFileHistorySnapshotInit.ts | 25 | One-time file history state restoration from snapshots — initializes FileHistoryState on mount | STANDARD: § Analysis Findings |
 
 ## Analysis Findings
 

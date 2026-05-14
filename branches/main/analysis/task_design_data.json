@@ -1,0 +1,322 @@
+{
+  "sweep_tasks": [],
+  "existing_deep_tasks": {
+    "T-01": {
+      "title": "CLI启动与初始化序列",
+      "primary_ml": "ML-01",
+      "file_count": 10,
+      "priority": "P1"
+    },
+    "T-02": {
+      "title": "命令路由与REPL启动",
+      "primary_ml": "ML-01",
+      "file_count": 216,
+      "priority": "P1"
+    },
+    "T-03": {
+      "title": "查询引擎核心循环",
+      "primary_ml": "ML-02",
+      "file_count": 341,
+      "priority": "P1"
+    },
+    "T-04": {
+      "title": "查询API流式处理与消息",
+      "primary_ml": "ML-02",
+      "file_count": 7,
+      "priority": "P1"
+    },
+    "T-05": {
+      "title": "工具系统核心调度",
+      "primary_ml": "ML-03",
+      "file_count": 142,
+      "priority": "P1"
+    },
+    "T-06": {
+      "title": "权限规则引擎",
+      "primary_ml": "ML-04",
+      "file_count": 23,
+      "priority": "P1"
+    },
+    "T-07": {
+      "title": "权限AI分类器与文件系统",
+      "primary_ml": "ML-04",
+      "file_count": 55,
+      "priority": "P1"
+    },
+    "T-08": {
+      "title": "MCP服务集成",
+      "primary_ml": "ML-05",
+      "file_count": 85,
+      "priority": "P1"
+    },
+    "T-09": {
+      "title": "认证与会话管理",
+      "primary_ml": "ML-06",
+      "file_count": 40,
+      "priority": "P1"
+    },
+    "T-10": {
+      "title": "TUI主界面与Ink框架",
+      "primary_ml": "ML-07",
+      "file_count": 80,
+      "priority": "P2"
+    },
+    "T-11": {
+      "title": "TUI组件与Ink渲染",
+      "primary_ml": "ML-07",
+      "file_count": 321,
+      "priority": "P2"
+    },
+    "T-12": {
+      "title": "TUI Hooks与交互层",
+      "primary_ml": "ML-07",
+      "file_count": 63,
+      "priority": "P2"
+    },
+    "T-13": {
+      "title": "任务系统",
+      "primary_ml": "ML-08",
+      "file_count": 21,
+      "priority": "P2"
+    },
+    "T-14": {
+      "title": "Bridge远程模式",
+      "primary_ml": "ML-09",
+      "file_count": 46,
+      "priority": "P2"
+    },
+    "T-15": {
+      "title": "API客户端与重试层",
+      "primary_ml": "ML-10",
+      "file_count": 19,
+      "priority": "P2"
+    },
+    "T-16": {
+      "title": "上下文与记忆管理",
+      "primary_ml": "ML-11",
+      "file_count": 34,
+      "priority": "P2"
+    },
+    "T-17": {
+      "title": "插件系统",
+      "primary_ml": "ML-12",
+      "file_count": 65,
+      "priority": "P2"
+    },
+    "T-18": {
+      "title": "Bash/Shell引擎",
+      "primary_ml": "ML-13",
+      "file_count": 37,
+      "priority": "P2"
+    },
+    "T-19": {
+      "title": "Swarm编排",
+      "primary_ml": "ML-14",
+      "file_count": 22,
+      "priority": "P3"
+    },
+    "T-20": {
+      "title": "SDK入口点",
+      "primary_ml": "ML-15",
+      "file_count": 9,
+      "priority": "P3"
+    },
+    "T-41": {
+      "title": "Shim & Vendor Proxy Layers",
+      "primary_ml": null,
+      "file_count": 9,
+      "priority": "P3"
+    }
+  },
+  "existing_pattern_tasks": {
+    "T-21": {
+      "title": "Pattern Audit — tool-instance",
+      "primary_ml": "ML-03",
+      "pattern_coverage": "PI-01",
+      "priority": "P3"
+    },
+    "T-22": {
+      "title": "Pattern Audit — command-handler",
+      "primary_ml": "ML-01",
+      "pattern_coverage": "PI-02",
+      "priority": "P3"
+    },
+    "T-23": {
+      "title": "Pattern Audit — react-hook",
+      "primary_ml": "ML-07",
+      "pattern_coverage": "PI-03",
+      "priority": "P3"
+    },
+    "T-24": {
+      "title": "Pattern Audit — task-implementation",
+      "primary_ml": "ML-08",
+      "pattern_coverage": "PI-04",
+      "priority": "P3"
+    },
+    "T-25": {
+      "title": "Pattern Audit — permission-component",
+      "primary_ml": "ML-04",
+      "pattern_coverage": "PI-06",
+      "priority": "P3"
+    },
+    "T-26": {
+      "title": "Pattern Audit — ink-fork-component",
+      "primary_ml": "ML-07",
+      "pattern_coverage": "PI-07",
+      "priority": "P3"
+    },
+    "T-27": {
+      "title": "Pattern Audit — message-component",
+      "primary_ml": "ML-07",
+      "pattern_coverage": "PI-08",
+      "priority": "P3"
+    },
+    "T-28": {
+      "title": "Pattern Audit — agent-component",
+      "primary_ml": "ML-07",
+      "pattern_coverage": "PI-09",
+      "priority": "P3"
+    },
+    "T-29": {
+      "title": "Pattern Audit — bundled-skill",
+      "primary_ml": "ML-12",
+      "pattern_coverage": "PI-10",
+      "priority": "P3"
+    },
+    "T-30": {
+      "title": "Pattern Audit — settings-module",
+      "primary_ml": "ML-01",
+      "pattern_coverage": "PI-11",
+      "priority": "P3"
+    },
+    "T-31": {
+      "title": "Pattern Audit — utility-leaf",
+      "primary_ml": "ML-02",
+      "pattern_coverage": "PI-12",
+      "priority": "P3"
+    },
+    "T-32": {
+      "title": "Pattern Audit — component-leaf",
+      "primary_ml": "ML-07",
+      "pattern_coverage": "PI-13",
+      "priority": "P3"
+    },
+    "T-33": {
+      "title": "Pattern Audit — misc-leaf",
+      "primary_ml": "ML-01",
+      "pattern_coverage": "PI-14",
+      "priority": "P3"
+    },
+    "T-34": {
+      "title": "Pattern Audit — design-system-component",
+      "primary_ml": "ML-07",
+      "pattern_coverage": "PI-15",
+      "priority": "P3"
+    },
+    "T-35": {
+      "title": "Pattern Audit — notification-hook",
+      "primary_ml": "ML-07",
+      "pattern_coverage": "PI-16",
+      "priority": "P3"
+    },
+    "T-36": {
+      "title": "Pattern Audit — computer-use-module",
+      "primary_ml": "ML-03",
+      "pattern_coverage": "PI-18",
+      "priority": "P3"
+    },
+    "T-37": {
+      "title": "Pattern Audit — mcp-ui-component",
+      "primary_ml": "ML-05",
+      "pattern_coverage": "PI-20",
+      "priority": "P3"
+    },
+    "T-38": {
+      "title": "Pattern Audit — cli-transport",
+      "primary_ml": "ML-09",
+      "pattern_coverage": "PI-23",
+      "priority": "P3"
+    },
+    "T-39": {
+      "title": "Pattern Audit — telemetry-module",
+      "primary_ml": "ML-06",
+      "pattern_coverage": "PI-24",
+      "priority": "P3"
+    },
+    "T-40": {
+      "title": "Pattern Audit: PI-05 service-module (13 instances, 107 lines)",
+      "primary_ml": "ML-05",
+      "pattern_coverage": "PI-05",
+      "priority": "P3"
+    }
+  },
+  "coverage": {
+    "total_lines": 514739,
+    "final_covered_lines": 514739,
+    "global_pct": 100.0,
+    "uncovered_files": 0,
+    "uncovered_lines": 0,
+    "per_ml": {
+      "ML-01": {
+        "total": 67821,
+        "covered": 67821
+      },
+      "ML-02": {
+        "total": 106534,
+        "covered": 106534
+      },
+      "ML-03": {
+        "total": 61527,
+        "covered": 61527
+      },
+      "ML-04": {
+        "total": 22652,
+        "covered": 22652
+      },
+      "ML-05": {
+        "total": 30363,
+        "covered": 30363
+      },
+      "ML-06": {
+        "total": 13208,
+        "covered": 13208
+      },
+      "ML-07": {
+        "total": 114455,
+        "covered": 114455
+      },
+      "ML-08": {
+        "total": 4683,
+        "covered": 4683
+      },
+      "ML-09": {
+        "total": 18196,
+        "covered": 18196
+      },
+      "ML-10": {
+        "total": 4226,
+        "covered": 4226
+      },
+      "ML-11": {
+        "total": 12654,
+        "covered": 12654
+      },
+      "ML-12": {
+        "total": 29491,
+        "covered": 29491
+      },
+      "ML-13": {
+        "total": 18665,
+        "covered": 18665
+      },
+      "ML-14": {
+        "total": 7548,
+        "covered": 7548
+      },
+      "ML-15": {
+        "total": 2716,
+        "covered": 2716
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-39 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-39 -->
 # T-39 Analysis: Pattern Audit — telemetry-module (PI-24)
 
 ## Scope Confirmation
@@ -8,8 +8,8 @@
 - Analysis Depth: OVERVIEW
 - Pattern Coverage: PI-24 (telemetry-module)
 - Scope Files (confirmed):
-  - [`src/utils/telemetry/logger.ts`](/src/src/utils/telemetry/logger.ts.md) (26 lines) ✅
-  - [`src/utils/telemetry/skillLoadedEvent.ts`](/src/src/utils/telemetry/skillLoadedEvent.ts.md) (39 lines) ✅
+  - [`src/utils/telemetry/logger.ts`](/src/src/utils/telemetry/logger.ts) (26 lines) ✅
+  - [`src/utils/telemetry/skillLoadedEvent.ts`](/src/src/utils/telemetry/skillLoadedEvent.ts) (39 lines) ✅
 - Scope adjustments: None. PI-24 has exactly 2 catalog instances. Both are scope files and will be fully verified.
 - Rationale: PI-24 audit task, verifying all catalog instances conform to the telemetry-module pattern.
 - Dependencies: T-09 (authentication/session ML-06 deep analysis — already completed)

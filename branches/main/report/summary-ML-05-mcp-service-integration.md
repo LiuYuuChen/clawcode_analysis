@@ -29,12 +29,12 @@
 | 类型 | Task ID | 分析文件 | 说明 |
 |------|---------|---------|------|
 | Core | T-08 | [T-08-mcp-integration](/branches/main/task-analyses/T-08-mcp-integration) | DEEP 分析：85 files / 31,785 lines。8 transport、3 层认证、Elicitation 协议、Channel 通知、多 scope 配置 |
-| Core | T-37 | [T-37-audit-pi-20](/branches/main/task-analyses/T-37-audit-pi-20) | OVERVIEW：PI-20 mcp-ui-component 审计，3 files / 64 lines（barrel/type-stubs/utils） |
-| Core | T-40 | [T-40-audit-pi-05](/branches/main/task-analyses/T-40-audit-pi-05) | OVERVIEW：PI-05 service-module 审计，13 files / 171 lines（7 stubs + 4 功能模块） |
+| Core | T-37 | [T-37-audit-mcp-ui-component](/branches/main/task-analyses/T-37-audit-mcp-ui-component) | OVERVIEW：PI-20 mcp-ui-component 审计，3 files / 64 lines（barrel/type-stubs/utils） |
+| Core | T-40 | [T-40-audit-service-module](/branches/main/task-analyses/T-40-audit-service-module) | OVERVIEW：PI-05 service-module 审计，13 files / 171 lines（7 stubs + 4 功能模块） |
 | Related | T-05 | [T-05-tool-system-core](/branches/main/task-analyses/T-05-tool-system-core) | 工具系统核心调度（DEEP），MCPTool 注册到 Tool 系统 |
 | Related | T-01 | [T-01-cli-entry-init](/branches/main/task-analyses/T-01-cli-entry-init) | CLI 启动（DEEP），mcp.ts 入口 + main.tsx MCP 配置初始化 |
 | Related | T-14 | [T-14-bridge-remote](/branches/main/task-analyses/T-14-bridge-remote) | Bridge 远程模式（STANDARD），mcp.tsx handler 管理 bridge session MCP |
-| Related | T-38 | [T-38-audit-pi-23](/branches/main/task-analyses/T-38-audit-pi-23) | PI-23 cli-transport 审计，Transport 接口 + transportUtils 工厂 |
+| Related | T-38 | [T-38-audit-cli-transport](/branches/main/task-analyses/T-38-audit-cli-transport) | PI-23 cli-transport 审计，Transport 接口 + transportUtils 工厂 |
 
 ---
 
@@ -332,7 +332,7 @@ PI-20 审计覆盖 MCP UI 组件目录 `src/services/mcp-ui/`：3 个文件（ba
 
 **Top Risk**: 4 个已 export 但未 barrel re-export 的类型（ClaudeAIServerInfo 等），可能是 dead exports。
 
-→ 完整分析: [T-37-audit-pi-20](/branches/main/task-analyses/T-37-audit-pi-20)
+→ 完整分析: [T-37-audit-mcp-ui-component](/branches/main/task-analyses/T-37-audit-mcp-ui-component)
 
 ### T-40: PI-05 service-module 审计（OVERVIEW — 13 files / 171 lines）
 
@@ -342,7 +342,7 @@ PI-05 是 `src/services/` 下的 catch-all pattern：13 个 catalog instance 跨
 
 **Top Risk**: skillSearch 子系统全 stub（6 files），如果是已取消功能应清除 dead code。
 
-→ 完整分析: [T-40-audit-pi-05](/branches/main/task-analyses/T-40-audit-pi-05)
+→ 完整分析: [T-40-audit-service-module](/branches/main/task-analyses/T-40-audit-service-module)
 
 ---
 

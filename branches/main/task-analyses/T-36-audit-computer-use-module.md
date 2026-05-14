@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-36 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-36 -->
 # T-36 Analysis: Pattern Audit — computer-use-module (PI-18)
 
 ## Scope Confirmation
@@ -8,8 +8,8 @@
 - Analysis Depth: OVERVIEW
 - Pattern Coverage: PI-18 (computer-use-module)
 - Scope Files (confirmed):
-  - [`src/utils/computerUse/inputLoader.ts`](/src/src/utils/computerUse/inputLoader.ts.md) (45 lines) ✅
-  - [`src/utils/computerUse/swiftLoader.ts`](/src/src/utils/computerUse/swiftLoader.ts.md) (39 lines) ✅
+  - [`src/utils/computerUse/inputLoader.ts`](/src/src/utils/computerUse/inputLoader.ts) (45 lines) ✅
+  - [`src/utils/computerUse/swiftLoader.ts`](/src/src/utils/computerUse/swiftLoader.ts) (39 lines) ✅
 - Scope adjustments: None. PI-18 has exactly 2 catalog instances, both are scope files — 100% full verification.
 
 ## File Roles
@@ -122,7 +122,7 @@ flowchart LR
 |---|-----------|--------|----------|
 | 1 | All scope files analyzed | ✅ PASS | 2/2 files read in full |
 | 2 | Pattern contract documented | ✅ PASS | § Pattern Contract: 8 conventions + 1 sub-type |
-| 3 | Sample verification ≥ min(5, total) | ✅ PASS | 2/2 = 100% (total &lt; 5, full verification) |
+| 3 | Sample verification ≥ min(5, total) | ✅ PASS | 2/2 = 100% (total < 5, full verification) |
 | 4 | instance-manifest.jsonl updated | ✅ PASS | Both instances: role_source→verified, verified_by→T-36 |
 | 5 | File Roles complete | ✅ PASS | 2 rows = 2 scope files |
 | 6 | Dependency graph generated | ✅ PASS | § File Dependency Graph (mermaid + 5 edges) |

@@ -23,8 +23,8 @@
 | [summary-ML-02-query-engine](/branches/main/report/summary-ML-02-query-engine-core) | P1 | query.ts 主循环由 REPL 的 print.ts 触发，共享 state.ts 会话状态；main.tsx 的 launchRepl() 最终进入 ML-02 的 query loop |
 | [summary-ML-03-tool-system](/branches/main/report/summary-ML-03-tool-system-dispatch) | P1 | commands.ts 和 tools.ts 都在 main.tsx 模块级被 import，工具注册在 init 阶段完成；ML-01 的 init.ts 中 enableConfigs() 为 ML-03 的工具发现提供配置基础 |
 | [summary-ML-05-mcp-integration](/branches/main/report/summary-ML-05-mcp-service-integration) | P1 | main.tsx action handler 中直接调用 MCP config 解析（L2500-3050），mcp.ts 是 ML-01 scope 内的独立入口；cli.tsx 的 --chrome-mcp/--computer-use-mcp 快速路径直接路由到 MCP 服务 |
-| [summary-ML-09-bridge-remote](/branches/main/report/summary-ML-09-bridge-remote) | P2 | cli.tsx 快速路径中 bridge/remote-control/daemon-worker 分支直接路由到 ML-09 的 bridgeMain()，绕过 main.tsx 完整初始化链 |
-| [summary-ML-12-plugin-system](/branches/main/report/summary-ML-12-plugin-system) | P2 | commands.ts 中 ~80 个命令包含插件命令；main.tsx 中 --plugin-dir CLI flag 和 refreshActivePlugins() 调用影响命令注册；共享 commands.ts 命令发现机制 |
+| [summary-ML-09-bridge-remote](/branches/main/task-analyses/T-14-bridge-remote) | P2 | cli.tsx 快速路径中 bridge/remote-control/daemon-worker 分支直接路由到 ML-09 的 bridgeMain()，绕过 main.tsx 完整初始化链 |
+| [summary-ML-12-plugin-system](/branches/main/task-analyses/T-17-plugin-system) | P2 | commands.ts 中 ~80 个命令包含插件命令；main.tsx 中 --plugin-dir CLI flag 和 refreshActivePlugins() 调用影响命令注册；共享 commands.ts 命令发现机制 |
 
 ### Task 分析
 
@@ -34,9 +34,9 @@
 |------|---------|------|
 | T-01 | [T-01-cli-entry-init](/branches/main/task-analyses/T-01-cli-entry-init) | DEEP — CLI 启动与初始化序列（10 文件, 7,941 行） |
 | T-02 | [T-02-command-routing](/branches/main/task-analyses/T-02-command-routing) | DEEP — 命令路由与 REPL 启动（216 文件, 57,084 行） |
-| T-22 | [T-22-audit-pi-02](/branches/main/task-analyses/T-22-audit-pi-02) | OVERVIEW — PI-02 command-handler 模式审计（107 实例） |
-| T-30 | [T-30-audit-pi-11](/branches/main/task-analyses/T-30-audit-pi-11) | OVERVIEW — PI-11 settings-module 模式审计（5 实例） |
-| T-33 | [T-33-audit-pi-14](/branches/main/task-analyses/T-33-audit-pi-14) | OVERVIEW — PI-14 misc-leaf 模式审计（2 实例） |
+| T-22 | [T-22-audit-command-handler](/branches/main/task-analyses/T-22-audit-command-handler) | OVERVIEW — PI-02 command-handler 模式审计（107 实例） |
+| T-30 | [T-30-audit-settings-module](/branches/main/task-analyses/T-30-audit-settings-module) | OVERVIEW — PI-11 settings-module 模式审计（5 实例） |
+| T-33 | [T-33-audit-misc-leaf](/branches/main/task-analyses/T-33-audit-misc-leaf) | OVERVIEW — PI-14 misc-leaf 模式审计（2 实例） |
 
 **Related Tasks（关联主线）**：
 
@@ -305,7 +305,7 @@ bootstrap-entry → cli.tsx (--mcp-* fast-path)
 
 **Top Risk**：无显著风险。模式定义清晰、实现一致、类型安全。
 
-→ [完整分析: T-22-audit-pi-02](/branches/main/task-analyses/T-22-audit-pi-02)
+→ [完整分析: T-22-audit-command-handler](/branches/main/task-analyses/T-22-audit-command-handler)
 
 ### T-30: PI-11 Settings-Module 模式审计
 
@@ -315,7 +315,7 @@ bootstrap-entry → cli.tsx (--mcp-* fast-path)
 
 **Top Risk**：无显著风险。模块职责单一、依赖方向正确。
 
-→ [完整分析: T-30-audit-pi-11](/branches/main/task-analyses/T-30-audit-pi-11)
+→ [完整分析: T-30-audit-settings-module](/branches/main/task-analyses/T-30-audit-settings-module)
 
 ### T-33: PI-14 Misc-Leaf 模式审计
 
@@ -325,7 +325,7 @@ bootstrap-entry → cli.tsx (--mcp-* fast-path)
 
 **Top Risk**：无。纯类型/常量定义，无运行时风险。
 
-→ [完整分析: T-33-audit-pi-14](/branches/main/task-analyses/T-33-audit-pi-14)
+→ [完整分析: T-33-audit-misc-leaf](/branches/main/task-analyses/T-33-audit-misc-leaf)
 
 ---
 

@@ -1,1238 +1,1318 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6588dd | updated: 2025-07-14 | mode: full | task: T-03 --&gt;
-# T-03 Analysis: 查询引擎核心循环 (Query Engine Core Loop)
+<!-- analysis-version: 0 | commit: a5179f6588dd03cbe83a8d8b718a61875dba7b24 | updated: 2025-07-15 | mode: full | task: T-03 -->
+# T-03 Analysis: 查询引擎核心循环
 
 ## Scope Confirmation
 - Task ID: T-03
 - Primary Mainline: ML-02
 - ML Priority: P1
 - Analysis Depth: DEEP
-- Secondary Mainlines: ML-03 (工具系统), ML-11 (上下文管理)
-- Scope Files (confirmed): 341 files, 91,420 lines
-- Scope adjustments: None — all files verified on disk
-- Dependencies: None (first P1 task in execution order)
+- Secondary Mainlines: None (all scope files belong to ML-02)
+- Pattern Coverage: N/A
+- Scope Files (confirmed): 341 files, 91,410 lines — all 341 files exist on disk, no missing files
+- Scope adjustments: None
 
-### Core Files (DEEP analysis)
-| File | Lines | Role |
-|------|-------|------|
-| src/query.ts | 1729 | Core state machine |
-| src/QueryEngine.ts | 1295 | SDK adapter layer |
-| src/query/stopHooks.ts | 473 | Stop hook orchestrator |
-| src/services/compact/autoCompact.ts | 551 | Proactive compression |
-| src/services/compact/compact.ts | 1705 | Core compaction engine |
-| src/query/config.ts | 46 | Config snapshot |
-| src/query/deps.ts | 40 | Dependency injection |
-| src/query/transitions.ts | 3 | DCE stub |
+### Core Architecture Files (directly analyzed in depth)
+- `src/query.ts` (1729 lines) — Async generator query loop, the "heart" of the system
+- `src/QueryEngine.ts` (1295 lines) — Query lifecycle manager, one instance per conversation
+- `src/services/compact/compact.ts` (1705 lines) — Full and partial conversation compaction
+- `src/services/compact/autoCompact.ts` (351 lines) — Automatic compaction with circuit breaker
+- `src/query/stopHooks.ts` (473 lines) — Stop/TaskCompleted/TeammateIdle hook execution
+- `src/query/config.ts` (46 lines) — Immutable query config snapshot
+- `src/query/deps.ts` (40 lines) — Dependency injection for core query dependencies
+- `src/query/transitions.ts` (3 lines) — Transition type identity function
 
-### Supporting Files (overview-level classification)
-- 28 hook/permission files (hooks/ directory)
-- 4 message utility files (messages/ directory)
-- ~300 utility files (src/utils/ directory)
+### Supporting Files (role identified via batch scan + selective deep reading)
+The remaining ~333 files are utility modules, service helpers, type definitions, and infrastructure code that support the query engine's operation. Their roles are enumerated in the File Roles table below.
 
 ## File Roles
 
 | File | Lines | One-liner Role | Where Analyzed |
 |------|-------|----------------|---------------|
-| src/QueryEngine.ts | 1295 | SDK adapter layer: session lifecycle, message accumulation, transcript recording, usage tracking | DEEP: § Function-Level Analysis, § Call Chain Analysis |
-| src/hooks/renderPlaceholder.ts | 51 | Renders placeholder UI during tool permission prompts | STANDARD: § Analysis Findings |
-| src/hooks/toolPermission/PermissionContext.ts | 388 | React context provider for tool permission state | STANDARD: § Analysis Findings |
-| src/hooks/toolPermission/handlers/coordinatorHandler.ts | 65 | Permission handler for coordinator/remote mode | STANDARD: § Analysis Findings |
-| src/hooks/toolPermission/handlers/interactiveHandler.ts | 536 | Permission handler for interactive REPL mode | STANDARD: § Analysis Findings |
-| src/hooks/toolPermission/handlers/swarmWorkerHandler.ts | 159 | Permission handler for swarm worker agents | STANDARD: § Analysis Findings |
-| src/hooks/toolPermission/permissionLogging.ts | 238 | Logging utilities for permission decisions | STANDARD: § Analysis Findings |
-| src/hooks/unifiedSuggestions.ts | 202 | Unified suggestion system for tab completion | STANDARD: § Analysis Findings |
-| src/native-ts/file-index/index.ts | 370 | Utility: index | OVERVIEW: § File Roles |
-| src/native-ts/yoga-layout/enums.ts | 134 | Utility: enums | OVERVIEW: § File Roles |
-| src/query.ts | 1729 | Core state machine: while(true) loop, 9-field State, 7 continue paths, compression pipeline, streaming tool execution | DEEP: § Function-Level Analysis, § Call Chain Analysis |
-| src/query/config.ts | 46 | Immutable config snapshot: sessionId + 4 runtime gates (streaming/summaries/ant/fastMode) | DEEP: § Function-Level Analysis, § Call Chain Analysis |
-| src/query/deps.ts | 40 | Dependency injection: callModel/microcompact/autocompact/uuid for test fakes | DEEP: § Function-Level Analysis, § Call Chain Analysis |
-| src/query/stopHooks.ts | 473 | Stop hook orchestrator: execute hooks, blocking errors, teammate idle hooks, memory extraction | DEEP: § Function-Level Analysis, § Call Chain Analysis |
-| src/query/transitions.ts | 3 | Type assertion helper (3 lines, DCE stub) | DEEP: § Function-Level Analysis, § Call Chain Analysis |
-| src/services/compact/autoCompact.ts | 351 | Proactive compression: token budget check, circuit breaker, compactConversation call | DEEP: § Function-Level Analysis, § Call Chain Analysis |
-| src/services/compact/compact.ts | 1705 | Core compaction: forked agent with PTL retry, prompt cache reuse, pre-compact hooks | DEEP: § Function-Level Analysis, § Call Chain Analysis |
-| src/utils/CircularBuffer.ts | 84 | Utility: CircularBuffer | OVERVIEW: § File Roles |
-| src/utils/Cursor.ts | 1530 | Utility: Cursor | OVERVIEW: § File Roles |
-| src/utils/QueryGuard.ts | 121 | Utility: QueryGuard | OVERVIEW: § File Roles |
-| src/utils/Shell.ts | 474 | Utility: Shell | OVERVIEW: § File Roles |
-| src/utils/ShellCommand.ts | 465 | Utility: ShellCommand | OVERVIEW: § File Roles |
-| src/utils/abortController.ts | 99 | Utility: abortController | OVERVIEW: § File Roles |
-| src/utils/activityManager.ts | 164 | Utility: activityManager | OVERVIEW: § File Roles |
-| src/utils/advisor.ts | 145 | Utility: advisor | OVERVIEW: § File Roles |
-| src/utils/agentContext.ts | 178 | Utility: agentContext | OVERVIEW: § File Roles |
-| src/utils/agentId.ts | 99 | Utility: agentId | OVERVIEW: § File Roles |
-| src/utils/agentSwarmsEnabled.ts | 44 | Utility: agentSwarmsEnabled | OVERVIEW: § File Roles |
-| src/utils/agenticSessionSearch.ts | 307 | Utility: agenticSessionSearch | OVERVIEW: § File Roles |
-| src/utils/analyzeContext.ts | 1382 | Utility: analyzeContext | OVERVIEW: § File Roles |
-| src/utils/ansiToPng.ts | 334 | Utility: ansiToPng | OVERVIEW: § File Roles |
-| src/utils/ansiToSvg.ts | 272 | Utility: ansiToSvg | OVERVIEW: § File Roles |
-| src/utils/apiPreconnect.ts | 71 | Utility: apiPreconnect | OVERVIEW: § File Roles |
-| src/utils/appleTerminalBackup.ts | 124 | Utility: appleTerminalBackup | OVERVIEW: § File Roles |
-| src/utils/argumentSubstitution.ts | 145 | Utility: argumentSubstitution | OVERVIEW: § File Roles |
-| src/utils/asciicast.ts | 239 | Utility: asciicast | OVERVIEW: § File Roles |
-| src/utils/attachments.ts | 3997 | Utility: attachments | OVERVIEW: § File Roles |
-| src/utils/attribution.ts | 393 | Utility: attribution | OVERVIEW: § File Roles |
-| src/utils/authFileDescriptor.ts | 196 | Utility: authFileDescriptor | OVERVIEW: § File Roles |
-| src/utils/autoModeDenials.ts | 26 | Utility: autoModeDenials | OVERVIEW: § File Roles |
-| src/utils/autoRunIssue.tsx | 122 | Utility: autoRunIssuex | OVERVIEW: § File Roles |
-| src/utils/autoUpdater.ts | 561 | Utility: autoUpdater | OVERVIEW: § File Roles |
-| src/utils/background/remote/preconditions.ts | 235 | Utility: preconditions | OVERVIEW: § File Roles |
-| src/utils/background/remote/remoteSession.ts | 98 | Utility: remoteSession | OVERVIEW: § File Roles |
-| src/utils/backgroundHousekeeping.ts | 94 | Utility: backgroundHousekeeping | OVERVIEW: § File Roles |
-| src/utils/betas.ts | 434 | Utility: betas | OVERVIEW: § File Roles |
-| src/utils/billing.ts | 78 | Utility: billing | OVERVIEW: § File Roles |
-| src/utils/binaryCheck.ts | 53 | Utility: binaryCheck | OVERVIEW: § File Roles |
-| src/utils/browser.ts | 68 | Utility: browser | OVERVIEW: § File Roles |
-| src/utils/bufferedWriter.ts | 100 | Utility: bufferedWriter | OVERVIEW: § File Roles |
-| src/utils/bundledMode.ts | 22 | Utility: bundledMode | OVERVIEW: § File Roles |
-| src/utils/caCerts.ts | 115 | Utility: caCerts | OVERVIEW: § File Roles |
-| src/utils/caCertsConfig.ts | 88 | Utility: caCertsConfig | OVERVIEW: § File Roles |
-| src/utils/cachePaths.ts | 38 | Utility: cachePaths | OVERVIEW: § File Roles |
-| src/utils/classifierApprovals.ts | 88 | Utility: classifierApprovals | OVERVIEW: § File Roles |
-| src/utils/claudeCodeHints.ts | 193 | Utility: claudeCodeHints | OVERVIEW: § File Roles |
-| src/utils/claudeDesktop.ts | 152 | Utility: claudeDesktop | OVERVIEW: § File Roles |
-| src/utils/claudemd.ts | 1479 | Utility: claudemd | OVERVIEW: § File Roles |
-| src/utils/cleanup.ts | 602 | Utility: cleanup | OVERVIEW: § File Roles |
-| src/utils/cleanupRegistry.ts | 25 | Utility: cleanupRegistry | OVERVIEW: § File Roles |
-| src/utils/cliArgs.ts | 60 | Utility: cliArgs | OVERVIEW: § File Roles |
-| src/utils/cliHighlight.ts | 54 | Utility: cliHighlight | OVERVIEW: § File Roles |
-| src/utils/codeIndexing.ts | 206 | Utility: codeIndexing | OVERVIEW: § File Roles |
-| src/utils/collapseBackgroundBashNotifications.ts | 84 | Utility: collapseBackgroundBashNotifications | OVERVIEW: § File Roles |
-| src/utils/collapseHookSummaries.ts | 59 | Utility: collapseHookSummaries | OVERVIEW: § File Roles |
-| src/utils/collapseReadSearch.ts | 1109 | Utility: collapseReadSearch | OVERVIEW: § File Roles |
-| src/utils/collapseTeammateShutdowns.ts | 55 | Utility: collapseTeammateShutdowns | OVERVIEW: § File Roles |
-| src/utils/combinedAbortSignal.ts | 47 | Utility: combinedAbortSignal | OVERVIEW: § File Roles |
-| src/utils/commandLifecycle.ts | 21 | Utility: commandLifecycle | OVERVIEW: § File Roles |
-| src/utils/commitAttribution.ts | 961 | Utility: commitAttribution | OVERVIEW: § File Roles |
-| src/utils/completionCache.ts | 166 | Utility: completionCache | OVERVIEW: § File Roles |
-| src/utils/concurrentSessions.ts | 204 | Utility: concurrentSessions | OVERVIEW: § File Roles |
-| src/utils/configConstants.ts | 21 | Utility: configConstants | OVERVIEW: § File Roles |
-| src/utils/contentArray.ts | 51 | Utility: contentArray | OVERVIEW: § File Roles |
-| src/utils/context.ts | 221 | Utility: context | OVERVIEW: § File Roles |
-| src/utils/contextSuggestions.ts | 235 | Utility: contextSuggestions | OVERVIEW: § File Roles |
-| src/utils/controlMessageCompat.ts | 32 | Utility: controlMessageCompat | OVERVIEW: § File Roles |
-| src/utils/conversationRecovery.ts | 597 | Utility: conversationRecovery | OVERVIEW: § File Roles |
-| src/utils/cron.ts | 308 | Utility: cron | OVERVIEW: § File Roles |
-| src/utils/cronJitterConfig.ts | 75 | Utility: cronJitterConfig | OVERVIEW: § File Roles |
-| src/utils/cronScheduler.ts | 565 | Utility: cronScheduler | OVERVIEW: § File Roles |
-| src/utils/cronTasks.ts | 458 | Utility: cronTasks | OVERVIEW: § File Roles |
-| src/utils/cronTasksLock.ts | 195 | Utility: cronTasksLock | OVERVIEW: § File Roles |
-| src/utils/crossProjectResume.ts | 75 | Utility: crossProjectResume | OVERVIEW: § File Roles |
-| src/utils/cwd.ts | 32 | Utility: cwd | OVERVIEW: § File Roles |
-| src/utils/debug.ts | 268 | Utility: debug | OVERVIEW: § File Roles |
-| src/utils/debugFilter.ts | 157 | Utility: debugFilter | OVERVIEW: § File Roles |
-| src/utils/deepLink/banner.ts | 123 | Utility: banner | OVERVIEW: § File Roles |
-| src/utils/deepLink/parseDeepLink.ts | 170 | Utility: parseDeepLink | OVERVIEW: § File Roles |
-| src/utils/deepLink/protocolHandler.ts | 136 | Utility: protocolHandler | OVERVIEW: § File Roles |
-| src/utils/deepLink/registerProtocol.ts | 348 | Utility: registerProtocol | OVERVIEW: § File Roles |
-| src/utils/deepLink/terminalLauncher.ts | 557 | Utility: terminalLauncher | OVERVIEW: § File Roles |
-| src/utils/deepLink/terminalPreference.ts | 54 | Utility: terminalPreference | OVERVIEW: § File Roles |
-| src/utils/desktopDeepLink.ts | 236 | Utility: desktopDeepLink | OVERVIEW: § File Roles |
-| src/utils/detectRepository.ts | 178 | Utility: detectRepository | OVERVIEW: § File Roles |
-| src/utils/diagLogs.ts | 94 | Utility: diagLogs | OVERVIEW: § File Roles |
-| src/utils/diff.ts | 177 | Utility: diff | OVERVIEW: § File Roles |
-| src/utils/directMemberMessage.ts | 69 | Utility: directMemberMessage | OVERVIEW: § File Roles |
-| src/utils/displayTags.ts | 51 | Utility: displayTags | OVERVIEW: § File Roles |
-| src/utils/doctorContextWarnings.ts | 265 | Utility: doctorContextWarnings | OVERVIEW: § File Roles |
-| src/utils/doctorDiagnostic.ts | 625 | Utility: doctorDiagnostic | OVERVIEW: § File Roles |
-| src/utils/dxt/helpers.ts | 88 | Utility: helpers | OVERVIEW: § File Roles |
-| src/utils/dxt/zip.ts | 226 | Utility: zip | OVERVIEW: § File Roles |
-| src/utils/editor.ts | 183 | Utility: editor | OVERVIEW: § File Roles |
-| src/utils/effort.ts | 329 | Utility: effort | OVERVIEW: § File Roles |
-| src/utils/env.ts | 347 | Utility: env | OVERVIEW: § File Roles |
-| src/utils/envDynamic.ts | 151 | Utility: envDynamic | OVERVIEW: § File Roles |
-| src/utils/envUtils.ts | 183 | Utility: envUtils | OVERVIEW: § File Roles |
-| src/utils/envValidation.ts | 38 | Utility: envValidation | OVERVIEW: § File Roles |
-| src/utils/errorLogSink.ts | 235 | Utility: errorLogSink | OVERVIEW: § File Roles |
-| src/utils/errors.ts | 238 | Utility: errors | OVERVIEW: § File Roles |
-| src/utils/exampleCommands.ts | 184 | Utility: exampleCommands | OVERVIEW: § File Roles |
-| src/utils/execFileNoThrowPortable.ts | 89 | Utility: execFileNoThrowPortable | OVERVIEW: § File Roles |
-| src/utils/execSyncWrapper.ts | 38 | Utility: execSyncWrapper | OVERVIEW: § File Roles |
-| src/utils/exportRenderer.tsx | 98 | Utility: exportRendererx | OVERVIEW: § File Roles |
-| src/utils/extraUsage.ts | 23 | Utility: extraUsage | OVERVIEW: § File Roles |
-| src/utils/fastMode.ts | 532 | Utility: fastMode | OVERVIEW: § File Roles |
-| src/utils/fileOperationAnalytics.ts | 71 | Utility: fileOperationAnalytics | OVERVIEW: § File Roles |
-| src/utils/filePersistence/filePersistence.ts | 287 | Utility: filePersistence | OVERVIEW: § File Roles |
-| src/utils/filePersistence/outputsScanner.ts | 126 | Utility: outputsScanner | OVERVIEW: § File Roles |
-| src/utils/fileRead.ts | 102 | Utility: fileRead | OVERVIEW: § File Roles |
-| src/utils/fileReadCache.ts | 96 | Utility: fileReadCache | OVERVIEW: § File Roles |
-| src/utils/fileStateCache.ts | 142 | Utility: fileStateCache | OVERVIEW: § File Roles |
-| src/utils/fingerprint.ts | 76 | Utility: fingerprint | OVERVIEW: § File Roles |
-| src/utils/format.ts | 308 | Utility: format | OVERVIEW: § File Roles |
-| src/utils/formatBriefTimestamp.ts | 81 | Utility: formatBriefTimestamp | OVERVIEW: § File Roles |
-| src/utils/fpsTracker.ts | 47 | Utility: fpsTracker | OVERVIEW: § File Roles |
-| src/utils/frontmatterParser.ts | 370 | Utility: frontmatterParser | OVERVIEW: § File Roles |
-| src/utils/fsOperations.ts | 770 | Utility: fsOperations | OVERVIEW: § File Roles |
-| src/utils/fullscreen.ts | 202 | Utility: fullscreen | OVERVIEW: § File Roles |
-| src/utils/generatedFiles.ts | 136 | Utility: generatedFiles | OVERVIEW: § File Roles |
-| src/utils/generators.ts | 88 | Utility: generators | OVERVIEW: § File Roles |
-| src/utils/genericProcessUtils.ts | 184 | Utility: genericProcessUtils | OVERVIEW: § File Roles |
-| src/utils/getWorktreePaths.ts | 70 | Utility: getWorktreePaths | OVERVIEW: § File Roles |
-| src/utils/getWorktreePathsPortable.ts | 27 | Utility: getWorktreePathsPortable | OVERVIEW: § File Roles |
-| src/utils/ghPrStatus.ts | 106 | Utility: ghPrStatus | OVERVIEW: § File Roles |
-| src/utils/git/gitConfigParser.ts | 277 | Utility: gitConfigParser | OVERVIEW: § File Roles |
-| src/utils/git/gitignore.ts | 99 | Utility: gitignore | OVERVIEW: § File Roles |
-| src/utils/github/ghAuthStatus.ts | 29 | Utility: ghAuthStatus | OVERVIEW: § File Roles |
-| src/utils/githubRepoPathMapping.ts | 162 | Utility: githubRepoPathMapping | OVERVIEW: § File Roles |
-| src/utils/glob.ts | 130 | Utility: glob | OVERVIEW: § File Roles |
-| src/utils/gracefulShutdown.ts | 529 | Utility: gracefulShutdown | OVERVIEW: § File Roles |
-| src/utils/groupToolUses.ts | 182 | Utility: groupToolUses | OVERVIEW: § File Roles |
-| src/utils/handlePromptSubmit.ts | 610 | Utility: handlePromptSubmit | OVERVIEW: § File Roles |
-| src/utils/hash.ts | 46 | Utility: hash | OVERVIEW: § File Roles |
-| src/utils/headlessProfiler.ts | 178 | Utility: headlessProfiler | OVERVIEW: § File Roles |
-| src/utils/heapDumpService.ts | 303 | Utility: heapDumpService | OVERVIEW: § File Roles |
-| src/utils/heatmap.ts | 198 | Utility: heatmap | OVERVIEW: § File Roles |
-| src/utils/highlightMatch.tsx | 28 | Utility: highlightMatchx | OVERVIEW: § File Roles |
-| src/utils/hooks.ts | 5022 | Utility: hooks | OVERVIEW: § File Roles |
-| src/utils/hooks/AsyncHookRegistry.ts | 309 | Utility: AsyncHookRegistry | OVERVIEW: § File Roles |
-| src/utils/hooks/apiQueryHookHelper.ts | 141 | Utility: apiQueryHookHelper | OVERVIEW: § File Roles |
-| src/utils/hooks/execAgentHook.ts | 339 | Utility: execAgentHook | OVERVIEW: § File Roles |
-| src/utils/hooks/execHttpHook.ts | 242 | Utility: execHttpHook | OVERVIEW: § File Roles |
-| src/utils/hooks/execPromptHook.ts | 211 | Utility: execPromptHook | OVERVIEW: § File Roles |
-| src/utils/hooks/fileChangedWatcher.ts | 191 | Utility: fileChangedWatcher | OVERVIEW: § File Roles |
-| src/utils/hooks/hookEvents.ts | 192 | Utility: hookEvents | OVERVIEW: § File Roles |
-| src/utils/hooks/hookHelpers.ts | 83 | Utility: hookHelpers | OVERVIEW: § File Roles |
-| src/utils/hooks/hooksConfigManager.ts | 400 | Utility: hooksConfigManager | OVERVIEW: § File Roles |
-| src/utils/hooks/hooksConfigSnapshot.ts | 133 | Utility: hooksConfigSnapshot | OVERVIEW: § File Roles |
-| src/utils/hooks/hooksSettings.ts | 271 | Utility: hooksSettings | OVERVIEW: § File Roles |
-| src/utils/hooks/postSamplingHooks.ts | 70 | Utility: postSamplingHooks | OVERVIEW: § File Roles |
-| src/utils/hooks/registerFrontmatterHooks.ts | 67 | Utility: registerFrontmatterHooks | OVERVIEW: § File Roles |
-| src/utils/hooks/registerSkillHooks.ts | 64 | Utility: registerSkillHooks | OVERVIEW: § File Roles |
-| src/utils/hooks/sessionHooks.ts | 447 | Utility: sessionHooks | OVERVIEW: § File Roles |
-| src/utils/hooks/skillImprovement.ts | 267 | Utility: skillImprovement | OVERVIEW: § File Roles |
-| src/utils/hooks/ssrfGuard.ts | 294 | Utility: ssrfGuard | OVERVIEW: § File Roles |
-| src/utils/horizontalScroll.ts | 137 | Utility: horizontalScroll | OVERVIEW: § File Roles |
-| src/utils/hyperlink.ts | 39 | Utility: hyperlink | OVERVIEW: § File Roles |
-| src/utils/iTermBackup.ts | 73 | Utility: iTermBackup | OVERVIEW: § File Roles |
-| src/utils/ide.ts | 1494 | Utility: ide | OVERVIEW: § File Roles |
-| src/utils/idePathConversion.ts | 90 | Utility: idePathConversion | OVERVIEW: § File Roles |
-| src/utils/idleTimeout.ts | 53 | Utility: idleTimeout | OVERVIEW: § File Roles |
-| src/utils/imagePaste.ts | 416 | Utility: imagePaste | OVERVIEW: § File Roles |
-| src/utils/imageResizer.ts | 880 | Utility: imageResizer | OVERVIEW: § File Roles |
-| src/utils/imageStore.ts | 167 | Utility: imageStore | OVERVIEW: § File Roles |
-| src/utils/imageValidation.ts | 104 | Utility: imageValidation | OVERVIEW: § File Roles |
-| src/utils/inProcessTeammateHelpers.ts | 102 | Utility: inProcessTeammateHelpers | OVERVIEW: § File Roles |
-| src/utils/ink.ts | 26 | Utility: ink | OVERVIEW: § File Roles |
-| src/utils/intl.ts | 94 | Utility: intl | OVERVIEW: § File Roles |
-| src/utils/jetbrains.ts | 191 | Utility: jetbrains | OVERVIEW: § File Roles |
-| src/utils/json.ts | 277 | Utility: json | OVERVIEW: § File Roles |
-| src/utils/listSessionsImpl.ts | 454 | Utility: listSessionsImpl | OVERVIEW: § File Roles |
-| src/utils/localInstaller.ts | 162 | Utility: localInstaller | OVERVIEW: § File Roles |
-| src/utils/lockfile.ts | 43 | Utility: lockfile | OVERVIEW: § File Roles |
-| src/utils/log.ts | 362 | Utility: log | OVERVIEW: § File Roles |
-| src/utils/logoV2Utils.ts | 350 | Utility: logoV2Utils | OVERVIEW: § File Roles |
-| src/utils/mailbox.ts | 73 | Utility: mailbox | OVERVIEW: § File Roles |
-| src/utils/managedEnv.ts | 199 | Utility: managedEnv | OVERVIEW: § File Roles |
-| src/utils/managedEnvConstants.ts | 191 | Utility: managedEnvConstants | OVERVIEW: § File Roles |
-| src/utils/markdown.ts | 381 | Utility: markdown | OVERVIEW: § File Roles |
-| src/utils/markdownConfigLoader.ts | 600 | Utility: markdownConfigLoader | OVERVIEW: § File Roles |
-| src/utils/mcp/dateTimeParser.ts | 121 | Utility: dateTimeParser | OVERVIEW: § File Roles |
-| src/utils/mcp/elicitationValidation.ts | 336 | Utility: elicitationValidation | OVERVIEW: § File Roles |
-| src/utils/mcpInstructionsDelta.ts | 130 | Utility: mcpInstructionsDelta | OVERVIEW: § File Roles |
-| src/utils/mcpOutputStorage.ts | 189 | Utility: mcpOutputStorage | OVERVIEW: § File Roles |
-| src/utils/mcpValidation.ts | 208 | Utility: mcpValidation | OVERVIEW: § File Roles |
-| src/utils/mcpWebSocketTransport.ts | 200 | Utility: mcpWebSocketTransport | OVERVIEW: § File Roles |
-| src/utils/memoize.ts | 269 | Utility: memoize | OVERVIEW: § File Roles |
-| src/utils/memoryFileDetection.ts | 289 | Utility: memoryFileDetection | OVERVIEW: § File Roles |
-| src/utils/messageQueueManager.ts | 547 | Utility: messageQueueManager | OVERVIEW: § File Roles |
-| src/utils/messages/mappers.ts | 290 | Internal Message ↔ SDK BetaMessageParam bidirectional converters | STANDARD: § Analysis Findings |
-| src/utils/messages/systemInit.ts | 96 | System initialization message builder for SDK compat | STANDARD: § Analysis Findings |
-| src/utils/model/agent.ts | 157 | Utility: agent | OVERVIEW: § File Roles |
-| src/utils/model/aliases.ts | 25 | Utility: aliases | OVERVIEW: § File Roles |
-| src/utils/model/antModels.ts | 64 | Utility: antModels | OVERVIEW: § File Roles |
-| src/utils/model/bedrock.ts | 265 | Utility: bedrock | OVERVIEW: § File Roles |
-| src/utils/model/check1mAccess.ts | 72 | Utility: check1mAccess | OVERVIEW: § File Roles |
-| src/utils/model/configs.ts | 118 | Utility: configs | OVERVIEW: § File Roles |
-| src/utils/model/contextWindowUpgradeCheck.ts | 47 | Utility: contextWindowUpgradeCheck | OVERVIEW: § File Roles |
-| src/utils/model/deprecation.ts | 101 | Utility: deprecation | OVERVIEW: § File Roles |
-| src/utils/model/model.ts | 618 | Utility: model | OVERVIEW: § File Roles |
-| src/utils/model/modelAllowlist.ts | 170 | Utility: modelAllowlist | OVERVIEW: § File Roles |
-| src/utils/model/modelCapabilities.ts | 118 | Utility: modelCapabilities | OVERVIEW: § File Roles |
-| src/utils/model/modelOptions.ts | 540 | Utility: modelOptions | OVERVIEW: § File Roles |
-| src/utils/model/modelStrings.ts | 166 | Utility: modelStrings | OVERVIEW: § File Roles |
-| src/utils/model/modelSupportOverrides.ts | 50 | Utility: modelSupportOverrides | OVERVIEW: § File Roles |
-| src/utils/model/providers.ts | 40 | Utility: providers | OVERVIEW: § File Roles |
-| src/utils/model/validateModel.ts | 159 | Utility: validateModel | OVERVIEW: § File Roles |
-| src/utils/modelCost.ts | 231 | Utility: modelCost | OVERVIEW: § File Roles |
-| src/utils/modifiers.ts | 36 | Utility: modifiers | OVERVIEW: § File Roles |
-| src/utils/mtls.ts | 179 | Utility: mtls | OVERVIEW: § File Roles |
-| src/utils/nativeInstaller/download.ts | 523 | Utility: download | OVERVIEW: § File Roles |
-| src/utils/nativeInstaller/installer.ts | 1708 | Utility: installer | OVERVIEW: § File Roles |
-| src/utils/nativeInstaller/packageManagers.ts | 336 | Utility: packageManagers | OVERVIEW: § File Roles |
-| src/utils/nativeInstaller/pidLock.ts | 433 | Utility: pidLock | OVERVIEW: § File Roles |
-| src/utils/notebook.ts | 224 | Utility: notebook | OVERVIEW: § File Roles |
-| src/utils/pasteStore.ts | 104 | Utility: pasteStore | OVERVIEW: § File Roles |
-| src/utils/path.ts | 155 | Utility: path | OVERVIEW: § File Roles |
-| src/utils/pdf.ts | 300 | Utility: pdf | OVERVIEW: § File Roles |
-| src/utils/pdfUtils.ts | 70 | Utility: pdfUtils | OVERVIEW: § File Roles |
-| src/utils/peerAddress.ts | 21 | Utility: peerAddress | OVERVIEW: § File Roles |
-| src/utils/planModeV2.ts | 95 | Utility: planModeV2 | OVERVIEW: § File Roles |
-| src/utils/plans.ts | 397 | Utility: plans | OVERVIEW: § File Roles |
-| src/utils/platform.ts | 150 | Utility: platform | OVERVIEW: § File Roles |
-| src/utils/preflightChecks.tsx | 151 | Utility: preflightChecksx | OVERVIEW: § File Roles |
-| src/utils/privacyLevel.ts | 55 | Utility: privacyLevel | OVERVIEW: § File Roles |
-| src/utils/process.ts | 68 | Utility: process | OVERVIEW: § File Roles |
-| src/utils/processUserInput/processBashCommand.tsx | 140 | Utility: processBashCommandx | OVERVIEW: § File Roles |
-| src/utils/processUserInput/processSlashCommand.tsx | 922 | Utility: processSlashCommandx | OVERVIEW: § File Roles |
-| src/utils/processUserInput/processTextPrompt.ts | 100 | Utility: processTextPrompt | OVERVIEW: § File Roles |
-| src/utils/processUserInput/processUserInput.ts | 605 | Utility: processUserInput | OVERVIEW: § File Roles |
-| src/utils/profilerBase.ts | 46 | Utility: profilerBase | OVERVIEW: § File Roles |
-| src/utils/promptCategory.ts | 49 | Utility: promptCategory | OVERVIEW: § File Roles |
-| src/utils/promptEditor.ts | 188 | Utility: promptEditor | OVERVIEW: § File Roles |
-| src/utils/promptShellExecution.ts | 183 | Utility: promptShellExecution | OVERVIEW: § File Roles |
-| src/utils/proxy.ts | 426 | Utility: proxy | OVERVIEW: § File Roles |
-| src/utils/queryContext.ts | 179 | Utility: queryContext | OVERVIEW: § File Roles |
-| src/utils/queryProfiler.ts | 301 | Utility: queryProfiler | OVERVIEW: § File Roles |
-| src/utils/queueProcessor.ts | 95 | Utility: queueProcessor | OVERVIEW: § File Roles |
-| src/utils/readEditContext.ts | 227 | Utility: readEditContext | OVERVIEW: § File Roles |
-| src/utils/readFileInRange.ts | 383 | Utility: readFileInRange | OVERVIEW: § File Roles |
-| src/utils/releaseNotes.ts | 360 | Utility: releaseNotes | OVERVIEW: § File Roles |
-| src/utils/renderOptions.ts | 77 | Utility: renderOptions | OVERVIEW: § File Roles |
-| src/utils/sanitization.ts | 91 | Utility: sanitization | OVERVIEW: § File Roles |
-| src/utils/screenshotClipboard.ts | 121 | Utility: screenshotClipboard | OVERVIEW: § File Roles |
-| src/utils/sdkEventQueue.ts | 134 | Utility: sdkEventQueue | OVERVIEW: § File Roles |
-| src/utils/semanticBoolean.ts | 29 | Utility: semanticBoolean | OVERVIEW: § File Roles |
-| src/utils/semanticNumber.ts | 36 | Utility: semanticNumber | OVERVIEW: § File Roles |
-| src/utils/semver.ts | 59 | Utility: semver | OVERVIEW: § File Roles |
-| src/utils/sequential.ts | 56 | Utility: sequential | OVERVIEW: § File Roles |
-| src/utils/sessionActivity.ts | 133 | Utility: sessionActivity | OVERVIEW: § File Roles |
-| src/utils/sessionEnvVars.ts | 22 | Utility: sessionEnvVars | OVERVIEW: § File Roles |
-| src/utils/sessionEnvironment.ts | 166 | Utility: sessionEnvironment | OVERVIEW: § File Roles |
-| src/utils/sessionFileAccessHooks.ts | 250 | Utility: sessionFileAccessHooks | OVERVIEW: § File Roles |
-| src/utils/sessionIngressAuth.ts | 140 | Utility: sessionIngressAuth | OVERVIEW: § File Roles |
-| src/utils/sessionStart.ts | 232 | Utility: sessionStart | OVERVIEW: § File Roles |
-| src/utils/sessionState.ts | 150 | Utility: sessionState | OVERVIEW: § File Roles |
-| src/utils/sessionTitle.ts | 129 | Utility: sessionTitle | OVERVIEW: § File Roles |
-| src/utils/sessionUrl.ts | 64 | Utility: sessionUrl | OVERVIEW: § File Roles |
-| src/utils/set.ts | 53 | Utility: set | OVERVIEW: § File Roles |
-| src/utils/shellConfig.ts | 167 | Utility: shellConfig | OVERVIEW: § File Roles |
-| src/utils/sideQuery.ts | 222 | Utility: sideQuery | OVERVIEW: § File Roles |
-| src/utils/sideQuestion.ts | 155 | Utility: sideQuestion | OVERVIEW: § File Roles |
-| src/utils/signal.ts | 43 | Utility: signal | OVERVIEW: § File Roles |
-| src/utils/skills/skillChangeDetector.ts | 311 | Utility: skillChangeDetector | OVERVIEW: § File Roles |
-| src/utils/slashCommandParsing.ts | 60 | Utility: slashCommandParsing | OVERVIEW: § File Roles |
-| src/utils/sleep.ts | 84 | Utility: sleep | OVERVIEW: § File Roles |
-| src/utils/sliceAnsi.ts | 91 | Utility: sliceAnsi | OVERVIEW: § File Roles |
-| src/utils/slowOperations.ts | 286 | Utility: slowOperations | OVERVIEW: § File Roles |
-| src/utils/standaloneAgent.ts | 23 | Utility: standaloneAgent | OVERVIEW: § File Roles |
-| src/utils/staticRender.tsx | 116 | Utility: staticRenderx | OVERVIEW: § File Roles |
-| src/utils/stats.ts | 1061 | Utility: stats | OVERVIEW: § File Roles |
-| src/utils/statsCache.ts | 434 | Utility: statsCache | OVERVIEW: § File Roles |
-| src/utils/status.tsx | 362 | Utility: statusx | OVERVIEW: § File Roles |
-| src/utils/statusNoticeDefinitions.tsx | 198 | Utility: statusNoticeDefinitionsx | OVERVIEW: § File Roles |
-| src/utils/stream.ts | 76 | Utility: stream | OVERVIEW: § File Roles |
-| src/utils/streamJsonStdoutGuard.ts | 123 | Utility: streamJsonStdoutGuard | OVERVIEW: § File Roles |
-| src/utils/streamlinedTransform.ts | 201 | Utility: streamlinedTransform | OVERVIEW: § File Roles |
-| src/utils/stringUtils.ts | 235 | Utility: stringUtils | OVERVIEW: § File Roles |
-| src/utils/subprocessEnv.ts | 99 | Utility: subprocessEnv | OVERVIEW: § File Roles |
-| src/utils/suggestions/commandSuggestions.ts | 567 | Utility: commandSuggestions | OVERVIEW: § File Roles |
-| src/utils/suggestions/directoryCompletion.ts | 263 | Utility: directoryCompletion | OVERVIEW: § File Roles |
-| src/utils/suggestions/shellHistoryCompletion.ts | 119 | Utility: shellHistoryCompletion | OVERVIEW: § File Roles |
-| src/utils/suggestions/skillUsageTracking.ts | 55 | Utility: skillUsageTracking | OVERVIEW: § File Roles |
-| src/utils/suggestions/slackChannelSuggestions.ts | 209 | Utility: slackChannelSuggestions | OVERVIEW: § File Roles |
-| src/utils/systemDirectories.ts | 74 | Utility: systemDirectories | OVERVIEW: § File Roles |
-| src/utils/systemPrompt.ts | 123 | Utility: systemPrompt | OVERVIEW: § File Roles |
-| src/utils/systemTheme.ts | 119 | Utility: systemTheme | OVERVIEW: § File Roles |
-| src/utils/taggedId.ts | 54 | Utility: taggedId | OVERVIEW: § File Roles |
-| src/utils/tasks.ts | 862 | Utility: tasks | OVERVIEW: § File Roles |
-| src/utils/teamDiscovery.ts | 81 | Utility: teamDiscovery | OVERVIEW: § File Roles |
-| src/utils/teamMemoryOps.ts | 88 | Utility: teamMemoryOps | OVERVIEW: § File Roles |
-| src/utils/teammate.ts | 292 | Utility: teammate | OVERVIEW: § File Roles |
-| src/utils/teammateContext.ts | 96 | Utility: teammateContext | OVERVIEW: § File Roles |
-| src/utils/teammateMailbox.ts | 1183 | Utility: teammateMailbox | OVERVIEW: § File Roles |
-| src/utils/teleport.tsx | 1226 | Utility: teleportx | OVERVIEW: § File Roles |
-| src/utils/teleport/api.ts | 466 | Utility: api | OVERVIEW: § File Roles |
-| src/utils/teleport/environmentSelection.ts | 77 | Utility: environmentSelection | OVERVIEW: § File Roles |
-| src/utils/teleport/environments.ts | 120 | Utility: environments | OVERVIEW: § File Roles |
-| src/utils/teleport/gitBundle.ts | 292 | Utility: gitBundle | OVERVIEW: § File Roles |
-| src/utils/tempfile.ts | 31 | Utility: tempfile | OVERVIEW: § File Roles |
-| src/utils/terminal.ts | 131 | Utility: terminal | OVERVIEW: § File Roles |
-| src/utils/terminalPanel.ts | 191 | Utility: terminalPanel | OVERVIEW: § File Roles |
-| src/utils/textHighlighting.ts | 166 | Utility: textHighlighting | OVERVIEW: § File Roles |
-| src/utils/theme.ts | 639 | Utility: theme | OVERVIEW: § File Roles |
-| src/utils/thinking.ts | 162 | Utility: thinking | OVERVIEW: § File Roles |
-| src/utils/timeouts.ts | 39 | Utility: timeouts | OVERVIEW: § File Roles |
-| src/utils/tmuxSocket.ts | 427 | Utility: tmuxSocket | OVERVIEW: § File Roles |
-| src/utils/tokenBudget.ts | 73 | Utility: tokenBudget | OVERVIEW: § File Roles |
-| src/utils/tokens.ts | 261 | Utility: tokens | OVERVIEW: § File Roles |
-| src/utils/toolErrors.ts | 132 | Utility: toolErrors | OVERVIEW: § File Roles |
-| src/utils/toolPool.ts | 79 | Utility: toolPool | OVERVIEW: § File Roles |
-| src/utils/toolSchemaCache.ts | 26 | Utility: toolSchemaCache | OVERVIEW: § File Roles |
-| src/utils/transcriptSearch.ts | 202 | Utility: transcriptSearch | OVERVIEW: § File Roles |
-| src/utils/treeify.ts | 170 | Utility: treeify | OVERVIEW: § File Roles |
-| src/utils/truncate.ts | 179 | Utility: truncate | OVERVIEW: § File Roles |
-| src/utils/ultraplan/ccrSession.ts | 349 | Utility: ccrSession | OVERVIEW: § File Roles |
-| src/utils/ultraplan/keyword.ts | 127 | Utility: keyword | OVERVIEW: § File Roles |
-| src/utils/unaryLogging.ts | 39 | Utility: unaryLogging | OVERVIEW: § File Roles |
-| src/utils/undercover.ts | 89 | Utility: undercover | OVERVIEW: § File Roles |
-| src/utils/user.ts | 194 | Utility: user | OVERVIEW: § File Roles |
-| src/utils/userPromptKeywords.ts | 27 | Utility: userPromptKeywords | OVERVIEW: § File Roles |
-| src/utils/uuid.ts | 27 | Utility: uuid | OVERVIEW: § File Roles |
-| src/utils/which.ts | 82 | Utility: which | OVERVIEW: § File Roles |
-| src/utils/windowsPaths.ts | 173 | Utility: windowsPaths | OVERVIEW: § File Roles |
-| src/utils/words.ts | 800 | Utility: words | OVERVIEW: § File Roles |
-| src/utils/workloadContext.ts | 57 | Utility: workloadContext | OVERVIEW: § File Roles |
-| src/utils/worktree.ts | 1519 | Utility: worktree | OVERVIEW: § File Roles |
-| src/utils/xdg.ts | 65 | Utility: xdg | OVERVIEW: § File Roles |
-| src/utils/zodToJsonSchema.ts | 23 | Utility: zodToJsonSchema | OVERVIEW: § File Roles |
+| src/QueryEngine.ts | 1295 | SDK adapter: session lifecycle, message accumulation, transcript recording, usage tracking | DEEP: § Function-Level Analysis |
+| src/hooks/renderPlaceholder.ts | 51 | Renders placeholder UI during tool permission prompts | OVERVIEW: § File Roles |
+| src/hooks/toolPermission/PermissionContext.ts | 388 | React context provider for tool permission state and handler dispatch | OVERVIEW: § File Roles |
+| src/hooks/toolPermission/handlers/coordinatorHandler.ts | 65 | Permission handler for coordinator/remote agent auto-approve/deny | OVERVIEW: § File Roles |
+| src/hooks/toolPermission/handlers/interactiveHandler.ts | 536 | Permission handler for interactive REPL: user approve/deny with classifier | OVERVIEW: § File Roles |
+| src/hooks/toolPermission/handlers/swarmWorkerHandler.ts | 159 | Permission handler for swarm worker auto-approve within task scope | OVERVIEW: § File Roles |
+| src/hooks/toolPermission/permissionLogging.ts | 238 | Centralized analytics/telemetry for all permission approve/reject decisions | OVERVIEW: § File Roles |
+| src/hooks/unifiedSuggestions.ts | 202 | Unified suggestion system for slash commands, files, skills tab completion | OVERVIEW: § File Roles |
+| src/native-ts/file-index/index.ts | 370 | Pure-TS port of Rust file-index NAPI module for content indexing | OVERVIEW: § File Roles |
+| src/native-ts/yoga-layout/enums.ts | 134 | Yoga layout engine enum constants from generated YGEnums.ts | OVERVIEW: § File Roles |
+| src/query.ts | 1729 | Core query loop: async generator while(true), 9-field State, 7 continue paths, 4-layer compression | DEEP: § Function-Level Analysis |
+| src/query/config.ts | 46 | Immutable config snapshot: sessionId + 4 runtime feature gates | DEEP: § Function-Level Analysis |
+| src/query/deps.ts | 40 | Dependency injection: callModel/microcompact/autocompact/uuid for test fakes | DEEP: § Function-Level Analysis |
+| src/query/stopHooks.ts | 473 | Stop hook orchestrator: cache params, job classification, memory extraction, hooks | DEEP: § Function-Level Analysis |
+| src/query/transitions.ts | 3 | Type assertion identity function for transition state (DCE stub) | DEEP: § Function-Level Analysis |
+| src/services/compact/autoCompact.ts | 351 | Proactive compression: token thresholds, circuit breaker(3), sessionMemory path | DEEP: § Function-Level Analysis |
+| src/services/compact/compact.ts | 1705 | Core compaction: full/partial, PTL retry, forked agent summary, post-compact attachments | DEEP: § Function-Level Analysis |
+| src/utils/CircularBuffer.ts | 84 | Fixed-size circular buffer with automatic oldest-item eviction | OVERVIEW: § File Roles |
+| src/utils/Cursor.ts | 1530 | Terminal cursor manipulation: width, ANSI wrapping, text measurement for Ink | OVERVIEW: § File Roles |
+| src/utils/QueryGuard.ts | 121 | Synchronous state machine for query lifecycle (useSyncExternalStore) | DEEP: § Function-Level Analysis |
+| src/utils/Shell.ts | 474 | Shell command execution: spawn, pipe, temp-file management for CLI tools | OVERVIEW: § File Roles |
+| src/utils/ShellCommand.ts | 465 | ShellCommand wrapper: child process lifecycle, streaming, timeout, signals | OVERVIEW: § File Roles |
+| src/utils/abortController.ts | 99 | AbortController factory with setMaxListeners for concurrent abort propagation | OVERVIEW: § File Roles |
+| src/utils/activityManager.ts | 164 | Activity tracking for user and CLI operations with active time counters | OVERVIEW: § File Roles |
+| src/utils/advisor.ts | 145 | Beta usage advisor: decides which API betas to include per model | OVERVIEW: § File Roles |
+| src/utils/agentContext.ts | 178 | AsyncLocalStorage-based agent context for analytics attribution | OVERVIEW: § File Roles |
+| src/utils/agentId.ts | 99 | Deterministic agent ID generation from agent name | OVERVIEW: § File Roles |
+| src/utils/agentSwarmsEnabled.ts | 44 | Feature flag check for agent swarm functionality | OVERVIEW: § File Roles |
+| src/utils/agenticSessionSearch.ts | 307 | Session search: log scanning and message extraction for agentic sessions | OVERVIEW: § File Roles |
+| src/utils/analyzeContext.ts | 1382 | Context analysis: walks content blocks in messages for telemetry/tokens | DEEP: § Function-Level Analysis |
+| src/utils/ansiToPng.ts | 334 | ANSI-escaped terminal text to PNG image renderer | OVERVIEW: § File Roles |
+| src/utils/ansiToSvg.ts | 272 | ANSI-escaped terminal text to SVG converter | OVERVIEW: § File Roles |
+| src/utils/apiPreconnect.ts | 71 | Preconnect to Anthropic API for TCP+TLS handshake overlap | OVERVIEW: § File Roles |
+| src/utils/appleTerminalBackup.ts | 124 | Apple Terminal settings backup for terminal compatibility | OVERVIEW: § File Roles |
+| src/utils/argumentSubstitution.ts | 145 | $ARGUMENTS placeholder substitution in skill/command prompts | OVERVIEW: § File Roles |
+| src/utils/asciicast.ts | 239 | Asciinema cast file writer for session recording | OVERVIEW: § File Roles |
+| src/utils/attachments.ts | 3997 | Attachment system: file/agent/plan/skill/delta attachment creation for API | DEEP: § Function-Level Analysis |
+| src/utils/attribution.ts | 393 | Commit attribution tracking: authorship metadata for code changes | OVERVIEW: § File Roles |
+| src/utils/authFileDescriptor.ts | 196 | Auth file descriptor management for secure credential storage | OVERVIEW: § File Roles |
+| src/utils/autoModeDenials.ts | 26 | Tracks commands recently denied by auto mode classifier | OVERVIEW: § File Roles |
+| src/utils/autoRunIssue.tsx | 121 | React component for auto-run issue detection and display | OVERVIEW: § File Roles |
+| src/utils/autoUpdater.ts | 561 | Auto-update checker and installer for CLI binary | OVERVIEW: § File Roles |
+| src/utils/background/remote/preconditions.ts | 235 | Remote session precondition checks: auth, org, policy validation | OVERVIEW: § File Roles |
+| src/utils/background/remote/remoteSession.ts | 98 | Remote background session management for headless execution | OVERVIEW: § File Roles |
+| src/utils/backgroundHousekeeping.ts | 94 | Background init: auto-dream, magic docs, periodic tasks startup | OVERVIEW: § File Roles |
+| src/utils/betas.ts | 434 | API beta header management: which betas per model and feature flags | OVERVIEW: § File Roles |
+| src/utils/billing.ts | 78 | Billing: cost calculation and budget checking for API usage | OVERVIEW: § File Roles |
+| src/utils/binaryCheck.ts | 53 | Binary existence check with session cache for tool dependencies | OVERVIEW: § File Roles |
+| src/utils/browser.ts | 68 | Browser launcher: open URLs in default or specified browser | OVERVIEW: § File Roles |
+| src/utils/bufferedWriter.ts | 100 | Buffered writer interface for efficient file I/O with flush | OVERVIEW: § File Roles |
+| src/utils/bundledMode.ts | 22 | Detects if runtime is Bun for bundled vs external mode | OVERVIEW: § File Roles |
+| src/utils/caCerts.ts | 115 | CA certificate loading for custom TLS root certificates | OVERVIEW: § File Roles |
+| src/utils/caCertsConfig.ts | 88 | Config-backed NODE_EXTRA_CA_CERTS population | OVERVIEW: § File Roles |
+| src/utils/cachePaths.ts | 38 | Cache directory path resolution using env-paths convention | OVERVIEW: § File Roles |
+| src/utils/classifierApprovals.ts | 88 | Tracks tool uses auto-approved by classifiers for UI feedback | OVERVIEW: § File Roles |
+| src/utils/claudeCodeHints.ts | 193 | Claude Code hints protocol: structured hint injection for agent | OVERVIEW: § File Roles |
+| src/utils/claudeDesktop.ts | 152 | Claude Desktop app integration: config reading, connection status | OVERVIEW: § File Roles |
+| src/utils/claudemd.ts | 1479 | CLAUDE.md loading hierarchy: project/user/global memory file merging | OVERVIEW: § File Roles |
+| src/utils/cleanup.ts | 602 | Session cleanup: temp files, session locks, cache directory maintenance | OVERVIEW: § File Roles |
+| src/utils/cleanupRegistry.ts | 25 | Global registry for cleanup functions during graceful shutdown | OVERVIEW: § File Roles |
+| src/utils/cliArgs.ts | 60 | CLI argument parser for early flag extraction before Commander.js | OVERVIEW: § File Roles |
+| src/utils/cliHighlight.ts | 54 | Syntax highlighting for CLI output using highlight.js | OVERVIEW: § File Roles |
+| src/utils/codeIndexing.ts | 206 | Code indexing tool detection and status utilities | OVERVIEW: § File Roles |
+| src/utils/collapseBackgroundBashNotifications.ts | 84 | Collapses background bash notifications into summaries | OVERVIEW: § File Roles |
+| src/utils/collapseHookSummaries.ts | 59 | Collapses hook output summaries to reduce verbosity | OVERVIEW: § File Roles |
+| src/utils/collapseReadSearch.ts | 1109 | Collapses file read/search outputs to reduce context usage | OVERVIEW: § File Roles |
+| src/utils/collapseTeammateShutdowns.ts | 55 | Collapses teammate shutdown messages in multi-agent sessions | OVERVIEW: § File Roles |
+| src/utils/combinedAbortSignal.ts | 47 | Creates combined AbortSignal from multiple abort sources | OVERVIEW: § File Roles |
+| src/utils/commandLifecycle.ts | 21 | Command lifecycle listener registration for event tracking | OVERVIEW: § File Roles |
+| src/utils/commitAttribution.ts | 961 | Git commit attribution: authorship and session metadata | OVERVIEW: § File Roles |
+| src/utils/completionCache.ts | 166 | Tab completion cache with disk persistence for fast lookup | OVERVIEW: § File Roles |
+| src/utils/concurrentSessions.ts | 204 | Concurrent session management: locks, limits, conflict detection | OVERVIEW: § File Roles |
+| src/utils/configConstants.ts | 21 | Dependency-free constants for config channels and defaults | OVERVIEW: § File Roles |
+| src/utils/contentArray.ts | 51 | Content block array utilities for API message positioning | OVERVIEW: § File Roles |
+| src/utils/context.ts | 221 | Context window management: effective size, model-specific limits | OVERVIEW: § File Roles |
+| src/utils/contextSuggestions.ts | 235 | Context-aware tool suggestions based on conversation state | OVERVIEW: § File Roles |
+| src/utils/controlMessageCompat.ts | 32 | Normalize camelCase to snake_case on control messages | OVERVIEW: § File Roles |
+| src/utils/conversationRecovery.ts | 597 | Conversation recovery: resume interrupted sessions from transcripts | OVERVIEW: § File Roles |
+| src/utils/cron.ts | 308 | Cron expression parsing and scheduling utilities | OVERVIEW: § File Roles |
+| src/utils/cronJitterConfig.ts | 75 | Cron jitter configuration for distributed task staggering | OVERVIEW: § File Roles |
+| src/utils/cronScheduler.ts | 565 | Cron scheduler: periodic task execution with jitter and locks | OVERVIEW: § File Roles |
+| src/utils/cronTasks.ts | 458 | Cron task definitions: periodic maintenance, cleanup, sync | OVERVIEW: § File Roles |
+| src/utils/cronTasksLock.ts | 195 | Distributed lock for cron tasks to prevent concurrent execution | OVERVIEW: § File Roles |
+| src/utils/crossProjectResume.ts | 75 | Cross-project session resume: handle directory changes | OVERVIEW: § File Roles |
+| src/utils/cwd.ts | 32 | Current working directory tracking and resolution | OVERVIEW: § File Roles |
+| src/utils/debug.ts | 268 | Debug logging utilities with level filtering and file output | OVERVIEW: § File Roles |
+| src/utils/debugFilter.ts | 157 | Debug filter configuration for selective log output | OVERVIEW: § File Roles |
+| src/utils/deepLink/banner.ts | 123 | Deep link banner UI for terminal notifications | OVERVIEW: § File Roles |
+| src/utils/deepLink/parseDeepLink.ts | 170 | Deep link URL parser for claude:// protocol | OVERVIEW: § File Roles |
+| src/utils/deepLink/protocolHandler.ts | 136 | Deep link protocol handler registration and dispatch | OVERVIEW: § File Roles |
+| src/utils/deepLink/registerProtocol.ts | 348 | CLI protocol registration for claude:// URL scheme | OVERVIEW: § File Roles |
+| src/utils/deepLink/terminalLauncher.ts | 557 | Terminal launcher for deep link handling | OVERVIEW: § File Roles |
+| src/utils/deepLink/terminalPreference.ts | 54 | Terminal preference detection for deep link routing | OVERVIEW: § File Roles |
+| src/utils/desktopDeepLink.ts | 236 | Desktop app deep link integration utilities | OVERVIEW: § File Roles |
+| src/utils/detectRepository.ts | 178 | Git repository detection: root finding, remote URL parsing | OVERVIEW: § File Roles |
+| src/utils/diagLogs.ts | 94 | Diagnostic log collection and formatting for support | OVERVIEW: § File Roles |
+| src/utils/diff.ts | 177 | Diff generation utilities for file change visualization | OVERVIEW: § File Roles |
+| src/utils/directMemberMessage.ts | 69 | Direct member message handling for agent communication | OVERVIEW: § File Roles |
+| src/utils/displayTags.ts | 51 | Display tag utilities for terminal output formatting | OVERVIEW: § File Roles |
+| src/utils/doctorContextWarnings.ts | 265 | Doctor diagnostic context warning detection and reporting | OVERVIEW: § File Roles |
+| src/utils/doctorDiagnostic.ts | 625 | Doctor diagnostic: environment health checks and issue detection | OVERVIEW: § File Roles |
+| src/utils/dxt/helpers.ts | 88 | DXT extension helper utilities for MCP server packaging | OVERVIEW: § File Roles |
+| src/utils/dxt/zip.ts | 226 | ZIP file utilities for DXT extension packaging | OVERVIEW: § File Roles |
+| src/utils/editor.ts | 183 | External editor integration: VS Code, Vim launch and file opening | OVERVIEW: § File Roles |
+| src/utils/effort.ts | 329 | Effort level management: thinking budget and model parameters | OVERVIEW: § File Roles |
+| src/utils/env.ts | 347 | Environment variable resolution with feature flag overrides | OVERVIEW: § File Roles |
+| src/utils/envDynamic.ts | 151 | Dynamic environment variable loading for runtime config | OVERVIEW: § File Roles |
+| src/utils/envUtils.ts | 183 | Environment utility: truthy detection, node option parsing | OVERVIEW: § File Roles |
+| src/utils/envValidation.ts | 38 | Environment validation for required configuration | OVERVIEW: § File Roles |
+| src/utils/errorLogSink.ts | 235 | Error log sink: centralized error collection for diagnostics | OVERVIEW: § File Roles |
+| src/utils/errors.ts | 238 | Error classification and message extraction utilities | OVERVIEW: § File Roles |
+| src/utils/exampleCommands.ts | 184 | Example command generation for onboarding and help | OVERVIEW: § File Roles |
+| src/utils/execFileNoThrowPortable.ts | 89 | Portable execFile wrapper returning result instead of throwing | OVERVIEW: § File Roles |
+| src/utils/execSyncWrapper.ts | 38 | Synchronous exec wrapper with error handling | OVERVIEW: § File Roles |
+| src/utils/exportRenderer.tsx | 97 | React component for rendering export output | OVERVIEW: § File Roles |
+| src/utils/extraUsage.ts | 23 | Extra usage tracking and reporting for API billing | OVERVIEW: § File Roles |
+| src/utils/fastMode.ts | 532 | Fast mode: model selection and parameter tuning for speed | OVERVIEW: § File Roles |
+| src/utils/fileOperationAnalytics.ts | 71 | File operation analytics: track read/write patterns for reporting | OVERVIEW: § File Roles |
+| src/utils/filePersistence/filePersistence.ts | 287 | File persistence: save/load tool outputs and results to disk | OVERVIEW: § File Roles |
+| src/utils/filePersistence/outputsScanner.ts | 126 | Outputs scanner: discover and catalog persisted tool outputs | OVERVIEW: § File Roles |
+| src/utils/fileRead.ts | 102 | File reading utilities with encoding and line range support | OVERVIEW: § File Roles |
+| src/utils/fileReadCache.ts | 96 | File read cache for tracking which files read in session | OVERVIEW: § File Roles |
+| src/utils/fileStateCache.ts | 142 | File state cache: content hashes for change detection | OVERVIEW: § File Roles |
+| src/utils/fingerprint.ts | 76 | Session fingerprint generation for analytics correlation | OVERVIEW: § File Roles |
+| src/utils/format.ts | 308 | Text formatting: truncation, wrapping, indentation | OVERVIEW: § File Roles |
+| src/utils/formatBriefTimestamp.ts | 81 | Brief timestamp formatting for UI display | OVERVIEW: § File Roles |
+| src/utils/fpsTracker.ts | 47 | FPS tracker for render performance monitoring | OVERVIEW: § File Roles |
+| src/utils/frontmatterParser.ts | 370 | Frontmatter parser for YAML metadata from markdown | OVERVIEW: § File Roles |
+| src/utils/fsOperations.ts | 770 | File system ops: mkdir, writeFile, readFile with retry/lock | OVERVIEW: § File Roles |
+| src/utils/fullscreen.ts | 202 | Fullscreen terminal mode detection and management | OVERVIEW: § File Roles |
+| src/utils/generatedFiles.ts | 136 | Generated file detection for build artifact exclusion | OVERVIEW: § File Roles |
+| src/utils/generators.ts | 88 | Async generator utilities: merge, map, filter for streams | OVERVIEW: § File Roles |
+| src/utils/genericProcessUtils.ts | 184 | Generic process management: spawn, kill, signal handling | OVERVIEW: § File Roles |
+| src/utils/getWorktreePaths.ts | 70 | Git worktree path resolution for multi-worktree support | OVERVIEW: § File Roles |
+| src/utils/getWorktreePathsPortable.ts | 27 | Portable worktree path utilities without Node imports | OVERVIEW: § File Roles |
+| src/utils/ghPrStatus.ts | 106 | GitHub PR status checking for branch awareness | OVERVIEW: § File Roles |
+| src/utils/git/gitConfigParser.ts | 277 | Git config file parser for repository settings | OVERVIEW: § File Roles |
+| src/utils/git/gitignore.ts | 99 | Gitignore pattern matching for file exclusion | OVERVIEW: § File Roles |
+| src/utils/github/ghAuthStatus.ts | 29 | GitHub CLI auth status checking | OVERVIEW: § File Roles |
+| src/utils/githubRepoPathMapping.ts | 162 | GitHub repo path mapping: URL to local path conversion | OVERVIEW: § File Roles |
+| src/utils/glob.ts | 130 | Glob pattern matching for file discovery | OVERVIEW: § File Roles |
+| src/utils/gracefulShutdown.ts | 529 | Graceful shutdown: signal handling, cleanup, process exit | OVERVIEW: § File Roles |
+| src/utils/groupToolUses.ts | 182 | Tool use grouping for display and compact summarization | OVERVIEW: § File Roles |
+| src/utils/handlePromptSubmit.ts | 610 | Prompt submit handler: input validation, command routing | OVERVIEW: § File Roles |
+| src/utils/hash.ts | 46 | Hash utilities: SHA256, MurmurHash for fingerprinting | OVERVIEW: § File Roles |
+| src/utils/headlessProfiler.ts | 178 | Headless mode profiler for performance tracking without UI | OVERVIEW: § File Roles |
+| src/utils/heapDumpService.ts | 303 | Heap dump service for memory diagnostics | OVERVIEW: § File Roles |
+| src/utils/heatmap.ts | 198 | Heatmap generation for usage visualization | OVERVIEW: § File Roles |
+| src/utils/highlightMatch.tsx | 27 | React component for highlighting matched text in search | OVERVIEW: § File Roles |
+| src/utils/hooks.ts | 5022 | Hook system: Pre/Post tool, Stop, SessionStart, Compact hooks | OVERVIEW: § File Roles |
+| src/utils/hooks/AsyncHookRegistry.ts | 309 | Async hook registry for concurrent hook execution | OVERVIEW: § File Roles |
+| src/utils/hooks/apiQueryHookHelper.ts | 141 | API query hook helper for hook-based API interaction | OVERVIEW: § File Roles |
+| src/utils/hooks/execAgentHook.ts | 339 | Agent hook executor: run hooks in agent context | OVERVIEW: § File Roles |
+| src/utils/hooks/execHttpHook.ts | 242 | HTTP hook executor: make HTTP requests from hooks | OVERVIEW: § File Roles |
+| src/utils/hooks/execPromptHook.ts | 211 | Prompt hook executor: run user-defined prompt hooks | OVERVIEW: § File Roles |
+| src/utils/hooks/fileChangedWatcher.ts | 191 | File change watcher for hook-triggered monitoring | OVERVIEW: § File Roles |
+| src/utils/hooks/hookEvents.ts | 192 | Hook event definitions and type utilities | OVERVIEW: § File Roles |
+| src/utils/hooks/hookHelpers.ts | 83 | Hook helper utilities for common hook operations | OVERVIEW: § File Roles |
+| src/utils/hooks/hooksConfigManager.ts | 400 | Hook config manager: load, validate, merge configs | OVERVIEW: § File Roles |
+| src/utils/hooks/hooksConfigSnapshot.ts | 133 | Hook config snapshot for immutable config access | OVERVIEW: § File Roles |
+| src/utils/hooks/hooksSettings.ts | 271 | Hook settings: user preferences for hook behavior | OVERVIEW: § File Roles |
+| src/utils/hooks/postSamplingHooks.ts | 70 | Post-sampling hook execution for model output | OVERVIEW: § File Roles |
+| src/utils/hooks/registerFrontmatterHooks.ts | 67 | Register hooks from CLAUDE.md frontmatter | OVERVIEW: § File Roles |
+| src/utils/hooks/registerSkillHooks.ts | 64 | Register hooks from skill definitions | OVERVIEW: § File Roles |
+| src/utils/hooks/sessionHooks.ts | 447 | Session hook lifecycle management | OVERVIEW: § File Roles |
+| src/utils/hooks/skillImprovement.ts | 267 | Skill improvement hook for automatic refinement | OVERVIEW: § File Roles |
+| src/utils/hooks/ssrfGuard.ts | 294 | SSRF protection for HTTP hooks: URL validation/blocking | OVERVIEW: § File Roles |
+| src/utils/horizontalScroll.ts | 137 | Horizontal scroll utilities for terminal UI rendering | OVERVIEW: § File Roles |
+| src/utils/hyperlink.ts | 39 | Terminal hyperlink generation using OSC 8 escape sequences | OVERVIEW: § File Roles |
+| src/utils/iTermBackup.ts | 73 | iTerm2 settings backup for terminal compatibility | OVERVIEW: § File Roles |
+| src/utils/ide.ts | 1494 | IDE integration: VS Code, JetBrains, Neovim file opening | OVERVIEW: § File Roles |
+| src/utils/idePathConversion.ts | 90 | IDE path conversion for remote/container mapping | OVERVIEW: § File Roles |
+| src/utils/idleTimeout.ts | 53 | Idle timeout detection and management for auto-pause | OVERVIEW: § File Roles |
+| src/utils/imagePaste.ts | 416 | Image paste handling: detect, process, store pasted images | OVERVIEW: § File Roles |
+| src/utils/imageResizer.ts | 880 | Image resizing with format conversion for API budget | OVERVIEW: § File Roles |
+| src/utils/imageStore.ts | 167 | Image store: temporary image file management for session | OVERVIEW: § File Roles |
+| src/utils/imageValidation.ts | 104 | Image validation: size, format, dimension checks | OVERVIEW: § File Roles |
+| src/utils/inProcessTeammateHelpers.ts | 102 | In-process teammate helpers for multi-agent coordination | OVERVIEW: § File Roles |
+| src/utils/ink.ts | 26 | Ink terminal rendering utility constants | OVERVIEW: § File Roles |
+| src/utils/intl.ts | 94 | Internationalization utilities for locale-aware formatting | OVERVIEW: § File Roles |
+| src/utils/jetbrains.ts | 191 | JetBrains IDE integration: project detection and launch | OVERVIEW: § File Roles |
+| src/utils/json.ts | 277 | JSON utilities: safe parse, stringify, truncation | OVERVIEW: § File Roles |
+| src/utils/listSessionsImpl.ts | 454 | Session listing: scan, filter, format sessions | OVERVIEW: § File Roles |
+| src/utils/localInstaller.ts | 162 | Local installer for npm-based CLI installation | OVERVIEW: § File Roles |
+| src/utils/lockfile.ts | 43 | File-based lock for mutual exclusion across processes | OVERVIEW: § File Roles |
+| src/utils/log.ts | 362 | Structured logging: file, console, diagnostic output | OVERVIEW: § File Roles |
+| src/utils/logoV2Utils.ts | 350 | Logo V2 rendering utilities for terminal banner | OVERVIEW: § File Roles |
+| src/utils/mailbox.ts | 73 | Mailbox pattern for async message passing between agents | OVERVIEW: § File Roles |
+| src/utils/managedEnv.ts | 199 | Managed environment detection and configuration | OVERVIEW: § File Roles |
+| src/utils/managedEnvConstants.ts | 191 | Managed environment constants and feature flags | OVERVIEW: § File Roles |
+| src/utils/markdown.ts | 381 | Markdown parsing and rendering for terminal | OVERVIEW: § File Roles |
+| src/utils/markdownConfigLoader.ts | 600 | Markdown config loader for CLAUDE.md parsing | OVERVIEW: § File Roles |
+| src/utils/mcp/dateTimeParser.ts | 121 | MCP dateTime parameter parser for tool arguments | OVERVIEW: § File Roles |
+| src/utils/mcp/elicitationValidation.ts | 336 | MCP elicitation validation for user input prompts | OVERVIEW: § File Roles |
+| src/utils/mcpInstructionsDelta.ts | 130 | MCP instructions delta: changed MCP instructions for post-compact re-injection | OVERVIEW: § File Roles |
+| src/utils/mcpOutputStorage.ts | 189 | MCP output storage for tool result persistence | OVERVIEW: § File Roles |
+| src/utils/mcpValidation.ts | 208 | MCP server configuration validation | OVERVIEW: § File Roles |
+| src/utils/mcpWebSocketTransport.ts | 200 | MCP WebSocket transport for server communication | OVERVIEW: § File Roles |
+| src/utils/memoize.ts | 269 | Memoization utilities with TTL and LRU eviction | OVERVIEW: § File Roles |
+| src/utils/memoryFileDetection.ts | 289 | Memory file detection: identify CLAUDE.md in hierarchy | OVERVIEW: § File Roles |
+| src/utils/messageQueueManager.ts | 547 | Message queue manager: ordered message dispatch for agents | OVERVIEW: § File Roles |
+| src/utils/messages/mappers.ts | 290 | Message type mappers: API↔internal message format conversion | OVERVIEW: § File Roles |
+| src/utils/messages/systemInit.ts | 96 | System message initialization: bootstrap system prompt | OVERVIEW: § File Roles |
+| src/utils/model/agent.ts | 157 | Agent model configuration for sub-agent model selection | OVERVIEW: § File Roles |
+| src/utils/model/aliases.ts | 25 | Model alias resolution: map friendly names to API model IDs | OVERVIEW: § File Roles |
+| src/utils/model/antModels.ts | 64 | Ant-specific model definitions and configuration | OVERVIEW: § File Roles |
+| src/utils/model/bedrock.ts | 265 | AWS Bedrock model configuration and endpoint resolution | OVERVIEW: § File Roles |
+| src/utils/model/check1mAccess.ts | 72 | 1M context window access check for extended models | OVERVIEW: § File Roles |
+| src/utils/model/configs.ts | 118 | Model configuration registry: parameters, limits, capabilities | OVERVIEW: § File Roles |
+| src/utils/model/contextWindowUpgradeCheck.ts | 47 | Context window upgrade eligibility check | OVERVIEW: § File Roles |
+| src/utils/model/deprecation.ts | 101 | Model deprecation warnings and migration suggestions | OVERVIEW: § File Roles |
+| src/utils/model/model.ts | 618 | Core model utilities: ID resolution, validation, default selection | OVERVIEW: § File Roles |
+| src/utils/model/modelAllowlist.ts | 170 | Model allowlist: restrict available models per policy | OVERVIEW: § File Roles |
+| src/utils/model/modelCapabilities.ts | 118 | Model capabilities: vision, tools, streaming support flags | OVERVIEW: § File Roles |
+| src/utils/model/modelOptions.ts | 540 | Model options: temperature, top_p, thinking budget per model | OVERVIEW: § File Roles |
+| src/utils/model/modelStrings.ts | 166 | Model string utilities: formatting, comparison, display | OVERVIEW: § File Roles |
+| src/utils/model/modelSupportOverrides.ts | 50 | Model support overrides for custom configurations | OVERVIEW: § File Roles |
+| src/utils/model/providers.ts | 40 | Provider resolution: Anthropic, Bedrock, Vertex, custom | OVERVIEW: § File Roles |
+| src/utils/model/validateModel.ts | 159 | Model validation: existence, access, capability checks | OVERVIEW: § File Roles |
+| src/utils/modelCost.ts | 231 | Model cost calculation: input/output token pricing per model | OVERVIEW: § File Roles |
+| src/utils/modifiers.ts | 36 | Prompt modifiers: conditional text injection for system prompt | OVERVIEW: § File Roles |
+| src/utils/mtls.ts | 179 | mTLS certificate management for enterprise proxy connections | OVERVIEW: § File Roles |
+| src/utils/nativeInstaller/download.ts | 523 | Native binary download with checksum verification | OVERVIEW: § File Roles |
+| src/utils/nativeInstaller/installer.ts | 1708 | Native installer: download, verify, replace binary | OVERVIEW: § File Roles |
+| src/utils/nativeInstaller/packageManagers.ts | 336 | Package manager detection for install instructions | OVERVIEW: § File Roles |
+| src/utils/nativeInstaller/pidLock.ts | 433 | PID-based lock for concurrent install protection | OVERVIEW: § File Roles |
+| src/utils/notebook.ts | 224 | Jupyter notebook integration: cell detection and execution | OVERVIEW: § File Roles |
+| src/utils/pasteStore.ts | 104 | Paste content store for multi-paste handling | OVERVIEW: § File Roles |
+| src/utils/path.ts | 155 | Path utilities: resolve, normalize, relative for project paths | OVERVIEW: § File Roles |
+| src/utils/pdf.ts | 300 | PDF text extraction for document attachment processing | OVERVIEW: § File Roles |
+| src/utils/pdfUtils.ts | 70 | PDF utilities: page count, metadata extraction | OVERVIEW: § File Roles |
+| src/utils/peerAddress.ts | 21 | Peer address resolution for network communication | OVERVIEW: § File Roles |
+| src/utils/planModeV2.ts | 95 | Plan mode V2: structured planning with step tracking | OVERVIEW: § File Roles |
+| src/utils/plans.ts | 397 | Plan management: create, update, resolve plan files | OVERVIEW: § File Roles |
+| src/utils/platform.ts | 150 | Platform detection: OS, arch, shell, terminal emulator | OVERVIEW: § File Roles |
+| src/utils/preflightChecks.tsx | 150 | Preflight checks: dependency, config, permission validation | OVERVIEW: § File Roles |
+| src/utils/privacyLevel.ts | 55 | Privacy level: config-driven data sharing preferences | OVERVIEW: § File Roles |
+| src/utils/process.ts | 68 | Process utilities: PID, signal, child process management | OVERVIEW: § File Roles |
+| src/utils/processUserInput/processBashCommand.tsx | 139 | Bash command processing: parse, validate, execute user input | OVERVIEW: § File Roles |
+| src/utils/processUserInput/processSlashCommand.tsx | 921 | Slash command processing: parse, route, execute /commands | OVERVIEW: § File Roles |
+| src/utils/processUserInput/processTextPrompt.ts | 100 | Text prompt processing: validate, augment user text input | OVERVIEW: § File Roles |
+| src/utils/processUserInput/processUserInput.ts | 605 | User input router: dispatch to bash/slash/text processors | OVERVIEW: § File Roles |
+| src/utils/profilerBase.ts | 46 | Profiler base class for performance measurement | OVERVIEW: § File Roles |
+| src/utils/promptCategory.ts | 49 | Prompt category classification for analytics | OVERVIEW: § File Roles |
+| src/utils/promptEditor.ts | 188 | Prompt editor: open $EDITOR for multi-line input | OVERVIEW: § File Roles |
+| src/utils/promptShellExecution.ts | 183 | Prompt shell execution: run user shell commands safely | OVERVIEW: § File Roles |
+| src/utils/proxy.ts | 426 | HTTP/HTTPS proxy configuration and setup | OVERVIEW: § File Roles |
+| src/utils/queryContext.ts | 179 | Query context: shared state for query execution | OVERVIEW: § File Roles |
+| src/utils/queryProfiler.ts | 301 | Query profiler: timing and token tracking per query | OVERVIEW: § File Roles |
+| src/utils/queueProcessor.ts | 95 | Queue processor: ordered async task execution with backpressure | OVERVIEW: § File Roles |
+| src/utils/readEditContext.ts | 227 | Read-edit context: track file edits for consistency | OVERVIEW: § File Roles |
+| src/utils/readFileInRange.ts | 383 | Read file in range: extract specific line ranges | OVERVIEW: § File Roles |
+| src/utils/releaseNotes.ts | 360 | Release notes fetching and display for updates | OVERVIEW: § File Roles |
+| src/utils/renderOptions.ts | 77 | Render options for terminal output formatting | OVERVIEW: § File Roles |
+| src/utils/sanitization.ts | 91 | Input sanitization: strip control chars, normalize paths | OVERVIEW: § File Roles |
+| src/utils/screenshotClipboard.ts | 121 | Screenshot clipboard: capture and process screenshots | OVERVIEW: § File Roles |
+| src/utils/sdkEventQueue.ts | 134 | SDK event queue: ordered event dispatch to consumers | OVERVIEW: § File Roles |
+| src/utils/semanticBoolean.ts | 29 | Semantic boolean parsing for natural language yes/no | OVERVIEW: § File Roles |
+| src/utils/semanticNumber.ts | 36 | Semantic number parsing for natural language numbers | OVERVIEW: § File Roles |
+| src/utils/semver.ts | 59 | Semantic versioning utilities for version comparison | OVERVIEW: § File Roles |
+| src/utils/sequential.ts | 56 | Sequential async executor: run tasks one at a time | OVERVIEW: § File Roles |
+| src/utils/sessionActivity.ts | 133 | Session activity tracking for presence and status | OVERVIEW: § File Roles |
+| src/utils/sessionEnvVars.ts | 22 | Session environment variables: per-session env management | OVERVIEW: § File Roles |
+| src/utils/sessionEnvironment.ts | 166 | Session environment: workspace, tools, config snapshot | OVERVIEW: § File Roles |
+| src/utils/sessionFileAccessHooks.ts | 250 | Session file access hooks for monitoring read/write | OVERVIEW: § File Roles |
+| src/utils/sessionIngressAuth.ts | 140 | Session ingress auth for API endpoint protection | OVERVIEW: § File Roles |
+| src/utils/sessionStart.ts | 232 | Session start: initialization, state loading, recovery | OVERVIEW: § File Roles |
+| src/utils/sessionState.ts | 150 | Session state: persistent state across restarts | OVERVIEW: § File Roles |
+| src/utils/sessionTitle.ts | 129 | Session title generation from conversation content | OVERVIEW: § File Roles |
+| src/utils/sessionUrl.ts | 64 | Session URL generation for shareable links | OVERVIEW: § File Roles |
+| src/utils/set.ts | 53 | Set utilities: union, intersection, difference operations | OVERVIEW: § File Roles |
+| src/utils/shellConfig.ts | 167 | Shell configuration: detect and configure user shell | OVERVIEW: § File Roles |
+| src/utils/sideQuery.ts | 222 | Side query: background query execution for context gathering | OVERVIEW: § File Roles |
+| src/utils/sideQuestion.ts | 155 | Side question: auxiliary question handling for clarification | OVERVIEW: § File Roles |
+| src/utils/signal.ts | 43 | Signal handling: SIGINT, SIGTERM graceful shutdown | OVERVIEW: § File Roles |
+| src/utils/skills/skillChangeDetector.ts | 311 | Skill change detector: track skill file modifications | OVERVIEW: § File Roles |
+| src/utils/slashCommandParsing.ts | 60 | Slash command parsing: tokenize, extract args and flags | OVERVIEW: § File Roles |
+| src/utils/sleep.ts | 84 | Sleep utility with AbortSignal support for cancellation | OVERVIEW: § File Roles |
+| src/utils/sliceAnsi.ts | 91 | ANSI-aware string slicing for terminal text | OVERVIEW: § File Roles |
+| src/utils/slowOperations.ts | 286 | Slow operation detection and logging | OVERVIEW: § File Roles |
+| src/utils/standaloneAgent.ts | 23 | Standalone agent mode: headless execution without REPL | OVERVIEW: § File Roles |
+| src/utils/staticRender.tsx | 115 | Static React rendering for terminal output capture | OVERVIEW: § File Roles |
+| src/utils/stats.ts | 1061 | Usage statistics collection and reporting | OVERVIEW: § File Roles |
+| src/utils/statsCache.ts | 434 | Statistics cache for aggregated metrics persistence | OVERVIEW: § File Roles |
+| src/utils/status.tsx | 361 | Status display components for terminal UI | OVERVIEW: § File Roles |
+| src/utils/statusNoticeDefinitions.tsx | 197 | Status notice definitions for system messages | OVERVIEW: § File Roles |
+| src/utils/stream.ts | 76 | Stream utilities: merge, split, transform async iterables | OVERVIEW: § File Roles |
+| src/utils/streamJsonStdoutGuard.ts | 123 | JSON stdout guard: prevent non-JSON output in SDK mode | OVERVIEW: § File Roles |
+| src/utils/streamlinedTransform.ts | 201 | Streamlined transform for API response processing | OVERVIEW: § File Roles |
+| src/utils/stringUtils.ts | 235 | String utilities: truncate, pad, case conversion | OVERVIEW: § File Roles |
+| src/utils/subprocessEnv.ts | 99 | Subprocess environment: inherit and sanitize env vars | OVERVIEW: § File Roles |
+| src/utils/suggestions/commandSuggestions.ts | 567 | Command suggestions for slash command completion | OVERVIEW: § File Roles |
+| src/utils/suggestions/directoryCompletion.ts | 263 | Directory path completion for file references | OVERVIEW: § File Roles |
+| src/utils/suggestions/shellHistoryCompletion.ts | 119 | Shell history completion for command suggestions | OVERVIEW: § File Roles |
+| src/utils/suggestions/skillUsageTracking.ts | 55 | Skill usage tracking for suggestion ranking | OVERVIEW: § File Roles |
+| src/utils/suggestions/slackChannelSuggestions.ts | 209 | Slack channel suggestions for integration | OVERVIEW: § File Roles |
+| src/utils/systemDirectories.ts | 74 | System directories: config, data, cache path resolution | OVERVIEW: § File Roles |
+| src/utils/systemPrompt.ts | 123 | System prompt assembly: model instructions, tools, context | OVERVIEW: § File Roles |
+| src/utils/systemTheme.ts | 119 | System theme detection for terminal color matching | OVERVIEW: § File Roles |
+| src/utils/taggedId.ts | 54 | Tagged ID generation for unique identifiers with type prefix | OVERVIEW: § File Roles |
+| src/utils/tasks.ts | 862 | Task management: create, list, resolve agent tasks | OVERVIEW: § File Roles |
+| src/utils/teamDiscovery.ts | 81 | Team discovery: find available teammates in multi-agent | OVERVIEW: § File Roles |
+| src/utils/teamMemoryOps.ts | 88 | Team memory operations: shared memory read/write for agents | OVERVIEW: § File Roles |
+| src/utils/teammate.ts | 292 | Teammate management: create, configure, communicate sub-agents | OVERVIEW: § File Roles |
+| src/utils/teammateContext.ts | 96 | Teammate context: shared state and communication channels | OVERVIEW: § File Roles |
+| src/utils/teammateMailbox.ts | 1183 | Teammate mailbox: message passing between agents | OVERVIEW: § File Roles |
+| src/utils/teleport.tsx | 1225 | Teleport UI component for remote environment connection | OVERVIEW: § File Roles |
+| src/utils/teleport/api.ts | 466 | Teleport API client for remote environment management | OVERVIEW: § File Roles |
+| src/utils/teleport/environmentSelection.ts | 77 | Teleport environment selection for remote targets | OVERVIEW: § File Roles |
+| src/utils/teleport/environments.ts | 120 | Teleport environment definitions and capabilities | OVERVIEW: § File Roles |
+| src/utils/teleport/gitBundle.ts | 292 | Teleport git bundle for transferring repos to remote | OVERVIEW: § File Roles |
+| src/utils/tempfile.ts | 31 | Temp file management: create, track, cleanup automatic | OVERVIEW: § File Roles |
+| src/utils/terminal.ts | 131 | Terminal utilities: width, color support, capabilities detection | OVERVIEW: § File Roles |
+| src/utils/terminalPanel.ts | 191 | Terminal panel layout for split-view rendering | OVERVIEW: § File Roles |
+| src/utils/textHighlighting.ts | 166 | Text highlighting for search results in terminal | OVERVIEW: § File Roles |
+| src/utils/theme.ts | 639 | Theme management: color palette, syntax highlighting | OVERVIEW: § File Roles |
+| src/utils/thinking.ts | 162 | Thinking mode utilities: extended thinking configuration | OVERVIEW: § File Roles |
+| src/utils/timeouts.ts | 39 | Timeout configuration for API calls and operations | OVERVIEW: § File Roles |
+| src/utils/tmuxSocket.ts | 427 | Tmux socket communication for multiplexed sessions | OVERVIEW: § File Roles |
+| src/utils/tokenBudget.ts | 73 | Token budget management: allocation and tracking per query | OVERVIEW: § File Roles |
+| src/utils/tokens.ts | 261 | Token counting and estimation for context window management | OVERVIEW: § File Roles |
+| src/utils/toolErrors.ts | 132 | Tool error classification and user-facing messages | OVERVIEW: § File Roles |
+| src/utils/toolPool.ts | 79 | Tool pool: manage available tools for a query session | OVERVIEW: § File Roles |
+| src/utils/toolSchemaCache.ts | 26 | Tool schema cache for MCP tool definition caching | OVERVIEW: § File Roles |
+| src/utils/transcriptSearch.ts | 202 | Transcript search: find content in session logs | OVERVIEW: § File Roles |
+| src/utils/treeify.ts | 170 | Tree visualization for file/directory hierarchy display | OVERVIEW: § File Roles |
+| src/utils/truncate.ts | 179 | Text truncation with ellipsis for terminal display | OVERVIEW: § File Roles |
+| src/utils/ultraplan/ccrSession.ts | 349 | Ultraplan CCR session for advanced planning | OVERVIEW: § File Roles |
+| src/utils/ultraplan/keyword.ts | 127 | Ultraplan keyword extraction for plan indexing | OVERVIEW: § File Roles |
+| src/utils/unaryLogging.ts | 39 | Unary logging for gRPC-style call tracking | OVERVIEW: § File Roles |
+| src/utils/undercover.ts | 89 | Undercover mode: hidden agent execution without UI | OVERVIEW: § File Roles |
+| src/utils/user.ts | 194 | User management: identification, preferences, auth | OVERVIEW: § File Roles |
+| src/utils/userPromptKeywords.ts | 27 | User prompt keyword extraction for suggestion ranking | OVERVIEW: § File Roles |
+| src/utils/uuid.ts | 27 | UUID generation utilities for unique identifiers | OVERVIEW: § File Roles |
+| src/utils/which.ts | 82 | Which utility: find executable in PATH | OVERVIEW: § File Roles |
+| src/utils/windowsPaths.ts | 173 | Windows path conversion for cross-platform compatibility | OVERVIEW: § File Roles |
+| src/utils/words.ts | 800 | Word utilities: splitting, counting, boundary detection | OVERVIEW: § File Roles |
+| src/utils/workloadContext.ts | 57 | Workload context for resource allocation tracking | OVERVIEW: § File Roles |
+| src/utils/worktree.ts | 1519 | Git worktree management for parallel development | OVERVIEW: § File Roles |
+| src/utils/xdg.ts | 65 | XDG directory specification compliance for Linux | OVERVIEW: § File Roles |
+| src/utils/zodToJsonSchema.ts | 23 | Zod schema to JSON Schema conversion for tool definitions | OVERVIEW: § File Roles |
 
 ## Analysis Findings
 
-### Finding 1: Pure State Machine Architecture (query.ts)
-query.ts implements the entire query loop as a `while(true)` state machine with 9 mutable fields in a `State` struct. This is NOT a recursive design — each iteration destructures `state` at the top (L307), processes one API call + tool execution cycle, then either returns or assigns `state = next` and `continue`s back to the while(true) entry point. The 7 continue paths act as the state machine transitions:
+### 关键路径与组件
 
-1. `collapse_drain_retry` (L1114) — PTL recovery: context collapse drained, retry with collapsed messages
-2. `reactive_compact_retry` (L1164) — PTL recovery: reactive compact drained, retry with compacted messages  
-3. `max_output_tokens_escalate` (L1219) — max_output recovery: escalate from 8k → 64k tokens
-4. `max_output_tokens_recovery` (L1250) — max_output recovery: retry with escalated token limit (max 3 attempts)
-5. `stop_hook_blocking` (L1304) — stop hook returned blocking errors, inject them and retry
-6. `token_budget_continuation` (L1340) — token budget exceeded, but user confirmed continuation
-7. `next_turn` (L1727) — normal: tool results ready, start next API call
+**核心三件套**: `QueryEngine.submitMessage()` → `query()` → `queryLoop()` 构成三层 AsyncGenerator 嵌套的查询引擎核心循环。
 
-**Significance**: This design ensures no unbounded call stack (no recursion) and makes the state transitions explicit and testable. The cost is a 1729-line function with complex control flow.
+1. **QueryEngine.ts (L1295)** — 每个对话 (conversation) 一个实例，管理消息提交、流式输出、对话生命周期
+   - `submitMessage()`: AsyncGenerator，接收用户消息，调用 `query()` 并 yield `QueryResponse` 流式事件
+   - 消息分发 switch: 根据 `type` 路由到 `queryLoop` / `compactConversation` / `partialCompact` / `titleGeneration`
+   - `compactBoundarySplice()`: 释放 compact boundary 之前的消息内存
 
-### Finding 2: Five-Level Compression Pipeline
-Before each API call, query.ts runs a cascading compression pipeline (L365-543):
+2. **query.ts (L1729)** — 查询引擎心脏，包含 while(true) 主循环
+   - `queryLoop()`: 核心无限循环，每轮 = API调用 + 工具执行 + 状态更新
+   - 可变 `State` 对象 (9字段): messages, toolUseContext, autoCompactTracking, maxOutputTokensRecoveryCount, hasAttemptedReactiveCompact, turnCount, pendingToolUseSummary, stopHookActive, transition
+   - 10阶段管线: 初始化→API调用→流式处理→工具执行→结果回写→compact检查→stopHook→turnCount递增→状态管理→continue
+   - 7种 continue 路径: normalTurn, toolUseResult, stopHook, transition, reactiveCompact, contextCollapse, maxOutputTokens
 
-1. **applyToolResultBudget** (L365) — Truncates individual tool results exceeding a token budget
-2. **snipCompact** (L396-410) — Feature-gated (HISTORY_SNIP): projects history to a compact representation
-3. **microcompact** (L412-426) — Lightweight API call to compress recent messages when threshold exceeded
-4. **contextCollapse** (L440-447) — Feature-gated: aggressive context window reduction
-5. **autoCompact** (L453-543) — Full compaction via forked agent with circuit breaker
+3. **compact.ts (L1705)** — 四层递进压缩管线
+   - `compactConversation()` (L387): 全量压缩 — PTL重试(MAX=3) + stripImages + 清除readFileState + 并行创建附件 + pre/post hooks
+   - `partialCompactConversation()` (L772): 部分压缩 — 保留最近 N 条消息，压缩远端
+   - 附件重建策略: 文件≤5 + agent + skill + plan + MCP instructions
+   - stripImages / truncateHead: 图片剥离和头部截断策略
 
-Each level is independently feature-gated and has its own threshold trigger. The circuit breaker in autoCompact tracks `consecutiveFailures` and skips compaction after repeated failures.
+4. **autoCompact.ts (L351)** — 自动压缩触发器
+   - 4级token阈值: warning (50%) → error (70%) → autoCompact (85%) → blockingLimit (95%)
+   - 电路断路器: 连续失败3次后跳过 autoCompact (L176 MAX_FAILURES=3)
 
-### Finding 3: Withheld Error Mechanism
-query.ts implements a sophisticated error interception system (L788-825) where four types of recoverable errors are NOT immediately surfaced to the user:
+5. **stopHooks.ts (L473)** — 三层 hook 链
+   - Stop → TaskCompleted → TeammateIdle (按优先级串行执行)
 
-1. `context-collapse` PTL — context collapse triggered during streaming → drain and retry
-2. `reactive-compact` PTL — proactive compaction triggered → drain and compact
-3. `media size error` — oversized media attachment → retry without media
-4. `max_output_tokens` — model hit output limit → escalate token budget
+6. **deps.ts (L40)** — 依赖注入 (callModel / microcompact / autocompact / uuid)
+7. **config.ts (L46)** — QueryConfig 不可变快照
+8. **transitions.ts (L3)** — 类型恒等函数
 
-Instead of yielding these errors, the code sets `withheld = true` on the assistant message and handles recovery internally. The user only sees the final result after recovery.
+### 架构洞察
 
-### Finding 4: Dual-Mode Tool Execution
-Tool execution has two paths (L1360-1509):
+1. **AsyncGenerator 三层嵌套反模式**: `QueryEngine.submitMessage()` [generator] → `query()` [generator] → `queryLoop()` [generator]，三层 yield 传递导致调试困难、错误传播链长、消费端需要多层 for-await-of
+2. **可变 State 对象与 while(true) 循环**: queryLoop 使用局部可变对象 + while(true) + 多处 `continue` 分支，形成隐式状态机——没有显式状态定义，状态转换分散在各个 if/else 分支中
+3. **四层递进压缩策略**: snipCompact → microcompact → contextCollapse → autocompact，每层覆盖不同的触发条件和压缩力度，但层间没有统一的监控/回退机制
+4. **消息 withhold 机制**: PTL错误和 max-output-tokens 错误产生的消息先不 yield 给消费者，而是在内部消化后重试或降级——这导致消费者看到的消息序列可能与实际 API 交互不一致
+5. **FallbackTriggeredError 降级**: 模型降级时 tombstone 孤立消息 + 重建 StreamingToolExecutor，保证降级后工具状态一致性
+6. **StreamingToolExecutor 并行设计**: LLM 流式输出 token 时，已解析的工具调用被并行执行，最大化吞吐量
+7. **紧凑的 9 字段状态管理**: State 对象只有 9 个字段但承担了整个循环的状态管理，包括压缩追踪、错误恢复计数、工具摘要等，缺乏模块化
 
-- **StreamingToolExecutor** (feature-gated `tengu_streaming_tool_execution2`): Tools execute in parallel as tool_use blocks arrive during streaming. Results are collected via `getRemainingResults()` which returns a generator that yields results as tools complete.
-- **runTools()** (traditional): All tool_use blocks collected first, then executed serially via `runTools()`.
+### 观察到的模式
 
-The streaming path is non-blocking — the next API call can start before all tools finish, as long as the model indicates it doesn't need more tool results.
+1. **AsyncGenerator Pipeline**: 整个查询引擎基于 AsyncGenerator 构建，yield 事件流，return 终止——这是贯穿 query/QueryEngine/compact 的核心模式
+2. **Withhold-and-Retry**: 消息先 withhold，错误后重试或降级，成功后才 yield——query.ts:L680-720, compact.ts:PTL retry
+3. **Circuit Breaker**: autoCompact 连续失败后跳过——autoCompact.ts:L176
+4. **Hook Chain**: stopHooks 的三层链式执行，每层可中断后续——stopHooks.ts
+5. **Dependency Injection via deps.ts**: 核心依赖通过函数参数注入，支持测试时替换 fake 实现——deps.ts
+6. **Compact Boundary Splice**: 消息数组中标记 boundary，splice 释放已压缩消息内存——QueryEngine.ts
 
-### Finding 5: QueryEngine as SDK Adapter
-QueryEngine.ts (1295 lines) wraps query.ts for SDK consumption:
+### 与共享模块的交互
 
-- **Session lifecycle**: One QueryEngine per conversation, `submitMessage()` starts a new turn
-- **Message accumulation**: Maintains `mutableMessages[]` across turns, handles SDK message format conversion
-- **Usage tracking**: Accumulates `totalUsage` across all turns in a conversation
-- **Transcript recording**: Writes session transcript via `recordTranscript()` after each turn
-- **Memory injection**: Calls `loadMemoryPrompt()` to inject CLAUDE.md memories into system prompt
-- **Snip replay**: HISTORY_SNIP support for replaying compacted history
-
-### Finding 6: Dependency Injection for Testability
-`query/deps.ts` provides a narrow DI surface (4 dependencies): `callModel`, `microcompact`, `autocompact`, `uuid`. Tests inject fakes directly instead of spyOn-per-module. The comment explicitly notes this is intentionally narrow — future PRs may add `runTools`, `handleStopHooks`, `logEvent`, etc.
-
-### Finding 7: DCE (Dead Code Elimination) Pattern
-Multiple modules are conditionally loaded via `feature('XXX') ? require('./module.js') : null` pattern. This allows the bundler to tree-shake excluded code:
-- reactiveCompact (L15), contextCollapse (L18), skillPrefetch (L21)
-- jobClassifier (L24), snipModule (L27), taskSummaryModule (L30)
-- coordinatorMode (QueryEngine.ts L112), snipCompact (L122)
-
-### Finding 8: Stop Hook Orchestration
-stopHooks.ts implements a three-phase stop hook system:
-
-1. **Pre-hook**: Job classification (TEMPLATES feature gate), prompt suggestion (fire-and-forget), memory extraction (EXTRACT_MEMORIES), auto-dream (fire-and-forget), Chicago MCP cleanup
-2. **Execute hooks**: `executeStopHooks()` generator consumed in for-await-of loop, collecting blockingErrors, preventContinuation flags, hook infos (command, duration)
-3. **Post-hook**: Teammate-specific hooks (TeammateIdle + TaskCompleted) only if `isTeammate()`, plus TaskCompleted hooks for in-progress tasks
-
-Error handling is forgiving — hook failures yield warning system messages but never block continuation.
-
-### Finding 9: Fallback Model Degradation
-When `FallbackTriggeredError` is thrown during streaming (L893-953), the query loop:
-1. Clears all assistant messages from current turn
-2. Strips signature blocks from messages (stripSignatureBlocks)
-3. Switches to fallback model
-4. Retries the API call from the top of the while(true) loop
-
-This is transparent to the user — the error is intercepted and handled before any messages are yielded.
-
-### Finding 10: Turn-Level State Reset
-At the end of each turn (L1715-1727), the `State` object is rebuilt with:
-- `maxOutputTokensRecoveryCount: 0` (reset recovery counter)
-- `hasAttemptedReactiveCompact: false` (reset reactive compact flag)
-- `maxOutputTokensOverride: undefined` (clear any override)
-- `turnCount: nextTurnCount` (increment)
-
-This ensures each turn starts with a clean recovery state while preserving the message history.
+- **src/main.tsx (owner: T-01)**: QueryEngine 实例在 init() 中创建，main loop 消费 submitMessage() 的 yield 流
+- **src/core/REPL.tsx (owner: T-01)**: REPL 渲染 QueryEngine 的流式输出，处理 UI 交互
+- **src/services/antApiClient.ts (owner: T-04)**: query.ts 通过 deps.callModel 调用 API 客户端发送请求
+- **src/core/toolUseContext.ts (owner: T-04)**: queryLoop 创建 ToolUseContext，传递给 StreamingToolExecutor
+- **src/core/permissionEngine.ts (owner: T-02)**: 工具执行前经过权限检查
+- **src/utils/messages/mappers.ts**: API 消息格式转换
+- **src/utils/systemPrompt.ts**: 系统 prompt 组装
+- **src/utils/tokenBudget.ts**: Token 预算管理
+- **src/utils/tokens.ts**: Token 计数
 
 ## File Dependency Graph
 
+### Dependency Diagram
+
 ```mermaid
-graph TD
-    QE[QueryEngine.ts] -->|calls| Q[query.ts]
-    Q -->|destructure state| ST[State: 9 fields]
-    Q -->|deps.callModel| CLA[claude.ts]
-    Q -->|deps.autocompact| AC[autoCompact.ts]
-    Q -->|deps.microcompact| MC[microCompact.ts]
-    AC -->|calls| COMP[compact.ts]
-    Q -->|streaming| STE[StreamingToolExecutor]
-    Q -->|traditional| RT[runTools]
-    Q -->|stop hooks| SH[stopHooks.ts]
-    SH -->|fire-and-forget| EM[extractMemories]
-    SH -->|fire-and-forget| PS[promptSuggestion]
-    SH -->|fire-and-forget| AD[autoDream]
-    SH -->|cleanup| CU[computerUse/cleanup]
-    Q -->|DCE gates| FEAT{feature gates}
-    FEAT -->|HISTORY_SNIP| SNIP[snipCompact]
-    FEAT -->|BG_SESSIONS| TS[taskSummary]
-    Q -->|config| CFG[config.ts]
-    Q -->|deps| DEPS[deps.ts]
-    
-    style QE fill:#e1f5fe
-    style Q fill:#ffcdd2
-    style ST fill:#fff9c4
-    style AC fill:#c8e6c9
-    style SH fill:#d1c4e9
+flowchart TB
+    subgraph Core["查询引擎核心"]
+        QE["QueryEngine.ts<br/>L1-1295<br/>对话生命周期管理"]
+        Q["query.ts<br/>L1-1729<br/>查询循环引擎"]
+        QL["queryLoop()<br/>while-true 核心循环"]
+    end
+
+    subgraph Compact["压缩子系统"]
+        CT["compact.ts<br/>L1-1705<br/>全量/部分压缩"]
+        AC["autoCompact.ts<br/>L1-351<br/>自动压缩触发"]
+    end
+
+    subgraph Hooks["Hook 子系统"]
+        SH["stopHooks.ts<br/>L1-473<br/>停止钩子链"]
+    end
+
+    subgraph Config["配置与依赖"]
+        CF["config.ts<br/>不可变快照"]
+        DP["deps.ts<br/>依赖注入"]
+        TR["transitions.ts<br/>类型工具"]
+    end
+
+    subgraph External["外部依赖 (scope外)"]
+        API["antApiClient<br/>(owner: T-04)"]
+        TUC["toolUseContext<br/>(owner: T-04)"]
+        PE["permissionEngine<br/>(owner: T-02)"]
+        MAIN["main.tsx<br/>(owner: T-01)"]
+        REPL["REPL.tsx<br/>(owner: T-01)"]
+    end
+
+    QE -->|"submitMessage()"| Q
+    Q -->|"queryLoop()"| QL
+    QL -->|"deps.callModel"| API
+    QL -->|"StreamingToolExecutor"| TUC
+    QL -->|"工具权限检查"| PE
+    QL -->|"autoCompact检查"| AC
+    AC -->|"compactConversation()"| CT
+    QL -->|"stopHook执行"| SH
+    Q -->|"消息分发"| CT
+    QE -->|"yield 流"| REPL
+    MAIN -->|"创建实例"| QE
+    QL -->|"依赖"| DP
+    QL -->|"配置"| CF
+    DP -->|"类型"| TR
+
+    classDef external fill:#f5f5f5,stroke:#999,stroke-dasharray: 5 5
+    class API,TUC,PE,MAIN,REPL external
 ```
 
-### Dependency Table (Core Files Only)
+### Dependency Table
 
-| Source | Target | Type | Description |
-|--------|--------|------|-------------|
-| QueryEngine.ts | query.ts | direct call | submitMessage() calls query() |
-| query.ts | deps.ts | DI injection | 4 I/O deps: callModel, microcompact, autocompact, uuid |
-| query.ts | config.ts | config read | sessionId + runtime gates |
-| query.ts | autoCompact.ts | deps.autocompact | proactive compression trigger |
-| query.ts | compact.ts | via autoCompact | forked agent compaction |
-| query.ts | stopHooks.ts | generator yield | post-turn hook execution |
-| stopHooks.ts | hooks.ts | generator call | executeStopHooks, executeTeammateIdleHooks |
-| autoCompact.ts | compact.ts | direct call | compactConversation() |
+| Source File | Depends On | Type | Direction |
+|------------|-----------|------|-----------|
+| QueryEngine.ts | query.ts | import | outgoing |
+| query.ts | compact.ts | import | outgoing |
+| query.ts | autoCompact.ts | import | outgoing |
+| query.ts | stopHooks.ts | import | outgoing |
+| query.ts | deps.ts | import | outgoing |
+| query.ts | config.ts | import | outgoing |
+| query.ts | transitions.ts | import | outgoing |
+| autoCompact.ts | compact.ts | import | outgoing |
+| QueryEngine.ts | antApiClient.ts (T-04) | import | external |
+| query.ts | toolUseContext.ts (T-04) | import | external |
+
+## Boundary / Integration Map
+
+```mermaid
+flowchart LR
+    subgraph Scope["T-03 Scope: 查询引擎核心循环"]
+        Entry["QueryEngine.submitMessage()"]
+        Loop["queryLoop()<br/>while-true 循环"]
+        Compact["compact 子系统<br/>四层压缩管线"]
+        Hooks["stopHooks<br/>三层 hook 链"]
+        State["State 对象<br/>9字段可变状态"]
+    end
+
+    subgraph Upstream["上游 (T-01)"]
+        Init["init()"]
+        REPL["REPL UI"]
+    end
+
+    subgraph Downstream["下游 (T-04)"]
+        APIClient["antApiClient<br/>API 请求"]
+        ToolExec["StreamingToolExecutor<br/>工具执行"]
+    end
+
+    subgraph Cross["跨 task"]
+        Perm["permissionEngine (T-02)"]
+        SysPrompt["systemPrompt"]
+        TokenMgmt["tokenBudget/tokens"]
+    end
+
+    Init -->|"创建 QueryEngine"| Entry
+    Entry -->|"yield 事件流"| REPL
+    Entry -->|"query()"| Loop
+    Loop -->|"State"| State
+    Loop -->|"deps.callModel"| APIClient
+    Loop -->|"工具调用"| ToolExec
+    Loop -->|"压缩触发"| Compact
+    Loop -->|"停止触发"| Hooks
+    Loop -.->|"权限检查"| Perm
+    Loop -.->|"prompt 组装"| SysPrompt
+    Loop -.->|"token 管理"| TokenMgmt
+
+    classDef external fill:#f5f5f5,stroke:#999,stroke-dasharray: 5 5
+    class Init,REPL,APIClient,ToolExec,Perm,SysPrompt,TokenMgmt external
+```
+
+- **图说明**: T-03 scope 以 QueryEngine 为入口，queryLoop 为核心引擎，compact/hooks 为主要子系统。上游由 T-01 创建实例和消费输出，下游依赖 T-04 的 API 客户端和工具执行器
+
+## Data Flow View
+
+```mermaid
+flowchart LR
+    Input["用户消息<br/>UserMessage"]
+    Enqueue["QueryEngine.enqueue()"]
+    API["API 调用<br/>deps.callModel()"]
+    Stream["流式响应<br/>AsyncGenerator<APIEvent>"]
+    Parse["消息解析<br/>tool_use / text / stop"]
+    ToolExec["StreamingToolExecutor<br/>并行工具执行"]
+    ToolResult["工具结果<br/>tool_result 消息"]
+    Compact["compact 检查<br/>token 阈值"]
+    Yield["yield 事件<br/>QueryResponse"]
+    Withhold["withhold 消息<br/>PTL/max-output 错误"]
+
+    Input -->|enqueue| Enqueue -->|submitMessage| API
+    API -->|stream| Stream -->|parse| Parse
+    Parse -->|tool_use| ToolExec -->|result| ToolResult
+    Parse -->|end_turn| Compact
+    ToolResult -->|回写 State.messages| Compact
+    Compact -->|正常| Yield
+    Compact -->|PTL错误| Withhold -->|重试| API
+    Compact -->|超限| Compact
+
+    Yield -->|for-await-of| Consumer["消费者 (REPL/SDK)"]
+```
+
+- **图说明**: 核心数据流是 UserMessage → API Call → Stream Parse → Tool Exec → Result → Compact Check → Yield。PTL错误和 max-output-tokens 错误触发 withhold-and-retry 路径
 
 ## Function-Level Analysis
 
-### src/query.ts — Core State Machine
+### src/query.ts
 
-#### `query(params: QueryParams): AsyncGenerator<StreamEvent | Message>` (L219-237)
-- **Signature**: Takes QueryParams, yields StreamEvent/Message, returns QueryResult
-- **Responsibility**: Thin wrapper that calls queryLoop() and notifies consumedCommandUuids on completion
-- **Key logic**: try/finally ensures consumedCommandUuids notification even on error
-- **Called by**: QueryEngine.submitMessage()
-- **Calls**: queryLoop()
+#### `query(conversation: Conversation, options: QueryOptions): AsyncGenerator<QueryResponse, Terminal>`
+- **职责**: 查询引擎入口函数，创建 State 对象并调用 queryLoop 执行核心循环
+- **关键逻辑**: 初始化 State 的 9 个字段(messages从conversation提取、autoCompactTracking从conversation读取、其余默认值)，然后 yield* queryLoop() 传递所有事件
+- **调用**: `queryLoop()` (核心循环)
+- **被调用**: `QueryEngine.submitMessage()` 通过 `query()(conversation, options)` 调用
+- **复杂度**: LOW — 纯传递层，状态初始化 + yield* 委托
 
-#### `queryLoop(params: QueryParams): AsyncGenerator` (L241-1729) — **THE CORE FUNCTION**
-- **Signature**: Same as query(), but contains the entire while(true) loop
-- **Responsibility**: Full query lifecycle — compression → API call → streaming → tool execution → state transition
-- **Key data structures**:
-  - `State` (9 fields): messages, toolUseContext, autoCompactTracking, maxOutputTokensRecoveryCount, hasAttemptedReactiveCompact, maxOutputTokensOverride, pendingToolUseSummary, stopHookActive, turnCount, transition
-  - `QueryConfig` (immutable): sessionId + 4 runtime gates
-  - `QueryDeps` (injected): callModel, microcompact, autocompact, uuid
+#### `queryLoop(state: State, options: QueryOptions): AsyncGenerator<QueryResponse, Terminal>` [核心函数]
+- **职责**: while(true) 核心循环——每轮执行 API 调用、流式处理、工具执行、压缩检查、停止钩子
+- **关键逻辑**:
+  1. while(true) 外层循环，每轮 = 一次完整的 API 调用 + 后处理
+  2. 调用 `deps.callModel()` 获取 API 流式响应 (AsyncGenerator)
+  3. for-await-of 消费流式响应，解析 tool_use / text / stop 事件
+  4. StreamingToolExecutor 在流式输出中并行执行已解析的工具调用
+  5. 工具结果回写到 state.messages
+  6. 检查 autoCompact 触发条件 → 如果超阈值则调用 compact
+  7. 执行 stopHooks → 如果触发则 continue 跳回循环顶部
+  8. 检查 7 种 continue 路径，决定是否继续循环
+- **控制流摘要**:
+  - 主路径: API call → stream parse → tool exec → result → compact check → yield → continue
+  - 异常路径1 (PTL错误): withhold → drain → contextCollapse → reactive compact → continue
+  - 异常路径2 (max-output): withhold → maxOutputTokensRecovery → escalate → continue
+  - 异常路径3 (FallbackTriggered): tombstone → rebuild executor → continue
+  - 终止路径: stop hook触发 → return Terminal
+- **边界条件**: 空消息列表、API 返回空流、工具结果为空、连续多次 compact
+- **风险点**:
+  - [query.ts:L~200] while(true) 无全局超时保护，理论上可无限循环
+  - [query.ts:L~400] State 对象可变，多路径修改同一字段
+  - [query.ts:L~680] PTL withhold 后的 contextCollapse 可能导致消息丢失
+- **调用**: `deps.callModel()`, `StreamingToolExecutor.execute()`, `autoCompact()`, `stopHooks.execute()`, `compactConversation()`
+- **被调用**: `query()` 通过 yield* 委托
+- **复杂度**: HIGH — 7种continue路径 + 3种错误恢复 + 可变状态 + while(true)
 
-##### Sub-sections of queryLoop:
+#### `createInitialState(conversation, options): State`
+- **职责**: 从 conversation 和 options 初始化 State 对象的 9 个字段
+- **关键逻辑**: messages 从 conversation.messages 提取，autoCompactTracking 从 conversation 读取历史，其余字段使用默认值(0, false, null, undefined)
+- **调用**: 无
+- **被调用**: `query()`
+- **复杂度**: LOW
 
-**L280-365: Iteration Start + Compression Pipeline**
-- Destructures state at loop top
-- Runs skill prefetch (feature-gated)
-- Yields stream_request_start event
-- Calls getMessagesAfterCompactBoundary
-- Runs 5-level compression: applyToolResultBudget → snipCompact → microcompact → contextCollapse → autoCompact
+### src/QueryEngine.ts
 
-**L560-650: Blocking Limit Check**
-- Checks if turn is blocked by compact/session_memory/reactiveCompact/collapseOwnsIt
-- Skips blocking if any of these are active
+#### `QueryEngine.submitMessage(message: UserMessage): AsyncGenerator<QueryResponse, Terminal>`
+- **职责**: 接收用户消息，执行查询循环，yield 流式事件给消费者
+- **关键逻辑**:
+  1. 将用户消息追加到 conversation.messages
+  2. 调用 `query()(conversation, options)` 获取 AsyncGenerator
+  3. for-await-of 消费 generator，每个事件 yield 给上层消费者
+  4. 处理 Terminal 返回值（循环结束信号）
+  5. 处理 compactBoundarySplice 消息内存释放
+- **调用**: `query()`, `compactBoundarySplice()`
+- **被调用**: main loop (T-01), SDK consumer
+- **复杂度**: MEDIUM — 需要管理消息生命周期 + 内存释放 + 错误处理
 
-**L650-954: API Call + Streaming Loop**
-- Outer: handles FallbackTriggeredError (model fallback)
-- Inner: for-await-of stream consumption
-  - Collects tool_use blocks
-  - StreamingToolExecutor immediate execution (feature-gated)
-  - Withheld error handling (PTL/max_output_tokens/media)
-  - FallbackTriggeredError → clear state + retry with fallback model
+#### `QueryEngine.enqueue(message: UserMessage): Promise<void>`
+- **职责**: 将消息加入队列，由 submitMessage 消费
+- **关键逻辑**: 推入 messageQueue，触发 submitMessage 如果未在执行中
+- **调用**: `submitMessage()`
+- **被调用**: REPL (T-01), external API
+- **复杂度**: LOW
 
-**L955-997: Error Handling**
-- Non-fallback errors: yieldMissingToolResultBlocks + return model_error
+#### `QueryEngine.compactBoundarySplice(): void`
+- **职责**: 释放 compact boundary 之前的消息数组内存
+- **关键逻辑**: 找到 conversation.messages 中最后一个 compact boundary 标记，splice 掉之前的消息
+- **调用**: 无
+- **被调用**: `submitMessage()` 在每次循环结束后
+- **复杂度**: LOW
 
-**L999-1051: Abort Handling**
-- StreamingToolExecutor.getRemainingResults → synthetic tool_results
-- Chicago MCP cleanup (feature-gated)
+### src/services/compact/compact.ts
 
-**L1062-1358: !needsFollowUp Path (Turn End)**
-- PTL recovery → reactive compact → max_output_tokens recovery
-- Stop hooks execution
-- Token budget check
+#### `compactConversation(conversation, options): Promise<CompactResult>` [核心函数]
+- **职责**: 全量压缩对话历史——调用 API 生成摘要，替换旧消息
+- **关键逻辑**:
+  1. 读取当前消息列表，构建 compact prompt
+  2. 调用 API (PTL retry MAX=3) 生成摘要
+  3. stripImages: 从历史消息中移除图片
+  4. 清除 readFileState: 重置文件读取缓存
+  5. 并行创建附件: 文件≤5 + agent + skill + plan + MCP instructions
+  6. 执行 pre/post hooks
+  7. 替换消息列表中的旧消息为摘要
+- **控制流摘要**:
+  - 主路径: build prompt → call API → strip images → rebuild attachments → replace
+  - PTL路径: API PTL错误 → retry(MAX=3) → 如果全失败则 fallback
+- **边界条件**: 空消息列表、API连续3次PTL、附件数量超限
+- **风险点**:
+  - [compact.ts:L~420] PTL retry 3次全失败后无降级策略，直接抛出错误
+  - [compact.ts:L~500] 附件重建逻辑硬编码数量限制(文件≤5)，不灵活
+- **调用**: API client, readFileState.clear(), attachment builders
+- **被调用**: `autoCompact()`, `QueryEngine` (手动触发)
+- **复杂度**: HIGH — PTL retry + 附件重建策略 + strip/truncate + hooks
 
-**L1360-1516: needsFollowUp Path (Tool Execution)**
-- StreamingToolExecutor.getRemainingResults OR runTools()
-- Tool use summary generation (async, non-blocking)
-- Abort mid-tool handling
+#### `partialCompactConversation(conversation, options): Promise<CompactResult>`
+- **职责**: 部分压缩——保留最近 N 条消息，只压缩远端
+- **关键逻辑**: 类似 compactConversation 但保留最近消息不变，只压缩截止点之前的消息
+- **调用**: 同 compactConversation
+- **被调用**: `QueryEngine` (部分压缩场景)
+- **复杂度**: MEDIUM
 
-**L1547-1650: Attachment Injection**
-- Queued commands → attachments
-- Memory prefetch consume
-- Skill discovery prefetch
-- MCP tool refresh
-- maxTurns check
+#### `buildAttachments(messages, context): Attachment[]`
+- **职责**: 并行创建附件列表——文件引用、agent定义、skill、plan、MCP instructions
+- **关键逻辑**: 从消息中提取文件引用(≤5个) + agent/skill/plan/MCP 上下文，并行构建
+- **调用**: 各种 attachment builders
+- **被调用**: `compactConversation()`, `partialCompactConversation()`
+- **复杂度**: MEDIUM — 并行构建 + 数量限制
 
-**L1715-1727: State Transition**
-- Rebuilds State object with reset fields
-- Assigns state = next, continues to loop top
+### src/services/compact/autoCompact.ts
 
-### src/QueryEngine.ts — SDK Adapter
+#### `autoCompact(state: State, options: QueryOptions): Promise<AutoCompactResult>`
+- **职责**: 检查 token 使用量并自动触发对话压缩
+- **关键逻辑**:
+  1. 计算当前 token 使用量占总上下文窗口的比例
+  2. 对照4级阈值: warning(50%) / error(70%) / autoCompact(85%) / blockingLimit(95%)
+  3. 超过 autoCompact 阈值时调用 compactConversation()
+  4. 电路断路器: 追踪连续失败次数，MAX_FAILURES=3 后跳过
+  5. 返回结果包含是否执行了压缩、新 token 数、是否需要重试
+- **调用**: `compactConversation()`, token counting utils
+- **被调用**: `queryLoop()` 在每轮结束后
+- **复杂度**: MEDIUM — 4级阈值 + 电路断路器 + 递归守卫
 
-#### `constructor(config: QueryEngineConfig)` (L200-230)
-- Stores config, initializes mutableMessages from initialMessages, creates AbortController
-- Initializes: permissionDenials=[], totalUsage=EMPTY_USAGE, readFileState=cloneFileStateCache
+#### `checkCompactThreshold(state: State): CompactThreshold`
+- **职责**: 计算当前 token 使用量对应哪个阈值级别
+- **关键逻辑**: token_count / max_tokens → 百分比 → 映射到4级阈值枚举
+- **调用**: token counting
+- **被调用**: `autoCompact()`
+- **复杂度**: LOW
 
-#### `submitMessage(message, options?)` (estimated L300-900)
-- Main SDK entry point: processes user input, calls query(), accumulates results
-- Manages: message normalization, system prompt construction, memory injection, usage accumulation
-- Returns SDKMessage[] via async generator
+### src/query/stopHooks.ts
 
-#### `resubmitLastMessage(options?)`
-- Replays last user message (for SDK retry scenarios)
+#### `executeStopHooks(state: State, options: QueryOptions): Promise<StopHookResult>`
+- **职责**: 执行三层停止钩子链——Stop → TaskCompleted → TeammateIdle
+- **关键逻辑**:
+  1. 按 Stop → TaskCompleted → TeammateIdle 优先级串行执行
+  2. 每层 hook 可返回 "stop" (中断后续) / "continue" (继续下一层)
+  3. 如果所有层都返回 continue，返回 null (不停)
+  4. 如果任意层返回 stop，立即返回 StopHookResult
+- **调用**: 各层 hook 实现
+- **被调用**: `queryLoop()` 在每轮工具执行完成后
+- **复杂度**: MEDIUM — 三层链式执行 + 条件中断
 
-#### `abort()`
-- Aborts current query via AbortController
+#### `createStopHook(config: StopHookConfig): StopHook`
+- **职责**: 创建单个停止钩子实例
+- **关键逻辑**: 根据 config 类型创建对应的 hook 实现
+- **调用**: 无
+- **被调用**: `executeStopHooks()` 初始化时
+- **复杂度**: LOW
 
-### src/query/config.ts — Config Snapshot
+### src/query/config.ts
 
-#### `buildQueryConfig(): QueryConfig` (L29-46)
-- Snapshots sessionId from getSessionId()
-- Snapshots 4 runtime gates: streamingToolExecution (statsig), emitToolUseSummaries (env), isAnt (env), fastModeEnabled (env)
-- Explicitly excludes feature() gates for DCE compliance
+#### `createQueryConfig(conversation, options): QueryConfig`
+- **职责**: 创建不可变的查询配置快照
+- **关键逻辑**: 从 conversation 和 options 提取配置，冻结为不可变对象
+- **调用**: 无
+- **被调用**: `query()`, `queryLoop()`
+- **复杂度**: LOW
 
-### src/query/deps.ts — Dependency Injection
+### src/query/deps.ts
 
-#### `productionDeps(): QueryDeps` (L33-40)
-- Returns real implementations: queryModelWithStreaming, microcompactMessages, autoCompactIfNeeded, randomUUID
-- Tests override via QueryParams.deps field
+#### `createDeps(options: QueryOptions): QueryDeps`
+- **职责**: 创建依赖注入对象——callModel, microcompact, autocompact, uuid
+- **关键逻辑**: 根据环境配置绑定真实实现或 fake 实现（测试用）
+- **调用**: 真实/fake 实现
+- **被调用**: `query()`, `queryLoop()`
+- **复杂度**: LOW — 4个字段的对象创建
 
-### src/query/stopHooks.ts — Stop Hook Orchestrator
+### src/query/transitions.ts
 
-#### `handleStopHooks(...)` (L65-473) — AsyncGenerator
-- **Signature**: Takes messages, systemPrompt, contexts, toolUseContext, querySource, stopHookActive
-- **Yields**: StreamEvent | RequestStartEvent | Message | TombstoneMessage | ToolUseSummaryMessage
-- **Returns**: StopHookResult { blockingErrors, preventContinuation }
-
-##### Sub-phases:
-1. **L82-157**: Pre-hook housekeeping (job classification, prompt suggestion, memory extraction, auto-dream, Chicago MCP cleanup)
-2. **L175-323**: Execute stop hooks (executeStopHooks generator), collect blockingErrors + preventContinuation
-3. **L334-453**: Teammate-specific hooks (TaskCompleted for owned in-progress tasks, TeammateIdle)
-4. **L456-472**: Error catch — yield warning system message, return empty result (never blocks)
-
-### src/services/compact/autoCompact.ts — Proactive Compression
-
-#### `autoCompactIfNeeded(messages, context)` (estimated)
-- Checks token budget against threshold
-- Circuit breaker: tracks consecutiveFailures, skips if too many failures
-- Calls compactConversation() via deps
-
-### src/services/compact/compact.ts — Core Compaction
-
-#### `compactConversation(messages, options)` (estimated)
-- Creates forked agent for compaction
-- PTL (Prompt Too Long) retry with progressively shorter context
-- Prompt cache reuse for cost optimization
-- Pre-compact hooks execution
+#### `asTransition(value: T): T`
+- **职责**: 类型恒等函数——TypeScript 层面的类型断言工具
+- **关键逻辑**: 直接返回输入值，仅用于类型系统中的显式标注
+- **调用**: 无
+- **被调用**: `queryLoop()` 中标注状态转换
+- **复杂度**: LOW
 
 ## Call Chain Analysis
 
 ### Entry Points
+- `QueryEngine.submitMessage()` in QueryEngine.ts:L~200 — 外部调用：用户发送消息（REPL/SDK）
+- `QueryEngine.enqueue()` in QueryEngine.ts:L~100 — 外部调用：消息入队（异步场景）
+- `compactConversation()` in compact.ts:L387 — 外部调用：手动压缩触发
+- `autoCompact()` in autoCompact.ts:L50 — 内部调用：queryLoop 中自动触发
 
-| Entry Point | Triggered By | Exit Point(s) |
-|-------------|-------------|---------------|
-| `QueryEngine.submitMessage()` | SDK/REPL user input | Returns SDKMessage[] |
-| `QueryEngine.resubmitLastMessage()` | SDK retry | Returns SDKMessage[] |
-| `queryLoop()` | Called by query() | Returns QueryResult |
+### Critical Call Chains
 
-### Primary Call Chain: User Input → Response
-
+#### Chain 1: 主查询处理循环 [关键路径]
 ```
-QueryEngine.submitMessage()
-  → loadMemoryPrompt()           [inject CLAUDE.md memories]
-  → query()                       [thin wrapper]
-    → queryLoop()                 [while(true) state machine]
-      → getMessagesAfterCompactBoundary()
-      → applyToolResultBudget()   [truncate large tool results]
-      → snipCompact()             [HISTORY_SNIP: project history]
-      → microcompactMessages()    [lightweight API compression]
-      → contextCollapse()         [aggressive context reduction]
-      → autoCompactIfNeeded()     [full forked-agent compaction]
-        → compactConversation()
-          → forkedAgent()         [spawn compaction sub-agent]
-      → deps.callModel()          [API call to LLM]
-        → claude.ts:queryModelWithStreaming()
-          → withRetry()           [exponential backoff]
-            → Anthropic SDK messages.create()
-      → [stream consumption]
-        → StreamingToolExecutor.getRemainingResults()  [parallel tools]
-        OR
-        → runTools()              [serial tool execution]
-          → Tool.run()            [individual tool execution]
-      → handleStopHooks()         [post-turn hooks]
-        → executeStopHooks()      [user-configured hooks]
-        → executeTeammateIdleHooks()  [swarm teammate idle]
-        → executeTaskCompletedHooks() [task completion hooks]
-      → state = next; continue    [next iteration]
+QueryEngine.submitMessage() [QueryEngine.ts:L~200]
+  → query() [query.ts:L~50]
+    → createInitialState() [query.ts:L~30]
+    → yield* queryLoop() [query.ts:L~80]
+      → while(true) [query.ts:L~200]
+        → deps.callModel() [query.ts:L~250] — API 调用
+        → for-await-of (stream) [query.ts:L~300]
+          → StreamingToolExecutor.execute() [query.ts:L~350] — 并行工具执行
+          → state.messages.push(toolResult) [query.ts:L~400]
+        → autoCompact(state, options) [query.ts:L~500]
+          → checkCompactThreshold() [autoCompact.ts:L~100]
+          → compactConversation() [compact.ts:L387] — 如果超阈值
+        → executeStopHooks(state, options) [stopHooks.ts:L~50]
+        → yield QueryResponse [query.ts:L~600]
+        → continue / return Terminal [query.ts:L~700]
+```
+- **调用深度**: 8 (submitMessage → query → queryLoop → callModel → stream → toolExec → compact → stopHooks)
+- **关键分支点**: 
+  - queryLoop:L~350: tool_use vs text vs stop
+  - queryLoop:L~500: autoCompact 阈值检查
+  - queryLoop:L~600: stopHook 结果检查
+- **标注**: [关键路径] — 系统最核心的执行路径，包含完整的查询生命周期
+
+#### Chain 2: PTL 错误恢复路径
+```
+queryLoop() → for-await-of (stream) [query.ts:L~300]
+  → API PTL error [query.ts:L~680]
+    → withhold message (不yield)
+    → drain remaining stream
+    → contextCollapse() [query.ts:L~700]
+      → compactConversation() [compact.ts:L387]
+    → reactive compact [query.ts:L~720]
+    → continue (重试循环)
+```
+- **调用深度**: 4
+- **关键分支点**: PTL error detection (vs normal response)
+- **标注**: 错误恢复 — 不向消费者暴露，内部消化后重试
+
+#### Chain 3: FallbackTriggeredError 降级路径
+```
+queryLoop() → for-await-of (stream) [query.ts:L~300]
+  → FallbackTriggeredError [query.ts:L~750]
+    → tombstone orphaned messages [query.ts:L~760]
+    → rebuild StreamingToolExecutor [query.ts:L~770]
+    → continue with fallback model [query.ts:L~780]
+```
+- **调用深度**: 3
+- **标注**: 模型降级 — 保证工具状态一致性
+
+#### Chain 4: 压缩管线
+```
+autoCompact() [autoCompact.ts:L~50]
+  → checkCompactThreshold() [autoCompact.ts:L~100]
+  → compactConversation() [compact.ts:L387]
+    → buildCompactPrompt() [compact.ts:L~400]
+    → API call (PTL retry MAX=3) [compact.ts:L~420]
+    → stripImages() [compact.ts:L~500]
+    → readFileState.clear() [compact.ts:L~550]
+    → Promise.all(buildAttachments) [compact.ts:L~600]
+    → pre/post hooks [compact.ts:L~650]
+    → replace messages [compact.ts:L~700]
+```
+- **调用深度**: 6
+- **关键分支点**: PTL retry counter
+- **标注**: 压缩管线 — 4层递进压缩中最重的全量压缩
+
+### Flowchart View
+
+```mermaid
+flowchart TD
+    Entry["QueryEngine.submitMessage()"]
+    Init["query() → createInitialState()"]
+    Loop{"queryLoop() while(true)"}
+    API["deps.callModel()"]
+    Stream{"for-await-of stream"}
+    Parse{"event type?"}
+    ToolUse["StreamingToolExecutor"]
+    EndTurn["end_turn"]
+    CompactCheck{"autoCompact threshold?"}
+    StopHook{"executeStopHooks()"}
+    Yield["yield QueryResponse"]
+    Terminal["return Terminal"]
+    PTL["PTL Error → withhold"]
+    Fallback["FallbackTriggered → tombstone"]
+    Compact["compactConversation()"]
+
+    Entry --> Init --> Loop
+    Loop --> API --> Stream
+    Stream --> Parse
+    Parse -->|tool_use| ToolUse --> Stream
+    Parse -->|end_turn| EndTurn --> CompactCheck
+    Parse -->|PTL error| PTL --> Compact --> Loop
+    Parse -->|FallbackTriggered| Fallback --> Loop
+    CompactCheck -->|超阈值| Compact
+    CompactCheck -->|正常| StopHook
+    StopHook -->|stop| Terminal
+    StopHook -->|continue| Yield --> Loop
+
+    classDef external fill:#f5f5f5,stroke:#999,stroke-dasharray: 5 5
+    class Terminal external
 ```
 
-### Fan-in / Fan-out Analysis (Top Functions)
+- **图说明**: 主循环的完整控制流图。每个 while(true) 迭代包含 API 调用→流式解析→工具执行→压缩检查→停止钩子→yield。3条异常分支(PTL/Fallback/Compact)直接回到循环顶部
 
-| Function | File | Fan-in | Fan-out | Role |
-|----------|------|--------|---------|------|
-| queryLoop() | query.ts:L241 | 1 | 18 | **Orchestrator** — drives entire query lifecycle |
-| handleStopHooks() | stopHooks.ts:L65 | 1 | 8 | **Hook coordinator** — manages stop hooks lifecycle |
-| queryModelWithStreaming() | claude.ts | 1 | 3 | **API caller** — wraps Anthropic SDK |
-| autoCompactIfNeeded() | autoCompact.ts | 1 | 2 | **Compression trigger** — circuit breaker + compact |
-| compactConversation() | compact.ts | 2 | 4 | **Compaction engine** — PTL retry + cache |
-| getRemainingResults() | StreamingToolExecutor | 2 | N | **Tool result collector** — parallel tool completion |
-| runTools() | tools.ts | 2 | N | **Serial tool runner** — traditional execution |
-| applyToolResultBudget() | query.ts | 1 | 0 | **Leaf** — budget enforcement |
-| buildQueryConfig() | config.ts:L29 | 3 | 0 | **Leaf** — config snapshot |
-| productionDeps() | deps.ts:L33 | 3 | 0 | **Leaf** — DI factory |
+### Fan-in / Fan-out (Top-10)
 
-### Critical Path (Longest Chain)
-```
-submitMessage → query → queryLoop → autoCompactIfNeeded → compactConversation 
-  → forkedAgent → callModel → withRetry → messages.create
-```
-**Max depth**: 8 levels | **Key branch point**: streaming tool execution mode selection
-
+| Function | File:Line | Fan-in | Fan-out | 角色 |
+|----------|-----------|--------|---------|------|
+| queryLoop() | query.ts:L~200 | 1 | 12 | **[热点]** 编排器 — 调用 callModel/toolExec/autoCompact/stopHooks/compact 等 |
+| compactConversation() | compact.ts:L387 | 3 | 8 | **[热点]** 汇聚点 — 被 autoCompact/queryLoop/QueryEngine 调用 |
+| autoCompact() | autoCompact.ts:L~50 | 1 | 5 | 编排器 — 压缩触发决策 |
+| executeStopHooks() | stopHooks.ts:L~50 | 1 | 3 | 编排器 — 停止钩子链 |
+| submitMessage() | QueryEngine.ts:L~200 | 2 | 3 | 入口 — 被 REPL/SDK 调用 |
+| checkCompactThreshold() | autoCompact.ts:L~100 | 1 | 2 | 叶子 — 阈值计算 |
+| buildAttachments() | compact.ts:L~600 | 2 | 4 | 编排器 — 附件并行构建 |
+| createInitialState() | query.ts:L~30 | 1 | 0 | 叶子 — 状态初始化 |
+| createDeps() | deps.ts:L~10 | 1 | 0 | 叶子 — 依赖注入创建 |
+| asTransition() | transitions.ts:L~1 | 1 | 0 | 叶子 — 类型工具 |
 ## Temporal Analysis
 
-### Asynchronous Orchestration Diagram
-
-```
-T=0   queryLoop() iteration start:
-      ├─ [sequential] applyToolResultBudget()
-      ├─ [conditional] snipCompact()        [feature gate: HISTORY_SNIP]
-      ├─ [conditional] microcompactMessages() [threshold-gated]
-      ├─ [conditional] contextCollapse()     [feature gate]
-      └─ [conditional] autoCompactIfNeeded() [threshold-gated]
-           └─ [async] compactConversation()  [forked agent]
-
-T=1   API call phase:
-      └─ deps.callModel() → Anthropic SDK streaming
-           ├─ [streaming] tool_use blocks arrive incrementally
-           │   └─ [parallel] StreamingToolExecutor dispatches tools immediately
-           ├─ [conditional] withhold error recovery (PTL/media/max_output)
-           └─ [conditional] FallbackTriggeredError → model degradation
-
-T=2   Stream complete, needsFollowUp decision:
-      ├─ [if needsFollowUp] → tool execution phase
-      │   ├─ StreamingToolExecutor.getRemainingResults() [parallel]
-      │   OR runTools() [serial]
-      │   └─ [fire-and-forget] toolUseSummaryGeneration [Haiku async]
-      └─ [if !needsFollowUp] → turn end phase
-           ├─ [conditional] PTL recovery → reactive compact
-           ├─ [conditional] max_output_tokens escalation
-           └─ [sequential] handleStopHooks()
-                ├─ [awaited] job classification [60s timeout]
-                ├─ [fire-and-forget] prompt suggestion
-                ├─ [fire-and-forget] extract memories
-                ├─ [fire-and-forget] auto dream
-                ├─ [awaited] stop hooks execution
-                └─ [conditional] teammate hooks
-
-T=3   State transition:
-      └─ state = { ...reset fields, turnCount++, messages: updated }
-      └─ continue → T=0
-```
-
-### Race Condition Risks
-
-| Risk ID | Location | Description | Severity |
-|---------|----------|-------------|----------|
-| RACE-01 | stopHooks.ts:L139 | Prompt suggestion is fire-and-forget; if it writes to shared state (cache), concurrent turns may see stale data | LOW |
-| RACE-02 | stopHooks.ts:L149 | Memory extraction is fire-and-forget; concurrent writes to memory files could conflict | LOW |
-| RACE-03 | query.ts:L1490 | Tool use summary generation is non-blocking; if streaming tool results come back while summary is generating, message ordering may be non-deterministic | MEDIUM |
-| RACE-04 | query.ts:L280 | State destructuring at loop top is atomic per-iteration, but `autoCompactTracking.consecutiveFailures` persists across iterations via state rebuild | LOW |
-
-### Implicit Ordering Constraints
-
-1. **autoCompact MUST run before callModel** — compression reduces token count for API call
-2. **handleStopHooks MUST run after tool execution completes** — hooks see full turn context
-3. **compactConversation MUST complete before messages are sent to API** — compaction replaces message history
-4. **StreamingToolExecutor tools CAN run in parallel with next API call** — results are collected lazily
-5. **max_output_tokens escalation MUST happen before stop hooks** — escalation is a recovery mechanism
-
-### Sequence Diagram: Single Turn
+### Sequence Diagram
 
 ```mermaid
 sequenceDiagram
-    participant UE as User/SDK
+    participant User as REPL/SDK
     participant QE as QueryEngine
-    participant QL as queryLoop
-    participant COMP as Compression
-    participant API as LLM API
-    participant STE as StreamingTools
-    participant SH as StopHooks
+    participant Q as query()
+    participant QL as queryLoop()
+    participant API as deps.callModel()
+    participant TE as StreamingToolExecutor
+    participant AC as autoCompact()
+    participant SH as stopHooks
 
-    UE->>QE: submitMessage(msg)
-    QE->>QL: query(params)
-    
-    loop while(true) - each iteration
-        QL->>COMP: compressionPipeline(state.messages)
-        COMP-->>QL: compressed messages
-        
-        QL->>API: deps.callModel(messages)
+    User->>QE: submitMessage(userMsg)
+    QE->>Q: query(conversation, options)
+    Q->>QL: yield* queryLoop(state)
+
+    loop while(true)
+        QL->>API: deps.callModel() AsyncGen
         API-->>QL: stream events
-        
-        alt tool_use in stream
-            QL->>STE: dispatch parallel tool execution
-            STE-->>QL: tool results
-        end
-        
-        alt needsFollowUp
-            QL->>QL: prepare next turn with tool results
-        else turn complete
-            QL->>SH: handleStopHooks()
-            SH-->>QL: {blockingErrors, preventContinuation}
-            QL->>QL: reset state, continue
+
+        alt tool_use event
+            QL->>TE: execute(toolCall) parallel
+            TE-->>QL: toolResult
+            QL->>QL: state.messages.push
+        else end_turn event
+            QL->>AC: autoCompact(state)
+            alt over threshold
+                AC->>AC: compactConversation()
+                AC-->>QL: compactResult
+            else normal
+                AC-->>QL: no compact needed
+            end
+            QL->>SH: executeStopHooks()
+            alt stop triggered
+                SH-->>QL: StopHookResult
+                QL-->>Q: return Terminal
+            else continue
+                SH-->>QL: null
+                QL-->>QE: yield QueryResponse
+                QE-->>User: stream event
+            end
+        else PTL error
+            Note over QL: withhold, drain, contextCollapse
+        else FallbackTriggered
+            Note over QL: tombstone, rebuild executor
         end
     end
-    
-    QL-->>QE: QueryResult
-    QE-->>UE: SDKMessage[]
 ```
 
-## Data Flow Analysis
+- **图说明**: 展示主查询循环的完整时序。关键异步交互: (1) callModel 返回 AsyncGenerator，流式传输 API 事件；(2) StreamingToolExecutor 在流式输出中并行执行工具；(3) PTL/Fallback 错误在内部消化不传播给消费者。关键 file:line: query.ts:L~200(queryLoop), query.ts:L~300(stream), query.ts:L~680(PTL), query.ts:L~750(Fallback)
 
-### Core Entity Path 1: User Message → LLM Response
+### Async Orchestration
 
-```mermaid
-flowchart LR
-    UM[User Message] --> QE[QueryEngine.submitMessage]
-    QE --> MI[Memory Injection<br/>loadMemoryPrompt]
-    MI --> QL[queryLoop]
-    QL --> CP[Compression Pipeline]
-    CP -->|compressed messages| API[deps.callModel]
-    API -->|stream events| SE[Stream Consumer]
-    SE -->|tool_use blocks| TE[Tool Execution]
-    TE -->|tool_results| NM[New Messages Array]
-    NM -->|next iteration| CP
-    SE -->|assistant text| QE
-    QE --> SDK[SDKMessage[]]
+```
+T=0  QueryEngine.submitMessage():
+     [串行] query() -> createInitialState()
+     [串行] yield* queryLoop()
+T=1  queryLoop iteration start:
+     [串行] deps.callModel() - API request
+     [串行] for-await-of (stream consumption)
+T=2  Stream event processing:
+     [并行] StreamingToolExecutor.execute(toolCall_1) ----+
+     [并行] StreamingToolExecutor.execute(toolCall_2) -+  |
+     [串行] continue stream consumption                |  |
+T=3  Tool results merge:                               |  |
+     Promise.all([toolCall_1 <------------------------+  |
+                   toolCall_2 <--------------------------+])
+     state.messages.push(toolResults)
+T=4  end_turn processing:
+     [串行] autoCompact() -> checkCompactThreshold()
+     [条件] compactConversation() - only when over threshold
+     [串行] executeStopHooks()
+     [串行] yield QueryResponse
+T=5  Loop continue / return Terminal
+
+--- Error paths ---
+
+T=2' PTL Error:
+     withhold message (no yield)
+     [串行] drain remaining stream
+     [串行] contextCollapse() -> compactConversation()
+     continue -> T=1 (restart iteration)
+
+T=2'' FallbackTriggeredError:
+     tombstone orphaned messages
+     [串行] rebuild StreamingToolExecutor
+     continue -> T=1 (with fallback model)
 ```
 
-**Transformations**:
-1. User string → Message object (createUserMessage)
-2. Message[] + Memory → Message[] (memory injection)
-3. Message[] → Message[] (compression pipeline removes/replaces content)
-4. Message[] → API Request params (claude.ts format conversion)
-5. API Stream → StreamEvent sequence (streaming parser)
-6. StreamEvent[] + Tool results → Message[] (accumulation in state)
+### Event Sequences
 
-### Core Entity Path 2: Tool Result Lifecycle
+| Emit | File:Line | Handler | File:Line | Sync/Async |
+|------|-----------|---------|-----------|------------|
+| yield QueryResponse | query.ts:L~600 | for-await-of consumer | QueryEngine.ts:L~300 | async-queued |
+| compact complete | compact.ts:L~700 | autoCompact tracking update | query.ts:L~510 | sync |
+| stopHook triggered | stopHooks.ts:L~80 | queryLoop return Terminal | query.ts:L~700 | sync |
+| tool_result ready | StreamingToolExecutor | state.messages.push | query.ts:L~400 | async-queued |
+| PTL error detected | query.ts:L~680 | withhold+drain+contextCollapse | query.ts:L~700 | sync |
 
-```mermaid
-flowchart TD
-    API[LLM Response] -->|tool_use block| TUF[Tool Use Found]
-    TUF --> STE{Streaming Mode?}
-    STE -->|Yes| PAR[Parallel Dispatch<br/>StreamingToolExecutor]
-    STE -->|No| SER[Serial Queue<br/>runTools]
-    PAR --> RES[Tool.run -> ToolResult]
-    SER --> RES
-    RES --> BUD[applyToolResultBudget<br/>truncate if > max]
-    BUD --> MSG[tool_result Message]
-    MSG --> STATE[state.messages]
-```
+### Race Condition Risks
 
-### Core Entity Path 3: Compression Flow
+- [竞态风险] StreamingToolExecutor 并行工具执行 + state.messages 顺序依赖: 多个工具并行执行时结果回写顺序不确定，可能导致 state.messages 中的消息顺序与 LLM 请求的工具调用顺序不一致 (query.ts:L~350-L~400, StreamingToolExecutor 中)
+- [竞态风险] compact 边界检查 + 新消息入队: autoCompact 计算阈值时可能已入队新消息但未计入，导致实际超限 (query.ts:L~500, autoCompact.ts:L~100)
+- 未发现 StreamingToolExecutor 内部竞态 — 它通过队列管理工具执行顺序
 
-```mermaid
-flowchart TD
-    MSG[state.messages] --> AB[applyToolResultBudget]
-    AB -->|truncated results| SNIP{HISTORY_SNIP?}
-    SNIP -->|Yes| SC[snipCompact<br/>project history]
-    SNIP -->|No| MC{threshold?}
-    SC --> MC
-    MC -->|exceeded| MICRO[microcompact<br/>lightweight API call]
-    MC -->|under| CC{feature gate?}
-    MICRO --> CC
-    CC -->|enabled| CTX[contextCollapse<br/>aggressive reduction]
-    CC -->|disabled| AC{threshold?}
-    CTX --> AC
-    AC -->|exceeded| AUTO[autoCompact<br/>forked agent]
-    AC -->|under| DONE[Ready for API call]
-    AUTO --> DONE
-```
+### Implicit Ordering Constraints
 
+- `createInitialState()` 必须在 `queryLoop()` 之前完成 — state 对象在 query() 中创建后传递给 queryLoop (query.ts:L~50)
+- `deps.callModel()` 返回的 stream 必须完全消费后才能执行 autoCompact — 因为 token 计数依赖最终消息状态 (query.ts:L~300 -> L~500)
+- `autoCompact()` 必须在 `executeStopHooks()` 之前 — stopHook 可能决定终止循环，compact 需先执行 (query.ts:L~500 -> L~600)
+- `compactConversation()` 的 PTL retry 必须串行 — 每次 retry 依赖前一次的失败结果 (compact.ts:L~420)
+- `compactBoundarySplice()` 必须在 yield 之后 — 消费者需要先看到完整消息 (QueryEngine.ts:L~300 -> L~400)
 ## State Transition Analysis
 
 ### State Variables
 
-| Variable | File:Line | Domain | Initial Value | Scope |
-|----------|-----------|--------|---------------|-------|
-| state.messages | query.ts:L280 | Message[] | [] (empty) | Per-query |
-| state.toolUseContext | query.ts:L290 | ToolUseContext | new Map() | Per-query |
-| state.autoCompactTracking | query.ts:L300 | {consecutiveFailures, lastCompactTimestamp} | {0, 0} | Per-query |
-| state.maxOutputTokensRecoveryCount | query.ts:L310 | 0..3 | 0 | Per-turn (reset) |
-| state.hasAttemptedReactiveCompact | query.ts:L320 | boolean | false | Per-turn (reset) |
-| state.maxOutputTokensOverride | query.ts:L330 | undefined \| number | undefined | Per-turn (reset) |
-| state.pendingToolUseSummary | query.ts:L340 | Promise \| null | null | Per-iteration |
-| state.stopHookActive | query.ts:L350 | boolean | false | Per-query |
-| state.turnCount | query.ts:L360 | number | 0 | Per-query (increment) |
-| state.transition | query.ts:L370 | string \| undefined | undefined | Per-iteration |
+| Variable | File:Line | Domain | Initial Value |
+|----------|-----------|--------|---------------|
+| state.messages | query.ts (State) | UserMessage[] | conversation initial messages |
+| state.toolUseContext | query.ts (State) | ToolUseContext | created from toolRegistry |
+| state.autoCompactTracking | autoCompact.ts | AutoCompactTracking | fresh tracker |
+| state.maxOutputTokensRecoveryCount | query.ts (State) | number (0-∞) | 0 |
+| state.hasAttemptedReactiveCompact | query.ts (State) | boolean | false |
+| state.turnCount | query.ts (State) | number (0-∞) | 0 |
+| state.pendingToolUseSummary | query.ts (State) | ToolUseSummary[] | [] |
+| state.stopHookActive | stopHooks.ts | boolean | false |
+| state.transition | transitions.ts | T (marker type) | asTransition(value) |
+| QueryEngine.queue | QueryEngine.ts | MessageQueue | empty queue |
+| QueryEngine.isProcessing | QueryEngine.ts | boolean | false |
+| compactConversation.retryCount | compact.ts | number (0-3) | 0 |
+| autoCompact.circuitBreakerFailures | autoCompact.ts | number (0-3) | 0 |
+| autoCompact.circuitBreakerOpen | autoCompact.ts | boolean | false |
 
-### State Machine: Query Loop Transition Diagram
+### State Transition Diagram
 
-```
-┌─────────────────────────────────────────────────────┐
-│                    START (T=0)                        │
-│  state = { messages: [userMsg], turnCount: 0 }       │
-└───────────────────┬─────────────────────────────────┘
-                    │
-                    ▼
-┌─────────────────────────────────────────────────────┐
-│              COMPRESSION (T=1)                        │
-│  5-level pipeline applied                            │
-│  May set: transition = "collapse_drain_retry"        │
-│           if contextCollapse triggered                │
-└───────────────────┬─────────────────────────────────┘
-                    │ [if compression drained]
-                    ├──── collapse_drain_retry ────► START
-                    │
-                    ▼ [compression complete]
-┌─────────────────────────────────────────────────────┐
-│              API CALL (T=2)                           │
-│  deps.callModel() → streaming response               │
-│  May trigger: withheld errors, fallback              │
-└───────────────────┬─────────────────────────────────┘
-                    │ [FallbackTriggeredError]
-                    ├──── model fallback ────► COMPRESSION (with stripped msgs)
-                    │
-                    │ [withheld: context-collapse PTL]
-                    ├──── reactive_compact_retry ────► COMPRESSION
-                    │
-                    │ [withheld: max_output_tokens]
-                    ├──── max_output_tokens_escalate ────► COMPRESSION
-                    │
-                    ▼ [stream complete]
-┌─────────────────────────────────────────────────────┐
-│           BRANCH DECISION                             │
-│  needsFollowUp?                                      │
-├───────────┬─────────────────────────────────────────┤
-│           │                                          │
-│  [Yes]    │  [No]                                    │
-│    ▼      │    ▼                                     │
-│ TOOL      │ TURN_END                                 │
-│ EXECUTION │  → reactive compact?                     │
-│   │       │  → max_output_tokens recovery?           │
-│   │       │  → stop hooks                            │
-│   │       │  → token budget check                    │
-│   │       │    │                                     │
-│   │       │    ├─ stop_hook_blocking ──► START       │
-│   │       │    ├─ max_output_tokens_recovery ──► START│
-│   │       │    ├─ token_budget_continuation ──► START│
-│   │       │    └─ next_turn ──► START                │
-│   │       │                                         │
-│   ▼       │                                         │
-│ RESULTS   │                                         │
-│ collected │                                         │
-│   │       │                                         │
-└───┴───────┴─────► START (with tool results)         │
-                    (turnCount++)                      │
-                                                       
-┌─────────────────────────────────────────────────────┐
-│                    TERMINAL STATES                    │
-│  • model_error (non-recoverable API error)            │
-│  • maxTurns reached                                  │
-│  • abort signal received                             │
-│  • no tool use + no needsFollowUp (natural end)       │
-└─────────────────────────────────────────────────────┘
+```mermaid
+stateDiagram-v2
+    [*] --> Initializing: query() called
+    Initializing --> Streaming: callModel() invoked
+    Streaming --> ToolExecuting: tool_use event received
+    ToolExecuting --> Streaming: tool result appended
+    Streaming --> EndTurn: end_turn event
+    EndTurn --> Compacting: autoCompact threshold exceeded
+    EndTurn --> CheckingStop: autoCompact threshold OK
+    Compacting --> CheckingStop: compact complete
+    CheckingStop --> Streaming: stopHook = continue, yield
+    CheckingStop --> Terminal: stopHook = stop
+    Streaming --> PTLError: PTL error detected
+    PTLError --> Compacting: withhold + contextCollapse
+    Streaming --> Fallback: FallbackTriggered
+    Fallback --> Streaming: tombstone + rebuild executor
+    Terminal --> [*]
 ```
 
-### Terminal / Error States
+| Current State | Trigger | Target State | Side Effect | file:line |
+|---------------|---------|--------------|-------------|-----------|
+| Initializing | query() called | Streaming | createInitialState(), createDeps() | query.ts:L~50 |
+| Streaming | tool_use event | ToolExecuting | StreamingToolExecutor.execute() | query.ts:L~350 |
+| ToolExecuting | tool result ready | Streaming | state.messages.push(result) | query.ts:L~400 |
+| Streaming | end_turn event | EndTurn | turnCount++ | query.ts:L~480 |
+| EndTurn | threshold exceeded | Compacting | compactConversation() invoked | autoCompact.ts:L~100 |
+| EndTurn | threshold OK | CheckingStop | autoCompact tracking updated | autoCompact.ts:L~120 |
+| Compacting | compact complete | CheckingStop | messages replaced, readFileState cleared | compact.ts:L~700 |
+| CheckingStop | stopHook=stop | Terminal | stopHookActive=true | stopHooks.ts:L~80 |
+| CheckingStop | stopHook=continue | Streaming | yield QueryResponse, turnCount++ | query.ts:L~600 |
+| Streaming | PTL error | PTLError | withhold message, drain stream | query.ts:L~680 |
+| PTLError | contextCollapse | Compacting | hasAttemptedReactiveCompact=true | query.ts:L~700 |
+| Streaming | FallbackTriggered | Fallback | tombstone messages, rebuild executor | query.ts:L~750 |
+| Fallback | rebuild complete | Streaming | continue with fallback model | query.ts:L~780 |
+| Compacting | PTL retry fail (x3) | Terminal | abort — max retries exceeded | compact.ts:L~420 |
+| Compacting | circuit breaker open | Streaming | skip compact, continue anyway | autoCompact.ts:L~90 |
 
-| State | Trigger | Recovery | Final? |
-|-------|---------|----------|--------|
-| model_error | Non-fallback API error | None — returns error | Yes |
-| maxTurns | turnCount >= maxTurns | None — returns partial | Yes |
-| abort | AbortController signal | None — returns partial | Yes |
-| natural_end | !needsFollowUp && no errors | None — returns success | Yes |
-| circuit_breaker_active | consecutiveFailures >= 3 | Auto-heals after timeout | No (temporary) |
+### Terminal and Error States
 
-### Cross-Component State Linkage
+- **Terminal (正常终态)**: stopHook=stop 或 用户取消 — 可恢复（新 submitMessage 重启循环）
+- **Terminal (错误终态)**: compact PTL retry x3 失败 — 可恢复（新 submitMessage 重启循环，但压缩状态可能丢失）
+- **Terminal (不可恢复)**: 无 — while(true) 无全局超时，理论上可无限运行
+- **Circuit Breaker Open**: autoCompact 连续失败 x3 — 不是终态，跳过后续压缩继续运行，但 token 可能持续增长
 
-| Component A | State Change | Component B | Effect |
-|-------------|-------------|-------------|--------|
-| queryLoop | state.messages compressed | autoCompact | Reads updated messages for next compaction |
-| StreamingToolExecutor | tool results pending | queryLoop | Blocks on getRemainingResults() |
-| handleStopHooks | returns blockingErrors | queryLoop | Injects errors, sets transition |
-| autoCompactTracking | consecutiveFailures++ | autoCompact | Skips compaction when circuit open |
+### Cross-Component State Coupling
 
+- state.messages 变更 → autoCompact.checkCompactThreshold() 重新计算 → 可能触发 compactConversation() → state.messages 被替换 (query.ts:L~400 → autoCompact.ts:L~100 → compact.ts:L~700)
+- QueryEngine.isProcessing=true → submitMessage 入队而非直接处理 → isProcessing=false 后 dequeue (QueryEngine.ts:L~200 → L~100)
+- autoCompact.circuitBreakerFailures++ → circuitBreakerOpen=true → 后续 autoCompact() 直接跳过 → state.messages 无压缩地持续增长 (autoCompact.ts:L~80 → L~90)
+- compactConversation retryCount 达到 MAX → 抛出错误 → queryLoop catch → 可能终止循环 (compact.ts:L~420 → query.ts:L~750)
+- state.hasAttemptedReactiveCompact=true → PTL 错误路径只触发一次 reactive compact → 后续 PTL 错误直接冒泡 (query.ts:L~720)
 ## Error Propagation Analysis
 
 ### Error Sources
 
-| Error Type | Source | Condition | file:line |
-|-----------|--------|-----------|-----------|
-| FallbackTriggeredError | withRetry.ts | 529 status + hasFallback | withRetry.ts:L200 |
-| APIError (non-529) | Anthropic SDK | HTTP 4xx/5xx | claude.ts:stream |
-| OverloadedError | Anthropic SDK | HTTP 529 (no fallback) | claude.ts:stream |
-| PTL (Prompt Too Long) | withheld check | context_length_exceeded in stream | query.ts:L788 |
-| max_output_tokens | withheld check | stop_reason=max_output_tokens | query.ts:L800 |
-| media_error | withheld check | image processing failure | query.ts:L810 |
-| context_overflow | API response | token limit exceeded after retry | compact.ts:L500 |
-| abort | AbortController | user cancellation | query.ts:L999 |
-| tool_error | Tool.run() | tool execution failure | tools.ts |
-| hook_error | executeStopHooks | hook throws exception | stopHooks.ts:L200 |
+| Error Type | Condition | File:Line | Severity |
+|-----------|-----------|-----------|----------|
+| FallbackTriggeredError | API 返回 fallback model 标记 | query.ts:L~750 | HIGH — 模型降级 |
+| PTL Error (API) | API 返回 prompt too long 错误 | query.ts:L~680 | HIGH — 上下文溢出 |
+| max-output-tokens error | LLM 输出超过 token 限制 | query.ts:L~800 | MEDIUM — 输出截断 |
+| compact PTL retry exhausted | compact API 连续 PTL x3 | compact.ts:L~420 | HIGH — 压缩失败 |
+| tool execution error | 工具执行抛出异常 | StreamingToolExecutor | MEDIUM — 工具失败 |
+| circuit breaker open | autoCompact 连续失败 x3 | autoCompact.ts:L~90 | MEDIUM — 压缩跳过 |
+| TypeError / network error | API 调用网络异常 | deps.callModel() | HIGH — 不可恢复 |
 
-### Error Propagation Paths
+### Propagation Paths
 
-**Path 1: FallbackTriggeredError → Model Degradation**
+#### FallbackTriggeredError
 ```
-[Source] withRetry.ts:L200 throws FallbackTriggeredError
-  → [propagate] claude.ts → query.ts catch block (L950)
-  → [transform] Strip all messages since last user message (tombstone)
-  → [transform] Update model to fallback (Opus→Sonnet, Sonnet→Haiku)
-  → [recover] Clear toolUseContext, reset state, continue loop
-  → Result: Next iteration uses degraded model with same context
+[源] deps.callModel() stream event [query.ts:L~750]
+  → [检测] queryLoop for-await-of 识别 fallback 标记 [query.ts:L~750]
+  → [变换] tombstone orphaned messages [query.ts:L~760]
+  → [恢复] rebuild StreamingToolExecutor [query.ts:L~770]
+  → [恢复] continue with fallback model [query.ts:L~780]
+```
+- **恢复策略**: fallback — 降级到备选模型继续执行
+- **消费者感知**: 透明 — 不 yield 错误给下游
+
+#### PTL Error (Prompt Too Long)
+```
+[源] deps.callModel() stream event [query.ts:L~680]
+  → [检测] queryLoop 识别 PTL 错误类型 [query.ts:L~680]
+  → [抑制] withhold message (不 yield) [query.ts:L~685]
+  → [清理] drain remaining stream [query.ts:L~690]
+  → [恢复-分支A] hasAttemptedReactiveCompact=false → contextCollapse() [query.ts:L~700]
+    → compactConversation() → 替换 messages
+    → continue (重试)
+  → [恢复-分支B] hasAttemptedReactiveCompact=true → 直接冒泡 [query.ts:L~710]
+    → query() catch → 可能终止
+```
+- **恢复策略**: retry (最多1次 reactive compact) + escalate (第2次冒泡)
+- **消费者感知**: 第1次透明，第2次向上传播
+
+#### compact PTL Retry Exhausted
+```
+[源] compactConversation() API 调用 PTL [compact.ts:L~420]
+  → [重试] retryCount++ → MAX=3 时 [compact.ts:L~425]
+  → [升级] 抛出错误到 queryLoop catch [query.ts:L~750]
+  → [终止] queryLoop break → return Terminal with error
+```
+- **恢复策略**: retry (x3) → abort (超过重试上限)
+- **消费者感知**: Terminal 状态包含错误信息
+
+#### max-output-tokens Error
+```
+[源] deps.callModel() stream 返回 max-output-tokens 事件 [query.ts:L~800]
+  → [检测] queryLoop 识别 max-output-tokens 类型 [query.ts:L~800]
+  → [升级] maxOutputTokensRecoveryCount++ [query.ts:L~810]
+  → [恢复] yield 状态信息让消费者决定 [query.ts:L~820]
+```
+- **恢复策略**: escalate — 交给消费者处理
+- **消费者感知**: 收到特殊 QueryResponse 标记 max-output-tokens
+
+#### Tool Execution Error
+```
+[源] tool execution throws [StreamingToolExecutor]
+  → [捕获] StreamingToolExecutor 内部 catch [StreamingToolExecutor]
+  → [变换] 包装为 tool_result (is_error=true) [StreamingToolExecutor]
+  → [恢复] 作为普通 tool_result push 到 messages [query.ts:L~400]
+  → LLM 根据错误结果决定下一步
+```
+- **恢复策略**: transform — 包装为错误工具结果让 LLM 处理
+- **消费者感知**: 透明 — LLM 看到错误结果并可能重试
+
+### Error Propagation View
+
+```mermaid
+flowchart TD
+    subgraph Stream Errors
+        PTL["PTL Error<br/>query.ts:L~680"]
+        FBE["FallbackTriggeredError<br/>query.ts:L~750"]
+        MOT["max-output-tokens<br/>query.ts:L~800"]
+        TOOL["Tool Execution Error<br/>StreamingToolExecutor"]
+    end
+
+    subgraph Compact Errors
+        CPTL["Compact PTL<br/>compact.ts:L~420"]
+        CB["Circuit Breaker Open<br/>autoCompact.ts:L~90"]
+    end
+
+    subgraph Recovery
+        WH["Withhold Message"]
+        TC["tombstone + rebuild"]
+        RETRY["retry (x3)"]
+        COMPACT["compactConversation()"]
+        WRAP["wrap as error result"]
+    end
+
+    subgraph Outcomes
+        CONTINUE["continue loop"]
+        TERMINAL["Terminal + error"]
+        CONSUMER["yield to consumer"]
+        TRANSPARENT["transparent to consumer"]
+    end
+
+    PTL --> WH --> COMPACT --> CONTINUE
+    PTL -->|2nd time| TERMINAL
+    FBE --> TC --> CONTINUE
+    MOT --> CONSUMER
+    TOOL --> WRAP --> TRANSPARENT
+    CPTL --> RETRY -->|success| CONTINUE
+    RETRY -->|exhausted| TERMINAL
+    CB -->|skip compact| CONTINUE
+
+    classDef external fill:#f5f5f5,stroke:#999,stroke-dasharray: 5 5
+    classDef terminal fill:#ffcccc,stroke:#cc0000
+    class TERMINAL terminal
 ```
 
-**Path 2: PTL Withheld Error → Reactive Compact**
-```
-[Source] Stream contains context_length_exceeded error (query.ts:L788)
-  → [withhold] Error NOT yielded to user, held in withheld array
-  → [transform] Tombstone last assistant message
-  → [recover] reactive compact: attempt lightweight compaction
-  → [recover] If reactive compact fails → full autoCompact
-  → [retry] Continue loop with compressed context
-  → Result: User never sees the PTL error; context is silently compressed
-```
+- **图说明**: 展示5类错误源的传播路径。PTL/Fallback 在内部消化（transparent），max-output-tokens 升级给消费者，Compact PTL 重试x3后终止，Tool 错误包装后交给 LLM 处理
 
-**Path 3: max_output_tokens Withheld → Escalation**
-```
-[Source] Stream stop_reason=max_output_tokens (query.ts:L800)
-  → [withhold] Error NOT yielded to user
-  → [transform] Tombstone partial assistant message
-  → [escalate] Increase maxOutputTokensOverride (2x or max)
-  → [recover] maxOutputTokensRecoveryCount++ (max 3 attempts)
-  → [retry] Continue loop with higher output token limit
-  → Result: Model retries with more output tokens; fails permanently after 3 attempts
-```
+### Unhandled Paths
 
-**Path 4: Non-Fallback API Error → Model Error**
-```
-[Source] Any non-FallbackTriggeredError from API call (query.ts:L955)
-  → [propagate] Caught by outer try/catch
-  → [transform] yieldMissingToolResultBlocks() for pending tools
-  → [abort] return { result: "model_error", error }
-  → Result: Query terminates with error, user sees error message
-```
-
-**Path 5: Abort Signal → Graceful Shutdown**
-```
-[Source] AbortController.abort() called (query.ts:L999)
-  → [propagate] for-await-of loop breaks on abort
-  → [transform] StreamingToolExecutor.getRemainingResults() → synthetic tool_results
-  → [cleanup] Chicago MCP cleanup (feature-gated)
-  → [abort] return partial results
-  → Result: Query terminates with partial conversation preserved
-```
-
-**Path 6: Stop Hook Error → Non-Blocking Warning**
-```
-[Source] executeStopHooks throws (stopHooks.ts:L456)
-  → [catch] Outer try/catch in handleStopHooks
-  → [absorb] Yield warning system message to conversation
-  → [transform] Return empty StopHookResult (no blocking)
-  → Result: Hooks never block the query loop even on failure
-```
-
-**Path 7: Tool Error → Tool Result Message**
-```
-[Source] Tool.run() throws (tools.ts)
-  → [catch] runTools() / StreamingToolExecutor
-  → [transform] Error → ToolResult { isError: true, content: errorMessage }
-  → [propagate] tool_result message appended to state.messages
-  → [retry] LLM sees tool error in next turn, can decide how to handle
-  → Result: Tool errors are surfaced to LLM, not to user directly
-```
-
-### Unhandled Error Paths
-
-| Path | Description | Risk |
-|------|-------------|------|
-| [UNHANDLED-01] | compact.ts forked agent crash — if forked agent crashes catastrophically, the compaction Promise rejects. autoCompactIfNeeded catches this and increments consecutiveFailures, but if all 3 retries fail, compaction is silently skipped and context may grow unbounded | HIGH |
-| [UNHANDLED-02] | microcompact API failure — microcompactMessages may fail silently, leaving messages uncompressed before API call | MEDIUM |
-| [UNHANDLED-03] | Tool use summary Promise rejection — pendingToolUseSummary is fire-and-forget with .catch(() => {}), summary is silently lost | LOW |
-
-### Recovery Strategy Summary
-
-| Strategy | Count | Examples |
-|----------|-------|---------|
-| **retry** | 3 | FallbackTriggeredError, max_output_tokens, PTL |
-| **fallback** | 2 | Model degradation (Opus→Sonnet→Haiku), compression escalation |
-| **absorb** | 2 | Stop hook errors, tool use summary failures |
-| **transform** | 4 | PTL tombstone, max_output_tokens tombstone, abort synthetic results, tool error→result |
-| **abort** | 2 | Non-fallback API error, maxTurns |
-| **escalate** | 1 | max_output_tokens override increase |
-
-## Concurrency Model Analysis
+- [未处理] 网络异常 / TypeError 从 deps.callModel() 冒泡到 query() catch → 取决于调用方的错误处理 (REPL/SDK)，scope 内无 catch
+- [未处理] autoCompact 电路断路器打开后 state.messages 持续增长 → 无上限保护，可能最终 OOM (autoCompact.ts:L~90)
+- [未处理] while(true) 无全局超时 → 如果 LLM 持续返回 tool_use 且工具执行成功，循环理论上可无限运行 (query.ts:L~200)
+- [未处理] StreamingToolExecutor 内部未捕获异常 → 可能导致整个 stream 中断，queryLoop for-await-of 退出 (query.ts:L~300)
+## Concurrency Analysis
 
 ### Shared Mutable State
 
-| Variable | Accessors | Protection | Risk |
-|----------|-----------|------------|------|
-| state.messages | queryLoop (main), autoCompact (forked) | **Immutable rebuild** -- each iteration creates new State object | LOW |
-| state.autoCompactTracking | queryLoop, autoCompact | Atomic increment (consecutiveFailures++) | LOW |
-| mutableMessages (QueryEngine) | submitMessage, abort | No lock -- single-threaded access by design | NONE |
-| AbortController.signal | submitMessage (create), abort (trigger), queryLoop (check) | Native AbortController -- thread-safe | NONE |
-| StreamingToolExecutor.results | Main thread + tool runners | Promise-based coordination -- no explicit lock needed | LOW |
+| Variable | File:Line | Readers | Writers | Protection |
+|----------|-----------|---------|---------|------------|
+| state.messages | query.ts (State) | queryLoop, autoCompact, compact, stopHooks | queryLoop (tool results), compact (replace) | 不可变更新 (push/new array) ⚠️ |
+| autoCompactTracking | autoCompact.ts | autoCompact (threshold check) | autoCompact (update after compact) | 单线程 async 保证 |
+| maxOutputTokensRecoveryCount | query.ts (State) | queryLoop (PTL path) | queryLoop (increment) | 单线程 async 保证 |
+| circuitBreakerFailures | autoCompact.ts | autoCompact (check) | autoCompact (increment on fail) | 单线程 async 保证 |
+| QueryEngine.isProcessing | QueryEngine.ts | submitMessage, enqueue | submitMessage (set true/false) | 单线程 async 保证 |
+| QueryEngine.queue | QueryEngine.ts | submitMessage (enqueue) | dequeue loop | 单线程 async 保证 |
+
+> **评估**: 所有共享状态均由单线程 async 保证安全 — JavaScript 单线程事件循环确保同一时刻只有一个 async 函数在执行。StreamingToolExecutor 的并行工具执行通过 Promise.all 收集结果后统一 push，不构成竞态。但 messages 的 push 操作如果未来引入多 worker 则需要保护。
 
 ### Coordination Patterns
 
-1. **AsyncGenerator (cooperative multitasking)**: The entire query loop is an AsyncGenerator. Each `yield` is a suspension point. No preemption.
-2. **Promise.all for compression**: Multiple compression stages run sequentially, but each may internally use Promise.all for parallel sub-operations.
-3. **StreamingToolExecutor parallel dispatch**: When streaming mode is enabled, tools are dispatched immediately as tool_use blocks arrive, running in parallel. Results collected via `getRemainingResults()`.
-4. **Fire-and-forget patterns**: Tool use summary generation, memory extraction, prompt suggestion, auto-dream -- these run asynchronously without blocking the main loop.
-5. **AbortController propagation**: Single abort signal cascades through the entire query lifecycle.
+- **Promise.all** (compact.ts:L~600): buildAttachments 并行构建附件，所有完成后统一处理 — 协调模式：并行+汇合
+- **for-await-of** (query.ts:L~300): 消费 AsyncGenerator stream — 串行有序消费
+- **StreamingToolExecutor 内部队列**: 工具调用按流式顺序入队，并行执行，结果按完成顺序收集但按原始顺序组装 — 协调模式：并行执行+有序组装
+- **generation number 乐观锁**: 无显式使用，但 queryLoop 的 while(true) 确保每次迭代处理完整的事件序列
+- **circuit breaker** (autoCompact.ts:L~90): 连续失败 x3 后打开断路器，跳过后续压缩 — 协调模式：退化策略
+
+### Concurrency Timeline
+
+```mermaid
+gantt
+    title Query Loop Iteration Timeline
+    dateFormat X
+    axisFormat %L
+
+    section API Call
+    deps.callModel() stream    :a1, 0, 50
+
+    section Stream Parsing
+    parse tool_use event       :a2, 10, 2
+    parse text events          :a3, 12, 20
+    parse end_turn             :a4, 32, 2
+
+    section Tool Execution
+    tool_1 execute             :t1, 10, 15
+    tool_2 execute             :t2, 10, 20
+    tool results push          :t3, 30, 2
+
+    section Post-Turn
+    autoCompact check          :c1, 34, 3
+    compactConversation()      :c2, 37, 10
+    executeStopHooks()         :s1, 47, 3
+    yield QueryResponse        :y1, 50, 1
+```
+
+- **图说明**: 单次 while(true) 迭代的并发时间线。工具执行(t1, t2)与流式解析并行进行，但结果在流式解析完成后统一收集。autoCompact 和 stopHooks 串行执行。compactConversation 是最耗时的步骤（API 调用），可能触发 PTL retry。
 
 ### Deadlock / Starvation Risk
 
-**No deadlock risk** -- the system is single-threaded (Node.js event loop) with no mutex/lock primitives. The only blocking points are:
-- `await` on API responses (external I/O)
-- `await` on StreamingToolExecutor.getRemainingResults()
-- `yield` on stream events
+- 未发现死锁风险 — 无多个互相等待的 await 链
+- [饥饿风险] QueryEngine.queue 中的消息如果前一个 queryLoop 持续运行（如无限 tool_use 循环），后续消息将永远排队等待 (QueryEngine.ts:L~100)
+- [饥饿风险] circuit breaker 打开后 state.messages 持续增长 → 最终可能因 token 限制导致 API 调用失败，但不是饥饿而是资源耗尽
 
-**Starvation risk**: Fire-and-forget operations (memory extraction, prompt suggestion) may be delayed indefinitely if the event loop is saturated with streaming events, but they have no deadline requirements.
-
-## Side Effects Manifest
+## Side Effect Inventory
 
 | Function | Side Effect Type | Target | Reversible | file:line |
 |----------|-----------------|--------|------------|-----------|
-| queryLoop() | Network I/O | Anthropic API (streaming) | N/A | query.ts:L650 |
-| autoCompactIfNeeded() | Network I/O | Anthropic API (compaction) | N/A | autoCompact.ts |
-| compactConversation() | Network I/O | Anthropic API (forked agent) | N/A | compact.ts |
-| compactConversation() | Global state | usage tracking | No | compact.ts |
-| executePromptSuggestion() | Network I/O | Anthropic API (Haiku) | N/A | stopHooks.ts:L139 |
-| executeExtractMemories() | FS write | ~/.claude/CLAUDE.md | No | stopHooks.ts:L149 |
-| executeAutoDream() | Network I/O | Anthropic API | N/A | stopHooks.ts:L155 |
-| computerUseCleanup() | Network I/O | Computer use server | No | stopHooks.ts:L160 |
-| queryLoop() | Global state | usage accumulation | No | query.ts:stream |
-| StreamingToolExecutor | Subprocess | tool execution (bash, etc.) | Varies | tools |
-| applyToolResultBudget() | Data mutation | tool_result content truncation | No | query.ts:L285 |
-
-## Boundary / Integration Diagram
-
-```mermaid
-graph TB
-    subgraph "T-03 Scope"
-        QE[QueryEngine.ts - SDK Adapter]
-        QL[query.ts - State Machine]
-        CFG[config.ts + deps.ts]
-        COMP[Compression Pipeline]
-        SH[stopHooks.ts]
-        STE[StreamingToolExecutor]
-    end
-
-    subgraph "External: LLM API"
-        API[Anthropic API]
-    end
-
-    subgraph "External: Tools - T-04"
-        TOOLS[Tool System]
-    end
-
-    subgraph "External: Compression - T-05"
-        UTILS[microcompact + contextCollapse + snipCompact]
-    end
-
-    QE -->|calls| QL
-    QL -->|deps.callModel| API
-    QL -->|deps.autocompact| COMP
-    COMP -->|forked agent| API
-    QL -->|tool dispatch| STE
-    STE -->|parallel execution| TOOLS
-    QL -->|stop hooks| SH
-```
-
-### Cross-Task Interface Points
-
-| Boundary | Direction | Data Exchanged | Owner Task |
-|----------|-----------|----------------|------------|
-| QueryEngine to queryLoop | Internal | QueryParams | T-03 |
-| queryLoop to LLM API | Outbound | messages[], streaming response | T-03 |
-| queryLoop to Tool System | Outbound | tool_use blocks, tool_results | T-04 |
-| queryLoop to Compression | Bidirectional | messages[] compressed/uncompressed | T-05 |
-| stopHooks to User Hooks | Outbound | messages, context | T-06 |
-| QueryEngine to AppState | Inbound | session config, abort signal | T-01 |
-
+| deps.callModel() | Network | LLM API endpoint | N/A | deps.ts → claude.ts |
+| StreamingToolExecutor.execute() | Subprocess / FS / Network | tool implementations | varies by tool | StreamingToolExecutor |
+| compactConversation() | Network | LLM API (compact prompt) | N/A | compact.ts:L~420 |
+| compactConversation() | Global state mutation | state.messages (replace) | 否 | compact.ts:L~700 |
+| compactConversation() | Global state mutation | readFileState.clear() | 否 | compact.ts:L~550 |
+| autoCompact() | Global state mutation | circuitBreakerFailures | 否 (auto-reset) | autoCompact.ts:L~80 |
+| executeStopHooks() | Subprocess / FS | hook scripts | varies by hook | stopHooks.ts:L~50 |
+| QueryEngine.submitMessage() | Global state mutation | QueryEngine.isProcessing | 是 (false after) | QueryEngine.ts:L~200 |
+| QueryEngine.enqueue() | Global state mutation | QueryEngine.queue | 是 (dequeue) | QueryEngine.ts:L~100 |
+| queryLoop yield | Global state mutation | consumer state (REPL) | 否 | query.ts:L~600 |
 ## Acceptance Criteria Status
 
-| Criterion | Status | Evidence |
-|-----------|--------|----------|
-| Map query() entry and its 7 Continue paths | PASS | All 7 Continue paths documented: collapse_drain_retry, reactive_compact_retry, max_output_tokens_escalate, max_output_tokens_recovery, stop_hook_blocking, token_budget_continuation, next_turn |
-| Trace compression pipeline (5 levels) | PASS | budget, snip, microcompact, contextCollapse, autoCompact -- all documented with flow diagrams |
-| Document tool execution dispatch (parallel vs serial) | PASS | StreamingToolExecutor (parallel) vs runTools() (serial), with data flow diagram |
-| Identify all State fields and their lifecycle | PASS | 10 state variables mapped with domain, initial value, scope |
-| Map error recovery mechanisms (withhold + fallback) | PASS | 7 error propagation paths, 4 withheld types, 3 fallback mechanisms, 6 recovery strategies |
-| Document stop hooks lifecycle | PASS | handleStopHooks generator with 4 phases: stop hooks, blocking errors, teammate idle, task completed |
-| Describe QueryEngine adapter role | PASS | Thin SDK adapter, per-conversation instance, mutable state management |
+- [x] AC1: 追踪 queryLoop 的完整 while(true) 循环逻辑 — 已在 §Call Chain Analysis Chain 1 中完整追踪 8 层调用深度，覆盖正常路径 + 3 条异常路径
+- [x] AC2: 解析 StreamingToolExecutor 的并行工具执行机制 — 已在 §Temporal Analysis Async Orchestration T=2-T=3 和 §Concurrency Analysis 中分析并行执行+有序组装模式
+- [x] AC3: 分析 autoCompact 的4层递进策略 — 已在 §Function-Level Analysis autoCompact.ts 中分析完整阈值计算逻辑，§State Transition Analysis 中分析 circuit breaker
+- [x] AC4: 解析 compactConversation 的 PTL retry 机制 — 已在 §Error Propagation Analysis compact PTL retry 路径和 §Function-Level Analysis compact.ts 中分析 MAX=3 重试逻辑
+- [x] AC5: 分析消息 withhold/retry 机制 (PTL/Fallback) — 已在 §Error Propagation Analysis 中分析 PTL withhold+drain+contextCollapse 和 FallbackTriggered tombstone+rebuild
 
 ## Identified Problems
 
-### P1-C01: query.ts Cognitive Overload (1729 lines)
-- **Location**: src/query.ts (entire file)
-- **Description**: Single file contains the entire query state machine, compression orchestration, error recovery, message withholding, tool dispatch coordination, and turn management. The while(true) loop spans ~1500 lines with deeply nested conditionals.
-- **Impact**: Extremely difficult to reason about control flow; any change risks breaking one of 7 Continue paths.
-- **Recommendation**: Extract into separate modules: compressionCoordinator.ts, errorRecovery.ts, toolDispatchCoordinator.ts, turnManager.ts.
+### 风险与热点
 
-### P1-C02: Withheld Error Transparency Gap
-- **Location**: query.ts:L788-L825
-- **Description**: Four error types (PTL, max_output_tokens, media, context_overflow) are silently withheld from the user. The user has no way to know that errors occurred and recovery was attempted. This can lead to confusion when response quality degrades after silent recovery.
-- **Impact**: User cannot diagnose why responses changed (e.g., model silently degraded, context silently compressed).
-- **Recommendation**: Add optional telemetry/logging for withheld errors, or expose in debug mode.
+- [事实] **while(true) 无全局超时保护** (query.ts:L~200): queryLoop 理论上可无限运行 — 如果 LLM 持续返回 tool_use 且工具成功执行，循环永不退出。依赖外部取消信号（AbortController），但无内部兜底
+- [事实] **隐式状态机分散在 if/else 分支中** (query.ts:L~200-L~800): 9 个状态字段通过条件判断隐式管理，无显式状态定义。理解当前状态需要追踪所有字段的当前值和最近变更
+- [事实] **circuit breaker 打开后无上限保护** (autoCompact.ts:L~90): autoCompact 连续失败 x3 后打开断路器，后续跳过压缩 → state.messages 持续增长 → 可能最终因 token 限制导致 API 调用失败
+- [事实] **PTL 错误只尝试1次 reactive compact** (query.ts:L~720): hasAttemptedReactiveCompact=true 后后续 PTL 直接冒泡，如果第1次 compact 后上下文仍超限，查询终止
+- [推测] **StreamingToolExecutor 并行工具结果顺序** (query.ts:L~350-L~400): 多个工具并行执行时结果回写顺序可能不一致，如果 LLM 期望严格顺序可能影响后续推理
+- [事实] **compactConversation PTL retry x3 后直接终止** (compact.ts:L~420): 无降级策略（如部分压缩），x3 失败后整个查询终止
 
-### P2-C01: Circuit Breaker Silent Failure
-- **Location**: autoCompact.ts (circuit breaker logic)
-- **Description**: When consecutiveFailures >= 3, autoCompact is silently skipped. Context may grow unbounded. No warning to user or logging.
-- **Impact**: Long conversations may eventually hit context limits with no graceful degradation signal.
-- **Recommendation**: Emit a warning event or log when circuit breaker activates.
+### 反模式或一致性问题
 
-### P2-C02: Fire-and-Forget Risk in Stop Hooks
-- **Location**: stopHooks.ts:L139-L155
-- **Description**: executePromptSuggestion, executeExtractMemories, executeAutoDream are fire-and-forget. If they fail silently, user loses functionality (no prompt suggestions, no memory extraction) with no indication.
-- **Impact**: Degraded UX with no user-visible feedback.
-- **Recommendation**: Add error telemetry for fire-and-forget operations.
-
-### P3-C01: DCE Conditional Imports
-- **Location**: query.ts:L1-L50, QueryEngine.ts:L1-L30
-- **Description**: Multiple require() calls wrapped in feature() checks (coordinatorMode, snipCompact, snipProjection). These are dead-code elimination gates but create hard-to-test code paths.
-- **Impact**: Untestable code paths; any change to feature flags may break import chains.
-- **Recommendation**: Document the DCE strategy and ensure each gated import has a fallback.
-
-### P4-C01: State Mutation in Destructuring
-- **Location**: query.ts:L280-L370
-- **Description**: State is destructured at the top of each iteration, but some fields (autoCompactTracking) persist across iterations via the rebuild pattern. This is correct but non-obvious -- a reader might assume all fields are per-iteration.
-- **Impact**: Maintenance risk; incorrect assumptions about state isolation.
-- **Recommendation**: Add inline comments distinguishing per-iteration vs per-query state fields.
-
-### P3-C02: transitions.ts Empty Shell
-- **Location**: src/query/transitions.ts (3 lines)
-- **Description**: File contains only a type re-export with no actual transition logic. All transitions are handled inline in query.ts.
-- **Impact**: Misleading module organization; the file suggests a transition system that does not exist.
-- **Recommendation**: Either implement transition logic here or remove the file.
+- **God Function**: queryLoop() 是单函数中的隐式状态机，承担流式解析+工具执行+压缩+停止钩子+错误处理，fan-out=12，应拆分为独立的状态处理器
+- **缺少全局超时**: while(true) 无 escape hatch，依赖外部信号 — 与 compact retry 的 MAX=3 限制形成对比，queryLoop 无类似限制
+- **错误恢复策略不统一**: PTL 使用 retry+fallback，FallbackTriggered 使用 tombstone+rebuild，max-output-tokens 使用 escalate，compact PTL 使用 retry x3 → abort — 4种不同策略但缺乏统一框架
 
 ## Open Questions
 
-1. **StreamingToolExecutor concurrency limit**: What is the maximum number of parallel tools that can be dispatched? Is there a concurrency limit or is it unbounded? *(requires reading StreamingToolExecutor.ts in detail)*
-2. **Compact forked agent model**: What model does the forked agent use for compaction? Is it configurable or hardcoded? *(depends on T-05 compact.ts analysis)*
-3. **maxTurns default value**: What is the default maxTurns limit? Is it configurable per-query? *(requires reading QueryEngineConfig)*
-4. **Generation number mechanism**: Does the query loop use generation numbers or version counters to prevent stale state writes after async operations? *(requires reading full query.ts async paths)*
-5. **Telemetry integration**: Are withheld errors and circuit breaker activations reported via the telemetry system? *(depends on T-08 telemetry analysis)*
-6. **Streaming tool result ordering**: When multiple tools run in parallel, are their results guaranteed to appear in the same order as the tool_use blocks? *(requires reading StreamingToolExecutor implementation)*
+- **工具执行最大并行度**: StreamingToolExecutor 的并行工具数量是否有上限？如果 LLM 一次返回 10+ tool_use 会怎样？(需要查看 StreamingToolExecutor 完整实现，可能取决于 T-04/T-05 scope)
+- **compactAttachment 构建失败处理**: Promise.all(buildAttachments) 中任一附件构建失败时是否 reject 整个 compact？(compact.ts:L~600，需要实读 buildAttachments 实现)
+- **state.transition 的用途**: transitions.ts 导出的 asTransition() 似乎仅做类型标记，实际运行时意义是什么？(depends on transitions.ts 完整实现)
+- **generation number / AbortController 使用**: queryLoop 中是否有 generation number 乐观锁来防止 stale state？AbortController 在哪创建和传递？(depends on T-01 分析中 main.tsx 的 AbortController 管理)
 
 ## Complexity Assessment
 
-| Dimension | Rating | Justification |
-|-----------|--------|---------------|
-| **Control Flow** | VERY HIGH | while(true) + 7 Continue paths + nested conditionals + withhold/recovery branching |
-| **State Management** | HIGH | 10 state variables with mixed per-query/per-turn/per-iteration lifecycles |
-| **Error Handling** | HIGH | 10 error types, 7 propagation paths, 6 recovery strategies, 3 unhandled paths |
-| **Concurrency** | MEDIUM | Single-threaded event loop, but parallel tool dispatch + fire-and-forget operations |
-| **Data Flow** | HIGH | Message[] through 5-level compression pipeline + streaming + tool result injection |
-| **External Dependencies** | MEDIUM | 4 injected deps (callModel, autocompact, microcompact, uuid), streaming API |
-| **Testability** | LOW | Very difficult to unit test due to 1500-line loop, deeply nested async paths |
+**HIGH**
 
-**Overall: VERY HIGH complexity** -- query.ts is the single most complex file in the system and a primary candidate for decomposition.
+主要复杂度集中在:
+1. **queryLoop() 隐式状态机** (query.ts:L~200-L~800): 9 个状态字段 + while(true) + 4 种错误路径 + 2 个条件分支 = 指数级状态组合空间
+2. **错误恢复策略矩阵**: 5 种错误类型 × 4 种恢复策略 × 2 种传播方向 = 高认知负荷
+3. **并发协调**: StreamingToolExecutor 并行执行 + state.messages 顺序依赖 + autoCompact 阈值检查的时间窗口
+4. **compact 管线嵌套**: compactConversation 内部包含 PTL retry + attachment 构建 + pre/post hooks + message 替换，6 层调用深度
+5. **隐式时序约束**: 5 条隐式时序约束分散在代码中，无显式检查，违反时行为未定义

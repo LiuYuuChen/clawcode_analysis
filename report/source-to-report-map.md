@@ -1,4169 +1,2141 @@
-# 源码 → Task → Summary 三层映射地图
-
-> **ABSTRACT：** 本文档提供从任意源文件到其 task 分析文档、再到主线 Summary 的完整三层导航。共 **1954** 条映射，覆盖 **1954** 源文件 · **1** tasks · **34** 主线。
-
-## Navigation
-- **⬆ 总体报告**: [final-analysis-report.md](final-analysis-report.md)
-- **⬆ 任务列表**: [../analysis/03-analysis-tasks.md](/branches/main/analysis/03-analysis-tasks.md)
-
-## 使用方式
-
-- **从源码定位分析**：在下方表格搜索源文件名 → 点击 Task → 点击主线 Summary
-- **反向索引（按源码路径查）**：见下方 §按源码路径索引
-
----
-
-## 按主线分组
-
-### ML-01
-
-**主线**: ML-01 · 1 tasks · 345 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`shims/ant-claude-for-chrome-mcp/index.ts`](/src/shims/ant-claude-for-chrome-mcp/index.ts.md) |   ↳ |  |
-| [`shims/ant-computer-use-input/index.ts`](/src/shims/ant-computer-use-input/index.ts.md) |   ↳ |  |
-| [`shims/ant-computer-use-mcp/index.ts`](/src/shims/ant-computer-use-mcp/index.ts.md) |   ↳ |  |
-| [`shims/ant-computer-use-mcp/types.ts`](/src/shims/ant-computer-use-mcp/types.ts.md) |   ↳ |  |
-| [`shims/ant-computer-use-swift/index.ts`](/src/shims/ant-computer-use-swift/index.ts.md) |   ↳ |  |
-| [`src/assistant/sessionHistory.ts`](/src/src/assistant/sessionHistory.ts.md) |   ↳ |  |
-| [`src/bootstrap-entry.ts`](/src/src/bootstrap-entry.ts.md) |   ↳ |  |
-| [`src/bootstrap/state.ts`](/src/src/bootstrap/state.ts.md) |   ↳ |  |
-| [`src/bootstrapMacro.ts`](/src/src/bootstrapMacro.ts.md) |   ↳ |  |
-| [`src/buddy/CompanionSprite.tsx`](/src/src/buddy/CompanionSprite.tsx.md) |   ↳ |  |
-| [`src/buddy/companion.ts`](/src/src/buddy/companion.ts.md) |   ↳ |  |
-| [`src/buddy/prompt.ts`](/src/src/buddy/prompt.ts.md) |   ↳ |  |
-| [`src/buddy/types.ts`](/src/src/buddy/types.ts.md) |   ↳ |  |
-| [`src/buddy/useBuddyNotification.tsx`](/src/src/buddy/useBuddyNotification.tsx.md) |   ↳ |  |
-| [`src/cli/print.ts`](/src/src/cli/print.ts.md) |   ↳ |  |
-| [`src/cli/structuredIO.ts`](/src/src/cli/structuredIO.ts.md) |   ↳ |  |
-| [`src/commands.ts`](/src/src/commands.ts.md) |   ↳ |  |
-| [`src/commands/add-dir/add-dir.tsx`](/src/src/commands/add-dir/add-dir.tsx.md) |   ↳ |  |
-| [`src/commands/add-dir/index.ts`](/src/src/commands/add-dir/index.ts.md) |   ↳ |  |
-| [`src/commands/add-dir/validation.ts`](/src/src/commands/add-dir/validation.ts.md) |   ↳ |  |
-| [`src/commands/advisor.ts`](/src/src/commands/advisor.ts.md) |   ↳ |  |
-| [`src/commands/agents-platform/index.ts`](/src/src/commands/agents-platform/index.ts.md) |   ↳ |  |
-| [`src/commands/agents/agents.tsx`](/src/src/commands/agents/agents.tsx.md) |   ↳ |  |
-| [`src/commands/agents/index.ts`](/src/src/commands/agents/index.ts.md) |   ↳ |  |
-| [`src/commands/branch/branch.ts`](/src/src/commands/branch/branch.ts.md) |   ↳ |  |
-| [`src/commands/branch/index.ts`](/src/src/commands/branch/index.ts.md) |   ↳ |  |
-| [`src/commands/bridge-kick.ts`](/src/src/commands/bridge-kick.ts.md) |   ↳ |  |
-| [`src/commands/bridge/bridge.tsx`](/src/src/commands/bridge/bridge.tsx.md) |   ↳ |  |
-| [`src/commands/bridge/index.ts`](/src/src/commands/bridge/index.ts.md) |   ↳ |  |
-| [`src/commands/brief.ts`](/src/src/commands/brief.ts.md) |   ↳ |  |
-| [`src/commands/btw/btw.tsx`](/src/src/commands/btw/btw.tsx.md) |   ↳ |  |
-| [`src/commands/btw/index.ts`](/src/src/commands/btw/index.ts.md) |   ↳ |  |
-| [`src/commands/chrome/chrome.tsx`](/src/src/commands/chrome/chrome.tsx.md) |   ↳ |  |
-| [`src/commands/chrome/index.ts`](/src/src/commands/chrome/index.ts.md) |   ↳ |  |
-| [`src/commands/clear/caches.ts`](/src/src/commands/clear/caches.ts.md) |   ↳ |  |
-| [`src/commands/clear/clear.ts`](/src/src/commands/clear/clear.ts.md) |   ↳ |  |
-| [`src/commands/clear/conversation.ts`](/src/src/commands/clear/conversation.ts.md) |   ↳ |  |
-| [`src/commands/clear/index.ts`](/src/src/commands/clear/index.ts.md) |   ↳ |  |
-| [`src/commands/color/color.ts`](/src/src/commands/color/color.ts.md) |   ↳ |  |
-| [`src/commands/color/index.ts`](/src/src/commands/color/index.ts.md) |   ↳ |  |
-| [`src/commands/commit-push-pr.ts`](/src/src/commands/commit-push-pr.ts.md) |   ↳ |  |
-| [`src/commands/commit.ts`](/src/src/commands/commit.ts.md) |   ↳ |  |
-| [`src/commands/compact/compact.ts`](/src/src/commands/compact/compact.ts.md) |   ↳ |  |
-| [`src/commands/compact/index.ts`](/src/src/commands/compact/index.ts.md) |   ↳ |  |
-| [`src/commands/config/config.tsx`](/src/src/commands/config/config.tsx.md) |   ↳ |  |
-| [`src/commands/config/index.ts`](/src/src/commands/config/index.ts.md) |   ↳ |  |
-| [`src/commands/context/context-noninteractive.ts`](/src/src/commands/context/context-noninteractive.ts.md) |   ↳ |  |
-| [`src/commands/context/context.tsx`](/src/src/commands/context/context.tsx.md) |   ↳ |  |
-| [`src/commands/context/index.ts`](/src/src/commands/context/index.ts.md) |   ↳ |  |
-| [`src/commands/copy/copy.tsx`](/src/src/commands/copy/copy.tsx.md) |   ↳ |  |
-| [`src/commands/copy/index.ts`](/src/src/commands/copy/index.ts.md) |   ↳ |  |
-| [`src/commands/cost/cost.ts`](/src/src/commands/cost/cost.ts.md) |   ↳ |  |
-| [`src/commands/cost/index.ts`](/src/src/commands/cost/index.ts.md) |   ↳ |  |
-| [`src/commands/createMovedToPluginCommand.ts`](/src/src/commands/createMovedToPluginCommand.ts.md) |   ↳ |  |
-| [`src/commands/desktop/desktop.tsx`](/src/src/commands/desktop/desktop.tsx.md) |   ↳ |  |
-| [`src/commands/desktop/index.ts`](/src/src/commands/desktop/index.ts.md) |   ↳ |  |
-| [`src/commands/diff/diff.tsx`](/src/src/commands/diff/diff.tsx.md) |   ↳ |  |
-| [`src/commands/diff/index.ts`](/src/src/commands/diff/index.ts.md) |   ↳ |  |
-| [`src/commands/doctor/doctor.tsx`](/src/src/commands/doctor/doctor.tsx.md) |   ↳ |  |
-| [`src/commands/doctor/index.ts`](/src/src/commands/doctor/index.ts.md) |   ↳ |  |
-| [`src/commands/effort/effort.tsx`](/src/src/commands/effort/effort.tsx.md) |   ↳ |  |
-| [`src/commands/effort/index.ts`](/src/src/commands/effort/index.ts.md) |   ↳ |  |
-| [`src/commands/exit/exit.tsx`](/src/src/commands/exit/exit.tsx.md) |   ↳ |  |
-| [`src/commands/exit/index.ts`](/src/src/commands/exit/index.ts.md) |   ↳ |  |
-| [`src/commands/export/export.tsx`](/src/src/commands/export/export.tsx.md) |   ↳ |  |
-| [`src/commands/export/index.ts`](/src/src/commands/export/index.ts.md) |   ↳ |  |
-| [`src/commands/extra-usage/extra-usage-core.ts`](/src/src/commands/extra-usage/extra-usage-core.ts.md) |   ↳ |  |
-| [`src/commands/extra-usage/extra-usage-noninteractive.ts`](/src/src/commands/extra-usage/extra-usage-noninteractive.ts.md) |   ↳ |  |
-| [`src/commands/extra-usage/extra-usage.tsx`](/src/src/commands/extra-usage/extra-usage.tsx.md) |   ↳ |  |
-| [`src/commands/extra-usage/index.ts`](/src/src/commands/extra-usage/index.ts.md) |   ↳ |  |
-| [`src/commands/fast/fast.tsx`](/src/src/commands/fast/fast.tsx.md) |   ↳ |  |
-| [`src/commands/fast/index.ts`](/src/src/commands/fast/index.ts.md) |   ↳ |  |
-| [`src/commands/feedback/feedback.tsx`](/src/src/commands/feedback/feedback.tsx.md) |   ↳ |  |
-| [`src/commands/feedback/index.ts`](/src/src/commands/feedback/index.ts.md) |   ↳ |  |
-| [`src/commands/files/files.ts`](/src/src/commands/files/files.ts.md) |   ↳ |  |
-| [`src/commands/files/index.ts`](/src/src/commands/files/index.ts.md) |   ↳ |  |
-| [`src/commands/heapdump/heapdump.ts`](/src/src/commands/heapdump/heapdump.ts.md) |   ↳ |  |
-| [`src/commands/heapdump/index.ts`](/src/src/commands/heapdump/index.ts.md) |   ↳ |  |
-| [`src/commands/help/help.tsx`](/src/src/commands/help/help.tsx.md) |   ↳ |  |
-| [`src/commands/help/index.ts`](/src/src/commands/help/index.ts.md) |   ↳ |  |
-| [`src/commands/hooks/hooks.tsx`](/src/src/commands/hooks/hooks.tsx.md) |   ↳ |  |
-| [`src/commands/hooks/index.ts`](/src/src/commands/hooks/index.ts.md) |   ↳ |  |
-| [`src/commands/ide/ide.tsx`](/src/src/commands/ide/ide.tsx.md) |   ↳ |  |
-| [`src/commands/ide/index.ts`](/src/src/commands/ide/index.ts.md) |   ↳ |  |
-| [`src/commands/init-verifiers.ts`](/src/src/commands/init-verifiers.ts.md) |   ↳ |  |
-| [`src/commands/init.ts`](/src/src/commands/init.ts.md) |   ↳ |  |
-| [`src/commands/insights.ts`](/src/src/commands/insights.ts.md) |   ↳ |  |
-| [`src/commands/install-github-app/ApiKeyStep.tsx`](/src/src/commands/install-github-app/ApiKeyStep.tsx.md) |   ↳ |  |
-| [`src/commands/install-github-app/CheckExistingSecretStep.tsx`](/src/src/commands/install-github-app/CheckExistingSecretStep.tsx.md) |   ↳ |  |
-| [`src/commands/install-github-app/CheckGitHubStep.tsx`](/src/src/commands/install-github-app/CheckGitHubStep.tsx.md) |   ↳ |  |
-| [`src/commands/install-github-app/ChooseRepoStep.tsx`](/src/src/commands/install-github-app/ChooseRepoStep.tsx.md) |   ↳ |  |
-| [`src/commands/install-github-app/CreatingStep.tsx`](/src/src/commands/install-github-app/CreatingStep.tsx.md) |   ↳ |  |
-| [`src/commands/install-github-app/ErrorStep.tsx`](/src/src/commands/install-github-app/ErrorStep.tsx.md) |   ↳ |  |
-| [`src/commands/install-github-app/ExistingWorkflowStep.tsx`](/src/src/commands/install-github-app/ExistingWorkflowStep.tsx.md) |   ↳ |  |
-| [`src/commands/install-github-app/InstallAppStep.tsx`](/src/src/commands/install-github-app/InstallAppStep.tsx.md) |   ↳ |  |
-| [`src/commands/install-github-app/OAuthFlowStep.tsx`](/src/src/commands/install-github-app/OAuthFlowStep.tsx.md) |   ↳ |  |
-| [`src/commands/install-github-app/SuccessStep.tsx`](/src/src/commands/install-github-app/SuccessStep.tsx.md) |   ↳ |  |
-| [`src/commands/install-github-app/WarningsStep.tsx`](/src/src/commands/install-github-app/WarningsStep.tsx.md) |   ↳ |  |
-| [`src/commands/install-github-app/index.ts`](/src/src/commands/install-github-app/index.ts.md) |   ↳ |  |
-| [`src/commands/install-github-app/install-github-app.tsx`](/src/src/commands/install-github-app/install-github-app.tsx.md) |   ↳ |  |
-| [`src/commands/install-github-app/setupGitHubActions.ts`](/src/src/commands/install-github-app/setupGitHubActions.ts.md) |   ↳ |  |
-| [`src/commands/install-github-app/types.ts`](/src/src/commands/install-github-app/types.ts.md) |   ↳ |  |
-| [`src/commands/install-slack-app/index.ts`](/src/src/commands/install-slack-app/index.ts.md) |   ↳ |  |
-| [`src/commands/install-slack-app/install-slack-app.ts`](/src/src/commands/install-slack-app/install-slack-app.ts.md) |   ↳ |  |
-| [`src/commands/install.tsx`](/src/src/commands/install.tsx.md) |   ↳ |  |
-| [`src/commands/keybindings/index.ts`](/src/src/commands/keybindings/index.ts.md) |   ↳ |  |
-| [`src/commands/keybindings/keybindings.ts`](/src/src/commands/keybindings/keybindings.ts.md) |   ↳ |  |
-| [`src/commands/login/index.ts`](/src/src/commands/login/index.ts.md) |   ↳ |  |
-| [`src/commands/login/login.tsx`](/src/src/commands/login/login.tsx.md) |   ↳ |  |
-| [`src/commands/logout/index.ts`](/src/src/commands/logout/index.ts.md) |   ↳ |  |
-| [`src/commands/logout/logout.tsx`](/src/src/commands/logout/logout.tsx.md) |   ↳ |  |
-| [`src/commands/mcp/addCommand.ts`](/src/src/commands/mcp/addCommand.ts.md) |   ↳ |  |
-| [`src/commands/mcp/index.ts`](/src/src/commands/mcp/index.ts.md) |   ↳ |  |
-| [`src/commands/mcp/mcp.tsx`](/src/src/commands/mcp/mcp.tsx.md) |   ↳ |  |
-| [`src/commands/mcp/xaaIdpCommand.ts`](/src/src/commands/mcp/xaaIdpCommand.ts.md) |   ↳ |  |
-| [`src/commands/memory/index.ts`](/src/src/commands/memory/index.ts.md) |   ↳ |  |
-| [`src/commands/memory/memory.tsx`](/src/src/commands/memory/memory.tsx.md) |   ↳ |  |
-| [`src/commands/mobile/index.ts`](/src/src/commands/mobile/index.ts.md) |   ↳ |  |
-| [`src/commands/mobile/mobile.tsx`](/src/src/commands/mobile/mobile.tsx.md) |   ↳ |  |
-| [`src/commands/model/index.ts`](/src/src/commands/model/index.ts.md) |   ↳ |  |
-| [`src/commands/model/model.tsx`](/src/src/commands/model/model.tsx.md) |   ↳ |  |
-| [`src/commands/output-style/index.ts`](/src/src/commands/output-style/index.ts.md) |   ↳ |  |
-| [`src/commands/output-style/output-style.tsx`](/src/src/commands/output-style/output-style.tsx.md) |   ↳ |  |
-| [`src/commands/passes/index.ts`](/src/src/commands/passes/index.ts.md) |   ↳ |  |
-| [`src/commands/passes/passes.tsx`](/src/src/commands/passes/passes.tsx.md) |   ↳ |  |
-| [`src/commands/permissions/index.ts`](/src/src/commands/permissions/index.ts.md) |   ↳ |  |
-| [`src/commands/permissions/permissions.tsx`](/src/src/commands/permissions/permissions.tsx.md) |   ↳ |  |
-| [`src/commands/plan/index.ts`](/src/src/commands/plan/index.ts.md) |   ↳ |  |
-| [`src/commands/plan/plan.tsx`](/src/src/commands/plan/plan.tsx.md) |   ↳ |  |
-| [`src/commands/plugin/AddMarketplace.tsx`](/src/src/commands/plugin/AddMarketplace.tsx.md) |   ↳ |  |
-| [`src/commands/plugin/BrowseMarketplace.tsx`](/src/src/commands/plugin/BrowseMarketplace.tsx.md) |   ↳ |  |
-| [`src/commands/plugin/DiscoverPlugins.tsx`](/src/src/commands/plugin/DiscoverPlugins.tsx.md) |   ↳ |  |
-| [`src/commands/plugin/ManageMarketplaces.tsx`](/src/src/commands/plugin/ManageMarketplaces.tsx.md) |   ↳ |  |
-| [`src/commands/plugin/PluginErrors.tsx`](/src/src/commands/plugin/PluginErrors.tsx.md) |   ↳ |  |
-| [`src/commands/plugin/PluginOptionsDialog.tsx`](/src/src/commands/plugin/PluginOptionsDialog.tsx.md) |   ↳ |  |
-| [`src/commands/plugin/PluginOptionsFlow.tsx`](/src/src/commands/plugin/PluginOptionsFlow.tsx.md) |   ↳ |  |
-| [`src/commands/plugin/PluginTrustWarning.tsx`](/src/src/commands/plugin/PluginTrustWarning.tsx.md) |   ↳ |  |
-| [`src/commands/plugin/UnifiedInstalledCell.tsx`](/src/src/commands/plugin/UnifiedInstalledCell.tsx.md) |   ↳ |  |
-| [`src/commands/plugin/ValidatePlugin.tsx`](/src/src/commands/plugin/ValidatePlugin.tsx.md) |   ↳ |  |
-| [`src/commands/plugin/index.tsx`](/src/src/commands/plugin/index.tsx.md) |   ↳ |  |
-| [`src/commands/plugin/parseArgs.ts`](/src/src/commands/plugin/parseArgs.ts.md) |   ↳ |  |
-| [`src/commands/plugin/plugin.tsx`](/src/src/commands/plugin/plugin.tsx.md) |   ↳ |  |
-| [`src/commands/plugin/pluginDetailsHelpers.tsx`](/src/src/commands/plugin/pluginDetailsHelpers.tsx.md) |   ↳ |  |
-| [`src/commands/plugin/types.ts`](/src/src/commands/plugin/types.ts.md) |   ↳ |  |
-| [`src/commands/plugin/unifiedTypes.ts`](/src/src/commands/plugin/unifiedTypes.ts.md) |   ↳ |  |
-| [`src/commands/plugin/usePagination.ts`](/src/src/commands/plugin/usePagination.ts.md) |   ↳ |  |
-| [`src/commands/pr_comments/index.ts`](/src/src/commands/pr_comments/index.ts.md) |   ↳ |  |
-| [`src/commands/privacy-settings/index.ts`](/src/src/commands/privacy-settings/index.ts.md) |   ↳ |  |
-| [`src/commands/privacy-settings/privacy-settings.tsx`](/src/src/commands/privacy-settings/privacy-settings.tsx.md) |   ↳ |  |
-| [`src/commands/rate-limit-options/index.ts`](/src/src/commands/rate-limit-options/index.ts.md) |   ↳ |  |
-| [`src/commands/rate-limit-options/rate-limit-options.tsx`](/src/src/commands/rate-limit-options/rate-limit-options.tsx.md) |   ↳ |  |
-| [`src/commands/release-notes/index.ts`](/src/src/commands/release-notes/index.ts.md) |   ↳ |  |
-| [`src/commands/release-notes/release-notes.ts`](/src/src/commands/release-notes/release-notes.ts.md) |   ↳ |  |
-| [`src/commands/reload-plugins/index.ts`](/src/src/commands/reload-plugins/index.ts.md) |   ↳ |  |
-| [`src/commands/reload-plugins/reload-plugins.ts`](/src/src/commands/reload-plugins/reload-plugins.ts.md) |   ↳ |  |
-| [`src/commands/remote-env/index.ts`](/src/src/commands/remote-env/index.ts.md) |   ↳ |  |
-| [`src/commands/remote-env/remote-env.tsx`](/src/src/commands/remote-env/remote-env.tsx.md) |   ↳ |  |
-| [`src/commands/remote-setup/api.ts`](/src/src/commands/remote-setup/api.ts.md) |   ↳ |  |
-| [`src/commands/remote-setup/index.ts`](/src/src/commands/remote-setup/index.ts.md) |   ↳ |  |
-| [`src/commands/remote-setup/remote-setup.tsx`](/src/src/commands/remote-setup/remote-setup.tsx.md) |   ↳ |  |
-| [`src/commands/rename/generateSessionName.ts`](/src/src/commands/rename/generateSessionName.ts.md) |   ↳ |  |
-| [`src/commands/rename/index.ts`](/src/src/commands/rename/index.ts.md) |   ↳ |  |
-| [`src/commands/rename/rename.ts`](/src/src/commands/rename/rename.ts.md) |   ↳ |  |
-| [`src/commands/resume/index.ts`](/src/src/commands/resume/index.ts.md) |   ↳ |  |
-| [`src/commands/resume/resume.tsx`](/src/src/commands/resume/resume.tsx.md) |   ↳ |  |
-| [`src/commands/review.ts`](/src/src/commands/review.ts.md) |   ↳ |  |
-| [`src/commands/review/UltrareviewOverageDialog.tsx`](/src/src/commands/review/UltrareviewOverageDialog.tsx.md) |   ↳ |  |
-| [`src/commands/review/reviewRemote.ts`](/src/src/commands/review/reviewRemote.ts.md) |   ↳ |  |
-| [`src/commands/review/ultrareviewCommand.tsx`](/src/src/commands/review/ultrareviewCommand.tsx.md) |   ↳ |  |
-| [`src/commands/review/ultrareviewEnabled.ts`](/src/src/commands/review/ultrareviewEnabled.ts.md) |   ↳ |  |
-| [`src/commands/rewind/index.ts`](/src/src/commands/rewind/index.ts.md) |   ↳ |  |
-| [`src/commands/rewind/rewind.ts`](/src/src/commands/rewind/rewind.ts.md) |   ↳ |  |
-| [`src/commands/sandbox-toggle/index.ts`](/src/src/commands/sandbox-toggle/index.ts.md) |   ↳ |  |
-| [`src/commands/sandbox-toggle/sandbox-toggle.tsx`](/src/src/commands/sandbox-toggle/sandbox-toggle.tsx.md) |   ↳ |  |
-| [`src/commands/security-review.ts`](/src/src/commands/security-review.ts.md) |   ↳ |  |
-| [`src/commands/session/index.ts`](/src/src/commands/session/index.ts.md) |   ↳ |  |
-| [`src/commands/session/session.tsx`](/src/src/commands/session/session.tsx.md) |   ↳ |  |
-| [`src/commands/skills/index.ts`](/src/src/commands/skills/index.ts.md) |   ↳ |  |
-| [`src/commands/skills/skills.tsx`](/src/src/commands/skills/skills.tsx.md) |   ↳ |  |
-| [`src/commands/stats/index.ts`](/src/src/commands/stats/index.ts.md) |   ↳ |  |
-| [`src/commands/stats/stats.tsx`](/src/src/commands/stats/stats.tsx.md) |   ↳ |  |
-| [`src/commands/status/index.ts`](/src/src/commands/status/index.ts.md) |   ↳ |  |
-| [`src/commands/status/status.tsx`](/src/src/commands/status/status.tsx.md) |   ↳ |  |
-| [`src/commands/statusline.tsx`](/src/src/commands/statusline.tsx.md) |   ↳ |  |
-| [`src/commands/stickers/index.ts`](/src/src/commands/stickers/index.ts.md) |   ↳ |  |
-| [`src/commands/stickers/stickers.ts`](/src/src/commands/stickers/stickers.ts.md) |   ↳ |  |
-| [`src/commands/tag/index.ts`](/src/src/commands/tag/index.ts.md) |   ↳ |  |
-| [`src/commands/tag/tag.tsx`](/src/src/commands/tag/tag.tsx.md) |   ↳ |  |
-| [`src/commands/tasks/index.ts`](/src/src/commands/tasks/index.ts.md) |   ↳ |  |
-| [`src/commands/tasks/tasks.tsx`](/src/src/commands/tasks/tasks.tsx.md) |   ↳ |  |
-| [`src/commands/terminalSetup/index.ts`](/src/src/commands/terminalSetup/index.ts.md) |   ↳ |  |
-| [`src/commands/terminalSetup/terminalSetup.tsx`](/src/src/commands/terminalSetup/terminalSetup.tsx.md) |   ↳ |  |
-| [`src/commands/theme/index.ts`](/src/src/commands/theme/index.ts.md) |   ↳ |  |
-| [`src/commands/theme/theme.tsx`](/src/src/commands/theme/theme.tsx.md) |   ↳ |  |
-| [`src/commands/thinkback-play/index.ts`](/src/src/commands/thinkback-play/index.ts.md) |   ↳ |  |
-| [`src/commands/thinkback-play/thinkback-play.ts`](/src/src/commands/thinkback-play/thinkback-play.ts.md) |   ↳ |  |
-| [`src/commands/thinkback/index.ts`](/src/src/commands/thinkback/index.ts.md) |   ↳ |  |
-| [`src/commands/thinkback/thinkback.tsx`](/src/src/commands/thinkback/thinkback.tsx.md) |   ↳ |  |
-| [`src/commands/ultraplan.tsx`](/src/src/commands/ultraplan.tsx.md) |   ↳ |  |
-| [`src/commands/upgrade/index.ts`](/src/src/commands/upgrade/index.ts.md) |   ↳ |  |
-| [`src/commands/upgrade/upgrade.tsx`](/src/src/commands/upgrade/upgrade.tsx.md) |   ↳ |  |
-| [`src/commands/usage/index.ts`](/src/src/commands/usage/index.ts.md) |   ↳ |  |
-| [`src/commands/usage/usage.tsx`](/src/src/commands/usage/usage.tsx.md) |   ↳ |  |
-| [`src/commands/version.ts`](/src/src/commands/version.ts.md) |   ↳ |  |
-| [`src/commands/vim/index.ts`](/src/src/commands/vim/index.ts.md) |   ↳ |  |
-| [`src/commands/vim/vim.ts`](/src/src/commands/vim/vim.ts.md) |   ↳ |  |
-| [`src/commands/voice/index.ts`](/src/src/commands/voice/index.ts.md) |   ↳ |  |
-| [`src/commands/voice/voice.ts`](/src/src/commands/voice/voice.ts.md) |   ↳ |  |
-| [`src/constants/apiLimits.ts`](/src/src/constants/apiLimits.ts.md) |   ↳ |  |
-| [`src/constants/betas.ts`](/src/src/constants/betas.ts.md) |   ↳ |  |
-| [`src/constants/common.ts`](/src/src/constants/common.ts.md) |   ↳ |  |
-| [`src/constants/cyberRiskInstruction.ts`](/src/src/constants/cyberRiskInstruction.ts.md) |   ↳ |  |
-| [`src/constants/errorIds.ts`](/src/src/constants/errorIds.ts.md) |   ↳ |  |
-| [`src/constants/figures.ts`](/src/src/constants/figures.ts.md) |   ↳ |  |
-| [`src/constants/files.ts`](/src/src/constants/files.ts.md) |   ↳ |  |
-| [`src/constants/github-app.ts`](/src/src/constants/github-app.ts.md) |   ↳ |  |
-| [`src/constants/outputStyles.ts`](/src/src/constants/outputStyles.ts.md) |   ↳ |  |
-| [`src/constants/product.ts`](/src/src/constants/product.ts.md) |   ↳ |  |
-| [`src/constants/prompts.ts`](/src/src/constants/prompts.ts.md) |   ↳ |  |
-| [`src/constants/spinnerVerbs.ts`](/src/src/constants/spinnerVerbs.ts.md) |   ↳ |  |
-| [`src/constants/system.ts`](/src/src/constants/system.ts.md) |   ↳ |  |
-| [`src/constants/systemPromptSections.ts`](/src/src/constants/systemPromptSections.ts.md) |   ↳ |  |
-| [`src/constants/toolLimits.ts`](/src/src/constants/toolLimits.ts.md) |   ↳ |  |
-| [`src/constants/xml.ts`](/src/src/constants/xml.ts.md) |   ↳ |  |
-| [`src/context.ts`](/src/src/context.ts.md) |   ↳ |  |
-| [`src/context/QueuedMessageContext.tsx`](/src/src/context/QueuedMessageContext.tsx.md) |   ↳ |  |
-| [`src/context/mailbox.tsx`](/src/src/context/mailbox.tsx.md) |   ↳ |  |
-| [`src/context/modalContext.tsx`](/src/src/context/modalContext.tsx.md) |   ↳ |  |
-| [`src/context/overlayContext.tsx`](/src/src/context/overlayContext.tsx.md) |   ↳ |  |
-| [`src/context/promptOverlayContext.tsx`](/src/src/context/promptOverlayContext.tsx.md) |   ↳ |  |
-| [`src/context/stats.tsx`](/src/src/context/stats.tsx.md) |   ↳ |  |
-| [`src/context/voice.tsx`](/src/src/context/voice.tsx.md) |   ↳ |  |
-| [`src/coordinator/coordinatorMode.ts`](/src/src/coordinator/coordinatorMode.ts.md) |   ↳ |  |
-| [`src/cost-tracker.ts`](/src/src/cost-tracker.ts.md) |   ↳ |  |
-| [`src/costHook.ts`](/src/src/costHook.ts.md) |   ↳ |  |
-| [`src/dev-entry.ts`](/src/src/dev-entry.ts.md) |   ↳ |  |
-| [`src/dialogLaunchers.tsx`](/src/src/dialogLaunchers.tsx.md) |   ↳ |  |
-| [`src/entrypoints/agentSdkTypes.ts`](/src/src/entrypoints/agentSdkTypes.ts.md) |   ↳ |  |
-| [`src/entrypoints/cli.tsx`](/src/src/entrypoints/cli.tsx.md) |   ↳ |  |
-| [`src/entrypoints/init.ts`](/src/src/entrypoints/init.ts.md) |   ↳ |  |
-| [`src/entrypoints/mcp.ts`](/src/src/entrypoints/mcp.ts.md) |   ↳ |  |
-| [`src/entrypoints/sandboxTypes.ts`](/src/src/entrypoints/sandboxTypes.ts.md) |   ↳ |  |
-| [`src/history.ts`](/src/src/history.ts.md) |   ↳ |  |
-| [`src/ink.ts`](/src/src/ink.ts.md) |   ↳ |  |
-| [`src/interactiveHelpers.tsx`](/src/src/interactiveHelpers.tsx.md) |   ↳ |  |
-| [`src/keybindings/KeybindingContext.tsx`](/src/src/keybindings/KeybindingContext.tsx.md) |   ↳ |  |
-| [`src/keybindings/defaultBindings.ts`](/src/src/keybindings/defaultBindings.ts.md) |   ↳ |  |
-| [`src/keybindings/loadUserBindings.ts`](/src/src/keybindings/loadUserBindings.ts.md) |   ↳ |  |
-| [`src/keybindings/match.ts`](/src/src/keybindings/match.ts.md) |   ↳ |  |
-| [`src/keybindings/parser.ts`](/src/src/keybindings/parser.ts.md) |   ↳ |  |
-| [`src/keybindings/reservedShortcuts.ts`](/src/src/keybindings/reservedShortcuts.ts.md) |   ↳ |  |
-| [`src/keybindings/resolver.ts`](/src/src/keybindings/resolver.ts.md) |   ↳ |  |
-| [`src/keybindings/schema.ts`](/src/src/keybindings/schema.ts.md) |   ↳ |  |
-| [`src/keybindings/template.ts`](/src/src/keybindings/template.ts.md) |   ↳ |  |
-| [`src/keybindings/types.ts`](/src/src/keybindings/types.ts.md) |   ↳ |  |
-| [`src/keybindings/useKeybinding.ts`](/src/src/keybindings/useKeybinding.ts.md) |   ↳ |  |
-| [`src/keybindings/validate.ts`](/src/src/keybindings/validate.ts.md) |   ↳ |  |
-| [`src/main.tsx`](/src/src/main.tsx.md) |   ↳ |  |
-| [`src/migrations/migrateAutoUpdatesToSettings.ts`](/src/src/migrations/migrateAutoUpdatesToSettings.ts.md) |   ↳ |  |
-| [`src/migrations/migrateEnableAllProjectMcpServersToSettings.ts`](/src/src/migrations/migrateEnableAllProjectMcpServersToSettings.ts.md) |   ↳ |  |
-| [`src/migrations/migrateFennecToOpus.ts`](/src/src/migrations/migrateFennecToOpus.ts.md) |   ↳ |  |
-| [`src/migrations/migrateLegacyOpusToCurrent.ts`](/src/src/migrations/migrateLegacyOpusToCurrent.ts.md) |   ↳ |  |
-| [`src/migrations/migrateOpusToOpus1m.ts`](/src/src/migrations/migrateOpusToOpus1m.ts.md) |   ↳ |  |
-| [`src/migrations/migrateReplBridgeEnabledToRemoteControlAtStartup.ts`](/src/src/migrations/migrateReplBridgeEnabledToRemoteControlAtStartup.ts.md) |   ↳ |  |
-| [`src/migrations/migrateSonnet1mToSonnet45.ts`](/src/src/migrations/migrateSonnet1mToSonnet45.ts.md) |   ↳ |  |
-| [`src/migrations/migrateSonnet45ToSonnet46.ts`](/src/src/migrations/migrateSonnet45ToSonnet46.ts.md) |   ↳ |  |
-| [`src/migrations/resetAutoModeOptInForDefaultOffer.ts`](/src/src/migrations/resetAutoModeOptInForDefaultOffer.ts.md) |   ↳ |  |
-| [`src/migrations/resetProToOpusDefault.ts`](/src/src/migrations/resetProToOpusDefault.ts.md) |   ↳ |  |
-| [`src/moreright/useMoreRight.tsx`](/src/src/moreright/useMoreRight.tsx.md) |   ↳ |  |
-| [`src/outputStyles/loadOutputStylesDir.ts`](/src/src/outputStyles/loadOutputStylesDir.ts.md) |   ↳ |  |
-| [`src/plugins/builtinPlugins.ts`](/src/src/plugins/builtinPlugins.ts.md) |   ↳ |  |
-| [`src/plugins/bundled/index.ts`](/src/src/plugins/bundled/index.ts.md) |   ↳ |  |
-| [`src/proactive/index.ts`](/src/src/proactive/index.ts.md) |   ↳ |  |
-| [`src/projectOnboardingState.ts`](/src/src/projectOnboardingState.ts.md) |   ↳ |  |
-| [`src/query/tokenBudget.ts`](/src/src/query/tokenBudget.ts.md) |   ↳ |  |
-| [`src/remote/RemoteSessionManager.ts`](/src/src/remote/RemoteSessionManager.ts.md) |   ↳ |  |
-| [`src/remote/SessionsWebSocket.ts`](/src/src/remote/SessionsWebSocket.ts.md) |   ↳ |  |
-| [`src/remote/sdkMessageAdapter.ts`](/src/src/remote/sdkMessageAdapter.ts.md) |   ↳ |  |
-| [`src/replLauncher.tsx`](/src/src/replLauncher.tsx.md) |   ↳ |  |
-| [`src/schemas/hooks.ts`](/src/src/schemas/hooks.ts.md) |   ↳ |  |
-| [`src/screens/ResumeConversation.tsx`](/src/src/screens/ResumeConversation.tsx.md) |   ↳ |  |
-| [`src/server/createDirectConnectSession.ts`](/src/src/server/createDirectConnectSession.ts.md) |   ↳ |  |
-| [`src/server/directConnectManager.ts`](/src/src/server/directConnectManager.ts.md) |   ↳ |  |
-| [`src/server/types.ts`](/src/src/server/types.ts.md) |   ↳ |  |
-| [`src/setup.ts`](/src/src/setup.ts.md) |   ↳ |  |
-| [`src/state/AppStateStore.ts`](/src/src/state/AppStateStore.ts.md) |   ↳ |  |
-| [`src/state/onChangeAppState.ts`](/src/src/state/onChangeAppState.ts.md) |   ↳ |  |
-| [`src/state/selectors.ts`](/src/src/state/selectors.ts.md) |   ↳ |  |
-| [`src/state/store.ts`](/src/src/state/store.ts.md) |   ↳ |  |
-| [`src/state/teammateViewHelpers.ts`](/src/src/state/teammateViewHelpers.ts.md) |   ↳ |  |
-| [`src/tools.ts`](/src/src/tools.ts.md) |   ↳ |  |
-| [`src/types/command.ts`](/src/src/types/command.ts.md) |   ↳ |  |
-| [`src/types/generated/events_mono/claude_code/v1/claude_code_internal_event.ts`](/src/src/types/generated/events_mono/claude_code/v1/claude_code_internal_event.ts.md) |   ↳ |  |
-| [`src/types/generated/events_mono/common/v1/auth.ts`](/src/src/types/generated/events_mono/common/v1/auth.ts.md) |   ↳ |  |
-| [`src/types/generated/events_mono/growthbook/v1/growthbook_experiment_event.ts`](/src/src/types/generated/events_mono/growthbook/v1/growthbook_experiment_event.ts.md) |   ↳ |  |
-| [`src/types/generated/google/protobuf/timestamp.ts`](/src/src/types/generated/google/protobuf/timestamp.ts.md) |   ↳ |  |
-| [`src/types/hooks.ts`](/src/src/types/hooks.ts.md) |   ↳ |  |
-| [`src/types/ids.ts`](/src/src/types/ids.ts.md) |   ↳ |  |
-| [`src/types/logs.ts`](/src/src/types/logs.ts.md) |   ↳ |  |
-| [`src/types/message.ts`](/src/src/types/message.ts.md) |   ↳ |  |
-| [`src/types/permissions.ts`](/src/src/types/permissions.ts.md) |   ↳ |  |
-| [`src/types/plugin.ts`](/src/src/types/plugin.ts.md) |   ↳ |  |
-| [`src/types/textInputTypes.ts`](/src/src/types/textInputTypes.ts.md) |   ↳ |  |
-| [`src/upstreamproxy/relay.ts`](/src/src/upstreamproxy/relay.ts.md) |   ↳ |  |
-| [`src/upstreamproxy/upstreamproxy.ts`](/src/src/upstreamproxy/upstreamproxy.ts.md) |   ↳ |  |
-| [`src/utils/claudeInChrome/chromeNativeHost.ts`](/src/src/utils/claudeInChrome/chromeNativeHost.ts.md) |   ↳ |  |
-| [`src/utils/claudeInChrome/common.ts`](/src/src/utils/claudeInChrome/common.ts.md) |   ↳ |  |
-| [`src/utils/claudeInChrome/mcpServer.ts`](/src/src/utils/claudeInChrome/mcpServer.ts.md) |   ↳ |  |
-| [`src/utils/claudeInChrome/prompt.ts`](/src/src/utils/claudeInChrome/prompt.ts.md) |   ↳ |  |
-| [`src/utils/claudeInChrome/setup.ts`](/src/src/utils/claudeInChrome/setup.ts.md) |   ↳ |  |
-| [`src/utils/claudeInChrome/setupPortable.ts`](/src/src/utils/claudeInChrome/setupPortable.ts.md) |   ↳ |  |
-| [`src/utils/claudeInChrome/toolRendering.tsx`](/src/src/utils/claudeInChrome/toolRendering.tsx.md) |   ↳ |  |
-| [`src/utils/config.ts`](/src/src/utils/config.ts.md) |   ↳ |  |
-| [`src/utils/earlyInput.ts`](/src/src/utils/earlyInput.ts.md) |   ↳ |  |
-| [`src/utils/settings/allErrors.ts`](/src/src/utils/settings/allErrors.ts.md) |   ↳ |  |
-| [`src/utils/settings/applySettingsChange.ts`](/src/src/utils/settings/applySettingsChange.ts.md) |   ↳ |  |
-| [`src/utils/settings/changeDetector.ts`](/src/src/utils/settings/changeDetector.ts.md) |   ↳ |  |
-| [`src/utils/settings/constants.ts`](/src/src/utils/settings/constants.ts.md) |   ↳ |  |
-| [`src/utils/settings/internalWrites.ts`](/src/src/utils/settings/internalWrites.ts.md) |   ↳ |  |
-| [`src/utils/settings/managedPath.ts`](/src/src/utils/settings/managedPath.ts.md) |   ↳ |  |
-| [`src/utils/settings/mdm/constants.ts`](/src/src/utils/settings/mdm/constants.ts.md) |   ↳ |  |
-| [`src/utils/settings/mdm/rawRead.ts`](/src/src/utils/settings/mdm/rawRead.ts.md) |   ↳ |  |
-| [`src/utils/settings/mdm/settings.ts`](/src/src/utils/settings/mdm/settings.ts.md) |   ↳ |  |
-| [`src/utils/settings/permissionValidation.ts`](/src/src/utils/settings/permissionValidation.ts.md) |   ↳ |  |
-| [`src/utils/settings/pluginOnlyPolicy.ts`](/src/src/utils/settings/pluginOnlyPolicy.ts.md) |   ↳ |  |
-| [`src/utils/settings/schemaOutput.ts`](/src/src/utils/settings/schemaOutput.ts.md) |   ↳ |  |
-| [`src/utils/settings/settings.ts`](/src/src/utils/settings/settings.ts.md) |   ↳ |  |
-| [`src/utils/settings/settingsCache.ts`](/src/src/utils/settings/settingsCache.ts.md) |   ↳ |  |
-| [`src/utils/settings/toolValidationConfig.ts`](/src/src/utils/settings/toolValidationConfig.ts.md) |   ↳ |  |
-| [`src/utils/settings/types.ts`](/src/src/utils/settings/types.ts.md) |   ↳ |  |
-| [`src/utils/settings/validateEditTool.ts`](/src/src/utils/settings/validateEditTool.ts.md) |   ↳ |  |
-| [`src/utils/settings/validation.ts`](/src/src/utils/settings/validation.ts.md) |   ↳ |  |
-| [`src/utils/settings/validationTips.ts`](/src/src/utils/settings/validationTips.ts.md) |   ↳ |  |
-| [`src/utils/sinks.ts`](/src/src/utils/sinks.ts.md) |   ↳ |  |
-| [`src/utils/startupProfiler.ts`](/src/src/utils/startupProfiler.ts.md) |   ↳ |  |
-| [`src/utils/warningHandler.ts`](/src/src/utils/warningHandler.ts.md) |   ↳ |  |
-| [`src/vim/motions.ts`](/src/src/vim/motions.ts.md) |   ↳ |  |
-| [`src/vim/textObjects.ts`](/src/src/vim/textObjects.ts.md) |   ↳ |  |
-| [`src/vim/transitions.ts`](/src/src/vim/transitions.ts.md) |   ↳ |  |
-| [`src/vim/types.ts`](/src/src/vim/types.ts.md) |   ↳ |  |
-| [`src/voice/voiceModeEnabled.ts`](/src/src/voice/voiceModeEnabled.ts.md) |   ↳ |  |
-| [`vendor/audio-capture-src/index.ts`](/src/vendor/audio-capture-src/index.ts.md) |   ↳ |  |
-| [`vendor/image-processor-src/index.ts`](/src/vendor/image-processor-src/index.ts.md) |   ↳ |  |
-| [`vendor/modifiers-napi-src/index.ts`](/src/vendor/modifiers-napi-src/index.ts.md) |   ↳ |  |
-| [`vendor/url-handler-src/index.ts`](/src/vendor/url-handler-src/index.ts.md) |   ↳ |  |
-
-### ML-02
-
-**主线**: ML-02 · 1 tasks · 342 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/hooks/renderPlaceholder.ts`](/src/src/hooks/renderPlaceholder.ts.md) |   ↳ |  |
-| [`src/hooks/toolPermission/PermissionContext.ts`](/src/src/hooks/toolPermission/PermissionContext.ts.md) |   ↳ |  |
-| [`src/hooks/toolPermission/handlers/coordinatorHandler.ts`](/src/src/hooks/toolPermission/handlers/coordinatorHandler.ts.md) |   ↳ |  |
-| [`src/hooks/toolPermission/handlers/interactiveHandler.ts`](/src/src/hooks/toolPermission/handlers/interactiveHandler.ts.md) |   ↳ |  |
-| [`src/hooks/toolPermission/handlers/swarmWorkerHandler.ts`](/src/src/hooks/toolPermission/handlers/swarmWorkerHandler.ts.md) |   ↳ |  |
-| [`src/hooks/toolPermission/permissionLogging.ts`](/src/src/hooks/toolPermission/permissionLogging.ts.md) |   ↳ |  |
-| [`src/hooks/unifiedSuggestions.ts`](/src/src/hooks/unifiedSuggestions.ts.md) |   ↳ |  |
-| [`src/native-ts/file-index/index.ts`](/src/src/native-ts/file-index/index.ts.md) |   ↳ |  |
-| [`src/native-ts/yoga-layout/enums.ts`](/src/src/native-ts/yoga-layout/enums.ts.md) |   ↳ |  |
-| [`src/utils/CircularBuffer.ts`](/src/src/utils/CircularBuffer.ts.md) |   ↳ |  |
-| [`src/utils/Cursor.ts`](/src/src/utils/Cursor.ts.md) |   ↳ |  |
-| [`src/utils/QueryGuard.ts`](/src/src/utils/QueryGuard.ts.md) |   ↳ |  |
-| [`src/utils/Shell.ts`](/src/src/utils/Shell.ts.md) |   ↳ |  |
-| [`src/utils/ShellCommand.ts`](/src/src/utils/ShellCommand.ts.md) |   ↳ |  |
-| [`src/utils/abortController.ts`](/src/src/utils/abortController.ts.md) |   ↳ |  |
-| [`src/utils/activityManager.ts`](/src/src/utils/activityManager.ts.md) |   ↳ |  |
-| [`src/utils/advisor.ts`](/src/src/utils/advisor.ts.md) |   ↳ |  |
-| [`src/utils/agentContext.ts`](/src/src/utils/agentContext.ts.md) |   ↳ |  |
-| [`src/utils/agentId.ts`](/src/src/utils/agentId.ts.md) |   ↳ |  |
-| [`src/utils/agentSwarmsEnabled.ts`](/src/src/utils/agentSwarmsEnabled.ts.md) |   ↳ |  |
-| [`src/utils/agenticSessionSearch.ts`](/src/src/utils/agenticSessionSearch.ts.md) |   ↳ |  |
-| [`src/utils/analyzeContext.ts`](/src/src/utils/analyzeContext.ts.md) |   ↳ |  |
-| [`src/utils/ansiToPng.ts`](/src/src/utils/ansiToPng.ts.md) |   ↳ |  |
-| [`src/utils/ansiToSvg.ts`](/src/src/utils/ansiToSvg.ts.md) |   ↳ |  |
-| [`src/utils/apiPreconnect.ts`](/src/src/utils/apiPreconnect.ts.md) |   ↳ |  |
-| [`src/utils/appleTerminalBackup.ts`](/src/src/utils/appleTerminalBackup.ts.md) |   ↳ |  |
-| [`src/utils/argumentSubstitution.ts`](/src/src/utils/argumentSubstitution.ts.md) |   ↳ |  |
-| [`src/utils/asciicast.ts`](/src/src/utils/asciicast.ts.md) |   ↳ |  |
-| [`src/utils/attachments.ts`](/src/src/utils/attachments.ts.md) |   ↳ |  |
-| [`src/utils/attribution.ts`](/src/src/utils/attribution.ts.md) |   ↳ |  |
-| [`src/utils/authFileDescriptor.ts`](/src/src/utils/authFileDescriptor.ts.md) |   ↳ |  |
-| [`src/utils/authPortable.ts`](/src/src/utils/authPortable.ts.md) |   ↳ |  |
-| [`src/utils/autoModeDenials.ts`](/src/src/utils/autoModeDenials.ts.md) |   ↳ |  |
-| [`src/utils/autoRunIssue.tsx`](/src/src/utils/autoRunIssue.tsx.md) |   ↳ |  |
-| [`src/utils/autoUpdater.ts`](/src/src/utils/autoUpdater.ts.md) |   ↳ |  |
-| [`src/utils/background/remote/preconditions.ts`](/src/src/utils/background/remote/preconditions.ts.md) |   ↳ |  |
-| [`src/utils/background/remote/remoteSession.ts`](/src/src/utils/background/remote/remoteSession.ts.md) |   ↳ |  |
-| [`src/utils/backgroundHousekeeping.ts`](/src/src/utils/backgroundHousekeeping.ts.md) |   ↳ |  |
-| [`src/utils/betas.ts`](/src/src/utils/betas.ts.md) |   ↳ |  |
-| [`src/utils/billing.ts`](/src/src/utils/billing.ts.md) |   ↳ |  |
-| [`src/utils/binaryCheck.ts`](/src/src/utils/binaryCheck.ts.md) |   ↳ |  |
-| [`src/utils/browser.ts`](/src/src/utils/browser.ts.md) |   ↳ |  |
-| [`src/utils/bufferedWriter.ts`](/src/src/utils/bufferedWriter.ts.md) |   ↳ |  |
-| [`src/utils/bundledMode.ts`](/src/src/utils/bundledMode.ts.md) |   ↳ |  |
-| [`src/utils/caCerts.ts`](/src/src/utils/caCerts.ts.md) |   ↳ |  |
-| [`src/utils/caCertsConfig.ts`](/src/src/utils/caCertsConfig.ts.md) |   ↳ |  |
-| [`src/utils/cachePaths.ts`](/src/src/utils/cachePaths.ts.md) |   ↳ |  |
-| [`src/utils/classifierApprovals.ts`](/src/src/utils/classifierApprovals.ts.md) |   ↳ |  |
-| [`src/utils/classifierApprovalsHook.ts`](/src/src/utils/classifierApprovalsHook.ts.md) |   ↳ |  |
-| [`src/utils/claudeCodeHints.ts`](/src/src/utils/claudeCodeHints.ts.md) |   ↳ |  |
-| [`src/utils/claudeDesktop.ts`](/src/src/utils/claudeDesktop.ts.md) |   ↳ |  |
-| [`src/utils/claudemd.ts`](/src/src/utils/claudemd.ts.md) |   ↳ |  |
-| [`src/utils/cleanup.ts`](/src/src/utils/cleanup.ts.md) |   ↳ |  |
-| [`src/utils/cleanupRegistry.ts`](/src/src/utils/cleanupRegistry.ts.md) |   ↳ |  |
-| [`src/utils/cliArgs.ts`](/src/src/utils/cliArgs.ts.md) |   ↳ |  |
-| [`src/utils/cliHighlight.ts`](/src/src/utils/cliHighlight.ts.md) |   ↳ |  |
-| [`src/utils/codeIndexing.ts`](/src/src/utils/codeIndexing.ts.md) |   ↳ |  |
-| [`src/utils/collapseBackgroundBashNotifications.ts`](/src/src/utils/collapseBackgroundBashNotifications.ts.md) |   ↳ |  |
-| [`src/utils/collapseHookSummaries.ts`](/src/src/utils/collapseHookSummaries.ts.md) |   ↳ |  |
-| [`src/utils/collapseReadSearch.ts`](/src/src/utils/collapseReadSearch.ts.md) |   ↳ |  |
-| [`src/utils/collapseTeammateShutdowns.ts`](/src/src/utils/collapseTeammateShutdowns.ts.md) |   ↳ |  |
-| [`src/utils/combinedAbortSignal.ts`](/src/src/utils/combinedAbortSignal.ts.md) |   ↳ |  |
-| [`src/utils/commandLifecycle.ts`](/src/src/utils/commandLifecycle.ts.md) |   ↳ |  |
-| [`src/utils/commitAttribution.ts`](/src/src/utils/commitAttribution.ts.md) |   ↳ |  |
-| [`src/utils/completionCache.ts`](/src/src/utils/completionCache.ts.md) |   ↳ |  |
-| [`src/utils/concurrentSessions.ts`](/src/src/utils/concurrentSessions.ts.md) |   ↳ |  |
-| [`src/utils/configConstants.ts`](/src/src/utils/configConstants.ts.md) |   ↳ |  |
-| [`src/utils/contentArray.ts`](/src/src/utils/contentArray.ts.md) |   ↳ |  |
-| [`src/utils/context.ts`](/src/src/utils/context.ts.md) |   ↳ |  |
-| [`src/utils/contextSuggestions.ts`](/src/src/utils/contextSuggestions.ts.md) |   ↳ |  |
-| [`src/utils/controlMessageCompat.ts`](/src/src/utils/controlMessageCompat.ts.md) |   ↳ |  |
-| [`src/utils/conversationRecovery.ts`](/src/src/utils/conversationRecovery.ts.md) |   ↳ |  |
-| [`src/utils/cron.ts`](/src/src/utils/cron.ts.md) |   ↳ |  |
-| [`src/utils/cronJitterConfig.ts`](/src/src/utils/cronJitterConfig.ts.md) |   ↳ |  |
-| [`src/utils/cronScheduler.ts`](/src/src/utils/cronScheduler.ts.md) |   ↳ |  |
-| [`src/utils/cronTasks.ts`](/src/src/utils/cronTasks.ts.md) |   ↳ |  |
-| [`src/utils/cronTasksLock.ts`](/src/src/utils/cronTasksLock.ts.md) |   ↳ |  |
-| [`src/utils/crossProjectResume.ts`](/src/src/utils/crossProjectResume.ts.md) |   ↳ |  |
-| [`src/utils/cwd.ts`](/src/src/utils/cwd.ts.md) |   ↳ |  |
-| [`src/utils/debug.ts`](/src/src/utils/debug.ts.md) |   ↳ |  |
-| [`src/utils/debugFilter.ts`](/src/src/utils/debugFilter.ts.md) |   ↳ |  |
-| [`src/utils/deepLink/banner.ts`](/src/src/utils/deepLink/banner.ts.md) |   ↳ |  |
-| [`src/utils/deepLink/parseDeepLink.ts`](/src/src/utils/deepLink/parseDeepLink.ts.md) |   ↳ |  |
-| [`src/utils/deepLink/protocolHandler.ts`](/src/src/utils/deepLink/protocolHandler.ts.md) |   ↳ |  |
-| [`src/utils/deepLink/registerProtocol.ts`](/src/src/utils/deepLink/registerProtocol.ts.md) |   ↳ |  |
-| [`src/utils/deepLink/terminalLauncher.ts`](/src/src/utils/deepLink/terminalLauncher.ts.md) |   ↳ |  |
-| [`src/utils/deepLink/terminalPreference.ts`](/src/src/utils/deepLink/terminalPreference.ts.md) |   ↳ |  |
-| [`src/utils/desktopDeepLink.ts`](/src/src/utils/desktopDeepLink.ts.md) |   ↳ |  |
-| [`src/utils/detectRepository.ts`](/src/src/utils/detectRepository.ts.md) |   ↳ |  |
-| [`src/utils/diagLogs.ts`](/src/src/utils/diagLogs.ts.md) |   ↳ |  |
-| [`src/utils/diff.ts`](/src/src/utils/diff.ts.md) |   ↳ |  |
-| [`src/utils/directMemberMessage.ts`](/src/src/utils/directMemberMessage.ts.md) |   ↳ |  |
-| [`src/utils/displayTags.ts`](/src/src/utils/displayTags.ts.md) |   ↳ |  |
-| [`src/utils/doctorContextWarnings.ts`](/src/src/utils/doctorContextWarnings.ts.md) |   ↳ |  |
-| [`src/utils/doctorDiagnostic.ts`](/src/src/utils/doctorDiagnostic.ts.md) |   ↳ |  |
-| [`src/utils/dxt/helpers.ts`](/src/src/utils/dxt/helpers.ts.md) |   ↳ |  |
-| [`src/utils/dxt/zip.ts`](/src/src/utils/dxt/zip.ts.md) |   ↳ |  |
-| [`src/utils/editor.ts`](/src/src/utils/editor.ts.md) |   ↳ |  |
-| [`src/utils/effort.ts`](/src/src/utils/effort.ts.md) |   ↳ |  |
-| [`src/utils/env.ts`](/src/src/utils/env.ts.md) |   ↳ |  |
-| [`src/utils/envDynamic.ts`](/src/src/utils/envDynamic.ts.md) |   ↳ |  |
-| [`src/utils/envUtils.ts`](/src/src/utils/envUtils.ts.md) |   ↳ |  |
-| [`src/utils/envValidation.ts`](/src/src/utils/envValidation.ts.md) |   ↳ |  |
-| [`src/utils/errorLogSink.ts`](/src/src/utils/errorLogSink.ts.md) |   ↳ |  |
-| [`src/utils/errors.ts`](/src/src/utils/errors.ts.md) |   ↳ |  |
-| [`src/utils/exampleCommands.ts`](/src/src/utils/exampleCommands.ts.md) |   ↳ |  |
-| [`src/utils/execFileNoThrowPortable.ts`](/src/src/utils/execFileNoThrowPortable.ts.md) |   ↳ |  |
-| [`src/utils/execSyncWrapper.ts`](/src/src/utils/execSyncWrapper.ts.md) |   ↳ |  |
-| [`src/utils/exportRenderer.tsx`](/src/src/utils/exportRenderer.tsx.md) |   ↳ |  |
-| [`src/utils/extraUsage.ts`](/src/src/utils/extraUsage.ts.md) |   ↳ |  |
-| [`src/utils/fastMode.ts`](/src/src/utils/fastMode.ts.md) |   ↳ |  |
-| [`src/utils/fileOperationAnalytics.ts`](/src/src/utils/fileOperationAnalytics.ts.md) |   ↳ |  |
-| [`src/utils/filePersistence/filePersistence.ts`](/src/src/utils/filePersistence/filePersistence.ts.md) |   ↳ |  |
-| [`src/utils/filePersistence/outputsScanner.ts`](/src/src/utils/filePersistence/outputsScanner.ts.md) |   ↳ |  |
-| [`src/utils/fileRead.ts`](/src/src/utils/fileRead.ts.md) |   ↳ |  |
-| [`src/utils/fileReadCache.ts`](/src/src/utils/fileReadCache.ts.md) |   ↳ |  |
-| [`src/utils/fileStateCache.ts`](/src/src/utils/fileStateCache.ts.md) |   ↳ |  |
-| [`src/utils/findExecutable.ts`](/src/src/utils/findExecutable.ts.md) |   ↳ |  |
-| [`src/utils/fingerprint.ts`](/src/src/utils/fingerprint.ts.md) |   ↳ |  |
-| [`src/utils/format.ts`](/src/src/utils/format.ts.md) |   ↳ |  |
-| [`src/utils/formatBriefTimestamp.ts`](/src/src/utils/formatBriefTimestamp.ts.md) |   ↳ |  |
-| [`src/utils/fpsTracker.ts`](/src/src/utils/fpsTracker.ts.md) |   ↳ |  |
-| [`src/utils/frontmatterParser.ts`](/src/src/utils/frontmatterParser.ts.md) |   ↳ |  |
-| [`src/utils/fsOperations.ts`](/src/src/utils/fsOperations.ts.md) |   ↳ |  |
-| [`src/utils/fullscreen.ts`](/src/src/utils/fullscreen.ts.md) |   ↳ |  |
-| [`src/utils/generatedFiles.ts`](/src/src/utils/generatedFiles.ts.md) |   ↳ |  |
-| [`src/utils/generators.ts`](/src/src/utils/generators.ts.md) |   ↳ |  |
-| [`src/utils/genericProcessUtils.ts`](/src/src/utils/genericProcessUtils.ts.md) |   ↳ |  |
-| [`src/utils/getWorktreePaths.ts`](/src/src/utils/getWorktreePaths.ts.md) |   ↳ |  |
-| [`src/utils/getWorktreePathsPortable.ts`](/src/src/utils/getWorktreePathsPortable.ts.md) |   ↳ |  |
-| [`src/utils/ghPrStatus.ts`](/src/src/utils/ghPrStatus.ts.md) |   ↳ |  |
-| [`src/utils/git/gitConfigParser.ts`](/src/src/utils/git/gitConfigParser.ts.md) |   ↳ |  |
-| [`src/utils/git/gitignore.ts`](/src/src/utils/git/gitignore.ts.md) |   ↳ |  |
-| [`src/utils/gitSettings.ts`](/src/src/utils/gitSettings.ts.md) |   ↳ |  |
-| [`src/utils/github/ghAuthStatus.ts`](/src/src/utils/github/ghAuthStatus.ts.md) |   ↳ |  |
-| [`src/utils/githubRepoPathMapping.ts`](/src/src/utils/githubRepoPathMapping.ts.md) |   ↳ |  |
-| [`src/utils/glob.ts`](/src/src/utils/glob.ts.md) |   ↳ |  |
-| [`src/utils/gracefulShutdown.ts`](/src/src/utils/gracefulShutdown.ts.md) |   ↳ |  |
-| [`src/utils/groupToolUses.ts`](/src/src/utils/groupToolUses.ts.md) |   ↳ |  |
-| [`src/utils/handlePromptSubmit.ts`](/src/src/utils/handlePromptSubmit.ts.md) |   ↳ |  |
-| [`src/utils/hash.ts`](/src/src/utils/hash.ts.md) |   ↳ |  |
-| [`src/utils/headlessProfiler.ts`](/src/src/utils/headlessProfiler.ts.md) |   ↳ |  |
-| [`src/utils/heapDumpService.ts`](/src/src/utils/heapDumpService.ts.md) |   ↳ |  |
-| [`src/utils/heatmap.ts`](/src/src/utils/heatmap.ts.md) |   ↳ |  |
-| [`src/utils/highlightMatch.tsx`](/src/src/utils/highlightMatch.tsx.md) |   ↳ |  |
-| [`src/utils/hooks.ts`](/src/src/utils/hooks.ts.md) |   ↳ |  |
-| [`src/utils/hooks/AsyncHookRegistry.ts`](/src/src/utils/hooks/AsyncHookRegistry.ts.md) |   ↳ |  |
-| [`src/utils/hooks/apiQueryHookHelper.ts`](/src/src/utils/hooks/apiQueryHookHelper.ts.md) |   ↳ |  |
-| [`src/utils/hooks/execAgentHook.ts`](/src/src/utils/hooks/execAgentHook.ts.md) |   ↳ |  |
-| [`src/utils/hooks/execHttpHook.ts`](/src/src/utils/hooks/execHttpHook.ts.md) |   ↳ |  |
-| [`src/utils/hooks/execPromptHook.ts`](/src/src/utils/hooks/execPromptHook.ts.md) |   ↳ |  |
-| [`src/utils/hooks/fileChangedWatcher.ts`](/src/src/utils/hooks/fileChangedWatcher.ts.md) |   ↳ |  |
-| [`src/utils/hooks/hookEvents.ts`](/src/src/utils/hooks/hookEvents.ts.md) |   ↳ |  |
-| [`src/utils/hooks/hookHelpers.ts`](/src/src/utils/hooks/hookHelpers.ts.md) |   ↳ |  |
-| [`src/utils/hooks/hooksConfigManager.ts`](/src/src/utils/hooks/hooksConfigManager.ts.md) |   ↳ |  |
-| [`src/utils/hooks/hooksConfigSnapshot.ts`](/src/src/utils/hooks/hooksConfigSnapshot.ts.md) |   ↳ |  |
-| [`src/utils/hooks/hooksSettings.ts`](/src/src/utils/hooks/hooksSettings.ts.md) |   ↳ |  |
-| [`src/utils/hooks/postSamplingHooks.ts`](/src/src/utils/hooks/postSamplingHooks.ts.md) |   ↳ |  |
-| [`src/utils/hooks/registerFrontmatterHooks.ts`](/src/src/utils/hooks/registerFrontmatterHooks.ts.md) |   ↳ |  |
-| [`src/utils/hooks/registerSkillHooks.ts`](/src/src/utils/hooks/registerSkillHooks.ts.md) |   ↳ |  |
-| [`src/utils/hooks/sessionHooks.ts`](/src/src/utils/hooks/sessionHooks.ts.md) |   ↳ |  |
-| [`src/utils/hooks/skillImprovement.ts`](/src/src/utils/hooks/skillImprovement.ts.md) |   ↳ |  |
-| [`src/utils/hooks/ssrfGuard.ts`](/src/src/utils/hooks/ssrfGuard.ts.md) |   ↳ |  |
-| [`src/utils/horizontalScroll.ts`](/src/src/utils/horizontalScroll.ts.md) |   ↳ |  |
-| [`src/utils/hyperlink.ts`](/src/src/utils/hyperlink.ts.md) |   ↳ |  |
-| [`src/utils/iTermBackup.ts`](/src/src/utils/iTermBackup.ts.md) |   ↳ |  |
-| [`src/utils/ide.ts`](/src/src/utils/ide.ts.md) |   ↳ |  |
-| [`src/utils/idePathConversion.ts`](/src/src/utils/idePathConversion.ts.md) |   ↳ |  |
-| [`src/utils/idleTimeout.ts`](/src/src/utils/idleTimeout.ts.md) |   ↳ |  |
-| [`src/utils/imagePaste.ts`](/src/src/utils/imagePaste.ts.md) |   ↳ |  |
-| [`src/utils/imageResizer.ts`](/src/src/utils/imageResizer.ts.md) |   ↳ |  |
-| [`src/utils/imageStore.ts`](/src/src/utils/imageStore.ts.md) |   ↳ |  |
-| [`src/utils/imageValidation.ts`](/src/src/utils/imageValidation.ts.md) |   ↳ |  |
-| [`src/utils/immediateCommand.ts`](/src/src/utils/immediateCommand.ts.md) |   ↳ |  |
-| [`src/utils/inProcessTeammateHelpers.ts`](/src/src/utils/inProcessTeammateHelpers.ts.md) |   ↳ |  |
-| [`src/utils/ink.ts`](/src/src/utils/ink.ts.md) |   ↳ |  |
-| [`src/utils/intl.ts`](/src/src/utils/intl.ts.md) |   ↳ |  |
-| [`src/utils/jetbrains.ts`](/src/src/utils/jetbrains.ts.md) |   ↳ |  |
-| [`src/utils/json.ts`](/src/src/utils/json.ts.md) |   ↳ |  |
-| [`src/utils/jsonRead.ts`](/src/src/utils/jsonRead.ts.md) |   ↳ |  |
-| [`src/utils/listSessionsImpl.ts`](/src/src/utils/listSessionsImpl.ts.md) |   ↳ |  |
-| [`src/utils/localInstaller.ts`](/src/src/utils/localInstaller.ts.md) |   ↳ |  |
-| [`src/utils/lockfile.ts`](/src/src/utils/lockfile.ts.md) |   ↳ |  |
-| [`src/utils/log.ts`](/src/src/utils/log.ts.md) |   ↳ |  |
-| [`src/utils/logoV2Utils.ts`](/src/src/utils/logoV2Utils.ts.md) |   ↳ |  |
-| [`src/utils/mailbox.ts`](/src/src/utils/mailbox.ts.md) |   ↳ |  |
-| [`src/utils/managedEnv.ts`](/src/src/utils/managedEnv.ts.md) |   ↳ |  |
-| [`src/utils/managedEnvConstants.ts`](/src/src/utils/managedEnvConstants.ts.md) |   ↳ |  |
-| [`src/utils/markdown.ts`](/src/src/utils/markdown.ts.md) |   ↳ |  |
-| [`src/utils/markdownConfigLoader.ts`](/src/src/utils/markdownConfigLoader.ts.md) |   ↳ |  |
-| [`src/utils/mcp/dateTimeParser.ts`](/src/src/utils/mcp/dateTimeParser.ts.md) |   ↳ |  |
-| [`src/utils/mcp/elicitationValidation.ts`](/src/src/utils/mcp/elicitationValidation.ts.md) |   ↳ |  |
-| [`src/utils/mcpInstructionsDelta.ts`](/src/src/utils/mcpInstructionsDelta.ts.md) |   ↳ |  |
-| [`src/utils/mcpOutputStorage.ts`](/src/src/utils/mcpOutputStorage.ts.md) |   ↳ |  |
-| [`src/utils/mcpValidation.ts`](/src/src/utils/mcpValidation.ts.md) |   ↳ |  |
-| [`src/utils/mcpWebSocketTransport.ts`](/src/src/utils/mcpWebSocketTransport.ts.md) |   ↳ |  |
-| [`src/utils/memoize.ts`](/src/src/utils/memoize.ts.md) |   ↳ |  |
-| [`src/utils/memoryFileDetection.ts`](/src/src/utils/memoryFileDetection.ts.md) |   ↳ |  |
-| [`src/utils/messageQueueManager.ts`](/src/src/utils/messageQueueManager.ts.md) |   ↳ |  |
-| [`src/utils/messages/mappers.ts`](/src/src/utils/messages/mappers.ts.md) |   ↳ |  |
-| [`src/utils/messages/systemInit.ts`](/src/src/utils/messages/systemInit.ts.md) |   ↳ |  |
-| [`src/utils/model/agent.ts`](/src/src/utils/model/agent.ts.md) |   ↳ |  |
-| [`src/utils/model/aliases.ts`](/src/src/utils/model/aliases.ts.md) |   ↳ |  |
-| [`src/utils/model/antModels.ts`](/src/src/utils/model/antModels.ts.md) |   ↳ |  |
-| [`src/utils/model/bedrock.ts`](/src/src/utils/model/bedrock.ts.md) |   ↳ |  |
-| [`src/utils/model/check1mAccess.ts`](/src/src/utils/model/check1mAccess.ts.md) |   ↳ |  |
-| [`src/utils/model/configs.ts`](/src/src/utils/model/configs.ts.md) |   ↳ |  |
-| [`src/utils/model/contextWindowUpgradeCheck.ts`](/src/src/utils/model/contextWindowUpgradeCheck.ts.md) |   ↳ |  |
-| [`src/utils/model/deprecation.ts`](/src/src/utils/model/deprecation.ts.md) |   ↳ |  |
-| [`src/utils/model/model.ts`](/src/src/utils/model/model.ts.md) |   ↳ |  |
-| [`src/utils/model/modelAllowlist.ts`](/src/src/utils/model/modelAllowlist.ts.md) |   ↳ |  |
-| [`src/utils/model/modelCapabilities.ts`](/src/src/utils/model/modelCapabilities.ts.md) |   ↳ |  |
-| [`src/utils/model/modelOptions.ts`](/src/src/utils/model/modelOptions.ts.md) |   ↳ |  |
-| [`src/utils/model/modelStrings.ts`](/src/src/utils/model/modelStrings.ts.md) |   ↳ |  |
-| [`src/utils/model/modelSupportOverrides.ts`](/src/src/utils/model/modelSupportOverrides.ts.md) |   ↳ |  |
-| [`src/utils/model/providers.ts`](/src/src/utils/model/providers.ts.md) |   ↳ |  |
-| [`src/utils/model/validateModel.ts`](/src/src/utils/model/validateModel.ts.md) |   ↳ |  |
-| [`src/utils/modelCost.ts`](/src/src/utils/modelCost.ts.md) |   ↳ |  |
-| [`src/utils/modifiers.ts`](/src/src/utils/modifiers.ts.md) |   ↳ |  |
-| [`src/utils/mtls.ts`](/src/src/utils/mtls.ts.md) |   ↳ |  |
-| [`src/utils/nativeInstaller/download.ts`](/src/src/utils/nativeInstaller/download.ts.md) |   ↳ |  |
-| [`src/utils/nativeInstaller/index.ts`](/src/src/utils/nativeInstaller/index.ts.md) |   ↳ |  |
-| [`src/utils/nativeInstaller/installer.ts`](/src/src/utils/nativeInstaller/installer.ts.md) |   ↳ |  |
-| [`src/utils/nativeInstaller/packageManagers.ts`](/src/src/utils/nativeInstaller/packageManagers.ts.md) |   ↳ |  |
-| [`src/utils/nativeInstaller/pidLock.ts`](/src/src/utils/nativeInstaller/pidLock.ts.md) |   ↳ |  |
-| [`src/utils/notebook.ts`](/src/src/utils/notebook.ts.md) |   ↳ |  |
-| [`src/utils/objectGroupBy.ts`](/src/src/utils/objectGroupBy.ts.md) |   ↳ |  |
-| [`src/utils/pasteStore.ts`](/src/src/utils/pasteStore.ts.md) |   ↳ |  |
-| [`src/utils/path.ts`](/src/src/utils/path.ts.md) |   ↳ |  |
-| [`src/utils/pdf.ts`](/src/src/utils/pdf.ts.md) |   ↳ |  |
-| [`src/utils/pdfUtils.ts`](/src/src/utils/pdfUtils.ts.md) |   ↳ |  |
-| [`src/utils/peerAddress.ts`](/src/src/utils/peerAddress.ts.md) |   ↳ |  |
-| [`src/utils/planModeV2.ts`](/src/src/utils/planModeV2.ts.md) |   ↳ |  |
-| [`src/utils/plans.ts`](/src/src/utils/plans.ts.md) |   ↳ |  |
-| [`src/utils/platform.ts`](/src/src/utils/platform.ts.md) |   ↳ |  |
-| [`src/utils/preflightChecks.tsx`](/src/src/utils/preflightChecks.tsx.md) |   ↳ |  |
-| [`src/utils/privacyLevel.ts`](/src/src/utils/privacyLevel.ts.md) |   ↳ |  |
-| [`src/utils/process.ts`](/src/src/utils/process.ts.md) |   ↳ |  |
-| [`src/utils/processUserInput/processBashCommand.tsx`](/src/src/utils/processUserInput/processBashCommand.tsx.md) |   ↳ |  |
-| [`src/utils/processUserInput/processSlashCommand.tsx`](/src/src/utils/processUserInput/processSlashCommand.tsx.md) |   ↳ |  |
-| [`src/utils/processUserInput/processTextPrompt.ts`](/src/src/utils/processUserInput/processTextPrompt.ts.md) |   ↳ |  |
-| [`src/utils/profilerBase.ts`](/src/src/utils/profilerBase.ts.md) |   ↳ |  |
-| [`src/utils/promptCategory.ts`](/src/src/utils/promptCategory.ts.md) |   ↳ |  |
-| [`src/utils/promptEditor.ts`](/src/src/utils/promptEditor.ts.md) |   ↳ |  |
-| [`src/utils/promptShellExecution.ts`](/src/src/utils/promptShellExecution.ts.md) |   ↳ |  |
-| [`src/utils/proxy.ts`](/src/src/utils/proxy.ts.md) |   ↳ |  |
-| [`src/utils/queryProfiler.ts`](/src/src/utils/queryProfiler.ts.md) |   ↳ |  |
-| [`src/utils/queueProcessor.ts`](/src/src/utils/queueProcessor.ts.md) |   ↳ |  |
-| [`src/utils/readEditContext.ts`](/src/src/utils/readEditContext.ts.md) |   ↳ |  |
-| [`src/utils/readFileInRange.ts`](/src/src/utils/readFileInRange.ts.md) |   ↳ |  |
-| [`src/utils/releaseNotes.ts`](/src/src/utils/releaseNotes.ts.md) |   ↳ |  |
-| [`src/utils/renderOptions.ts`](/src/src/utils/renderOptions.ts.md) |   ↳ |  |
-| [`src/utils/sanitization.ts`](/src/src/utils/sanitization.ts.md) |   ↳ |  |
-| [`src/utils/screenshotClipboard.ts`](/src/src/utils/screenshotClipboard.ts.md) |   ↳ |  |
-| [`src/utils/sdkEventQueue.ts`](/src/src/utils/sdkEventQueue.ts.md) |   ↳ |  |
-| [`src/utils/semanticBoolean.ts`](/src/src/utils/semanticBoolean.ts.md) |   ↳ |  |
-| [`src/utils/semanticNumber.ts`](/src/src/utils/semanticNumber.ts.md) |   ↳ |  |
-| [`src/utils/semver.ts`](/src/src/utils/semver.ts.md) |   ↳ |  |
-| [`src/utils/sequential.ts`](/src/src/utils/sequential.ts.md) |   ↳ |  |
-| [`src/utils/sessionActivity.ts`](/src/src/utils/sessionActivity.ts.md) |   ↳ |  |
-| [`src/utils/sessionEnvVars.ts`](/src/src/utils/sessionEnvVars.ts.md) |   ↳ |  |
-| [`src/utils/sessionEnvironment.ts`](/src/src/utils/sessionEnvironment.ts.md) |   ↳ |  |
-| [`src/utils/sessionFileAccessHooks.ts`](/src/src/utils/sessionFileAccessHooks.ts.md) |   ↳ |  |
-| [`src/utils/sessionIngressAuth.ts`](/src/src/utils/sessionIngressAuth.ts.md) |   ↳ |  |
-| [`src/utils/sessionStart.ts`](/src/src/utils/sessionStart.ts.md) |   ↳ |  |
-| [`src/utils/sessionState.ts`](/src/src/utils/sessionState.ts.md) |   ↳ |  |
-| [`src/utils/sessionTitle.ts`](/src/src/utils/sessionTitle.ts.md) |   ↳ |  |
-| [`src/utils/sessionUrl.ts`](/src/src/utils/sessionUrl.ts.md) |   ↳ |  |
-| [`src/utils/set.ts`](/src/src/utils/set.ts.md) |   ↳ |  |
-| [`src/utils/shellConfig.ts`](/src/src/utils/shellConfig.ts.md) |   ↳ |  |
-| [`src/utils/sideQuery.ts`](/src/src/utils/sideQuery.ts.md) |   ↳ |  |
-| [`src/utils/sideQuestion.ts`](/src/src/utils/sideQuestion.ts.md) |   ↳ |  |
-| [`src/utils/signal.ts`](/src/src/utils/signal.ts.md) |   ↳ |  |
-| [`src/utils/skills/skillChangeDetector.ts`](/src/src/utils/skills/skillChangeDetector.ts.md) |   ↳ |  |
-| [`src/utils/slashCommandParsing.ts`](/src/src/utils/slashCommandParsing.ts.md) |   ↳ |  |
-| [`src/utils/sleep.ts`](/src/src/utils/sleep.ts.md) |   ↳ |  |
-| [`src/utils/sliceAnsi.ts`](/src/src/utils/sliceAnsi.ts.md) |   ↳ |  |
-| [`src/utils/slowOperations.ts`](/src/src/utils/slowOperations.ts.md) |   ↳ |  |
-| [`src/utils/standaloneAgent.ts`](/src/src/utils/standaloneAgent.ts.md) |   ↳ |  |
-| [`src/utils/staticRender.tsx`](/src/src/utils/staticRender.tsx.md) |   ↳ |  |
-| [`src/utils/stats.ts`](/src/src/utils/stats.ts.md) |   ↳ |  |
-| [`src/utils/statsCache.ts`](/src/src/utils/statsCache.ts.md) |   ↳ |  |
-| [`src/utils/status.tsx`](/src/src/utils/status.tsx.md) |   ↳ |  |
-| [`src/utils/statusNoticeDefinitions.tsx`](/src/src/utils/statusNoticeDefinitions.tsx.md) |   ↳ |  |
-| [`src/utils/statusNoticeHelpers.ts`](/src/src/utils/statusNoticeHelpers.ts.md) |   ↳ |  |
-| [`src/utils/stream.ts`](/src/src/utils/stream.ts.md) |   ↳ |  |
-| [`src/utils/streamJsonStdoutGuard.ts`](/src/src/utils/streamJsonStdoutGuard.ts.md) |   ↳ |  |
-| [`src/utils/streamlinedTransform.ts`](/src/src/utils/streamlinedTransform.ts.md) |   ↳ |  |
-| [`src/utils/stringUtils.ts`](/src/src/utils/stringUtils.ts.md) |   ↳ |  |
-| [`src/utils/subprocessEnv.ts`](/src/src/utils/subprocessEnv.ts.md) |   ↳ |  |
-| [`src/utils/suggestions/commandSuggestions.ts`](/src/src/utils/suggestions/commandSuggestions.ts.md) |   ↳ |  |
-| [`src/utils/suggestions/directoryCompletion.ts`](/src/src/utils/suggestions/directoryCompletion.ts.md) |   ↳ |  |
-| [`src/utils/suggestions/shellHistoryCompletion.ts`](/src/src/utils/suggestions/shellHistoryCompletion.ts.md) |   ↳ |  |
-| [`src/utils/suggestions/skillUsageTracking.ts`](/src/src/utils/suggestions/skillUsageTracking.ts.md) |   ↳ |  |
-| [`src/utils/suggestions/slackChannelSuggestions.ts`](/src/src/utils/suggestions/slackChannelSuggestions.ts.md) |   ↳ |  |
-| [`src/utils/systemDirectories.ts`](/src/src/utils/systemDirectories.ts.md) |   ↳ |  |
-| [`src/utils/systemPrompt.ts`](/src/src/utils/systemPrompt.ts.md) |   ↳ |  |
-| [`src/utils/systemTheme.ts`](/src/src/utils/systemTheme.ts.md) |   ↳ |  |
-| [`src/utils/taggedId.ts`](/src/src/utils/taggedId.ts.md) |   ↳ |  |
-| [`src/utils/tasks.ts`](/src/src/utils/tasks.ts.md) |   ↳ |  |
-| [`src/utils/teamDiscovery.ts`](/src/src/utils/teamDiscovery.ts.md) |   ↳ |  |
-| [`src/utils/teamMemoryOps.ts`](/src/src/utils/teamMemoryOps.ts.md) |   ↳ |  |
-| [`src/utils/teammate.ts`](/src/src/utils/teammate.ts.md) |   ↳ |  |
-| [`src/utils/teammateContext.ts`](/src/src/utils/teammateContext.ts.md) |   ↳ |  |
-| [`src/utils/teammateMailbox.ts`](/src/src/utils/teammateMailbox.ts.md) |   ↳ |  |
-| [`src/utils/teleport.tsx`](/src/src/utils/teleport.tsx.md) |   ↳ |  |
-| [`src/utils/teleport/api.ts`](/src/src/utils/teleport/api.ts.md) |   ↳ |  |
-| [`src/utils/teleport/environmentSelection.ts`](/src/src/utils/teleport/environmentSelection.ts.md) |   ↳ |  |
-| [`src/utils/teleport/environments.ts`](/src/src/utils/teleport/environments.ts.md) |   ↳ |  |
-| [`src/utils/teleport/gitBundle.ts`](/src/src/utils/teleport/gitBundle.ts.md) |   ↳ |  |
-| [`src/utils/tempfile.ts`](/src/src/utils/tempfile.ts.md) |   ↳ |  |
-| [`src/utils/terminal.ts`](/src/src/utils/terminal.ts.md) |   ↳ |  |
-| [`src/utils/terminalPanel.ts`](/src/src/utils/terminalPanel.ts.md) |   ↳ |  |
-| [`src/utils/textHighlighting.ts`](/src/src/utils/textHighlighting.ts.md) |   ↳ |  |
-| [`src/utils/theme.ts`](/src/src/utils/theme.ts.md) |   ↳ |  |
-| [`src/utils/thinking.ts`](/src/src/utils/thinking.ts.md) |   ↳ |  |
-| [`src/utils/timeouts.ts`](/src/src/utils/timeouts.ts.md) |   ↳ |  |
-| [`src/utils/tmuxSocket.ts`](/src/src/utils/tmuxSocket.ts.md) |   ↳ |  |
-| [`src/utils/todo/types.ts`](/src/src/utils/todo/types.ts.md) |   ↳ |  |
-| [`src/utils/tokenBudget.ts`](/src/src/utils/tokenBudget.ts.md) |   ↳ |  |
-| [`src/utils/toolErrors.ts`](/src/src/utils/toolErrors.ts.md) |   ↳ |  |
-| [`src/utils/toolPool.ts`](/src/src/utils/toolPool.ts.md) |   ↳ |  |
-| [`src/utils/toolSchemaCache.ts`](/src/src/utils/toolSchemaCache.ts.md) |   ↳ |  |
-| [`src/utils/transcriptSearch.ts`](/src/src/utils/transcriptSearch.ts.md) |   ↳ |  |
-| [`src/utils/treeify.ts`](/src/src/utils/treeify.ts.md) |   ↳ |  |
-| [`src/utils/truncate.ts`](/src/src/utils/truncate.ts.md) |   ↳ |  |
-| [`src/utils/ultraplan/ccrSession.ts`](/src/src/utils/ultraplan/ccrSession.ts.md) |   ↳ |  |
-| [`src/utils/ultraplan/keyword.ts`](/src/src/utils/ultraplan/keyword.ts.md) |   ↳ |  |
-| [`src/utils/unaryLogging.ts`](/src/src/utils/unaryLogging.ts.md) |   ↳ |  |
-| [`src/utils/undercover.ts`](/src/src/utils/undercover.ts.md) |   ↳ |  |
-| [`src/utils/user.ts`](/src/src/utils/user.ts.md) |   ↳ |  |
-| [`src/utils/userPromptKeywords.ts`](/src/src/utils/userPromptKeywords.ts.md) |   ↳ |  |
-| [`src/utils/uuid.ts`](/src/src/utils/uuid.ts.md) |   ↳ |  |
-| [`src/utils/which.ts`](/src/src/utils/which.ts.md) |   ↳ |  |
-| [`src/utils/windowsPaths.ts`](/src/src/utils/windowsPaths.ts.md) |   ↳ |  |
-| [`src/utils/words.ts`](/src/src/utils/words.ts.md) |   ↳ |  |
-| [`src/utils/workloadContext.ts`](/src/src/utils/workloadContext.ts.md) |   ↳ |  |
-| [`src/utils/worktree.ts`](/src/src/utils/worktree.ts.md) |   ↳ |  |
-| [`src/utils/xdg.ts`](/src/src/utils/xdg.ts.md) |   ↳ |  |
-| [`src/utils/xml.ts`](/src/src/utils/xml.ts.md) |   ↳ |  |
-| [`src/utils/yaml.ts`](/src/src/utils/yaml.ts.md) |   ↳ |  |
-| [`src/utils/zodToJsonSchema.ts`](/src/src/utils/zodToJsonSchema.ts.md) |   ↳ |  |
-
-### ML-02-1
-
-**主线**: ML-02-1 · 1 tasks · 3 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/QueryEngine.ts`](/src/src/QueryEngine.ts.md) |   ↳ |  |
-| [`src/utils/processUserInput/processUserInput.ts`](/src/src/utils/processUserInput/processUserInput.ts.md) |   ↳ |  |
-| [`src/utils/queryContext.ts`](/src/src/utils/queryContext.ts.md) |   ↳ |  |
-
-### ML-02-2
-
-**主线**: ML-02-2 · 1 tasks · 8 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/query.ts`](/src/src/query.ts.md) |   ↳ |  |
-| [`src/query/config.ts`](/src/src/query/config.ts.md) |   ↳ |  |
-| [`src/query/deps.ts`](/src/src/query/deps.ts.md) |   ↳ |  |
-| [`src/query/stopHooks.ts`](/src/src/query/stopHooks.ts.md) |   ↳ |  |
-| [`src/query/transitions.ts`](/src/src/query/transitions.ts.md) |   ↳ |  |
-| [`src/services/compact/autoCompact.ts`](/src/src/services/compact/autoCompact.ts.md) |   ↳ |  |
-| [`src/services/compact/compact.ts`](/src/src/services/compact/compact.ts.md) |   ↳ |  |
-| [`src/utils/tokens.ts`](/src/src/utils/tokens.ts.md) |   ↳ |  |
-
-### ML-02-3
-
-**主线**: ML-02-3 · 1 tasks · 8 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/Tool.ts`](/src/src/Tool.ts.md) |   ↳ |  |
-| [`src/services/api/claude.ts`](/src/src/services/api/claude.ts.md) |   ↳ |  |
-| [`src/services/api/client.ts`](/src/src/services/api/client.ts.md) |   ↳ |  |
-| [`src/services/api/errors.ts`](/src/src/services/api/errors.ts.md) |   ↳ |  |
-| [`src/services/api/logging.ts`](/src/src/services/api/logging.ts.md) |   ↳ |  |
-| [`src/services/api/withRetry.ts`](/src/src/services/api/withRetry.ts.md) |   ↳ |  |
-| [`src/services/tools/StreamingToolExecutor.ts`](/src/src/services/tools/StreamingToolExecutor.ts.md) |   ↳ |  |
-| [`src/services/tools/toolOrchestration.ts`](/src/src/services/tools/toolOrchestration.ts.md) |   ↳ |  |
-
-### ML-02-4
-
-**主线**: ML-02-4 · 1 tasks · 3 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/utils/api.ts`](/src/src/utils/api.ts.md) |   ↳ |  |
-| [`src/utils/messages.ts`](/src/src/utils/messages.ts.md) |   ↳ |  |
-| [`src/utils/queryHelpers.ts`](/src/src/utils/queryHelpers.ts.md) |   ↳ |  |
-
-### ML-03
-
-**主线**: ML-03 · 1 tasks · 21 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/utils/computerUse/appNames.ts`](/src/src/utils/computerUse/appNames.ts.md) |   ↳ |  |
-| [`src/utils/computerUse/cleanup.ts`](/src/src/utils/computerUse/cleanup.ts.md) |   ↳ |  |
-| [`src/utils/computerUse/common.ts`](/src/src/utils/computerUse/common.ts.md) |   ↳ |  |
-| [`src/utils/computerUse/computerUseLock.ts`](/src/src/utils/computerUse/computerUseLock.ts.md) |   ↳ |  |
-| [`src/utils/computerUse/drainRunLoop.ts`](/src/src/utils/computerUse/drainRunLoop.ts.md) |   ↳ |  |
-| [`src/utils/computerUse/escHotkey.ts`](/src/src/utils/computerUse/escHotkey.ts.md) |   ↳ |  |
-| [`src/utils/computerUse/executor.ts`](/src/src/utils/computerUse/executor.ts.md) |   ↳ |  |
-| [`src/utils/computerUse/gates.ts`](/src/src/utils/computerUse/gates.ts.md) |   ↳ |  |
-| [`src/utils/computerUse/hostAdapter.ts`](/src/src/utils/computerUse/hostAdapter.ts.md) |   ↳ |  |
-| [`src/utils/computerUse/inputLoader.ts`](/src/src/utils/computerUse/inputLoader.ts.md) |   ↳ |  |
-| [`src/utils/computerUse/mcpServer.ts`](/src/src/utils/computerUse/mcpServer.ts.md) |   ↳ |  |
-| [`src/utils/computerUse/setup.ts`](/src/src/utils/computerUse/setup.ts.md) |   ↳ |  |
-| [`src/utils/computerUse/swiftLoader.ts`](/src/src/utils/computerUse/swiftLoader.ts.md) |   ↳ |  |
-| [`src/utils/computerUse/toolRendering.tsx`](/src/src/utils/computerUse/toolRendering.tsx.md) |   ↳ |  |
-| [`src/utils/computerUse/wrapper.tsx`](/src/src/utils/computerUse/wrapper.tsx.md) |   ↳ |  |
-| [`src/utils/file.ts`](/src/src/utils/file.ts.md) |   ↳ |  |
-| [`src/utils/fileHistory.ts`](/src/src/utils/fileHistory.ts.md) |   ↳ |  |
-| [`src/utils/git.ts`](/src/src/utils/git.ts.md) |   ↳ |  |
-| [`src/utils/git/gitFilesystem.ts`](/src/src/utils/git/gitFilesystem.ts.md) |   ↳ |  |
-| [`src/utils/gitDiff.ts`](/src/src/utils/gitDiff.ts.md) |   ↳ |  |
-| [`src/utils/ripgrep.ts`](/src/src/utils/ripgrep.ts.md) |   ↳ |  |
-
-### ML-03-1
-
-**主线**: ML-03-1 · 1 tasks · 5 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/constants/tools.ts`](/src/src/constants/tools.ts.md) |   ↳ |  |
-| [`src/hooks/useCanUseTool.tsx`](/src/src/hooks/useCanUseTool.tsx.md) |   ↳ |  |
-| [`src/types/tools.ts`](/src/src/types/tools.ts.md) |   ↳ |  |
-| [`src/utils/embeddedTools.ts`](/src/src/utils/embeddedTools.ts.md) |   ↳ |  |
-| [`src/utils/toolSearch.ts`](/src/src/utils/toolSearch.ts.md) |   ↳ |  |
-
-### ML-03-2
-
-**主线**: ML-03-2 · 1 tasks · 201 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/services/tools/toolExecution.ts`](/src/src/services/tools/toolExecution.ts.md) |   ↳ |  |
-| [`src/tools/AgentTool/AgentTool.tsx`](/src/src/tools/AgentTool/AgentTool.tsx.md) |   ↳ |  |
-| [`src/tools/AgentTool/UI.tsx`](/src/src/tools/AgentTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/AgentTool/agentColorManager.ts`](/src/src/tools/AgentTool/agentColorManager.ts.md) |   ↳ |  |
-| [`src/tools/AgentTool/agentDisplay.ts`](/src/src/tools/AgentTool/agentDisplay.ts.md) |   ↳ |  |
-| [`src/tools/AgentTool/agentMemory.ts`](/src/src/tools/AgentTool/agentMemory.ts.md) |   ↳ |  |
-| [`src/tools/AgentTool/agentMemorySnapshot.ts`](/src/src/tools/AgentTool/agentMemorySnapshot.ts.md) |   ↳ |  |
-| [`src/tools/AgentTool/agentToolUtils.ts`](/src/src/tools/AgentTool/agentToolUtils.ts.md) |   ↳ |  |
-| [`src/tools/AgentTool/built-in/claudeCodeGuideAgent.ts`](/src/src/tools/AgentTool/built-in/claudeCodeGuideAgent.ts.md) |   ↳ |  |
-| [`src/tools/AgentTool/built-in/exploreAgent.ts`](/src/src/tools/AgentTool/built-in/exploreAgent.ts.md) |   ↳ |  |
-| [`src/tools/AgentTool/built-in/generalPurposeAgent.ts`](/src/src/tools/AgentTool/built-in/generalPurposeAgent.ts.md) |   ↳ |  |
-| [`src/tools/AgentTool/built-in/planAgent.ts`](/src/src/tools/AgentTool/built-in/planAgent.ts.md) |   ↳ |  |
-| [`src/tools/AgentTool/built-in/statuslineSetup.ts`](/src/src/tools/AgentTool/built-in/statuslineSetup.ts.md) |   ↳ |  |
-| [`src/tools/AgentTool/built-in/verificationAgent.ts`](/src/src/tools/AgentTool/built-in/verificationAgent.ts.md) |   ↳ |  |
-| [`src/tools/AgentTool/builtInAgents.ts`](/src/src/tools/AgentTool/builtInAgents.ts.md) |   ↳ |  |
-| [`src/tools/AgentTool/constants.ts`](/src/src/tools/AgentTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/AgentTool/forkSubagent.ts`](/src/src/tools/AgentTool/forkSubagent.ts.md) |   ↳ |  |
-| [`src/tools/AgentTool/loadAgentsDir.ts`](/src/src/tools/AgentTool/loadAgentsDir.ts.md) |   ↳ |  |
-| [`src/tools/AgentTool/prompt.ts`](/src/src/tools/AgentTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/AgentTool/resumeAgent.ts`](/src/src/tools/AgentTool/resumeAgent.ts.md) |   ↳ |  |
-| [`src/tools/AgentTool/runAgent.ts`](/src/src/tools/AgentTool/runAgent.ts.md) |   ↳ |  |
-| [`src/tools/AskUserQuestionTool/AskUserQuestionTool.tsx`](/src/src/tools/AskUserQuestionTool/AskUserQuestionTool.tsx.md) |   ↳ |  |
-| [`src/tools/AskUserQuestionTool/prompt.ts`](/src/src/tools/AskUserQuestionTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/BashTool/BashTool.tsx`](/src/src/tools/BashTool/BashTool.tsx.md) |   ↳ |  |
-| [`src/tools/BashTool/BashToolResultMessage.tsx`](/src/src/tools/BashTool/BashToolResultMessage.tsx.md) |   ↳ |  |
-| [`src/tools/BashTool/UI.tsx`](/src/src/tools/BashTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/BashTool/bashCommandHelpers.ts`](/src/src/tools/BashTool/bashCommandHelpers.ts.md) |   ↳ |  |
-| [`src/tools/BashTool/bashPermissions.ts`](/src/src/tools/BashTool/bashPermissions.ts.md) |   ↳ |  |
-| [`src/tools/BashTool/bashSecurity.ts`](/src/src/tools/BashTool/bashSecurity.ts.md) |   ↳ |  |
-| [`src/tools/BashTool/commandSemantics.ts`](/src/src/tools/BashTool/commandSemantics.ts.md) |   ↳ |  |
-| [`src/tools/BashTool/commentLabel.ts`](/src/src/tools/BashTool/commentLabel.ts.md) |   ↳ |  |
-| [`src/tools/BashTool/destructiveCommandWarning.ts`](/src/src/tools/BashTool/destructiveCommandWarning.ts.md) |   ↳ |  |
-| [`src/tools/BashTool/modeValidation.ts`](/src/src/tools/BashTool/modeValidation.ts.md) |   ↳ |  |
-| [`src/tools/BashTool/pathValidation.ts`](/src/src/tools/BashTool/pathValidation.ts.md) |   ↳ |  |
-| [`src/tools/BashTool/prompt.ts`](/src/src/tools/BashTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/BashTool/readOnlyValidation.ts`](/src/src/tools/BashTool/readOnlyValidation.ts.md) |   ↳ |  |
-| [`src/tools/BashTool/sedEditParser.ts`](/src/src/tools/BashTool/sedEditParser.ts.md) |   ↳ |  |
-| [`src/tools/BashTool/sedValidation.ts`](/src/src/tools/BashTool/sedValidation.ts.md) |   ↳ |  |
-| [`src/tools/BashTool/shouldUseSandbox.ts`](/src/src/tools/BashTool/shouldUseSandbox.ts.md) |   ↳ |  |
-| [`src/tools/BashTool/toolName.ts`](/src/src/tools/BashTool/toolName.ts.md) |   ↳ |  |
-| [`src/tools/BashTool/utils.ts`](/src/src/tools/BashTool/utils.ts.md) |   ↳ |  |
-| [`src/tools/BriefTool/BriefTool.ts`](/src/src/tools/BriefTool/BriefTool.ts.md) |   ↳ |  |
-| [`src/tools/BriefTool/UI.tsx`](/src/src/tools/BriefTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/BriefTool/attachments.ts`](/src/src/tools/BriefTool/attachments.ts.md) |   ↳ |  |
-| [`src/tools/BriefTool/prompt.ts`](/src/src/tools/BriefTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/BriefTool/upload.ts`](/src/src/tools/BriefTool/upload.ts.md) |   ↳ |  |
-| [`src/tools/ConfigTool/ConfigTool.ts`](/src/src/tools/ConfigTool/ConfigTool.ts.md) |   ↳ |  |
-| [`src/tools/ConfigTool/UI.tsx`](/src/src/tools/ConfigTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/ConfigTool/constants.ts`](/src/src/tools/ConfigTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/ConfigTool/prompt.ts`](/src/src/tools/ConfigTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/ConfigTool/supportedSettings.ts`](/src/src/tools/ConfigTool/supportedSettings.ts.md) |   ↳ |  |
-| [`src/tools/DiscoverSkillsTool/prompt.ts`](/src/src/tools/DiscoverSkillsTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/EnterPlanModeTool/EnterPlanModeTool.ts`](/src/src/tools/EnterPlanModeTool/EnterPlanModeTool.ts.md) |   ↳ |  |
-| [`src/tools/EnterPlanModeTool/UI.tsx`](/src/src/tools/EnterPlanModeTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/EnterPlanModeTool/constants.ts`](/src/src/tools/EnterPlanModeTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/EnterPlanModeTool/prompt.ts`](/src/src/tools/EnterPlanModeTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/EnterWorktreeTool/EnterWorktreeTool.ts`](/src/src/tools/EnterWorktreeTool/EnterWorktreeTool.ts.md) |   ↳ |  |
-| [`src/tools/EnterWorktreeTool/UI.tsx`](/src/src/tools/EnterWorktreeTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/EnterWorktreeTool/constants.ts`](/src/src/tools/EnterWorktreeTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/EnterWorktreeTool/prompt.ts`](/src/src/tools/EnterWorktreeTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/ExitPlanModeTool/ExitPlanModeV2Tool.ts`](/src/src/tools/ExitPlanModeTool/ExitPlanModeV2Tool.ts.md) |   ↳ |  |
-| [`src/tools/ExitPlanModeTool/UI.tsx`](/src/src/tools/ExitPlanModeTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/ExitPlanModeTool/constants.ts`](/src/src/tools/ExitPlanModeTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/ExitPlanModeTool/prompt.ts`](/src/src/tools/ExitPlanModeTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/ExitWorktreeTool/ExitWorktreeTool.ts`](/src/src/tools/ExitWorktreeTool/ExitWorktreeTool.ts.md) |   ↳ |  |
-| [`src/tools/ExitWorktreeTool/UI.tsx`](/src/src/tools/ExitWorktreeTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/ExitWorktreeTool/constants.ts`](/src/src/tools/ExitWorktreeTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/ExitWorktreeTool/prompt.ts`](/src/src/tools/ExitWorktreeTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/FileEditTool/FileEditTool.ts`](/src/src/tools/FileEditTool/FileEditTool.ts.md) |   ↳ |  |
-| [`src/tools/FileEditTool/UI.tsx`](/src/src/tools/FileEditTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/FileEditTool/constants.ts`](/src/src/tools/FileEditTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/FileEditTool/prompt.ts`](/src/src/tools/FileEditTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/FileEditTool/types.ts`](/src/src/tools/FileEditTool/types.ts.md) |   ↳ |  |
-| [`src/tools/FileEditTool/utils.ts`](/src/src/tools/FileEditTool/utils.ts.md) |   ↳ |  |
-| [`src/tools/FileReadTool/FileReadTool.ts`](/src/src/tools/FileReadTool/FileReadTool.ts.md) |   ↳ |  |
-| [`src/tools/FileReadTool/UI.tsx`](/src/src/tools/FileReadTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/FileReadTool/imageProcessor.ts`](/src/src/tools/FileReadTool/imageProcessor.ts.md) |   ↳ |  |
-| [`src/tools/FileReadTool/limits.ts`](/src/src/tools/FileReadTool/limits.ts.md) |   ↳ |  |
-| [`src/tools/FileReadTool/prompt.ts`](/src/src/tools/FileReadTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/FileWriteTool/FileWriteTool.ts`](/src/src/tools/FileWriteTool/FileWriteTool.ts.md) |   ↳ |  |
-| [`src/tools/FileWriteTool/UI.tsx`](/src/src/tools/FileWriteTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/FileWriteTool/prompt.ts`](/src/src/tools/FileWriteTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/GlobTool/GlobTool.ts`](/src/src/tools/GlobTool/GlobTool.ts.md) |   ↳ |  |
-| [`src/tools/GlobTool/UI.tsx`](/src/src/tools/GlobTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/GlobTool/prompt.ts`](/src/src/tools/GlobTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/GrepTool/GrepTool.ts`](/src/src/tools/GrepTool/GrepTool.ts.md) |   ↳ |  |
-| [`src/tools/GrepTool/UI.tsx`](/src/src/tools/GrepTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/GrepTool/prompt.ts`](/src/src/tools/GrepTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/LSPTool/LSPTool.ts`](/src/src/tools/LSPTool/LSPTool.ts.md) |   ↳ |  |
-| [`src/tools/LSPTool/UI.tsx`](/src/src/tools/LSPTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/LSPTool/formatters.ts`](/src/src/tools/LSPTool/formatters.ts.md) |   ↳ |  |
-| [`src/tools/LSPTool/prompt.ts`](/src/src/tools/LSPTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/LSPTool/schemas.ts`](/src/src/tools/LSPTool/schemas.ts.md) |   ↳ |  |
-| [`src/tools/LSPTool/symbolContext.ts`](/src/src/tools/LSPTool/symbolContext.ts.md) |   ↳ |  |
-| [`src/tools/ListMcpResourcesTool/ListMcpResourcesTool.ts`](/src/src/tools/ListMcpResourcesTool/ListMcpResourcesTool.ts.md) |   ↳ |  |
-| [`src/tools/ListMcpResourcesTool/UI.tsx`](/src/src/tools/ListMcpResourcesTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/ListMcpResourcesTool/prompt.ts`](/src/src/tools/ListMcpResourcesTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/MCPTool/MCPTool.ts`](/src/src/tools/MCPTool/MCPTool.ts.md) |   ↳ |  |
-| [`src/tools/MCPTool/UI.tsx`](/src/src/tools/MCPTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/MCPTool/classifyForCollapse.ts`](/src/src/tools/MCPTool/classifyForCollapse.ts.md) |   ↳ |  |
-| [`src/tools/MCPTool/prompt.ts`](/src/src/tools/MCPTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/McpAuthTool/McpAuthTool.ts`](/src/src/tools/McpAuthTool/McpAuthTool.ts.md) |   ↳ |  |
-| [`src/tools/MonitorTool/MonitorTool.ts`](/src/src/tools/MonitorTool/MonitorTool.ts.md) |   ↳ |  |
-| [`src/tools/NotebookEditTool/NotebookEditTool.ts`](/src/src/tools/NotebookEditTool/NotebookEditTool.ts.md) |   ↳ |  |
-| [`src/tools/NotebookEditTool/UI.tsx`](/src/src/tools/NotebookEditTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/NotebookEditTool/constants.ts`](/src/src/tools/NotebookEditTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/NotebookEditTool/prompt.ts`](/src/src/tools/NotebookEditTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/OverflowTestTool/OverflowTestTool.ts`](/src/src/tools/OverflowTestTool/OverflowTestTool.ts.md) |   ↳ |  |
-| [`src/tools/PowerShellTool/PowerShellTool.tsx`](/src/src/tools/PowerShellTool/PowerShellTool.tsx.md) |   ↳ |  |
-| [`src/tools/PowerShellTool/UI.tsx`](/src/src/tools/PowerShellTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/PowerShellTool/clmTypes.ts`](/src/src/tools/PowerShellTool/clmTypes.ts.md) |   ↳ |  |
-| [`src/tools/PowerShellTool/commandSemantics.ts`](/src/src/tools/PowerShellTool/commandSemantics.ts.md) |   ↳ |  |
-| [`src/tools/PowerShellTool/commonParameters.ts`](/src/src/tools/PowerShellTool/commonParameters.ts.md) |   ↳ |  |
-| [`src/tools/PowerShellTool/destructiveCommandWarning.ts`](/src/src/tools/PowerShellTool/destructiveCommandWarning.ts.md) |   ↳ |  |
-| [`src/tools/PowerShellTool/gitSafety.ts`](/src/src/tools/PowerShellTool/gitSafety.ts.md) |   ↳ |  |
-| [`src/tools/PowerShellTool/modeValidation.ts`](/src/src/tools/PowerShellTool/modeValidation.ts.md) |   ↳ |  |
-| [`src/tools/PowerShellTool/pathValidation.ts`](/src/src/tools/PowerShellTool/pathValidation.ts.md) |   ↳ |  |
-| [`src/tools/PowerShellTool/powershellPermissions.ts`](/src/src/tools/PowerShellTool/powershellPermissions.ts.md) |   ↳ |  |
-| [`src/tools/PowerShellTool/powershellSecurity.ts`](/src/src/tools/PowerShellTool/powershellSecurity.ts.md) |   ↳ |  |
-| [`src/tools/PowerShellTool/prompt.ts`](/src/src/tools/PowerShellTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/PowerShellTool/readOnlyValidation.ts`](/src/src/tools/PowerShellTool/readOnlyValidation.ts.md) |   ↳ |  |
-| [`src/tools/PowerShellTool/toolName.ts`](/src/src/tools/PowerShellTool/toolName.ts.md) |   ↳ |  |
-| [`src/tools/REPLTool/constants.ts`](/src/src/tools/REPLTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/REPLTool/primitiveTools.ts`](/src/src/tools/REPLTool/primitiveTools.ts.md) |   ↳ |  |
-| [`src/tools/ReadMcpResourceTool/ReadMcpResourceTool.ts`](/src/src/tools/ReadMcpResourceTool/ReadMcpResourceTool.ts.md) |   ↳ |  |
-| [`src/tools/ReadMcpResourceTool/UI.tsx`](/src/src/tools/ReadMcpResourceTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/ReadMcpResourceTool/prompt.ts`](/src/src/tools/ReadMcpResourceTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/RemoteTriggerTool/RemoteTriggerTool.ts`](/src/src/tools/RemoteTriggerTool/RemoteTriggerTool.ts.md) |   ↳ |  |
-| [`src/tools/RemoteTriggerTool/UI.tsx`](/src/src/tools/RemoteTriggerTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/RemoteTriggerTool/prompt.ts`](/src/src/tools/RemoteTriggerTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/ReviewArtifactTool/ReviewArtifactTool.ts`](/src/src/tools/ReviewArtifactTool/ReviewArtifactTool.ts.md) |   ↳ |  |
-| [`src/tools/ScheduleCronTool/CronCreateTool.ts`](/src/src/tools/ScheduleCronTool/CronCreateTool.ts.md) |   ↳ |  |
-| [`src/tools/ScheduleCronTool/CronDeleteTool.ts`](/src/src/tools/ScheduleCronTool/CronDeleteTool.ts.md) |   ↳ |  |
-| [`src/tools/ScheduleCronTool/CronListTool.ts`](/src/src/tools/ScheduleCronTool/CronListTool.ts.md) |   ↳ |  |
-| [`src/tools/ScheduleCronTool/UI.tsx`](/src/src/tools/ScheduleCronTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/ScheduleCronTool/prompt.ts`](/src/src/tools/ScheduleCronTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/SendMessageTool/SendMessageTool.ts`](/src/src/tools/SendMessageTool/SendMessageTool.ts.md) |   ↳ |  |
-| [`src/tools/SendMessageTool/UI.tsx`](/src/src/tools/SendMessageTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/SendMessageTool/constants.ts`](/src/src/tools/SendMessageTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/SendMessageTool/prompt.ts`](/src/src/tools/SendMessageTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/SendUserFileTool/prompt.ts`](/src/src/tools/SendUserFileTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/SkillTool/SkillTool.ts`](/src/src/tools/SkillTool/SkillTool.ts.md) |   ↳ |  |
-| [`src/tools/SkillTool/UI.tsx`](/src/src/tools/SkillTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/SkillTool/constants.ts`](/src/src/tools/SkillTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/SkillTool/prompt.ts`](/src/src/tools/SkillTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/SleepTool/prompt.ts`](/src/src/tools/SleepTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/SnipTool/prompt.ts`](/src/src/tools/SnipTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/SyntheticOutputTool/SyntheticOutputTool.ts`](/src/src/tools/SyntheticOutputTool/SyntheticOutputTool.ts.md) |   ↳ |  |
-| [`src/tools/TaskCreateTool/TaskCreateTool.ts`](/src/src/tools/TaskCreateTool/TaskCreateTool.ts.md) |   ↳ |  |
-| [`src/tools/TaskCreateTool/constants.ts`](/src/src/tools/TaskCreateTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/TaskCreateTool/prompt.ts`](/src/src/tools/TaskCreateTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/TaskGetTool/TaskGetTool.ts`](/src/src/tools/TaskGetTool/TaskGetTool.ts.md) |   ↳ |  |
-| [`src/tools/TaskGetTool/constants.ts`](/src/src/tools/TaskGetTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/TaskGetTool/prompt.ts`](/src/src/tools/TaskGetTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/TaskListTool/TaskListTool.ts`](/src/src/tools/TaskListTool/TaskListTool.ts.md) |   ↳ |  |
-| [`src/tools/TaskListTool/constants.ts`](/src/src/tools/TaskListTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/TaskListTool/prompt.ts`](/src/src/tools/TaskListTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/TaskOutputTool/TaskOutputTool.tsx`](/src/src/tools/TaskOutputTool/TaskOutputTool.tsx.md) |   ↳ |  |
-| [`src/tools/TaskOutputTool/constants.ts`](/src/src/tools/TaskOutputTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/TaskStopTool/TaskStopTool.ts`](/src/src/tools/TaskStopTool/TaskStopTool.ts.md) |   ↳ |  |
-| [`src/tools/TaskStopTool/UI.tsx`](/src/src/tools/TaskStopTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/TaskStopTool/prompt.ts`](/src/src/tools/TaskStopTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/TaskUpdateTool/TaskUpdateTool.ts`](/src/src/tools/TaskUpdateTool/TaskUpdateTool.ts.md) |   ↳ |  |
-| [`src/tools/TaskUpdateTool/constants.ts`](/src/src/tools/TaskUpdateTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/TaskUpdateTool/prompt.ts`](/src/src/tools/TaskUpdateTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/TeamCreateTool/TeamCreateTool.ts`](/src/src/tools/TeamCreateTool/TeamCreateTool.ts.md) |   ↳ |  |
-| [`src/tools/TeamCreateTool/UI.tsx`](/src/src/tools/TeamCreateTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/TeamCreateTool/constants.ts`](/src/src/tools/TeamCreateTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/TeamCreateTool/prompt.ts`](/src/src/tools/TeamCreateTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/TeamDeleteTool/TeamDeleteTool.ts`](/src/src/tools/TeamDeleteTool/TeamDeleteTool.ts.md) |   ↳ |  |
-| [`src/tools/TeamDeleteTool/UI.tsx`](/src/src/tools/TeamDeleteTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/TeamDeleteTool/constants.ts`](/src/src/tools/TeamDeleteTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/TeamDeleteTool/prompt.ts`](/src/src/tools/TeamDeleteTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/TerminalCaptureTool/prompt.ts`](/src/src/tools/TerminalCaptureTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/TodoWriteTool/TodoWriteTool.ts`](/src/src/tools/TodoWriteTool/TodoWriteTool.ts.md) |   ↳ |  |
-| [`src/tools/TodoWriteTool/constants.ts`](/src/src/tools/TodoWriteTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/TodoWriteTool/prompt.ts`](/src/src/tools/TodoWriteTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/ToolSearchTool/ToolSearchTool.ts`](/src/src/tools/ToolSearchTool/ToolSearchTool.ts.md) |   ↳ |  |
-| [`src/tools/ToolSearchTool/constants.ts`](/src/src/tools/ToolSearchTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/ToolSearchTool/prompt.ts`](/src/src/tools/ToolSearchTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/TungstenTool/TungstenLiveMonitor.tsx`](/src/src/tools/TungstenTool/TungstenLiveMonitor.tsx.md) |   ↳ |  |
-| [`src/tools/TungstenTool/TungstenTool.ts`](/src/src/tools/TungstenTool/TungstenTool.ts.md) |   ↳ |  |
-| [`src/tools/VerifyPlanExecutionTool/constants.ts`](/src/src/tools/VerifyPlanExecutionTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/WebBrowserTool/WebBrowserPanel.tsx`](/src/src/tools/WebBrowserTool/WebBrowserPanel.tsx.md) |   ↳ |  |
-| [`src/tools/WebFetchTool/UI.tsx`](/src/src/tools/WebFetchTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/WebFetchTool/WebFetchTool.ts`](/src/src/tools/WebFetchTool/WebFetchTool.ts.md) |   ↳ |  |
-| [`src/tools/WebFetchTool/preapproved.ts`](/src/src/tools/WebFetchTool/preapproved.ts.md) |   ↳ |  |
-| [`src/tools/WebFetchTool/prompt.ts`](/src/src/tools/WebFetchTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/WebFetchTool/utils.ts`](/src/src/tools/WebFetchTool/utils.ts.md) |   ↳ |  |
-| [`src/tools/WebSearchTool/UI.tsx`](/src/src/tools/WebSearchTool/UI.tsx.md) |   ↳ |  |
-| [`src/tools/WebSearchTool/WebSearchTool.ts`](/src/src/tools/WebSearchTool/WebSearchTool.ts.md) |   ↳ |  |
-| [`src/tools/WebSearchTool/prompt.ts`](/src/src/tools/WebSearchTool/prompt.ts.md) |   ↳ |  |
-| [`src/tools/WorkflowTool/WorkflowPermissionRequest.tsx`](/src/src/tools/WorkflowTool/WorkflowPermissionRequest.tsx.md) |   ↳ |  |
-| [`src/tools/WorkflowTool/WorkflowTool.ts`](/src/src/tools/WorkflowTool/WorkflowTool.ts.md) |   ↳ |  |
-| [`src/tools/WorkflowTool/constants.ts`](/src/src/tools/WorkflowTool/constants.ts.md) |   ↳ |  |
-| [`src/tools/WorkflowTool/createWorkflowCommand.ts`](/src/src/tools/WorkflowTool/createWorkflowCommand.ts.md) |   ↳ |  |
-| [`src/tools/shared/gitOperationTracking.ts`](/src/src/tools/shared/gitOperationTracking.ts.md) |   ↳ |  |
-| [`src/tools/shared/spawnMultiAgent.ts`](/src/src/tools/shared/spawnMultiAgent.ts.md) |   ↳ |  |
-| [`src/tools/testing/TestingPermissionTool.tsx`](/src/src/tools/testing/TestingPermissionTool.tsx.md) |   ↳ |  |
-| [`src/tools/utils.ts`](/src/src/tools/utils.ts.md) |   ↳ |  |
-| [`src/utils/toolResultStorage.ts`](/src/src/utils/toolResultStorage.ts.md) |   ↳ |  |
-
-### ML-04-1
-
-**主线**: ML-04-1 · 1 tasks · 22 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/migrations/migrateBypassPermissionsAcceptedToSettings.ts`](/src/src/migrations/migrateBypassPermissionsAcceptedToSettings.ts.md) |   ↳ |  |
-| [`src/remote/remotePermissionBridge.ts`](/src/src/remote/remotePermissionBridge.ts.md) |   ↳ |  |
-| [`src/services/mcp/channelPermissions.ts`](/src/src/services/mcp/channelPermissions.ts.md) |   ↳ |  |
-| [`src/services/tools/toolHooks.ts`](/src/src/services/tools/toolHooks.ts.md) |   ↳ |  |
-| [`src/utils/permissions/PermissionMode.ts`](/src/src/utils/permissions/PermissionMode.ts.md) |   ↳ |  |
-| [`src/utils/permissions/PermissionPromptToolResultSchema.ts`](/src/src/utils/permissions/PermissionPromptToolResultSchema.ts.md) |   ↳ |  |
-| [`src/utils/permissions/PermissionResult.ts`](/src/src/utils/permissions/PermissionResult.ts.md) |   ↳ |  |
-| [`src/utils/permissions/PermissionRule.ts`](/src/src/utils/permissions/PermissionRule.ts.md) |   ↳ |  |
-| [`src/utils/permissions/PermissionUpdate.ts`](/src/src/utils/permissions/PermissionUpdate.ts.md) |   ↳ |  |
-| [`src/utils/permissions/PermissionUpdateSchema.ts`](/src/src/utils/permissions/PermissionUpdateSchema.ts.md) |   ↳ |  |
-| [`src/utils/permissions/autoModeState.ts`](/src/src/utils/permissions/autoModeState.ts.md) |   ↳ |  |
-| [`src/utils/permissions/bypassPermissionsKillswitch.ts`](/src/src/utils/permissions/bypassPermissionsKillswitch.ts.md) |   ↳ |  |
-| [`src/utils/permissions/classifierDecision.ts`](/src/src/utils/permissions/classifierDecision.ts.md) |   ↳ |  |
-| [`src/utils/permissions/denialTracking.ts`](/src/src/utils/permissions/denialTracking.ts.md) |   ↳ |  |
-| [`src/utils/permissions/getNextPermissionMode.ts`](/src/src/utils/permissions/getNextPermissionMode.ts.md) |   ↳ |  |
-| [`src/utils/permissions/pathValidation.ts`](/src/src/utils/permissions/pathValidation.ts.md) |   ↳ |  |
-| [`src/utils/permissions/permissionExplainer.ts`](/src/src/utils/permissions/permissionExplainer.ts.md) |   ↳ |  |
-| [`src/utils/permissions/permissionRuleParser.ts`](/src/src/utils/permissions/permissionRuleParser.ts.md) |   ↳ |  |
-| [`src/utils/permissions/permissions.ts`](/src/src/utils/permissions/permissions.ts.md) |   ↳ |  |
-| [`src/utils/permissions/permissionsLoader.ts`](/src/src/utils/permissions/permissionsLoader.ts.md) |   ↳ |  |
-| [`src/utils/permissions/shadowedRuleDetection.ts`](/src/src/utils/permissions/shadowedRuleDetection.ts.md) |   ↳ |  |
-| [`src/utils/permissions/shellRuleMatching.ts`](/src/src/utils/permissions/shellRuleMatching.ts.md) |   ↳ |  |
-
-### ML-04-2
-
-**主线**: ML-04-2 · 1 tasks · 62 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/components/permissions/AskUserQuestionPermissionRequest/AskUserQuestionPermissionRequest.tsx`](/src/src/components/permissions/AskUserQuestionPermissionRequest/AskUserQuestionPermissionRequest.tsx.md) |   ↳ |  |
-| [`src/components/permissions/AskUserQuestionPermissionRequest/PreviewBox.tsx`](/src/src/components/permissions/AskUserQuestionPermissionRequest/PreviewBox.tsx.md) |   ↳ |  |
-| [`src/components/permissions/AskUserQuestionPermissionRequest/PreviewQuestionView.tsx`](/src/src/components/permissions/AskUserQuestionPermissionRequest/PreviewQuestionView.tsx.md) |   ↳ |  |
-| [`src/components/permissions/AskUserQuestionPermissionRequest/QuestionNavigationBar.tsx`](/src/src/components/permissions/AskUserQuestionPermissionRequest/QuestionNavigationBar.tsx.md) |   ↳ |  |
-| [`src/components/permissions/AskUserQuestionPermissionRequest/QuestionView.tsx`](/src/src/components/permissions/AskUserQuestionPermissionRequest/QuestionView.tsx.md) |   ↳ |  |
-| [`src/components/permissions/AskUserQuestionPermissionRequest/SubmitQuestionsView.tsx`](/src/src/components/permissions/AskUserQuestionPermissionRequest/SubmitQuestionsView.tsx.md) |   ↳ |  |
-| [`src/components/permissions/AskUserQuestionPermissionRequest/use-multiple-choice-state.ts`](/src/src/components/permissions/AskUserQuestionPermissionRequest/use-multiple-choice-state.ts.md) |   ↳ |  |
-| [`src/components/permissions/BashPermissionRequest/BashPermissionRequest.tsx`](/src/src/components/permissions/BashPermissionRequest/BashPermissionRequest.tsx.md) |   ↳ |  |
-| [`src/components/permissions/BashPermissionRequest/bashToolUseOptions.tsx`](/src/src/components/permissions/BashPermissionRequest/bashToolUseOptions.tsx.md) |   ↳ |  |
-| [`src/components/permissions/ComputerUseApproval/ComputerUseApproval.tsx`](/src/src/components/permissions/ComputerUseApproval/ComputerUseApproval.tsx.md) |   ↳ |  |
-| [`src/components/permissions/EnterPlanModePermissionRequest/EnterPlanModePermissionRequest.tsx`](/src/src/components/permissions/EnterPlanModePermissionRequest/EnterPlanModePermissionRequest.tsx.md) |   ↳ |  |
-| [`src/components/permissions/ExitPlanModePermissionRequest/ExitPlanModePermissionRequest.tsx`](/src/src/components/permissions/ExitPlanModePermissionRequest/ExitPlanModePermissionRequest.tsx.md) |   ↳ |  |
-| [`src/components/permissions/FallbackPermissionRequest.tsx`](/src/src/components/permissions/FallbackPermissionRequest.tsx.md) |   ↳ |  |
-| [`src/components/permissions/FileEditPermissionRequest/FileEditPermissionRequest.tsx`](/src/src/components/permissions/FileEditPermissionRequest/FileEditPermissionRequest.tsx.md) |   ↳ |  |
-| [`src/components/permissions/FilePermissionDialog/FilePermissionDialog.tsx`](/src/src/components/permissions/FilePermissionDialog/FilePermissionDialog.tsx.md) |   ↳ |  |
-| [`src/components/permissions/FilePermissionDialog/ideDiffConfig.ts`](/src/src/components/permissions/FilePermissionDialog/ideDiffConfig.ts.md) |   ↳ |  |
-| [`src/components/permissions/FilePermissionDialog/permissionOptions.tsx`](/src/src/components/permissions/FilePermissionDialog/permissionOptions.tsx.md) |   ↳ |  |
-| [`src/components/permissions/FilePermissionDialog/useFilePermissionDialog.ts`](/src/src/components/permissions/FilePermissionDialog/useFilePermissionDialog.ts.md) |   ↳ |  |
-| [`src/components/permissions/FilePermissionDialog/usePermissionHandler.ts`](/src/src/components/permissions/FilePermissionDialog/usePermissionHandler.ts.md) |   ↳ |  |
-| [`src/components/permissions/FileWritePermissionRequest/FileWritePermissionRequest.tsx`](/src/src/components/permissions/FileWritePermissionRequest/FileWritePermissionRequest.tsx.md) |   ↳ |  |
-| [`src/components/permissions/FileWritePermissionRequest/FileWriteToolDiff.tsx`](/src/src/components/permissions/FileWritePermissionRequest/FileWriteToolDiff.tsx.md) |   ↳ |  |
-| [`src/components/permissions/FilesystemPermissionRequest/FilesystemPermissionRequest.tsx`](/src/src/components/permissions/FilesystemPermissionRequest/FilesystemPermissionRequest.tsx.md) |   ↳ |  |
-| [`src/components/permissions/MonitorPermissionRequest/MonitorPermissionRequest.tsx`](/src/src/components/permissions/MonitorPermissionRequest/MonitorPermissionRequest.tsx.md) |   ↳ |  |
-| [`src/components/permissions/NotebookEditPermissionRequest/NotebookEditPermissionRequest.tsx`](/src/src/components/permissions/NotebookEditPermissionRequest/NotebookEditPermissionRequest.tsx.md) |   ↳ |  |
-| [`src/components/permissions/NotebookEditPermissionRequest/NotebookEditToolDiff.tsx`](/src/src/components/permissions/NotebookEditPermissionRequest/NotebookEditToolDiff.tsx.md) |   ↳ |  |
-| [`src/components/permissions/PermissionDecisionDebugInfo.tsx`](/src/src/components/permissions/PermissionDecisionDebugInfo.tsx.md) |   ↳ |  |
-| [`src/components/permissions/PermissionDialog.tsx`](/src/src/components/permissions/PermissionDialog.tsx.md) |   ↳ |  |
-| [`src/components/permissions/PermissionExplanation.tsx`](/src/src/components/permissions/PermissionExplanation.tsx.md) |   ↳ |  |
-| [`src/components/permissions/PermissionPrompt.tsx`](/src/src/components/permissions/PermissionPrompt.tsx.md) |   ↳ |  |
-| [`src/components/permissions/PermissionRequest.tsx`](/src/src/components/permissions/PermissionRequest.tsx.md) |   ↳ |  |
-| [`src/components/permissions/PermissionRequestTitle.tsx`](/src/src/components/permissions/PermissionRequestTitle.tsx.md) |   ↳ |  |
-| [`src/components/permissions/PermissionRuleExplanation.tsx`](/src/src/components/permissions/PermissionRuleExplanation.tsx.md) |   ↳ |  |
-| [`src/components/permissions/PowerShellPermissionRequest/PowerShellPermissionRequest.tsx`](/src/src/components/permissions/PowerShellPermissionRequest/PowerShellPermissionRequest.tsx.md) |   ↳ |  |
-| [`src/components/permissions/PowerShellPermissionRequest/powershellToolUseOptions.tsx`](/src/src/components/permissions/PowerShellPermissionRequest/powershellToolUseOptions.tsx.md) |   ↳ |  |
-| [`src/components/permissions/ReviewArtifactPermissionRequest/ReviewArtifactPermissionRequest.tsx`](/src/src/components/permissions/ReviewArtifactPermissionRequest/ReviewArtifactPermissionRequest.tsx.md) |   ↳ |  |
-| [`src/components/permissions/SandboxPermissionRequest.tsx`](/src/src/components/permissions/SandboxPermissionRequest.tsx.md) |   ↳ |  |
-| [`src/components/permissions/SedEditPermissionRequest/SedEditPermissionRequest.tsx`](/src/src/components/permissions/SedEditPermissionRequest/SedEditPermissionRequest.tsx.md) |   ↳ |  |
-| [`src/components/permissions/SkillPermissionRequest/SkillPermissionRequest.tsx`](/src/src/components/permissions/SkillPermissionRequest/SkillPermissionRequest.tsx.md) |   ↳ |  |
-| [`src/components/permissions/WebFetchPermissionRequest/WebFetchPermissionRequest.tsx`](/src/src/components/permissions/WebFetchPermissionRequest/WebFetchPermissionRequest.tsx.md) |   ↳ |  |
-| [`src/components/permissions/WorkerBadge.tsx`](/src/src/components/permissions/WorkerBadge.tsx.md) |   ↳ |  |
-| [`src/components/permissions/WorkerPendingPermission.tsx`](/src/src/components/permissions/WorkerPendingPermission.tsx.md) |   ↳ |  |
-| [`src/components/permissions/hooks.ts`](/src/src/components/permissions/hooks.ts.md) |   ↳ |  |
-| [`src/components/permissions/rules/AddPermissionRules.tsx`](/src/src/components/permissions/rules/AddPermissionRules.tsx.md) |   ↳ |  |
-| [`src/components/permissions/rules/AddWorkspaceDirectory.tsx`](/src/src/components/permissions/rules/AddWorkspaceDirectory.tsx.md) |   ↳ |  |
-| [`src/components/permissions/rules/PermissionRuleDescription.tsx`](/src/src/components/permissions/rules/PermissionRuleDescription.tsx.md) |   ↳ |  |
-| [`src/components/permissions/rules/PermissionRuleInput.tsx`](/src/src/components/permissions/rules/PermissionRuleInput.tsx.md) |   ↳ |  |
-| [`src/components/permissions/rules/PermissionRuleList.tsx`](/src/src/components/permissions/rules/PermissionRuleList.tsx.md) |   ↳ |  |
-| [`src/components/permissions/rules/RecentDenialsTab.tsx`](/src/src/components/permissions/rules/RecentDenialsTab.tsx.md) |   ↳ |  |
-| [`src/components/permissions/rules/RemoveWorkspaceDirectory.tsx`](/src/src/components/permissions/rules/RemoveWorkspaceDirectory.tsx.md) |   ↳ |  |
-| [`src/components/permissions/rules/WorkspaceTab.tsx`](/src/src/components/permissions/rules/WorkspaceTab.tsx.md) |   ↳ |  |
-| [`src/components/permissions/shellPermissionHelpers.tsx`](/src/src/components/permissions/shellPermissionHelpers.tsx.md) |   ↳ |  |
-| [`src/components/permissions/useShellPermissionFeedback.ts`](/src/src/components/permissions/useShellPermissionFeedback.ts.md) |   ↳ |  |
-| [`src/components/permissions/utils.ts`](/src/src/components/permissions/utils.ts.md) |   ↳ |  |
-| [`src/utils/permissions/bashClassifier.ts`](/src/src/utils/permissions/bashClassifier.ts.md) |   ↳ |  |
-| [`src/utils/permissions/classifierShared.ts`](/src/src/utils/permissions/classifierShared.ts.md) |   ↳ |  |
-| [`src/utils/permissions/dangerousPatterns.ts`](/src/src/utils/permissions/dangerousPatterns.ts.md) |   ↳ |  |
-| [`src/utils/permissions/filesystem.ts`](/src/src/utils/permissions/filesystem.ts.md) |   ↳ |  |
-| [`src/utils/permissions/permissionSetup.ts`](/src/src/utils/permissions/permissionSetup.ts.md) |   ↳ |  |
-| [`src/utils/permissions/yolo-classifier-prompts/auto_mode_system_prompt.txt`](/src/src/utils/permissions/yolo-classifier-prompts/auto_mode_system_prompt.txt.md) |   ↳ |  |
-| [`src/utils/permissions/yolo-classifier-prompts/permissions_anthropic.txt`](/src/src/utils/permissions/yolo-classifier-prompts/permissions_anthropic.txt.md) |   ↳ |  |
-| [`src/utils/permissions/yolo-classifier-prompts/permissions_external.txt`](/src/src/utils/permissions/yolo-classifier-prompts/permissions_external.txt.md) |   ↳ |  |
-| [`src/utils/permissions/yoloClassifier.ts`](/src/src/utils/permissions/yoloClassifier.ts.md) |   ↳ |  |
-
-### ML-05
-
-**主线**: ML-05 · 1 tasks · 73 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/components/mcp/CapabilitiesSection.tsx`](/src/src/components/mcp/CapabilitiesSection.tsx.md) |   ↳ |  |
-| [`src/components/mcp/MCPAgentServerMenu.tsx`](/src/src/components/mcp/MCPAgentServerMenu.tsx.md) |   ↳ |  |
-| [`src/components/mcp/MCPListPanel.tsx`](/src/src/components/mcp/MCPListPanel.tsx.md) |   ↳ |  |
-| [`src/components/mcp/MCPReconnect.tsx`](/src/src/components/mcp/MCPReconnect.tsx.md) |   ↳ |  |
-| [`src/components/mcp/MCPRemoteServerMenu.tsx`](/src/src/components/mcp/MCPRemoteServerMenu.tsx.md) |   ↳ |  |
-| [`src/components/mcp/MCPSettings.tsx`](/src/src/components/mcp/MCPSettings.tsx.md) |   ↳ |  |
-| [`src/components/mcp/MCPStdioServerMenu.tsx`](/src/src/components/mcp/MCPStdioServerMenu.tsx.md) |   ↳ |  |
-| [`src/components/mcp/MCPToolDetailView.tsx`](/src/src/components/mcp/MCPToolDetailView.tsx.md) |   ↳ |  |
-| [`src/components/mcp/MCPToolListView.tsx`](/src/src/components/mcp/MCPToolListView.tsx.md) |   ↳ |  |
-| [`src/components/mcp/McpParsingWarnings.tsx`](/src/src/components/mcp/McpParsingWarnings.tsx.md) |   ↳ |  |
-| [`src/components/mcp/index.ts`](/src/src/components/mcp/index.ts.md) |   ↳ |  |
-| [`src/components/mcp/types.ts`](/src/src/components/mcp/types.ts.md) |   ↳ |  |
-| [`src/components/mcp/utils/reconnectHelpers.tsx`](/src/src/components/mcp/utils/reconnectHelpers.tsx.md) |   ↳ |  |
-| [`src/services/AgentSummary/agentSummary.ts`](/src/src/services/AgentSummary/agentSummary.ts.md) |   ↳ |  |
-| [`src/services/MagicDocs/magicDocs.ts`](/src/src/services/MagicDocs/magicDocs.ts.md) |   ↳ |  |
-| [`src/services/MagicDocs/prompts.ts`](/src/src/services/MagicDocs/prompts.ts.md) |   ↳ |  |
-| [`src/services/PromptSuggestion/promptSuggestion.ts`](/src/src/services/PromptSuggestion/promptSuggestion.ts.md) |   ↳ |  |
-| [`src/services/PromptSuggestion/speculation.ts`](/src/src/services/PromptSuggestion/speculation.ts.md) |   ↳ |  |
-| [`src/services/analytics/config.ts`](/src/src/services/analytics/config.ts.md) |   ↳ |  |
-| [`src/services/analytics/datadog.ts`](/src/src/services/analytics/datadog.ts.md) |   ↳ |  |
-| [`src/services/analytics/firstPartyEventLogger.ts`](/src/src/services/analytics/firstPartyEventLogger.ts.md) |   ↳ |  |
-| [`src/services/analytics/firstPartyEventLoggingExporter.ts`](/src/src/services/analytics/firstPartyEventLoggingExporter.ts.md) |   ↳ |  |
-| [`src/services/analytics/index.ts`](/src/src/services/analytics/index.ts.md) |   ↳ |  |
-| [`src/services/analytics/metadata.ts`](/src/src/services/analytics/metadata.ts.md) |   ↳ |  |
-| [`src/services/analytics/sink.ts`](/src/src/services/analytics/sink.ts.md) |   ↳ |  |
-| [`src/services/analytics/sinkKillswitch.ts`](/src/src/services/analytics/sinkKillswitch.ts.md) |   ↳ |  |
-| [`src/services/autoDream/autoDream.ts`](/src/src/services/autoDream/autoDream.ts.md) |   ↳ |  |
-| [`src/services/autoDream/config.ts`](/src/src/services/autoDream/config.ts.md) |   ↳ |  |
-| [`src/services/autoDream/consolidationLock.ts`](/src/src/services/autoDream/consolidationLock.ts.md) |   ↳ |  |
-| [`src/services/autoDream/consolidationPrompt.ts`](/src/src/services/autoDream/consolidationPrompt.ts.md) |   ↳ |  |
-| [`src/services/awaySummary.ts`](/src/src/services/awaySummary.ts.md) |   ↳ |  |
-| [`src/services/claudeAiLimitsHook.ts`](/src/src/services/claudeAiLimitsHook.ts.md) |   ↳ |  |
-| [`src/services/diagnosticTracking.ts`](/src/src/services/diagnosticTracking.ts.md) |   ↳ |  |
-| [`src/services/extractMemories/extractMemories.ts`](/src/src/services/extractMemories/extractMemories.ts.md) |   ↳ |  |
-| [`src/services/extractMemories/prompts.ts`](/src/src/services/extractMemories/prompts.ts.md) |   ↳ |  |
-| [`src/services/internalLogging.ts`](/src/src/services/internalLogging.ts.md) |   ↳ |  |
-| [`src/services/lsp/LSPClient.ts`](/src/src/services/lsp/LSPClient.ts.md) |   ↳ |  |
-| [`src/services/lsp/LSPDiagnosticRegistry.ts`](/src/src/services/lsp/LSPDiagnosticRegistry.ts.md) |   ↳ |  |
-| [`src/services/lsp/LSPServerInstance.ts`](/src/src/services/lsp/LSPServerInstance.ts.md) |   ↳ |  |
-| [`src/services/lsp/LSPServerManager.ts`](/src/src/services/lsp/LSPServerManager.ts.md) |   ↳ |  |
-| [`src/services/lsp/config.ts`](/src/src/services/lsp/config.ts.md) |   ↳ |  |
-| [`src/services/lsp/manager.ts`](/src/src/services/lsp/manager.ts.md) |   ↳ |  |
-| [`src/services/lsp/passiveFeedback.ts`](/src/src/services/lsp/passiveFeedback.ts.md) |   ↳ |  |
-| [`src/services/lsp/types.ts`](/src/src/services/lsp/types.ts.md) |   ↳ |  |
-| [`src/services/mcpServerApproval.tsx`](/src/src/services/mcpServerApproval.tsx.md) |   ↳ |  |
-| [`src/services/notifier.ts`](/src/src/services/notifier.ts.md) |   ↳ |  |
-| [`src/services/preventSleep.ts`](/src/src/services/preventSleep.ts.md) |   ↳ |  |
-| [`src/services/rateLimitMessages.ts`](/src/src/services/rateLimitMessages.ts.md) |   ↳ |  |
-| [`src/services/rateLimitMocking.ts`](/src/src/services/rateLimitMocking.ts.md) |   ↳ |  |
-| [`src/services/remoteManagedSettings/securityCheck.tsx`](/src/src/services/remoteManagedSettings/securityCheck.tsx.md) |   ↳ |  |
-| [`src/services/settingsSync/index.ts`](/src/src/services/settingsSync/index.ts.md) |   ↳ |  |
-| [`src/services/settingsSync/types.ts`](/src/src/services/settingsSync/types.ts.md) |   ↳ |  |
-| [`src/services/skillSearch/featureCheck.ts`](/src/src/services/skillSearch/featureCheck.ts.md) |   ↳ |  |
-| [`src/services/skillSearch/localSearch.ts`](/src/src/services/skillSearch/localSearch.ts.md) |   ↳ |  |
-| [`src/services/skillSearch/prefetch.ts`](/src/src/services/skillSearch/prefetch.ts.md) |   ↳ |  |
-| [`src/services/skillSearch/remoteSkillLoader.ts`](/src/src/services/skillSearch/remoteSkillLoader.ts.md) |   ↳ |  |
-| [`src/services/skillSearch/remoteSkillState.ts`](/src/src/services/skillSearch/remoteSkillState.ts.md) |   ↳ |  |
-| [`src/services/skillSearch/signals.ts`](/src/src/services/skillSearch/signals.ts.md) |   ↳ |  |
-| [`src/services/skillSearch/telemetry.ts`](/src/src/services/skillSearch/telemetry.ts.md) |   ↳ |  |
-| [`src/services/teamMemorySync/index.ts`](/src/src/services/teamMemorySync/index.ts.md) |   ↳ |  |
-| [`src/services/teamMemorySync/secretScanner.ts`](/src/src/services/teamMemorySync/secretScanner.ts.md) |   ↳ |  |
-| [`src/services/teamMemorySync/teamMemSecretGuard.ts`](/src/src/services/teamMemorySync/teamMemSecretGuard.ts.md) |   ↳ |  |
-| [`src/services/teamMemorySync/types.ts`](/src/src/services/teamMemorySync/types.ts.md) |   ↳ |  |
-| [`src/services/teamMemorySync/watcher.ts`](/src/src/services/teamMemorySync/watcher.ts.md) |   ↳ |  |
-| [`src/services/tips/tipHistory.ts`](/src/src/services/tips/tipHistory.ts.md) |   ↳ |  |
-| [`src/services/tips/tipRegistry.ts`](/src/src/services/tips/tipRegistry.ts.md) |   ↳ |  |
-| [`src/services/tips/tipScheduler.ts`](/src/src/services/tips/tipScheduler.ts.md) |   ↳ |  |
-| [`src/services/tips/types.ts`](/src/src/services/tips/types.ts.md) |   ↳ |  |
-| [`src/services/toolUseSummary/toolUseSummaryGenerator.ts`](/src/src/services/toolUseSummary/toolUseSummaryGenerator.ts.md) |   ↳ |  |
-| [`src/services/vcr.ts`](/src/src/services/vcr.ts.md) |   ↳ |  |
-| [`src/services/voice.ts`](/src/src/services/voice.ts.md) |   ↳ |  |
-| [`src/services/voiceKeyterms.ts`](/src/src/services/voiceKeyterms.ts.md) |   ↳ |  |
-| [`src/services/voiceStreamSTT.ts`](/src/src/services/voiceStreamSTT.ts.md) |   ↳ |  |
-
-### ML-05-1
-
-**主线**: ML-05-1 · 1 tasks · 9 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/services/mcp/MCPConnectionManager.tsx`](/src/src/services/mcp/MCPConnectionManager.tsx.md) |   ↳ |  |
-| [`src/services/mcp/claudeai.ts`](/src/src/services/mcp/claudeai.ts.md) |   ↳ |  |
-| [`src/services/mcp/config.ts`](/src/src/services/mcp/config.ts.md) |   ↳ |  |
-| [`src/services/mcp/envExpansion.ts`](/src/src/services/mcp/envExpansion.ts.md) |   ↳ |  |
-| [`src/services/mcp/mcpStringUtils.ts`](/src/src/services/mcp/mcpStringUtils.ts.md) |   ↳ |  |
-| [`src/services/mcp/normalization.ts`](/src/src/services/mcp/normalization.ts.md) |   ↳ |  |
-| [`src/services/mcp/officialRegistry.ts`](/src/src/services/mcp/officialRegistry.ts.md) |   ↳ |  |
-| [`src/services/mcp/types.ts`](/src/src/services/mcp/types.ts.md) |   ↳ |  |
-| [`src/services/mcp/useManageMCPConnections.ts`](/src/src/services/mcp/useManageMCPConnections.ts.md) |   ↳ |  |
-
-### ML-05-2
-
-**主线**: ML-05-2 · 1 tasks · 10 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/services/mcp/InProcessTransport.ts`](/src/src/services/mcp/InProcessTransport.ts.md) |   ↳ |  |
-| [`src/services/mcp/SdkControlTransport.ts`](/src/src/services/mcp/SdkControlTransport.ts.md) |   ↳ |  |
-| [`src/services/mcp/auth.ts`](/src/src/services/mcp/auth.ts.md) |   ↳ |  |
-| [`src/services/mcp/client.ts`](/src/src/services/mcp/client.ts.md) |   ↳ |  |
-| [`src/services/mcp/elicitationHandler.ts`](/src/src/services/mcp/elicitationHandler.ts.md) |   ↳ |  |
-| [`src/services/mcp/headersHelper.ts`](/src/src/services/mcp/headersHelper.ts.md) |   ↳ |  |
-| [`src/services/mcp/oauthPort.ts`](/src/src/services/mcp/oauthPort.ts.md) |   ↳ |  |
-| [`src/services/mcp/utils.ts`](/src/src/services/mcp/utils.ts.md) |   ↳ |  |
-| [`src/services/mcp/xaa.ts`](/src/src/services/mcp/xaa.ts.md) |   ↳ |  |
-| [`src/services/mcp/xaaIdpLogin.ts`](/src/src/services/mcp/xaaIdpLogin.ts.md) |   ↳ |  |
-
-### ML-05-3
-
-**主线**: ML-05-3 · 1 tasks · 3 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/services/mcp/channelAllowlist.ts`](/src/src/services/mcp/channelAllowlist.ts.md) |   ↳ |  |
-| [`src/services/mcp/channelNotification.ts`](/src/src/services/mcp/channelNotification.ts.md) |   ↳ |  |
-| [`src/services/mcp/vscodeSdkMcp.ts`](/src/src/services/mcp/vscodeSdkMcp.ts.md) |   ↳ |  |
-
-### ML-06
-
-**主线**: ML-06 · 1 tasks · 40 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/cli/handlers/auth.ts`](/src/src/cli/handlers/auth.ts.md) |   ↳ |  |
-| [`src/components/ConsoleOAuthFlow.tsx`](/src/src/components/ConsoleOAuthFlow.tsx.md) |   ↳ |  |
-| [`src/constants/oauth.ts`](/src/src/constants/oauth.ts.md) |   ↳ |  |
-| [`src/services/analytics/growthbook.ts`](/src/src/services/analytics/growthbook.ts.md) |   ↳ |  |
-| [`src/services/api/bootstrap.ts`](/src/src/services/api/bootstrap.ts.md) |   ↳ |  |
-| [`src/services/mockRateLimits.ts`](/src/src/services/mockRateLimits.ts.md) |   ↳ |  |
-| [`src/services/oauth/auth-code-listener.ts`](/src/src/services/oauth/auth-code-listener.ts.md) |   ↳ |  |
-| [`src/services/oauth/client.ts`](/src/src/services/oauth/client.ts.md) |   ↳ |  |
-| [`src/services/oauth/crypto.ts`](/src/src/services/oauth/crypto.ts.md) |   ↳ |  |
-| [`src/services/oauth/getOauthProfile.ts`](/src/src/services/oauth/getOauthProfile.ts.md) |   ↳ |  |
-| [`src/services/oauth/index.ts`](/src/src/services/oauth/index.ts.md) |   ↳ |  |
-| [`src/services/oauth/types.ts`](/src/src/services/oauth/types.ts.md) |   ↳ |  |
-| [`src/services/policyLimits/index.ts`](/src/src/services/policyLimits/index.ts.md) |   ↳ |  |
-| [`src/services/policyLimits/types.ts`](/src/src/services/policyLimits/types.ts.md) |   ↳ |  |
-| [`src/services/remoteManagedSettings/index.ts`](/src/src/services/remoteManagedSettings/index.ts.md) |   ↳ |  |
-| [`src/services/remoteManagedSettings/syncCache.ts`](/src/src/services/remoteManagedSettings/syncCache.ts.md) |   ↳ |  |
-| [`src/services/remoteManagedSettings/syncCacheState.ts`](/src/src/services/remoteManagedSettings/syncCacheState.ts.md) |   ↳ |  |
-| [`src/services/remoteManagedSettings/types.ts`](/src/src/services/remoteManagedSettings/types.ts.md) |   ↳ |  |
-| [`src/utils/auth.ts`](/src/src/utils/auth.ts.md) |   ↳ |  |
-| [`src/utils/aws.ts`](/src/src/utils/aws.ts.md) |   ↳ |  |
-| [`src/utils/awsAuthStatusManager.ts`](/src/src/utils/awsAuthStatusManager.ts.md) |   ↳ |  |
-| [`src/utils/execFileNoThrow.ts`](/src/src/utils/execFileNoThrow.ts.md) |   ↳ |  |
-| [`src/utils/http.ts`](/src/src/utils/http.ts.md) |   ↳ |  |
-| [`src/utils/secureStorage/fallbackStorage.ts`](/src/src/utils/secureStorage/fallbackStorage.ts.md) |   ↳ |  |
-| [`src/utils/secureStorage/index.ts`](/src/src/utils/secureStorage/index.ts.md) |   ↳ |  |
-| [`src/utils/secureStorage/keychainPrefetch.ts`](/src/src/utils/secureStorage/keychainPrefetch.ts.md) |   ↳ |  |
-| [`src/utils/secureStorage/macOsKeychainHelpers.ts`](/src/src/utils/secureStorage/macOsKeychainHelpers.ts.md) |   ↳ |  |
-| [`src/utils/secureStorage/macOsKeychainStorage.ts`](/src/src/utils/secureStorage/macOsKeychainStorage.ts.md) |   ↳ |  |
-| [`src/utils/secureStorage/plainTextStorage.ts`](/src/src/utils/secureStorage/plainTextStorage.ts.md) |   ↳ |  |
-| [`src/utils/secureStorage/types.ts`](/src/src/utils/secureStorage/types.ts.md) |   ↳ |  |
-| [`src/utils/telemetry/betaSessionTracing.ts`](/src/src/utils/telemetry/betaSessionTracing.ts.md) |   ↳ |  |
-| [`src/utils/telemetry/bigqueryExporter.ts`](/src/src/utils/telemetry/bigqueryExporter.ts.md) |   ↳ |  |
-| [`src/utils/telemetry/events.ts`](/src/src/utils/telemetry/events.ts.md) |   ↳ |  |
-| [`src/utils/telemetry/instrumentation.ts`](/src/src/utils/telemetry/instrumentation.ts.md) |   ↳ |  |
-| [`src/utils/telemetry/logger.ts`](/src/src/utils/telemetry/logger.ts.md) |   ↳ |  |
-| [`src/utils/telemetry/perfettoTracing.ts`](/src/src/utils/telemetry/perfettoTracing.ts.md) |   ↳ |  |
-| [`src/utils/telemetry/pluginTelemetry.ts`](/src/src/utils/telemetry/pluginTelemetry.ts.md) |   ↳ |  |
-| [`src/utils/telemetry/sessionTracing.ts`](/src/src/utils/telemetry/sessionTracing.ts.md) |   ↳ |  |
-| [`src/utils/telemetry/skillLoadedEvent.ts`](/src/src/utils/telemetry/skillLoadedEvent.ts.md) |   ↳ |  |
-| [`src/utils/telemetryAttributes.ts`](/src/src/utils/telemetryAttributes.ts.md) |   ↳ |  |
-
-### ML-07
-
-**主线**: ML-07 · 1 tasks · 285 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/buddy/sprites.ts`](/src/src/buddy/sprites.ts.md) |   ↳ |  |
-| [`src/components/AgentProgressLine.tsx`](/src/src/components/AgentProgressLine.tsx.md) |   ↳ |  |
-| [`src/components/App.tsx`](/src/src/components/App.tsx.md) |   ↳ |  |
-| [`src/components/ApproveApiKey.tsx`](/src/src/components/ApproveApiKey.tsx.md) |   ↳ |  |
-| [`src/components/AutoModeOptInDialog.tsx`](/src/src/components/AutoModeOptInDialog.tsx.md) |   ↳ |  |
-| [`src/components/AutoUpdater.tsx`](/src/src/components/AutoUpdater.tsx.md) |   ↳ |  |
-| [`src/components/AutoUpdaterWrapper.tsx`](/src/src/components/AutoUpdaterWrapper.tsx.md) |   ↳ |  |
-| [`src/components/BaseTextInput.tsx`](/src/src/components/BaseTextInput.tsx.md) |   ↳ |  |
-| [`src/components/BashModeProgress.tsx`](/src/src/components/BashModeProgress.tsx.md) |   ↳ |  |
-| [`src/components/BridgeDialog.tsx`](/src/src/components/BridgeDialog.tsx.md) |   ↳ |  |
-| [`src/components/BypassPermissionsModeDialog.tsx`](/src/src/components/BypassPermissionsModeDialog.tsx.md) |   ↳ |  |
-| [`src/components/ChannelDowngradeDialog.tsx`](/src/src/components/ChannelDowngradeDialog.tsx.md) |   ↳ |  |
-| [`src/components/ClaudeCodeHint/PluginHintMenu.tsx`](/src/src/components/ClaudeCodeHint/PluginHintMenu.tsx.md) |   ↳ |  |
-| [`src/components/ClaudeInChromeOnboarding.tsx`](/src/src/components/ClaudeInChromeOnboarding.tsx.md) |   ↳ |  |
-| [`src/components/ClaudeMdExternalIncludesDialog.tsx`](/src/src/components/ClaudeMdExternalIncludesDialog.tsx.md) |   ↳ |  |
-| [`src/components/ClickableImageRef.tsx`](/src/src/components/ClickableImageRef.tsx.md) |   ↳ |  |
-| [`src/components/CompactSummary.tsx`](/src/src/components/CompactSummary.tsx.md) |   ↳ |  |
-| [`src/components/ConfigurableShortcutHint.tsx`](/src/src/components/ConfigurableShortcutHint.tsx.md) |   ↳ |  |
-| [`src/components/ContextSuggestions.tsx`](/src/src/components/ContextSuggestions.tsx.md) |   ↳ |  |
-| [`src/components/ContextVisualization.tsx`](/src/src/components/ContextVisualization.tsx.md) |   ↳ |  |
-| [`src/components/CoordinatorAgentStatus.tsx`](/src/src/components/CoordinatorAgentStatus.tsx.md) |   ↳ |  |
-| [`src/components/CtrlOToExpand.tsx`](/src/src/components/CtrlOToExpand.tsx.md) |   ↳ |  |
-| [`src/components/CustomSelect/SelectMulti.tsx`](/src/src/components/CustomSelect/SelectMulti.tsx.md) |   ↳ |  |
-| [`src/components/CustomSelect/index.ts`](/src/src/components/CustomSelect/index.ts.md) |   ↳ |  |
-| [`src/components/CustomSelect/option-map.ts`](/src/src/components/CustomSelect/option-map.ts.md) |   ↳ |  |
-| [`src/components/CustomSelect/select-input-option.tsx`](/src/src/components/CustomSelect/select-input-option.tsx.md) |   ↳ |  |
-| [`src/components/CustomSelect/select-option.tsx`](/src/src/components/CustomSelect/select-option.tsx.md) |   ↳ |  |
-| [`src/components/CustomSelect/select.tsx`](/src/src/components/CustomSelect/select.tsx.md) |   ↳ |  |
-| [`src/components/CustomSelect/use-multi-select-state.ts`](/src/src/components/CustomSelect/use-multi-select-state.ts.md) |   ↳ |  |
-| [`src/components/CustomSelect/use-select-input.ts`](/src/src/components/CustomSelect/use-select-input.ts.md) |   ↳ |  |
-| [`src/components/CustomSelect/use-select-navigation.ts`](/src/src/components/CustomSelect/use-select-navigation.ts.md) |   ↳ |  |
-| [`src/components/CustomSelect/use-select-state.ts`](/src/src/components/CustomSelect/use-select-state.ts.md) |   ↳ |  |
-| [`src/components/DesktopHandoff.tsx`](/src/src/components/DesktopHandoff.tsx.md) |   ↳ |  |
-| [`src/components/DesktopUpsell/DesktopUpsellStartup.tsx`](/src/src/components/DesktopUpsell/DesktopUpsellStartup.tsx.md) |   ↳ |  |
-| [`src/components/DevChannelsDialog.tsx`](/src/src/components/DevChannelsDialog.tsx.md) |   ↳ |  |
-| [`src/components/DiagnosticsDisplay.tsx`](/src/src/components/DiagnosticsDisplay.tsx.md) |   ↳ |  |
-| [`src/components/EffortIndicator.ts`](/src/src/components/EffortIndicator.ts.md) |   ↳ |  |
-| [`src/components/ExportDialog.tsx`](/src/src/components/ExportDialog.tsx.md) |   ↳ |  |
-| [`src/components/FallbackToolUseErrorMessage.tsx`](/src/src/components/FallbackToolUseErrorMessage.tsx.md) |   ↳ |  |
-| [`src/components/FallbackToolUseRejectedMessage.tsx`](/src/src/components/FallbackToolUseRejectedMessage.tsx.md) |   ↳ |  |
-| [`src/components/FastIcon.tsx`](/src/src/components/FastIcon.tsx.md) |   ↳ |  |
-| [`src/components/Feedback.tsx`](/src/src/components/Feedback.tsx.md) |   ↳ |  |
-| [`src/components/FeedbackSurvey/FeedbackSurveyView.tsx`](/src/src/components/FeedbackSurvey/FeedbackSurveyView.tsx.md) |   ↳ |  |
-| [`src/components/FeedbackSurvey/TranscriptSharePrompt.tsx`](/src/src/components/FeedbackSurvey/TranscriptSharePrompt.tsx.md) |   ↳ |  |
-| [`src/components/FeedbackSurvey/submitTranscriptShare.ts`](/src/src/components/FeedbackSurvey/submitTranscriptShare.ts.md) |   ↳ |  |
-| [`src/components/FeedbackSurvey/useDebouncedDigitInput.ts`](/src/src/components/FeedbackSurvey/useDebouncedDigitInput.ts.md) |   ↳ |  |
-| [`src/components/FeedbackSurvey/useFeedbackSurvey.tsx`](/src/src/components/FeedbackSurvey/useFeedbackSurvey.tsx.md) |   ↳ |  |
-| [`src/components/FeedbackSurvey/useFrustrationDetection.ts`](/src/src/components/FeedbackSurvey/useFrustrationDetection.ts.md) |   ↳ |  |
-| [`src/components/FeedbackSurvey/useMemorySurvey.tsx`](/src/src/components/FeedbackSurvey/useMemorySurvey.tsx.md) |   ↳ |  |
-| [`src/components/FeedbackSurvey/usePostCompactSurvey.tsx`](/src/src/components/FeedbackSurvey/usePostCompactSurvey.tsx.md) |   ↳ |  |
-| [`src/components/FeedbackSurvey/useSurveyState.tsx`](/src/src/components/FeedbackSurvey/useSurveyState.tsx.md) |   ↳ |  |
-| [`src/components/FeedbackSurvey/utils.ts`](/src/src/components/FeedbackSurvey/utils.ts.md) |   ↳ |  |
-| [`src/components/FileEditToolDiff.tsx`](/src/src/components/FileEditToolDiff.tsx.md) |   ↳ |  |
-| [`src/components/FileEditToolUpdatedMessage.tsx`](/src/src/components/FileEditToolUpdatedMessage.tsx.md) |   ↳ |  |
-| [`src/components/FileEditToolUseRejectedMessage.tsx`](/src/src/components/FileEditToolUseRejectedMessage.tsx.md) |   ↳ |  |
-| [`src/components/FilePathLink.tsx`](/src/src/components/FilePathLink.tsx.md) |   ↳ |  |
-| [`src/components/GlobalSearchDialog.tsx`](/src/src/components/GlobalSearchDialog.tsx.md) |   ↳ |  |
-| [`src/components/HelpV2/Commands.tsx`](/src/src/components/HelpV2/Commands.tsx.md) |   ↳ |  |
-| [`src/components/HelpV2/General.tsx`](/src/src/components/HelpV2/General.tsx.md) |   ↳ |  |
-| [`src/components/HelpV2/HelpV2.tsx`](/src/src/components/HelpV2/HelpV2.tsx.md) |   ↳ |  |
-| [`src/components/HighlightedCode.tsx`](/src/src/components/HighlightedCode.tsx.md) |   ↳ |  |
-| [`src/components/HighlightedCode/Fallback.tsx`](/src/src/components/HighlightedCode/Fallback.tsx.md) |   ↳ |  |
-| [`src/components/HistorySearchDialog.tsx`](/src/src/components/HistorySearchDialog.tsx.md) |   ↳ |  |
-| [`src/components/IdeAutoConnectDialog.tsx`](/src/src/components/IdeAutoConnectDialog.tsx.md) |   ↳ |  |
-| [`src/components/IdeStatusIndicator.tsx`](/src/src/components/IdeStatusIndicator.tsx.md) |   ↳ |  |
-| [`src/components/InvalidConfigDialog.tsx`](/src/src/components/InvalidConfigDialog.tsx.md) |   ↳ |  |
-| [`src/components/InvalidSettingsDialog.tsx`](/src/src/components/InvalidSettingsDialog.tsx.md) |   ↳ |  |
-| [`src/components/KeybindingWarnings.tsx`](/src/src/components/KeybindingWarnings.tsx.md) |   ↳ |  |
-| [`src/components/LanguagePicker.tsx`](/src/src/components/LanguagePicker.tsx.md) |   ↳ |  |
-| [`src/components/LogSelector.tsx`](/src/src/components/LogSelector.tsx.md) |   ↳ |  |
-| [`src/components/LogoV2/AnimatedAsterisk.tsx`](/src/src/components/LogoV2/AnimatedAsterisk.tsx.md) |   ↳ |  |
-| [`src/components/LogoV2/AnimatedClawd.tsx`](/src/src/components/LogoV2/AnimatedClawd.tsx.md) |   ↳ |  |
-| [`src/components/LogoV2/ChannelsNotice.tsx`](/src/src/components/LogoV2/ChannelsNotice.tsx.md) |   ↳ |  |
-| [`src/components/LogoV2/Clawd.tsx`](/src/src/components/LogoV2/Clawd.tsx.md) |   ↳ |  |
-| [`src/components/LogoV2/CondensedLogo.tsx`](/src/src/components/LogoV2/CondensedLogo.tsx.md) |   ↳ |  |
-| [`src/components/LogoV2/EmergencyTip.tsx`](/src/src/components/LogoV2/EmergencyTip.tsx.md) |   ↳ |  |
-| [`src/components/LogoV2/Feed.tsx`](/src/src/components/LogoV2/Feed.tsx.md) |   ↳ |  |
-| [`src/components/LogoV2/FeedColumn.tsx`](/src/src/components/LogoV2/FeedColumn.tsx.md) |   ↳ |  |
-| [`src/components/LogoV2/GuestPassesUpsell.tsx`](/src/src/components/LogoV2/GuestPassesUpsell.tsx.md) |   ↳ |  |
-| [`src/components/LogoV2/LogoV2.tsx`](/src/src/components/LogoV2/LogoV2.tsx.md) |   ↳ |  |
-| [`src/components/LogoV2/Opus1mMergeNotice.tsx`](/src/src/components/LogoV2/Opus1mMergeNotice.tsx.md) |   ↳ |  |
-| [`src/components/LogoV2/OverageCreditUpsell.tsx`](/src/src/components/LogoV2/OverageCreditUpsell.tsx.md) |   ↳ |  |
-| [`src/components/LogoV2/VoiceModeNotice.tsx`](/src/src/components/LogoV2/VoiceModeNotice.tsx.md) |   ↳ |  |
-| [`src/components/LogoV2/WelcomeV2.tsx`](/src/src/components/LogoV2/WelcomeV2.tsx.md) |   ↳ |  |
-| [`src/components/LogoV2/feedConfigs.tsx`](/src/src/components/LogoV2/feedConfigs.tsx.md) |   ↳ |  |
-| [`src/components/LspRecommendation/LspRecommendationMenu.tsx`](/src/src/components/LspRecommendation/LspRecommendationMenu.tsx.md) |   ↳ |  |
-| [`src/components/MCPServerApprovalDialog.tsx`](/src/src/components/MCPServerApprovalDialog.tsx.md) |   ↳ |  |
-| [`src/components/MCPServerDesktopImportDialog.tsx`](/src/src/components/MCPServerDesktopImportDialog.tsx.md) |   ↳ |  |
-| [`src/components/MCPServerMultiselectDialog.tsx`](/src/src/components/MCPServerMultiselectDialog.tsx.md) |   ↳ |  |
-| [`src/components/ManagedSettingsSecurityDialog/ManagedSettingsSecurityDialog.tsx`](/src/src/components/ManagedSettingsSecurityDialog/ManagedSettingsSecurityDialog.tsx.md) |   ↳ |  |
-| [`src/components/ManagedSettingsSecurityDialog/utils.ts`](/src/src/components/ManagedSettingsSecurityDialog/utils.ts.md) |   ↳ |  |
-| [`src/components/Markdown.tsx`](/src/src/components/Markdown.tsx.md) |   ↳ |  |
-| [`src/components/MarkdownTable.tsx`](/src/src/components/MarkdownTable.tsx.md) |   ↳ |  |
-| [`src/components/MemoryUsageIndicator.tsx`](/src/src/components/MemoryUsageIndicator.tsx.md) |   ↳ |  |
-| [`src/components/Message.tsx`](/src/src/components/Message.tsx.md) |   ↳ |  |
-| [`src/components/MessageModel.tsx`](/src/src/components/MessageModel.tsx.md) |   ↳ |  |
-| [`src/components/MessageResponse.tsx`](/src/src/components/MessageResponse.tsx.md) |   ↳ |  |
-| [`src/components/MessageRow.tsx`](/src/src/components/MessageRow.tsx.md) |   ↳ |  |
-| [`src/components/MessageTimestamp.tsx`](/src/src/components/MessageTimestamp.tsx.md) |   ↳ |  |
-| [`src/components/ModelPicker.tsx`](/src/src/components/ModelPicker.tsx.md) |   ↳ |  |
-| [`src/components/NativeAutoUpdater.tsx`](/src/src/components/NativeAutoUpdater.tsx.md) |   ↳ |  |
-| [`src/components/NotebookEditToolUseRejectedMessage.tsx`](/src/src/components/NotebookEditToolUseRejectedMessage.tsx.md) |   ↳ |  |
-| [`src/components/OffscreenFreeze.tsx`](/src/src/components/OffscreenFreeze.tsx.md) |   ↳ |  |
-| [`src/components/Onboarding.tsx`](/src/src/components/Onboarding.tsx.md) |   ↳ |  |
-| [`src/components/OutputStylePicker.tsx`](/src/src/components/OutputStylePicker.tsx.md) |   ↳ |  |
-| [`src/components/PackageManagerAutoUpdater.tsx`](/src/src/components/PackageManagerAutoUpdater.tsx.md) |   ↳ |  |
-| [`src/components/Passes/Passes.tsx`](/src/src/components/Passes/Passes.tsx.md) |   ↳ |  |
-| [`src/components/PrBadge.tsx`](/src/src/components/PrBadge.tsx.md) |   ↳ |  |
-| [`src/components/PromptInput/HistorySearchInput.tsx`](/src/src/components/PromptInput/HistorySearchInput.tsx.md) |   ↳ |  |
-| [`src/components/PromptInput/IssueFlagBanner.tsx`](/src/src/components/PromptInput/IssueFlagBanner.tsx.md) |   ↳ |  |
-| [`src/components/PromptInput/Notifications.tsx`](/src/src/components/PromptInput/Notifications.tsx.md) |   ↳ |  |
-| [`src/components/PromptInput/PromptInputFooter.tsx`](/src/src/components/PromptInput/PromptInputFooter.tsx.md) |   ↳ |  |
-| [`src/components/PromptInput/PromptInputFooterLeftSide.tsx`](/src/src/components/PromptInput/PromptInputFooterLeftSide.tsx.md) |   ↳ |  |
-| [`src/components/PromptInput/PromptInputFooterSuggestions.tsx`](/src/src/components/PromptInput/PromptInputFooterSuggestions.tsx.md) |   ↳ |  |
-| [`src/components/PromptInput/PromptInputHelpMenu.tsx`](/src/src/components/PromptInput/PromptInputHelpMenu.tsx.md) |   ↳ |  |
-| [`src/components/PromptInput/PromptInputModeIndicator.tsx`](/src/src/components/PromptInput/PromptInputModeIndicator.tsx.md) |   ↳ |  |
-| [`src/components/PromptInput/PromptInputQueuedCommands.tsx`](/src/src/components/PromptInput/PromptInputQueuedCommands.tsx.md) |   ↳ |  |
-| [`src/components/PromptInput/PromptInputStashNotice.tsx`](/src/src/components/PromptInput/PromptInputStashNotice.tsx.md) |   ↳ |  |
-| [`src/components/PromptInput/SandboxPromptFooterHint.tsx`](/src/src/components/PromptInput/SandboxPromptFooterHint.tsx.md) |   ↳ |  |
-| [`src/components/PromptInput/ShimmeredInput.tsx`](/src/src/components/PromptInput/ShimmeredInput.tsx.md) |   ↳ |  |
-| [`src/components/PromptInput/VoiceIndicator.tsx`](/src/src/components/PromptInput/VoiceIndicator.tsx.md) |   ↳ |  |
-| [`src/components/PromptInput/inputModes.ts`](/src/src/components/PromptInput/inputModes.ts.md) |   ↳ |  |
-| [`src/components/PromptInput/inputPaste.ts`](/src/src/components/PromptInput/inputPaste.ts.md) |   ↳ |  |
-| [`src/components/PromptInput/useMaybeTruncateInput.ts`](/src/src/components/PromptInput/useMaybeTruncateInput.ts.md) |   ↳ |  |
-| [`src/components/PromptInput/usePromptInputPlaceholder.ts`](/src/src/components/PromptInput/usePromptInputPlaceholder.ts.md) |   ↳ |  |
-| [`src/components/PromptInput/useShowFastIconHint.ts`](/src/src/components/PromptInput/useShowFastIconHint.ts.md) |   ↳ |  |
-| [`src/components/PromptInput/useSwarmBanner.ts`](/src/src/components/PromptInput/useSwarmBanner.ts.md) |   ↳ |  |
-| [`src/components/PromptInput/utils.ts`](/src/src/components/PromptInput/utils.ts.md) |   ↳ |  |
-| [`src/components/QuickOpenDialog.tsx`](/src/src/components/QuickOpenDialog.tsx.md) |   ↳ |  |
-| [`src/components/RemoteEnvironmentDialog.tsx`](/src/src/components/RemoteEnvironmentDialog.tsx.md) |   ↳ |  |
-| [`src/components/ResumeTask.tsx`](/src/src/components/ResumeTask.tsx.md) |   ↳ |  |
-| [`src/components/SandboxViolationExpandedView.tsx`](/src/src/components/SandboxViolationExpandedView.tsx.md) |   ↳ |  |
-| [`src/components/SearchBox.tsx`](/src/src/components/SearchBox.tsx.md) |   ↳ |  |
-| [`src/components/SentryErrorBoundary.ts`](/src/src/components/SentryErrorBoundary.ts.md) |   ↳ |  |
-| [`src/components/SessionPreview.tsx`](/src/src/components/SessionPreview.tsx.md) |   ↳ |  |
-| [`src/components/Settings/Config.tsx`](/src/src/components/Settings/Config.tsx.md) |   ↳ |  |
-| [`src/components/Settings/Settings.tsx`](/src/src/components/Settings/Settings.tsx.md) |   ↳ |  |
-| [`src/components/Settings/Status.tsx`](/src/src/components/Settings/Status.tsx.md) |   ↳ |  |
-| [`src/components/Settings/Usage.tsx`](/src/src/components/Settings/Usage.tsx.md) |   ↳ |  |
-| [`src/components/ShowInIDEPrompt.tsx`](/src/src/components/ShowInIDEPrompt.tsx.md) |   ↳ |  |
-| [`src/components/Spinner/FlashingChar.tsx`](/src/src/components/Spinner/FlashingChar.tsx.md) |   ↳ |  |
-| [`src/components/Spinner/GlimmerMessage.tsx`](/src/src/components/Spinner/GlimmerMessage.tsx.md) |   ↳ |  |
-| [`src/components/Spinner/ShimmerChar.tsx`](/src/src/components/Spinner/ShimmerChar.tsx.md) |   ↳ |  |
-| [`src/components/Spinner/SpinnerAnimationRow.tsx`](/src/src/components/Spinner/SpinnerAnimationRow.tsx.md) |   ↳ |  |
-| [`src/components/Spinner/SpinnerGlyph.tsx`](/src/src/components/Spinner/SpinnerGlyph.tsx.md) |   ↳ |  |
-| [`src/components/Spinner/TeammateSpinnerLine.tsx`](/src/src/components/Spinner/TeammateSpinnerLine.tsx.md) |   ↳ |  |
-| [`src/components/Spinner/TeammateSpinnerTree.tsx`](/src/src/components/Spinner/TeammateSpinnerTree.tsx.md) |   ↳ |  |
-| [`src/components/Spinner/index.ts`](/src/src/components/Spinner/index.ts.md) |   ↳ |  |
-| [`src/components/Spinner/teammateSelectHint.ts`](/src/src/components/Spinner/teammateSelectHint.ts.md) |   ↳ |  |
-| [`src/components/Spinner/types.ts`](/src/src/components/Spinner/types.ts.md) |   ↳ |  |
-| [`src/components/Spinner/useShimmerAnimation.ts`](/src/src/components/Spinner/useShimmerAnimation.ts.md) |   ↳ |  |
-| [`src/components/Spinner/useStalledAnimation.ts`](/src/src/components/Spinner/useStalledAnimation.ts.md) |   ↳ |  |
-| [`src/components/Spinner/utils.ts`](/src/src/components/Spinner/utils.ts.md) |   ↳ |  |
-| [`src/components/Stats.tsx`](/src/src/components/Stats.tsx.md) |   ↳ |  |
-| [`src/components/StatusLine.tsx`](/src/src/components/StatusLine.tsx.md) |   ↳ |  |
-| [`src/components/StatusNotices.tsx`](/src/src/components/StatusNotices.tsx.md) |   ↳ |  |
-| [`src/components/StructuredDiff.tsx`](/src/src/components/StructuredDiff.tsx.md) |   ↳ |  |
-| [`src/components/StructuredDiff/Fallback.tsx`](/src/src/components/StructuredDiff/Fallback.tsx.md) |   ↳ |  |
-| [`src/components/StructuredDiff/colorDiff.ts`](/src/src/components/StructuredDiff/colorDiff.ts.md) |   ↳ |  |
-| [`src/components/StructuredDiffList.tsx`](/src/src/components/StructuredDiffList.tsx.md) |   ↳ |  |
-| [`src/components/TagTabs.tsx`](/src/src/components/TagTabs.tsx.md) |   ↳ |  |
-| [`src/components/TeleportError.tsx`](/src/src/components/TeleportError.tsx.md) |   ↳ |  |
-| [`src/components/TeleportProgress.tsx`](/src/src/components/TeleportProgress.tsx.md) |   ↳ |  |
-| [`src/components/TeleportRepoMismatchDialog.tsx`](/src/src/components/TeleportRepoMismatchDialog.tsx.md) |   ↳ |  |
-| [`src/components/TeleportResumeWrapper.tsx`](/src/src/components/TeleportResumeWrapper.tsx.md) |   ↳ |  |
-| [`src/components/TeleportStash.tsx`](/src/src/components/TeleportStash.tsx.md) |   ↳ |  |
-| [`src/components/TextInput.tsx`](/src/src/components/TextInput.tsx.md) |   ↳ |  |
-| [`src/components/ThemePicker.tsx`](/src/src/components/ThemePicker.tsx.md) |   ↳ |  |
-| [`src/components/ThinkingToggle.tsx`](/src/src/components/ThinkingToggle.tsx.md) |   ↳ |  |
-| [`src/components/TokenWarning.tsx`](/src/src/components/TokenWarning.tsx.md) |   ↳ |  |
-| [`src/components/ToolUseLoader.tsx`](/src/src/components/ToolUseLoader.tsx.md) |   ↳ |  |
-| [`src/components/TrustDialog/TrustDialog.tsx`](/src/src/components/TrustDialog/TrustDialog.tsx.md) |   ↳ |  |
-| [`src/components/TrustDialog/utils.ts`](/src/src/components/TrustDialog/utils.ts.md) |   ↳ |  |
-| [`src/components/ValidationErrorsList.tsx`](/src/src/components/ValidationErrorsList.tsx.md) |   ↳ |  |
-| [`src/components/VimTextInput.tsx`](/src/src/components/VimTextInput.tsx.md) |   ↳ |  |
-| [`src/components/WorkflowMultiselectDialog.tsx`](/src/src/components/WorkflowMultiselectDialog.tsx.md) |   ↳ |  |
-| [`src/components/WorktreeExitDialog.tsx`](/src/src/components/WorktreeExitDialog.tsx.md) |   ↳ |  |
-| [`src/components/agents/AgentDetail.tsx`](/src/src/components/agents/AgentDetail.tsx.md) |   ↳ |  |
-| [`src/components/agents/AgentEditor.tsx`](/src/src/components/agents/AgentEditor.tsx.md) |   ↳ |  |
-| [`src/components/agents/AgentNavigationFooter.tsx`](/src/src/components/agents/AgentNavigationFooter.tsx.md) |   ↳ |  |
-| [`src/components/agents/AgentsList.tsx`](/src/src/components/agents/AgentsList.tsx.md) |   ↳ |  |
-| [`src/components/agents/AgentsMenu.tsx`](/src/src/components/agents/AgentsMenu.tsx.md) |   ↳ |  |
-| [`src/components/agents/ColorPicker.tsx`](/src/src/components/agents/ColorPicker.tsx.md) |   ↳ |  |
-| [`src/components/agents/ModelSelector.tsx`](/src/src/components/agents/ModelSelector.tsx.md) |   ↳ |  |
-| [`src/components/agents/ToolSelector.tsx`](/src/src/components/agents/ToolSelector.tsx.md) |   ↳ |  |
-| [`src/components/agents/agentFileUtils.ts`](/src/src/components/agents/agentFileUtils.ts.md) |   ↳ |  |
-| [`src/components/agents/generateAgent.ts`](/src/src/components/agents/generateAgent.ts.md) |   ↳ |  |
-| [`src/components/agents/new-agent-creation/CreateAgentWizard.tsx`](/src/src/components/agents/new-agent-creation/CreateAgentWizard.tsx.md) |   ↳ |  |
-| [`src/components/agents/new-agent-creation/types.ts`](/src/src/components/agents/new-agent-creation/types.ts.md) |   ↳ |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/ColorStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/ColorStep.tsx.md) |   ↳ |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/ConfirmStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/ConfirmStep.tsx.md) |   ↳ |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/ConfirmStepWrapper.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/ConfirmStepWrapper.tsx.md) |   ↳ |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/DescriptionStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/DescriptionStep.tsx.md) |   ↳ |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/GenerateStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/GenerateStep.tsx.md) |   ↳ |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/LocationStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/LocationStep.tsx.md) |   ↳ |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/MemoryStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/MemoryStep.tsx.md) |   ↳ |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/MethodStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/MethodStep.tsx.md) |   ↳ |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/ModelStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/ModelStep.tsx.md) |   ↳ |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/PromptStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/PromptStep.tsx.md) |   ↳ |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/ToolsStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/ToolsStep.tsx.md) |   ↳ |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/TypeStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/TypeStep.tsx.md) |   ↳ |  |
-| [`src/components/agents/types.ts`](/src/src/components/agents/types.ts.md) |   ↳ |  |
-| [`src/components/agents/utils.ts`](/src/src/components/agents/utils.ts.md) |   ↳ |  |
-| [`src/components/agents/validateAgent.ts`](/src/src/components/agents/validateAgent.ts.md) |   ↳ |  |
-| [`src/components/design-system/Byline.tsx`](/src/src/components/design-system/Byline.tsx.md) |   ↳ |  |
-| [`src/components/design-system/Dialog.tsx`](/src/src/components/design-system/Dialog.tsx.md) |   ↳ |  |
-| [`src/components/design-system/Divider.tsx`](/src/src/components/design-system/Divider.tsx.md) |   ↳ |  |
-| [`src/components/design-system/FuzzyPicker.tsx`](/src/src/components/design-system/FuzzyPicker.tsx.md) |   ↳ |  |
-| [`src/components/design-system/KeyboardShortcutHint.tsx`](/src/src/components/design-system/KeyboardShortcutHint.tsx.md) |   ↳ |  |
-| [`src/components/design-system/ListItem.tsx`](/src/src/components/design-system/ListItem.tsx.md) |   ↳ |  |
-| [`src/components/design-system/LoadingState.tsx`](/src/src/components/design-system/LoadingState.tsx.md) |   ↳ |  |
-| [`src/components/design-system/Pane.tsx`](/src/src/components/design-system/Pane.tsx.md) |   ↳ |  |
-| [`src/components/design-system/ProgressBar.tsx`](/src/src/components/design-system/ProgressBar.tsx.md) |   ↳ |  |
-| [`src/components/design-system/Ratchet.tsx`](/src/src/components/design-system/Ratchet.tsx.md) |   ↳ |  |
-| [`src/components/design-system/StatusIcon.tsx`](/src/src/components/design-system/StatusIcon.tsx.md) |   ↳ |  |
-| [`src/components/design-system/Tabs.tsx`](/src/src/components/design-system/Tabs.tsx.md) |   ↳ |  |
-| [`src/components/design-system/ThemeProvider.tsx`](/src/src/components/design-system/ThemeProvider.tsx.md) |   ↳ |  |
-| [`src/components/design-system/ThemedBox.tsx`](/src/src/components/design-system/ThemedBox.tsx.md) |   ↳ |  |
-| [`src/components/design-system/ThemedText.tsx`](/src/src/components/design-system/ThemedText.tsx.md) |   ↳ |  |
-| [`src/components/design-system/color.ts`](/src/src/components/design-system/color.ts.md) |   ↳ |  |
-| [`src/components/diff/DiffDetailView.tsx`](/src/src/components/diff/DiffDetailView.tsx.md) |   ↳ |  |
-| [`src/components/diff/DiffDialog.tsx`](/src/src/components/diff/DiffDialog.tsx.md) |   ↳ |  |
-| [`src/components/diff/DiffFileList.tsx`](/src/src/components/diff/DiffFileList.tsx.md) |   ↳ |  |
-| [`src/components/grove/Grove.tsx`](/src/src/components/grove/Grove.tsx.md) |   ↳ |  |
-| [`src/components/hooks/HooksConfigMenu.tsx`](/src/src/components/hooks/HooksConfigMenu.tsx.md) |   ↳ |  |
-| [`src/components/hooks/SelectEventMode.tsx`](/src/src/components/hooks/SelectEventMode.tsx.md) |   ↳ |  |
-| [`src/components/hooks/SelectHookMode.tsx`](/src/src/components/hooks/SelectHookMode.tsx.md) |   ↳ |  |
-| [`src/components/hooks/SelectMatcherMode.tsx`](/src/src/components/hooks/SelectMatcherMode.tsx.md) |   ↳ |  |
-| [`src/components/hooks/ViewHookMode.tsx`](/src/src/components/hooks/ViewHookMode.tsx.md) |   ↳ |  |
-| [`src/components/memory/MemoryFileSelector.tsx`](/src/src/components/memory/MemoryFileSelector.tsx.md) |   ↳ |  |
-| [`src/components/memory/MemoryUpdateNotification.tsx`](/src/src/components/memory/MemoryUpdateNotification.tsx.md) |   ↳ |  |
-| [`src/components/sandbox/SandboxConfigTab.tsx`](/src/src/components/sandbox/SandboxConfigTab.tsx.md) |   ↳ |  |
-| [`src/components/sandbox/SandboxDependenciesTab.tsx`](/src/src/components/sandbox/SandboxDependenciesTab.tsx.md) |   ↳ |  |
-| [`src/components/sandbox/SandboxDoctorSection.tsx`](/src/src/components/sandbox/SandboxDoctorSection.tsx.md) |   ↳ |  |
-| [`src/components/sandbox/SandboxOverridesTab.tsx`](/src/src/components/sandbox/SandboxOverridesTab.tsx.md) |   ↳ |  |
-| [`src/components/sandbox/SandboxSettings.tsx`](/src/src/components/sandbox/SandboxSettings.tsx.md) |   ↳ |  |
-| [`src/components/shell/ExpandShellOutputContext.tsx`](/src/src/components/shell/ExpandShellOutputContext.tsx.md) |   ↳ |  |
-| [`src/components/shell/OutputLine.tsx`](/src/src/components/shell/OutputLine.tsx.md) |   ↳ |  |
-| [`src/components/shell/ShellProgressMessage.tsx`](/src/src/components/shell/ShellProgressMessage.tsx.md) |   ↳ |  |
-| [`src/components/shell/ShellTimeDisplay.tsx`](/src/src/components/shell/ShellTimeDisplay.tsx.md) |   ↳ |  |
-| [`src/components/skills/SkillsMenu.tsx`](/src/src/components/skills/SkillsMenu.tsx.md) |   ↳ |  |
-| [`src/components/tasks/AsyncAgentDetailDialog.tsx`](/src/src/components/tasks/AsyncAgentDetailDialog.tsx.md) |   ↳ |  |
-| [`src/components/tasks/BackgroundTask.tsx`](/src/src/components/tasks/BackgroundTask.tsx.md) |   ↳ |  |
-| [`src/components/tasks/BackgroundTaskStatus.tsx`](/src/src/components/tasks/BackgroundTaskStatus.tsx.md) |   ↳ |  |
-| [`src/components/tasks/BackgroundTasksDialog.tsx`](/src/src/components/tasks/BackgroundTasksDialog.tsx.md) |   ↳ |  |
-| [`src/components/tasks/DreamDetailDialog.tsx`](/src/src/components/tasks/DreamDetailDialog.tsx.md) |   ↳ |  |
-| [`src/components/tasks/InProcessTeammateDetailDialog.tsx`](/src/src/components/tasks/InProcessTeammateDetailDialog.tsx.md) |   ↳ |  |
-| [`src/components/tasks/MonitorMcpDetailDialog.tsx`](/src/src/components/tasks/MonitorMcpDetailDialog.tsx.md) |   ↳ |  |
-| [`src/components/tasks/RemoteSessionDetailDialog.tsx`](/src/src/components/tasks/RemoteSessionDetailDialog.tsx.md) |   ↳ |  |
-| [`src/components/tasks/RemoteSessionProgress.tsx`](/src/src/components/tasks/RemoteSessionProgress.tsx.md) |   ↳ |  |
-| [`src/components/tasks/ShellDetailDialog.tsx`](/src/src/components/tasks/ShellDetailDialog.tsx.md) |   ↳ |  |
-| [`src/components/tasks/ShellProgress.tsx`](/src/src/components/tasks/ShellProgress.tsx.md) |   ↳ |  |
-| [`src/components/tasks/WorkflowDetailDialog.tsx`](/src/src/components/tasks/WorkflowDetailDialog.tsx.md) |   ↳ |  |
-| [`src/components/tasks/renderToolActivity.tsx`](/src/src/components/tasks/renderToolActivity.tsx.md) |   ↳ |  |
-| [`src/components/tasks/taskStatusUtils.tsx`](/src/src/components/tasks/taskStatusUtils.tsx.md) |   ↳ |  |
-| [`src/components/teams/TeamStatus.tsx`](/src/src/components/teams/TeamStatus.tsx.md) |   ↳ |  |
-| [`src/components/teams/TeamsDialog.tsx`](/src/src/components/teams/TeamsDialog.tsx.md) |   ↳ |  |
-| [`src/components/ui/OrderedList.tsx`](/src/src/components/ui/OrderedList.tsx.md) |   ↳ |  |
-| [`src/components/ui/OrderedListItem.tsx`](/src/src/components/ui/OrderedListItem.tsx.md) |   ↳ |  |
-| [`src/components/ui/TreeSelect.tsx`](/src/src/components/ui/TreeSelect.tsx.md) |   ↳ |  |
-| [`src/components/wizard/WizardDialogLayout.tsx`](/src/src/components/wizard/WizardDialogLayout.tsx.md) |   ↳ |  |
-| [`src/components/wizard/WizardNavigationFooter.tsx`](/src/src/components/wizard/WizardNavigationFooter.tsx.md) |   ↳ |  |
-| [`src/components/wizard/WizardProvider.tsx`](/src/src/components/wizard/WizardProvider.tsx.md) |   ↳ |  |
-| [`src/hooks/fileSuggestions.ts`](/src/src/hooks/fileSuggestions.ts.md) |   ↳ |  |
-| [`src/hooks/notifs/useAntOrgWarningNotification.ts`](/src/src/hooks/notifs/useAntOrgWarningNotification.ts.md) |   ↳ |  |
-| [`src/hooks/notifs/useAutoModeUnavailableNotification.ts`](/src/src/hooks/notifs/useAutoModeUnavailableNotification.ts.md) |   ↳ |  |
-| [`src/hooks/notifs/useCanSwitchToExistingSubscription.tsx`](/src/src/hooks/notifs/useCanSwitchToExistingSubscription.tsx.md) |   ↳ |  |
-| [`src/hooks/notifs/useDeprecationWarningNotification.tsx`](/src/src/hooks/notifs/useDeprecationWarningNotification.tsx.md) |   ↳ |  |
-| [`src/hooks/notifs/useFastModeNotification.tsx`](/src/src/hooks/notifs/useFastModeNotification.tsx.md) |   ↳ |  |
-| [`src/hooks/notifs/useIDEStatusIndicator.tsx`](/src/src/hooks/notifs/useIDEStatusIndicator.tsx.md) |   ↳ |  |
-| [`src/hooks/notifs/useInstallMessages.tsx`](/src/src/hooks/notifs/useInstallMessages.tsx.md) |   ↳ |  |
-| [`src/hooks/notifs/useLspInitializationNotification.tsx`](/src/src/hooks/notifs/useLspInitializationNotification.tsx.md) |   ↳ |  |
-| [`src/hooks/notifs/useMcpConnectivityStatus.tsx`](/src/src/hooks/notifs/useMcpConnectivityStatus.tsx.md) |   ↳ |  |
-| [`src/hooks/notifs/useModelMigrationNotifications.tsx`](/src/src/hooks/notifs/useModelMigrationNotifications.tsx.md) |   ↳ |  |
-| [`src/hooks/notifs/useNpmDeprecationNotification.tsx`](/src/src/hooks/notifs/useNpmDeprecationNotification.tsx.md) |   ↳ |  |
-| [`src/hooks/notifs/usePluginAutoupdateNotification.tsx`](/src/src/hooks/notifs/usePluginAutoupdateNotification.tsx.md) |   ↳ |  |
-| [`src/hooks/notifs/usePluginInstallationStatus.tsx`](/src/src/hooks/notifs/usePluginInstallationStatus.tsx.md) |   ↳ |  |
-| [`src/hooks/notifs/useRateLimitWarningNotification.tsx`](/src/src/hooks/notifs/useRateLimitWarningNotification.tsx.md) |   ↳ |  |
-| [`src/hooks/notifs/useSettingsErrors.tsx`](/src/src/hooks/notifs/useSettingsErrors.tsx.md) |   ↳ |  |
-| [`src/hooks/notifs/useStartupNotification.ts`](/src/src/hooks/notifs/useStartupNotification.ts.md) |   ↳ |  |
-| [`src/hooks/notifs/useTeammateShutdownNotification.ts`](/src/src/hooks/notifs/useTeammateShutdownNotification.ts.md) |   ↳ |  |
-| [`src/native-ts/color-diff/index.ts`](/src/src/native-ts/color-diff/index.ts.md) |   ↳ |  |
-| [`src/native-ts/yoga-layout/index.ts`](/src/src/native-ts/yoga-layout/index.ts.md) |   ↳ |  |
-| [`src/screens/Doctor.tsx`](/src/src/screens/Doctor.tsx.md) |   ↳ |  |
-| [`src/vim/operators.ts`](/src/src/vim/operators.ts.md) |   ↳ |  |
-
-### ML-07-1
-
-**主线**: ML-07-1 · 1 tasks · 104 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/context/fpsMetrics.tsx`](/src/src/context/fpsMetrics.tsx.md) |   ↳ |  |
-| [`src/context/notifications.tsx`](/src/src/context/notifications.tsx.md) |   ↳ |  |
-| [`src/ink/Ansi.tsx`](/src/src/ink/Ansi.tsx.md) |   ↳ |  |
-| [`src/ink/bidi.ts`](/src/src/ink/bidi.ts.md) |   ↳ |  |
-| [`src/ink/clearTerminal.ts`](/src/src/ink/clearTerminal.ts.md) |   ↳ |  |
-| [`src/ink/colorize.ts`](/src/src/ink/colorize.ts.md) |   ↳ |  |
-| [`src/ink/components/AlternateScreen.tsx`](/src/src/ink/components/AlternateScreen.tsx.md) |   ↳ |  |
-| [`src/ink/components/App.tsx`](/src/src/ink/components/App.tsx.md) |   ↳ |  |
-| [`src/ink/components/AppContext.ts`](/src/src/ink/components/AppContext.ts.md) |   ↳ |  |
-| [`src/ink/components/Box.tsx`](/src/src/ink/components/Box.tsx.md) |   ↳ |  |
-| [`src/ink/components/Button.tsx`](/src/src/ink/components/Button.tsx.md) |   ↳ |  |
-| [`src/ink/components/ClockContext.tsx`](/src/src/ink/components/ClockContext.tsx.md) |   ↳ |  |
-| [`src/ink/components/CursorDeclarationContext.ts`](/src/src/ink/components/CursorDeclarationContext.ts.md) |   ↳ |  |
-| [`src/ink/components/ErrorOverview.tsx`](/src/src/ink/components/ErrorOverview.tsx.md) |   ↳ |  |
-| [`src/ink/components/Link.tsx`](/src/src/ink/components/Link.tsx.md) |   ↳ |  |
-| [`src/ink/components/Newline.tsx`](/src/src/ink/components/Newline.tsx.md) |   ↳ |  |
-| [`src/ink/components/NoSelect.tsx`](/src/src/ink/components/NoSelect.tsx.md) |   ↳ |  |
-| [`src/ink/components/RawAnsi.tsx`](/src/src/ink/components/RawAnsi.tsx.md) |   ↳ |  |
-| [`src/ink/components/ScrollBox.tsx`](/src/src/ink/components/ScrollBox.tsx.md) |   ↳ |  |
-| [`src/ink/components/Spacer.tsx`](/src/src/ink/components/Spacer.tsx.md) |   ↳ |  |
-| [`src/ink/components/StdinContext.ts`](/src/src/ink/components/StdinContext.ts.md) |   ↳ |  |
-| [`src/ink/components/TerminalFocusContext.tsx`](/src/src/ink/components/TerminalFocusContext.tsx.md) |   ↳ |  |
-| [`src/ink/components/TerminalSizeContext.tsx`](/src/src/ink/components/TerminalSizeContext.tsx.md) |   ↳ |  |
-| [`src/ink/components/Text.tsx`](/src/src/ink/components/Text.tsx.md) |   ↳ |  |
-| [`src/ink/constants.ts`](/src/src/ink/constants.ts.md) |   ↳ |  |
-| [`src/ink/cursor.ts`](/src/src/ink/cursor.ts.md) |   ↳ |  |
-| [`src/ink/dom.ts`](/src/src/ink/dom.ts.md) |   ↳ |  |
-| [`src/ink/events/click-event.ts`](/src/src/ink/events/click-event.ts.md) |   ↳ |  |
-| [`src/ink/events/dispatcher.ts`](/src/src/ink/events/dispatcher.ts.md) |   ↳ |  |
-| [`src/ink/events/emitter.ts`](/src/src/ink/events/emitter.ts.md) |   ↳ |  |
-| [`src/ink/events/event-handlers.ts`](/src/src/ink/events/event-handlers.ts.md) |   ↳ |  |
-| [`src/ink/events/event.ts`](/src/src/ink/events/event.ts.md) |   ↳ |  |
-| [`src/ink/events/focus-event.ts`](/src/src/ink/events/focus-event.ts.md) |   ↳ |  |
-| [`src/ink/events/input-event.ts`](/src/src/ink/events/input-event.ts.md) |   ↳ |  |
-| [`src/ink/events/keyboard-event.ts`](/src/src/ink/events/keyboard-event.ts.md) |   ↳ |  |
-| [`src/ink/events/paste-event.ts`](/src/src/ink/events/paste-event.ts.md) |   ↳ |  |
-| [`src/ink/events/resize-event.ts`](/src/src/ink/events/resize-event.ts.md) |   ↳ |  |
-| [`src/ink/events/terminal-event.ts`](/src/src/ink/events/terminal-event.ts.md) |   ↳ |  |
-| [`src/ink/events/terminal-focus-event.ts`](/src/src/ink/events/terminal-focus-event.ts.md) |   ↳ |  |
-| [`src/ink/focus.ts`](/src/src/ink/focus.ts.md) |   ↳ |  |
-| [`src/ink/frame.ts`](/src/src/ink/frame.ts.md) |   ↳ |  |
-| [`src/ink/get-max-width.ts`](/src/src/ink/get-max-width.ts.md) |   ↳ |  |
-| [`src/ink/global.d.ts`](/src/src/ink/global.d.ts.md) |   ↳ |  |
-| [`src/ink/hit-test.ts`](/src/src/ink/hit-test.ts.md) |   ↳ |  |
-| [`src/ink/hooks/use-animation-frame.ts`](/src/src/ink/hooks/use-animation-frame.ts.md) |   ↳ |  |
-| [`src/ink/hooks/use-app.ts`](/src/src/ink/hooks/use-app.ts.md) |   ↳ |  |
-| [`src/ink/hooks/use-declared-cursor.ts`](/src/src/ink/hooks/use-declared-cursor.ts.md) |   ↳ |  |
-| [`src/ink/hooks/use-input.ts`](/src/src/ink/hooks/use-input.ts.md) |   ↳ |  |
-| [`src/ink/hooks/use-interval.ts`](/src/src/ink/hooks/use-interval.ts.md) |   ↳ |  |
-| [`src/ink/hooks/use-search-highlight.ts`](/src/src/ink/hooks/use-search-highlight.ts.md) |   ↳ |  |
-| [`src/ink/hooks/use-selection.ts`](/src/src/ink/hooks/use-selection.ts.md) |   ↳ |  |
-| [`src/ink/hooks/use-stdin.ts`](/src/src/ink/hooks/use-stdin.ts.md) |   ↳ |  |
-| [`src/ink/hooks/use-tab-status.ts`](/src/src/ink/hooks/use-tab-status.ts.md) |   ↳ |  |
-| [`src/ink/hooks/use-terminal-focus.ts`](/src/src/ink/hooks/use-terminal-focus.ts.md) |   ↳ |  |
-| [`src/ink/hooks/use-terminal-title.ts`](/src/src/ink/hooks/use-terminal-title.ts.md) |   ↳ |  |
-| [`src/ink/hooks/use-terminal-viewport.ts`](/src/src/ink/hooks/use-terminal-viewport.ts.md) |   ↳ |  |
-| [`src/ink/instances.ts`](/src/src/ink/instances.ts.md) |   ↳ |  |
-| [`src/ink/layout/engine.ts`](/src/src/ink/layout/engine.ts.md) |   ↳ |  |
-| [`src/ink/layout/geometry.ts`](/src/src/ink/layout/geometry.ts.md) |   ↳ |  |
-| [`src/ink/layout/node.ts`](/src/src/ink/layout/node.ts.md) |   ↳ |  |
-| [`src/ink/layout/yoga.ts`](/src/src/ink/layout/yoga.ts.md) |   ↳ |  |
-| [`src/ink/line-width-cache.ts`](/src/src/ink/line-width-cache.ts.md) |   ↳ |  |
-| [`src/ink/log-update.ts`](/src/src/ink/log-update.ts.md) |   ↳ |  |
-| [`src/ink/measure-element.ts`](/src/src/ink/measure-element.ts.md) |   ↳ |  |
-| [`src/ink/measure-text.ts`](/src/src/ink/measure-text.ts.md) |   ↳ |  |
-| [`src/ink/node-cache.ts`](/src/src/ink/node-cache.ts.md) |   ↳ |  |
-| [`src/ink/optimizer.ts`](/src/src/ink/optimizer.ts.md) |   ↳ |  |
-| [`src/ink/output.ts`](/src/src/ink/output.ts.md) |   ↳ |  |
-| [`src/ink/parse-keypress.ts`](/src/src/ink/parse-keypress.ts.md) |   ↳ |  |
-| [`src/ink/reconciler.ts`](/src/src/ink/reconciler.ts.md) |   ↳ |  |
-| [`src/ink/render-border.ts`](/src/src/ink/render-border.ts.md) |   ↳ |  |
-| [`src/ink/render-to-screen.ts`](/src/src/ink/render-to-screen.ts.md) |   ↳ |  |
-| [`src/ink/renderer.ts`](/src/src/ink/renderer.ts.md) |   ↳ |  |
-| [`src/ink/root.ts`](/src/src/ink/root.ts.md) |   ↳ |  |
-| [`src/ink/searchHighlight.ts`](/src/src/ink/searchHighlight.ts.md) |   ↳ |  |
-| [`src/ink/selection.ts`](/src/src/ink/selection.ts.md) |   ↳ |  |
-| [`src/ink/squash-text-nodes.ts`](/src/src/ink/squash-text-nodes.ts.md) |   ↳ |  |
-| [`src/ink/stringWidth.ts`](/src/src/ink/stringWidth.ts.md) |   ↳ |  |
-| [`src/ink/styles.ts`](/src/src/ink/styles.ts.md) |   ↳ |  |
-| [`src/ink/supports-hyperlinks.ts`](/src/src/ink/supports-hyperlinks.ts.md) |   ↳ |  |
-| [`src/ink/tabstops.ts`](/src/src/ink/tabstops.ts.md) |   ↳ |  |
-| [`src/ink/terminal-focus-state.ts`](/src/src/ink/terminal-focus-state.ts.md) |   ↳ |  |
-| [`src/ink/terminal-querier.ts`](/src/src/ink/terminal-querier.ts.md) |   ↳ |  |
-| [`src/ink/terminal.ts`](/src/src/ink/terminal.ts.md) |   ↳ |  |
-| [`src/ink/termio.ts`](/src/src/ink/termio.ts.md) |   ↳ |  |
-| [`src/ink/termio/ansi.ts`](/src/src/ink/termio/ansi.ts.md) |   ↳ |  |
-| [`src/ink/termio/csi.ts`](/src/src/ink/termio/csi.ts.md) |   ↳ |  |
-| [`src/ink/termio/dec.ts`](/src/src/ink/termio/dec.ts.md) |   ↳ |  |
-| [`src/ink/termio/esc.ts`](/src/src/ink/termio/esc.ts.md) |   ↳ |  |
-| [`src/ink/termio/osc.ts`](/src/src/ink/termio/osc.ts.md) |   ↳ |  |
-| [`src/ink/termio/parser.ts`](/src/src/ink/termio/parser.ts.md) |   ↳ |  |
-| [`src/ink/termio/sgr.ts`](/src/src/ink/termio/sgr.ts.md) |   ↳ |  |
-| [`src/ink/termio/tokenize.ts`](/src/src/ink/termio/tokenize.ts.md) |   ↳ |  |
-| [`src/ink/termio/types.ts`](/src/src/ink/termio/types.ts.md) |   ↳ |  |
-| [`src/ink/useTerminalNotification.ts`](/src/src/ink/useTerminalNotification.ts.md) |   ↳ |  |
-| [`src/ink/warn.ts`](/src/src/ink/warn.ts.md) |   ↳ |  |
-| [`src/ink/widest-line.ts`](/src/src/ink/widest-line.ts.md) |   ↳ |  |
-| [`src/ink/wrap-text.ts`](/src/src/ink/wrap-text.ts.md) |   ↳ |  |
-| [`src/ink/wrapAnsi.ts`](/src/src/ink/wrapAnsi.ts.md) |   ↳ |  |
-| [`src/keybindings/KeybindingProviderSetup.tsx`](/src/src/keybindings/KeybindingProviderSetup.tsx.md) |   ↳ |  |
-| [`src/keybindings/shortcutFormat.ts`](/src/src/keybindings/shortcutFormat.ts.md) |   ↳ |  |
-| [`src/keybindings/useShortcutDisplay.ts`](/src/src/keybindings/useShortcutDisplay.ts.md) |   ↳ |  |
-| [`src/screens/REPL.tsx`](/src/src/screens/REPL.tsx.md) |   ↳ |  |
-| [`src/state/AppState.tsx`](/src/src/state/AppState.tsx.md) |   ↳ |  |
-
-### ML-07-2
-
-**主线**: ML-07-2 · 1 tasks · 7 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/components/FullscreenLayout.tsx`](/src/src/components/FullscreenLayout.tsx.md) |   ↳ |  |
-| [`src/components/Messages.tsx`](/src/src/components/Messages.tsx.md) |   ↳ |  |
-| [`src/components/PromptInput/PromptInput.tsx`](/src/src/components/PromptInput/PromptInput.tsx.md) |   ↳ |  |
-| [`src/components/ScrollKeybindingHandler.tsx`](/src/src/components/ScrollKeybindingHandler.tsx.md) |   ↳ |  |
-| [`src/components/Spinner.tsx`](/src/src/components/Spinner.tsx.md) |   ↳ |  |
-| [`src/components/VirtualMessageList.tsx`](/src/src/components/VirtualMessageList.tsx.md) |   ↳ |  |
-| [`src/components/mcp/ElicitationDialog.tsx`](/src/src/components/mcp/ElicitationDialog.tsx.md) |   ↳ |  |
-
-### ML-07-3
-
-**主线**: ML-07-3 · 1 tasks · 61 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/components/AwsAuthStatusBox.tsx`](/src/src/components/AwsAuthStatusBox.tsx.md) |   ↳ |  |
-| [`src/components/CostThresholdDialog.tsx`](/src/src/components/CostThresholdDialog.tsx.md) |   ↳ |  |
-| [`src/components/DevBar.tsx`](/src/src/components/DevBar.tsx.md) |   ↳ |  |
-| [`src/components/EffortCallout.tsx`](/src/src/components/EffortCallout.tsx.md) |   ↳ |  |
-| [`src/components/ExitFlow.tsx`](/src/src/components/ExitFlow.tsx.md) |   ↳ |  |
-| [`src/components/FeedbackSurvey/FeedbackSurvey.tsx`](/src/src/components/FeedbackSurvey/FeedbackSurvey.tsx.md) |   ↳ |  |
-| [`src/components/IdeOnboardingDialog.tsx`](/src/src/components/IdeOnboardingDialog.tsx.md) |   ↳ |  |
-| [`src/components/IdleReturnDialog.tsx`](/src/src/components/IdleReturnDialog.tsx.md) |   ↳ |  |
-| [`src/components/MessageSelector.tsx`](/src/src/components/MessageSelector.tsx.md) |   ↳ |  |
-| [`src/components/RemoteCallout.tsx`](/src/src/components/RemoteCallout.tsx.md) |   ↳ |  |
-| [`src/components/SessionBackgroundHint.tsx`](/src/src/components/SessionBackgroundHint.tsx.md) |   ↳ |  |
-| [`src/components/SkillImprovementSurvey.tsx`](/src/src/components/SkillImprovementSurvey.tsx.md) |   ↳ |  |
-| [`src/components/TaskListV2.tsx`](/src/src/components/TaskListV2.tsx.md) |   ↳ |  |
-| [`src/components/TeammateViewHeader.tsx`](/src/src/components/TeammateViewHeader.tsx.md) |   ↳ |  |
-| [`src/components/hooks/PromptDialog.tsx`](/src/src/components/hooks/PromptDialog.tsx.md) |   ↳ |  |
-| [`src/components/messageActions.tsx`](/src/src/components/messageActions.tsx.md) |   ↳ |  |
-| [`src/components/messages/AdvisorMessage.tsx`](/src/src/components/messages/AdvisorMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/AssistantRedactedThinkingMessage.tsx`](/src/src/components/messages/AssistantRedactedThinkingMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/AssistantTextMessage.tsx`](/src/src/components/messages/AssistantTextMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/AssistantThinkingMessage.tsx`](/src/src/components/messages/AssistantThinkingMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/AssistantToolUseMessage.tsx`](/src/src/components/messages/AssistantToolUseMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/AttachmentMessage.tsx`](/src/src/components/messages/AttachmentMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/CollapsedReadSearchContent.tsx`](/src/src/components/messages/CollapsedReadSearchContent.tsx.md) |   ↳ |  |
-| [`src/components/messages/CompactBoundaryMessage.tsx`](/src/src/components/messages/CompactBoundaryMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/GroupedToolUseContent.tsx`](/src/src/components/messages/GroupedToolUseContent.tsx.md) |   ↳ |  |
-| [`src/components/messages/HighlightedThinkingText.tsx`](/src/src/components/messages/HighlightedThinkingText.tsx.md) |   ↳ |  |
-| [`src/components/messages/HookProgressMessage.tsx`](/src/src/components/messages/HookProgressMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/PlanApprovalMessage.tsx`](/src/src/components/messages/PlanApprovalMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/RateLimitMessage.tsx`](/src/src/components/messages/RateLimitMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/ShutdownMessage.tsx`](/src/src/components/messages/ShutdownMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/SnipBoundaryMessage.tsx`](/src/src/components/messages/SnipBoundaryMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/SystemAPIErrorMessage.tsx`](/src/src/components/messages/SystemAPIErrorMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/SystemTextMessage.tsx`](/src/src/components/messages/SystemTextMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/TaskAssignmentMessage.tsx`](/src/src/components/messages/TaskAssignmentMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserAgentNotificationMessage.tsx`](/src/src/components/messages/UserAgentNotificationMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserBashInputMessage.tsx`](/src/src/components/messages/UserBashInputMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserBashOutputMessage.tsx`](/src/src/components/messages/UserBashOutputMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserChannelMessage.tsx`](/src/src/components/messages/UserChannelMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserCommandMessage.tsx`](/src/src/components/messages/UserCommandMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserCrossSessionMessage.tsx`](/src/src/components/messages/UserCrossSessionMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserForkBoilerplateMessage.tsx`](/src/src/components/messages/UserForkBoilerplateMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserGitHubWebhookMessage.tsx`](/src/src/components/messages/UserGitHubWebhookMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserImageMessage.tsx`](/src/src/components/messages/UserImageMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserLocalCommandOutputMessage.tsx`](/src/src/components/messages/UserLocalCommandOutputMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserMemoryInputMessage.tsx`](/src/src/components/messages/UserMemoryInputMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserPlanMessage.tsx`](/src/src/components/messages/UserPlanMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserPromptMessage.tsx`](/src/src/components/messages/UserPromptMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserResourceUpdateMessage.tsx`](/src/src/components/messages/UserResourceUpdateMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserTeammateMessage.tsx`](/src/src/components/messages/UserTeammateMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserTextMessage.tsx`](/src/src/components/messages/UserTextMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserToolResultMessage/RejectedPlanMessage.tsx`](/src/src/components/messages/UserToolResultMessage/RejectedPlanMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserToolResultMessage/RejectedToolUseMessage.tsx`](/src/src/components/messages/UserToolResultMessage/RejectedToolUseMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserToolResultMessage/UserToolCanceledMessage.tsx`](/src/src/components/messages/UserToolResultMessage/UserToolCanceledMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserToolResultMessage/UserToolErrorMessage.tsx`](/src/src/components/messages/UserToolResultMessage/UserToolErrorMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserToolResultMessage/UserToolRejectMessage.tsx`](/src/src/components/messages/UserToolResultMessage/UserToolRejectMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserToolResultMessage/UserToolResultMessage.tsx`](/src/src/components/messages/UserToolResultMessage/UserToolResultMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserToolResultMessage/UserToolSuccessMessage.tsx`](/src/src/components/messages/UserToolResultMessage/UserToolSuccessMessage.tsx.md) |   ↳ |  |
-| [`src/components/messages/UserToolResultMessage/utils.tsx`](/src/src/components/messages/UserToolResultMessage/utils.tsx.md) |   ↳ |  |
-| [`src/components/messages/nullRenderingAttachments.ts`](/src/src/components/messages/nullRenderingAttachments.ts.md) |   ↳ |  |
-| [`src/components/messages/teamMemCollapsed.tsx`](/src/src/components/messages/teamMemCollapsed.tsx.md) |   ↳ |  |
-| [`src/components/messages/teamMemSaved.ts`](/src/src/components/messages/teamMemSaved.ts.md) |   ↳ |  |
-
-### ML-07-4
-
-**主线**: ML-07-4 · 1 tasks · 77 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/hooks/useAfterFirstRender.ts`](/src/src/hooks/useAfterFirstRender.ts.md) |   ↳ |  |
-| [`src/hooks/useApiKeyVerification.ts`](/src/src/hooks/useApiKeyVerification.ts.md) |   ↳ |  |
-| [`src/hooks/useArrowKeyHistory.tsx`](/src/src/hooks/useArrowKeyHistory.tsx.md) |   ↳ |  |
-| [`src/hooks/useAssistantHistory.ts`](/src/src/hooks/useAssistantHistory.ts.md) |   ↳ |  |
-| [`src/hooks/useAwaySummary.ts`](/src/src/hooks/useAwaySummary.ts.md) |   ↳ |  |
-| [`src/hooks/useBackgroundTaskNavigation.ts`](/src/src/hooks/useBackgroundTaskNavigation.ts.md) |   ↳ |  |
-| [`src/hooks/useBlink.ts`](/src/src/hooks/useBlink.ts.md) |   ↳ |  |
-| [`src/hooks/useCancelRequest.ts`](/src/src/hooks/useCancelRequest.ts.md) |   ↳ |  |
-| [`src/hooks/useChromeExtensionNotification.tsx`](/src/src/hooks/useChromeExtensionNotification.tsx.md) |   ↳ |  |
-| [`src/hooks/useClaudeCodeHintRecommendation.tsx`](/src/src/hooks/useClaudeCodeHintRecommendation.tsx.md) |   ↳ |  |
-| [`src/hooks/useClipboardImageHint.ts`](/src/src/hooks/useClipboardImageHint.ts.md) |   ↳ |  |
-| [`src/hooks/useCommandKeybindings.tsx`](/src/src/hooks/useCommandKeybindings.tsx.md) |   ↳ |  |
-| [`src/hooks/useCommandQueue.ts`](/src/src/hooks/useCommandQueue.ts.md) |   ↳ |  |
-| [`src/hooks/useCopyOnSelect.ts`](/src/src/hooks/useCopyOnSelect.ts.md) |   ↳ |  |
-| [`src/hooks/useDeferredHookMessages.ts`](/src/src/hooks/useDeferredHookMessages.ts.md) |   ↳ |  |
-| [`src/hooks/useDiffData.ts`](/src/src/hooks/useDiffData.ts.md) |   ↳ |  |
-| [`src/hooks/useDiffInIDE.ts`](/src/src/hooks/useDiffInIDE.ts.md) |   ↳ |  |
-| [`src/hooks/useDirectConnect.ts`](/src/src/hooks/useDirectConnect.ts.md) |   ↳ |  |
-| [`src/hooks/useDoublePress.ts`](/src/src/hooks/useDoublePress.ts.md) |   ↳ |  |
-| [`src/hooks/useDynamicConfig.ts`](/src/src/hooks/useDynamicConfig.ts.md) |   ↳ |  |
-| [`src/hooks/useElapsedTime.ts`](/src/src/hooks/useElapsedTime.ts.md) |   ↳ |  |
-| [`src/hooks/useExitOnCtrlCD.ts`](/src/src/hooks/useExitOnCtrlCD.ts.md) |   ↳ |  |
-| [`src/hooks/useExitOnCtrlCDWithKeybindings.ts`](/src/src/hooks/useExitOnCtrlCDWithKeybindings.ts.md) |   ↳ |  |
-| [`src/hooks/useFileHistorySnapshotInit.ts`](/src/src/hooks/useFileHistorySnapshotInit.ts.md) |   ↳ |  |
-| [`src/hooks/useGlobalKeybindings.tsx`](/src/src/hooks/useGlobalKeybindings.tsx.md) |   ↳ |  |
-| [`src/hooks/useHistorySearch.ts`](/src/src/hooks/useHistorySearch.ts.md) |   ↳ |  |
-| [`src/hooks/useIDEIntegration.tsx`](/src/src/hooks/useIDEIntegration.tsx.md) |   ↳ |  |
-| [`src/hooks/useIdeAtMentioned.ts`](/src/src/hooks/useIdeAtMentioned.ts.md) |   ↳ |  |
-| [`src/hooks/useIdeConnectionStatus.ts`](/src/src/hooks/useIdeConnectionStatus.ts.md) |   ↳ |  |
-| [`src/hooks/useIdeLogging.ts`](/src/src/hooks/useIdeLogging.ts.md) |   ↳ |  |
-| [`src/hooks/useIdeSelection.ts`](/src/src/hooks/useIdeSelection.ts.md) |   ↳ |  |
-| [`src/hooks/useInboxPoller.ts`](/src/src/hooks/useInboxPoller.ts.md) |   ↳ |  |
-| [`src/hooks/useInputBuffer.ts`](/src/src/hooks/useInputBuffer.ts.md) |   ↳ |  |
-| [`src/hooks/useIssueFlagBanner.ts`](/src/src/hooks/useIssueFlagBanner.ts.md) |   ↳ |  |
-| [`src/hooks/useLogMessages.ts`](/src/src/hooks/useLogMessages.ts.md) |   ↳ |  |
-| [`src/hooks/useLspPluginRecommendation.tsx`](/src/src/hooks/useLspPluginRecommendation.tsx.md) |   ↳ |  |
-| [`src/hooks/useMailboxBridge.ts`](/src/src/hooks/useMailboxBridge.ts.md) |   ↳ |  |
-| [`src/hooks/useMainLoopModel.ts`](/src/src/hooks/useMainLoopModel.ts.md) |   ↳ |  |
-| [`src/hooks/useManagePlugins.ts`](/src/src/hooks/useManagePlugins.ts.md) |   ↳ |  |
-| [`src/hooks/useMemoryUsage.ts`](/src/src/hooks/useMemoryUsage.ts.md) |   ↳ |  |
-| [`src/hooks/useMergedClients.ts`](/src/src/hooks/useMergedClients.ts.md) |   ↳ |  |
-| [`src/hooks/useMergedCommands.ts`](/src/src/hooks/useMergedCommands.ts.md) |   ↳ |  |
-| [`src/hooks/useMergedTools.ts`](/src/src/hooks/useMergedTools.ts.md) |   ↳ |  |
-| [`src/hooks/useMinDisplayTime.ts`](/src/src/hooks/useMinDisplayTime.ts.md) |   ↳ |  |
-| [`src/hooks/useNotifyAfterTimeout.ts`](/src/src/hooks/useNotifyAfterTimeout.ts.md) |   ↳ |  |
-| [`src/hooks/useOfficialMarketplaceNotification.tsx`](/src/src/hooks/useOfficialMarketplaceNotification.tsx.md) |   ↳ |  |
-| [`src/hooks/usePasteHandler.ts`](/src/src/hooks/usePasteHandler.ts.md) |   ↳ |  |
-| [`src/hooks/usePluginRecommendationBase.tsx`](/src/src/hooks/usePluginRecommendationBase.tsx.md) |   ↳ |  |
-| [`src/hooks/usePrStatus.ts`](/src/src/hooks/usePrStatus.ts.md) |   ↳ |  |
-| [`src/hooks/usePromptSuggestion.ts`](/src/src/hooks/usePromptSuggestion.ts.md) |   ↳ |  |
-| [`src/hooks/usePromptsFromClaudeInChrome.tsx`](/src/src/hooks/usePromptsFromClaudeInChrome.tsx.md) |   ↳ |  |
-| [`src/hooks/useQueueProcessor.ts`](/src/src/hooks/useQueueProcessor.ts.md) |   ↳ |  |
-| [`src/hooks/useRemoteSession.ts`](/src/src/hooks/useRemoteSession.ts.md) |   ↳ |  |
-| [`src/hooks/useReplBridge.tsx`](/src/src/hooks/useReplBridge.tsx.md) |   ↳ |  |
-| [`src/hooks/useSSHSession.ts`](/src/src/hooks/useSSHSession.ts.md) |   ↳ |  |
-| [`src/hooks/useScheduledTasks.ts`](/src/src/hooks/useScheduledTasks.ts.md) |   ↳ |  |
-| [`src/hooks/useSearchInput.ts`](/src/src/hooks/useSearchInput.ts.md) |   ↳ |  |
-| [`src/hooks/useSessionBackgrounding.ts`](/src/src/hooks/useSessionBackgrounding.ts.md) |   ↳ |  |
-| [`src/hooks/useSettings.ts`](/src/src/hooks/useSettings.ts.md) |   ↳ |  |
-| [`src/hooks/useSettingsChange.ts`](/src/src/hooks/useSettingsChange.ts.md) |   ↳ |  |
-| [`src/hooks/useSkillImprovementSurvey.ts`](/src/src/hooks/useSkillImprovementSurvey.ts.md) |   ↳ |  |
-| [`src/hooks/useSkillsChange.ts`](/src/src/hooks/useSkillsChange.ts.md) |   ↳ |  |
-| [`src/hooks/useSwarmInitialization.ts`](/src/src/hooks/useSwarmInitialization.ts.md) |   ↳ |  |
-| [`src/hooks/useSwarmPermissionPoller.ts`](/src/src/hooks/useSwarmPermissionPoller.ts.md) |   ↳ |  |
-| [`src/hooks/useTaskListWatcher.ts`](/src/src/hooks/useTaskListWatcher.ts.md) |   ↳ |  |
-| [`src/hooks/useTasksV2.ts`](/src/src/hooks/useTasksV2.ts.md) |   ↳ |  |
-| [`src/hooks/useTeammateViewAutoExit.ts`](/src/src/hooks/useTeammateViewAutoExit.ts.md) |   ↳ |  |
-| [`src/hooks/useTeleportResume.tsx`](/src/src/hooks/useTeleportResume.tsx.md) |   ↳ |  |
-| [`src/hooks/useTerminalSize.ts`](/src/src/hooks/useTerminalSize.ts.md) |   ↳ |  |
-| [`src/hooks/useTextInput.ts`](/src/src/hooks/useTextInput.ts.md) |   ↳ |  |
-| [`src/hooks/useTimeout.ts`](/src/src/hooks/useTimeout.ts.md) |   ↳ |  |
-| [`src/hooks/useTurnDiffs.ts`](/src/src/hooks/useTurnDiffs.ts.md) |   ↳ |  |
-| [`src/hooks/useUpdateNotification.ts`](/src/src/hooks/useUpdateNotification.ts.md) |   ↳ |  |
-| [`src/hooks/useVimInput.ts`](/src/src/hooks/useVimInput.ts.md) |   ↳ |  |
-| [`src/hooks/useVirtualScroll.ts`](/src/src/hooks/useVirtualScroll.ts.md) |   ↳ |  |
-| [`src/hooks/useVoiceEnabled.ts`](/src/src/hooks/useVoiceEnabled.ts.md) |   ↳ |  |
-| [`src/hooks/useVoiceIntegration.tsx`](/src/src/hooks/useVoiceIntegration.tsx.md) |   ↳ |  |
-
-### ML-07-5
-
-**主线**: ML-07-5 · 1 tasks · 5 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/hooks/useTypeahead.tsx`](/src/src/hooks/useTypeahead.tsx.md) |   ↳ |  |
-| [`src/hooks/useVoice.ts`](/src/src/hooks/useVoice.ts.md) |   ↳ |  |
-| [`src/ink/ink.tsx`](/src/src/ink/ink.tsx.md) |   ↳ |  |
-| [`src/ink/render-node-to-output.ts`](/src/src/ink/render-node-to-output.ts.md) |   ↳ |  |
-| [`src/ink/screen.ts`](/src/src/ink/screen.ts.md) |   ↳ |  |
-
-### ML-08
-
-**主线**: ML-08 · 1 tasks · 21 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/Task.ts`](/src/src/Task.ts.md) |   ↳ |  |
-| [`src/tasks.ts`](/src/src/tasks.ts.md) |   ↳ |  |
-| [`src/tasks/DreamTask/DreamTask.ts`](/src/src/tasks/DreamTask/DreamTask.ts.md) |   ↳ |  |
-| [`src/tasks/InProcessTeammateTask/InProcessTeammateTask.tsx`](/src/src/tasks/InProcessTeammateTask/InProcessTeammateTask.tsx.md) |   ↳ |  |
-| [`src/tasks/InProcessTeammateTask/types.ts`](/src/src/tasks/InProcessTeammateTask/types.ts.md) |   ↳ |  |
-| [`src/tasks/LocalAgentTask/LocalAgentTask.tsx`](/src/src/tasks/LocalAgentTask/LocalAgentTask.tsx.md) |   ↳ |  |
-| [`src/tasks/LocalMainSessionTask.ts`](/src/src/tasks/LocalMainSessionTask.ts.md) |   ↳ |  |
-| [`src/tasks/LocalShellTask/LocalShellTask.tsx`](/src/src/tasks/LocalShellTask/LocalShellTask.tsx.md) |   ↳ |  |
-| [`src/tasks/LocalShellTask/guards.ts`](/src/src/tasks/LocalShellTask/guards.ts.md) |   ↳ |  |
-| [`src/tasks/LocalShellTask/killShellTasks.ts`](/src/src/tasks/LocalShellTask/killShellTasks.ts.md) |   ↳ |  |
-| [`src/tasks/LocalWorkflowTask/LocalWorkflowTask.ts`](/src/src/tasks/LocalWorkflowTask/LocalWorkflowTask.ts.md) |   ↳ |  |
-| [`src/tasks/MonitorMcpTask/MonitorMcpTask.ts`](/src/src/tasks/MonitorMcpTask/MonitorMcpTask.ts.md) |   ↳ |  |
-| [`src/tasks/RemoteAgentTask/RemoteAgentTask.tsx`](/src/src/tasks/RemoteAgentTask/RemoteAgentTask.tsx.md) |   ↳ |  |
-| [`src/tasks/pillLabel.ts`](/src/src/tasks/pillLabel.ts.md) |   ↳ |  |
-| [`src/tasks/stopTask.ts`](/src/src/tasks/stopTask.ts.md) |   ↳ |  |
-| [`src/tasks/types.ts`](/src/src/tasks/types.ts.md) |   ↳ |  |
-| [`src/utils/task/TaskOutput.ts`](/src/src/utils/task/TaskOutput.ts.md) |   ↳ |  |
-| [`src/utils/task/diskOutput.ts`](/src/src/utils/task/diskOutput.ts.md) |   ↳ |  |
-| [`src/utils/task/framework.ts`](/src/src/utils/task/framework.ts.md) |   ↳ |  |
-| [`src/utils/task/outputFormatting.ts`](/src/src/utils/task/outputFormatting.ts.md) |   ↳ |  |
-| [`src/utils/task/sdkProgress.ts`](/src/src/utils/task/sdkProgress.ts.md) |   ↳ |  |
-
-### ML-09
-
-**主线**: ML-09 · 1 tasks · 17 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/cli/exit.ts`](/src/src/cli/exit.ts.md) |   ↳ |  |
-| [`src/cli/handlers/agents.ts`](/src/src/cli/handlers/agents.ts.md) |   ↳ |  |
-| [`src/cli/handlers/autoMode.ts`](/src/src/cli/handlers/autoMode.ts.md) |   ↳ |  |
-| [`src/cli/handlers/mcp.tsx`](/src/src/cli/handlers/mcp.tsx.md) |   ↳ |  |
-| [`src/cli/handlers/plugins.ts`](/src/src/cli/handlers/plugins.ts.md) |   ↳ |  |
-| [`src/cli/handlers/util.tsx`](/src/src/cli/handlers/util.tsx.md) |   ↳ |  |
-| [`src/cli/ndjsonSafeStringify.ts`](/src/src/cli/ndjsonSafeStringify.ts.md) |   ↳ |  |
-| [`src/cli/remoteIO.ts`](/src/src/cli/remoteIO.ts.md) |   ↳ |  |
-| [`src/cli/transports/HybridTransport.ts`](/src/src/cli/transports/HybridTransport.ts.md) |   ↳ |  |
-| [`src/cli/transports/SSETransport.ts`](/src/src/cli/transports/SSETransport.ts.md) |   ↳ |  |
-| [`src/cli/transports/SerialBatchEventUploader.ts`](/src/src/cli/transports/SerialBatchEventUploader.ts.md) |   ↳ |  |
-| [`src/cli/transports/Transport.ts`](/src/src/cli/transports/Transport.ts.md) |   ↳ |  |
-| [`src/cli/transports/WebSocketTransport.ts`](/src/src/cli/transports/WebSocketTransport.ts.md) |   ↳ |  |
-| [`src/cli/transports/WorkerStateUploader.ts`](/src/src/cli/transports/WorkerStateUploader.ts.md) |   ↳ |  |
-| [`src/cli/transports/ccrClient.ts`](/src/src/cli/transports/ccrClient.ts.md) |   ↳ |  |
-| [`src/cli/transports/transportUtils.ts`](/src/src/cli/transports/transportUtils.ts.md) |   ↳ |  |
-| [`src/cli/update.ts`](/src/src/cli/update.ts.md) |   ↳ |  |
-
-### ML-09-1
-
-**主线**: ML-09-1 · 1 tasks · 18 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/bridge/bridgeApi.ts`](/src/src/bridge/bridgeApi.ts.md) |   ↳ |  |
-| [`src/bridge/bridgeConfig.ts`](/src/src/bridge/bridgeConfig.ts.md) |   ↳ |  |
-| [`src/bridge/bridgeDebug.ts`](/src/src/bridge/bridgeDebug.ts.md) |   ↳ |  |
-| [`src/bridge/bridgeEnabled.ts`](/src/src/bridge/bridgeEnabled.ts.md) |   ↳ |  |
-| [`src/bridge/capacityWake.ts`](/src/src/bridge/capacityWake.ts.md) |   ↳ |  |
-| [`src/bridge/debugUtils.ts`](/src/src/bridge/debugUtils.ts.md) |   ↳ |  |
-| [`src/bridge/envLessBridgeConfig.ts`](/src/src/bridge/envLessBridgeConfig.ts.md) |   ↳ |  |
-| [`src/bridge/flushGate.ts`](/src/src/bridge/flushGate.ts.md) |   ↳ |  |
-| [`src/bridge/initReplBridge.ts`](/src/src/bridge/initReplBridge.ts.md) |   ↳ |  |
-| [`src/bridge/jwtUtils.ts`](/src/src/bridge/jwtUtils.ts.md) |   ↳ |  |
-| [`src/bridge/pollConfig.ts`](/src/src/bridge/pollConfig.ts.md) |   ↳ |  |
-| [`src/bridge/pollConfigDefaults.ts`](/src/src/bridge/pollConfigDefaults.ts.md) |   ↳ |  |
-| [`src/bridge/replBridge.ts`](/src/src/bridge/replBridge.ts.md) |   ↳ |  |
-| [`src/bridge/replBridgeHandle.ts`](/src/src/bridge/replBridgeHandle.ts.md) |   ↳ |  |
-| [`src/bridge/sessionIdCompat.ts`](/src/src/bridge/sessionIdCompat.ts.md) |   ↳ |  |
-| [`src/bridge/trustedDevice.ts`](/src/src/bridge/trustedDevice.ts.md) |   ↳ |  |
-| [`src/bridge/types.ts`](/src/src/bridge/types.ts.md) |   ↳ |  |
-| [`src/bridge/workSecret.ts`](/src/src/bridge/workSecret.ts.md) |   ↳ |  |
-
-### ML-09-2
-
-**主线**: ML-09-2 · 1 tasks · 15 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/bridge/bridgeMain.ts`](/src/src/bridge/bridgeMain.ts.md) |   ↳ |  |
-| [`src/bridge/bridgeMessaging.ts`](/src/src/bridge/bridgeMessaging.ts.md) |   ↳ |  |
-| [`src/bridge/bridgePermissionCallbacks.ts`](/src/src/bridge/bridgePermissionCallbacks.ts.md) |   ↳ |  |
-| [`src/bridge/bridgePointer.ts`](/src/src/bridge/bridgePointer.ts.md) |   ↳ |  |
-| [`src/bridge/bridgeStatusUtil.ts`](/src/src/bridge/bridgeStatusUtil.ts.md) |   ↳ |  |
-| [`src/bridge/bridgeUI.ts`](/src/src/bridge/bridgeUI.ts.md) |   ↳ |  |
-| [`src/bridge/codeSessionApi.ts`](/src/src/bridge/codeSessionApi.ts.md) |   ↳ |  |
-| [`src/bridge/createSession.ts`](/src/src/bridge/createSession.ts.md) |   ↳ |  |
-| [`src/bridge/inboundAttachments.ts`](/src/src/bridge/inboundAttachments.ts.md) |   ↳ |  |
-| [`src/bridge/inboundMessages.ts`](/src/src/bridge/inboundMessages.ts.md) |   ↳ |  |
-| [`src/bridge/peerSessions.ts`](/src/src/bridge/peerSessions.ts.md) |   ↳ |  |
-| [`src/bridge/remoteBridgeCore.ts`](/src/src/bridge/remoteBridgeCore.ts.md) |   ↳ |  |
-| [`src/bridge/replBridgeTransport.ts`](/src/src/bridge/replBridgeTransport.ts.md) |   ↳ |  |
-| [`src/bridge/sessionRunner.ts`](/src/src/bridge/sessionRunner.ts.md) |   ↳ |  |
-| [`src/bridge/webhookSanitizer.ts`](/src/src/bridge/webhookSanitizer.ts.md) |   ↳ |  |
-
-### ML-10
-
-**主线**: ML-10 · 1 tasks · 1 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/services/claudeAiLimits.ts`](/src/src/services/claudeAiLimits.ts.md) |   ↳ |  |
-
-### ML-10-1
-
-**主线**: ML-10-1 · 1 tasks · 14 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/services/api/adminRequests.ts`](/src/src/services/api/adminRequests.ts.md) |   ↳ |  |
-| [`src/services/api/dumpPrompts.ts`](/src/src/services/api/dumpPrompts.ts.md) |   ↳ |  |
-| [`src/services/api/emptyUsage.ts`](/src/src/services/api/emptyUsage.ts.md) |   ↳ |  |
-| [`src/services/api/errorUtils.ts`](/src/src/services/api/errorUtils.ts.md) |   ↳ |  |
-| [`src/services/api/filesApi.ts`](/src/src/services/api/filesApi.ts.md) |   ↳ |  |
-| [`src/services/api/firstTokenDate.ts`](/src/src/services/api/firstTokenDate.ts.md) |   ↳ |  |
-| [`src/services/api/grove.ts`](/src/src/services/api/grove.ts.md) |   ↳ |  |
-| [`src/services/api/metricsOptOut.ts`](/src/src/services/api/metricsOptOut.ts.md) |   ↳ |  |
-| [`src/services/api/overageCreditGrant.ts`](/src/src/services/api/overageCreditGrant.ts.md) |   ↳ |  |
-| [`src/services/api/promptCacheBreakDetection.ts`](/src/src/services/api/promptCacheBreakDetection.ts.md) |   ↳ |  |
-| [`src/services/api/referral.ts`](/src/src/services/api/referral.ts.md) |   ↳ |  |
-| [`src/services/api/sessionIngress.ts`](/src/src/services/api/sessionIngress.ts.md) |   ↳ |  |
-| [`src/services/api/ultrareviewQuota.ts`](/src/src/services/api/ultrareviewQuota.ts.md) |   ↳ |  |
-| [`src/services/api/usage.ts`](/src/src/services/api/usage.ts.md) |   ↳ |  |
-
-### ML-11
-
-**主线**: ML-11 · 1 tasks · 3 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/utils/sessionRestore.ts`](/src/src/utils/sessionRestore.ts.md) |   ↳ |  |
-| [`src/utils/sessionStorage.ts`](/src/src/utils/sessionStorage.ts.md) |   ↳ |  |
-| [`src/utils/sessionStoragePortable.ts`](/src/src/utils/sessionStoragePortable.ts.md) |   ↳ |  |
-
-### ML-11-1
-
-**主线**: ML-11-1 · 1 tasks · 31 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/memdir/findRelevantMemories.ts`](/src/src/memdir/findRelevantMemories.ts.md) |   ↳ |  |
-| [`src/memdir/memdir.ts`](/src/src/memdir/memdir.ts.md) |   ↳ |  |
-| [`src/memdir/memoryAge.ts`](/src/src/memdir/memoryAge.ts.md) |   ↳ |  |
-| [`src/memdir/memoryScan.ts`](/src/src/memdir/memoryScan.ts.md) |   ↳ |  |
-| [`src/memdir/memoryShapeTelemetry.ts`](/src/src/memdir/memoryShapeTelemetry.ts.md) |   ↳ |  |
-| [`src/memdir/memoryTypes.ts`](/src/src/memdir/memoryTypes.ts.md) |   ↳ |  |
-| [`src/memdir/paths.ts`](/src/src/memdir/paths.ts.md) |   ↳ |  |
-| [`src/memdir/teamMemPaths.ts`](/src/src/memdir/teamMemPaths.ts.md) |   ↳ |  |
-| [`src/memdir/teamMemPrompts.ts`](/src/src/memdir/teamMemPrompts.ts.md) |   ↳ |  |
-| [`src/services/SessionMemory/prompts.ts`](/src/src/services/SessionMemory/prompts.ts.md) |   ↳ |  |
-| [`src/services/SessionMemory/sessionMemory.ts`](/src/src/services/SessionMemory/sessionMemory.ts.md) |   ↳ |  |
-| [`src/services/SessionMemory/sessionMemoryUtils.ts`](/src/src/services/SessionMemory/sessionMemoryUtils.ts.md) |   ↳ |  |
-| [`src/services/compact/apiMicrocompact.ts`](/src/src/services/compact/apiMicrocompact.ts.md) |   ↳ |  |
-| [`src/services/compact/cachedMCConfig.ts`](/src/src/services/compact/cachedMCConfig.ts.md) |   ↳ |  |
-| [`src/services/compact/compactWarningHook.ts`](/src/src/services/compact/compactWarningHook.ts.md) |   ↳ |  |
-| [`src/services/compact/compactWarningState.ts`](/src/src/services/compact/compactWarningState.ts.md) |   ↳ |  |
-| [`src/services/compact/grouping.ts`](/src/src/services/compact/grouping.ts.md) |   ↳ |  |
-| [`src/services/compact/microCompact.ts`](/src/src/services/compact/microCompact.ts.md) |   ↳ |  |
-| [`src/services/compact/postCompactCleanup.ts`](/src/src/services/compact/postCompactCleanup.ts.md) |   ↳ |  |
-| [`src/services/compact/prompt.ts`](/src/src/services/compact/prompt.ts.md) |   ↳ |  |
-| [`src/services/compact/reactiveCompact.ts`](/src/src/services/compact/reactiveCompact.ts.md) |   ↳ |  |
-| [`src/services/compact/sessionMemoryCompact.ts`](/src/src/services/compact/sessionMemoryCompact.ts.md) |   ↳ |  |
-| [`src/services/compact/snipCompact.ts`](/src/src/services/compact/snipCompact.ts.md) |   ↳ |  |
-| [`src/services/compact/snipProjection.ts`](/src/src/services/compact/snipProjection.ts.md) |   ↳ |  |
-| [`src/services/compact/timeBasedMCConfig.ts`](/src/src/services/compact/timeBasedMCConfig.ts.md) |   ↳ |  |
-| [`src/services/contextCollapse/index.ts`](/src/src/services/contextCollapse/index.ts.md) |   ↳ |  |
-| [`src/services/contextCollapse/operations.ts`](/src/src/services/contextCollapse/operations.ts.md) |   ↳ |  |
-| [`src/services/contextCollapse/persist.ts`](/src/src/services/contextCollapse/persist.ts.md) |   ↳ |  |
-| [`src/services/tokenEstimation.ts`](/src/src/services/tokenEstimation.ts.md) |   ↳ |  |
-| [`src/utils/contextAnalysis.ts`](/src/src/utils/contextAnalysis.ts.md) |   ↳ |  |
-| [`src/utils/forkedAgent.ts`](/src/src/utils/forkedAgent.ts.md) |   ↳ |  |
-
-### ML-12
-
-**主线**: ML-12 · 1 tasks · 72 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/commands/plugin/ManagePlugins.tsx`](/src/src/commands/plugin/ManagePlugins.tsx.md) |   ↳ |  |
-| [`src/commands/plugin/PluginSettings.tsx`](/src/src/commands/plugin/PluginSettings.tsx.md) |   ↳ |  |
-| [`src/services/plugins/PluginInstallationManager.ts`](/src/src/services/plugins/PluginInstallationManager.ts.md) |   ↳ |  |
-| [`src/services/plugins/pluginCliCommands.ts`](/src/src/services/plugins/pluginCliCommands.ts.md) |   ↳ |  |
-| [`src/services/plugins/pluginOperations.ts`](/src/src/services/plugins/pluginOperations.ts.md) |   ↳ |  |
-| [`src/skills/bundled/batch.ts`](/src/src/skills/bundled/batch.ts.md) |   ↳ |  |
-| [`src/skills/bundled/claudeApi.ts`](/src/src/skills/bundled/claudeApi.ts.md) |   ↳ |  |
-| [`src/skills/bundled/claudeApiContent.ts`](/src/src/skills/bundled/claudeApiContent.ts.md) |   ↳ |  |
-| [`src/skills/bundled/claudeInChrome.ts`](/src/src/skills/bundled/claudeInChrome.ts.md) |   ↳ |  |
-| [`src/skills/bundled/debug.ts`](/src/src/skills/bundled/debug.ts.md) |   ↳ |  |
-| [`src/skills/bundled/dream.ts`](/src/src/skills/bundled/dream.ts.md) |   ↳ |  |
-| [`src/skills/bundled/hunter.ts`](/src/src/skills/bundled/hunter.ts.md) |   ↳ |  |
-| [`src/skills/bundled/index.ts`](/src/src/skills/bundled/index.ts.md) |   ↳ |  |
-| [`src/skills/bundled/keybindings.ts`](/src/src/skills/bundled/keybindings.ts.md) |   ↳ |  |
-| [`src/skills/bundled/loop.ts`](/src/src/skills/bundled/loop.ts.md) |   ↳ |  |
-| [`src/skills/bundled/loremIpsum.ts`](/src/src/skills/bundled/loremIpsum.ts.md) |   ↳ |  |
-| [`src/skills/bundled/remember.ts`](/src/src/skills/bundled/remember.ts.md) |   ↳ |  |
-| [`src/skills/bundled/runSkillGenerator.ts`](/src/src/skills/bundled/runSkillGenerator.ts.md) |   ↳ |  |
-| [`src/skills/bundled/scheduleRemoteAgents.ts`](/src/src/skills/bundled/scheduleRemoteAgents.ts.md) |   ↳ |  |
-| [`src/skills/bundled/simplify.ts`](/src/src/skills/bundled/simplify.ts.md) |   ↳ |  |
-| [`src/skills/bundled/skillify.ts`](/src/src/skills/bundled/skillify.ts.md) |   ↳ |  |
-| [`src/skills/bundled/stuck.ts`](/src/src/skills/bundled/stuck.ts.md) |   ↳ |  |
-| [`src/skills/bundled/updateConfig.ts`](/src/src/skills/bundled/updateConfig.ts.md) |   ↳ |  |
-| [`src/skills/bundled/verify.ts`](/src/src/skills/bundled/verify.ts.md) |   ↳ |  |
-| [`src/skills/bundled/verifyContent.ts`](/src/src/skills/bundled/verifyContent.ts.md) |   ↳ |  |
-| [`src/skills/bundledSkills.ts`](/src/src/skills/bundledSkills.ts.md) |   ↳ |  |
-| [`src/skills/loadSkillsDir.ts`](/src/src/skills/loadSkillsDir.ts.md) |   ↳ |  |
-| [`src/skills/mcpSkillBuilders.ts`](/src/src/skills/mcpSkillBuilders.ts.md) |   ↳ |  |
-| [`src/utils/plugins/addDirPluginSettings.ts`](/src/src/utils/plugins/addDirPluginSettings.ts.md) |   ↳ |  |
-| [`src/utils/plugins/cacheUtils.ts`](/src/src/utils/plugins/cacheUtils.ts.md) |   ↳ |  |
-| [`src/utils/plugins/dependencyResolver.ts`](/src/src/utils/plugins/dependencyResolver.ts.md) |   ↳ |  |
-| [`src/utils/plugins/fetchTelemetry.ts`](/src/src/utils/plugins/fetchTelemetry.ts.md) |   ↳ |  |
-| [`src/utils/plugins/gitAvailability.ts`](/src/src/utils/plugins/gitAvailability.ts.md) |   ↳ |  |
-| [`src/utils/plugins/headlessPluginInstall.ts`](/src/src/utils/plugins/headlessPluginInstall.ts.md) |   ↳ |  |
-| [`src/utils/plugins/hintRecommendation.ts`](/src/src/utils/plugins/hintRecommendation.ts.md) |   ↳ |  |
-| [`src/utils/plugins/installCounts.ts`](/src/src/utils/plugins/installCounts.ts.md) |   ↳ |  |
-| [`src/utils/plugins/installedPluginsManager.ts`](/src/src/utils/plugins/installedPluginsManager.ts.md) |   ↳ |  |
-| [`src/utils/plugins/loadPluginAgents.ts`](/src/src/utils/plugins/loadPluginAgents.ts.md) |   ↳ |  |
-| [`src/utils/plugins/loadPluginCommands.ts`](/src/src/utils/plugins/loadPluginCommands.ts.md) |   ↳ |  |
-| [`src/utils/plugins/loadPluginHooks.ts`](/src/src/utils/plugins/loadPluginHooks.ts.md) |   ↳ |  |
-| [`src/utils/plugins/loadPluginOutputStyles.ts`](/src/src/utils/plugins/loadPluginOutputStyles.ts.md) |   ↳ |  |
-| [`src/utils/plugins/lspPluginIntegration.ts`](/src/src/utils/plugins/lspPluginIntegration.ts.md) |   ↳ |  |
-| [`src/utils/plugins/lspRecommendation.ts`](/src/src/utils/plugins/lspRecommendation.ts.md) |   ↳ |  |
-| [`src/utils/plugins/managedPlugins.ts`](/src/src/utils/plugins/managedPlugins.ts.md) |   ↳ |  |
-| [`src/utils/plugins/marketplaceHelpers.ts`](/src/src/utils/plugins/marketplaceHelpers.ts.md) |   ↳ |  |
-| [`src/utils/plugins/marketplaceManager.ts`](/src/src/utils/plugins/marketplaceManager.ts.md) |   ↳ |  |
-| [`src/utils/plugins/mcpPluginIntegration.ts`](/src/src/utils/plugins/mcpPluginIntegration.ts.md) |   ↳ |  |
-| [`src/utils/plugins/mcpbHandler.ts`](/src/src/utils/plugins/mcpbHandler.ts.md) |   ↳ |  |
-| [`src/utils/plugins/officialMarketplace.ts`](/src/src/utils/plugins/officialMarketplace.ts.md) |   ↳ |  |
-| [`src/utils/plugins/officialMarketplaceGcs.ts`](/src/src/utils/plugins/officialMarketplaceGcs.ts.md) |   ↳ |  |
-| [`src/utils/plugins/officialMarketplaceStartupCheck.ts`](/src/src/utils/plugins/officialMarketplaceStartupCheck.ts.md) |   ↳ |  |
-| [`src/utils/plugins/orphanedPluginFilter.ts`](/src/src/utils/plugins/orphanedPluginFilter.ts.md) |   ↳ |  |
-| [`src/utils/plugins/parseMarketplaceInput.ts`](/src/src/utils/plugins/parseMarketplaceInput.ts.md) |   ↳ |  |
-| [`src/utils/plugins/performStartupChecks.tsx`](/src/src/utils/plugins/performStartupChecks.tsx.md) |   ↳ |  |
-| [`src/utils/plugins/pluginAutoupdate.ts`](/src/src/utils/plugins/pluginAutoupdate.ts.md) |   ↳ |  |
-| [`src/utils/plugins/pluginBlocklist.ts`](/src/src/utils/plugins/pluginBlocklist.ts.md) |   ↳ |  |
-| [`src/utils/plugins/pluginDirectories.ts`](/src/src/utils/plugins/pluginDirectories.ts.md) |   ↳ |  |
-| [`src/utils/plugins/pluginFlagging.ts`](/src/src/utils/plugins/pluginFlagging.ts.md) |   ↳ |  |
-| [`src/utils/plugins/pluginIdentifier.ts`](/src/src/utils/plugins/pluginIdentifier.ts.md) |   ↳ |  |
-| [`src/utils/plugins/pluginInstallationHelpers.ts`](/src/src/utils/plugins/pluginInstallationHelpers.ts.md) |   ↳ |  |
-| [`src/utils/plugins/pluginLoader.ts`](/src/src/utils/plugins/pluginLoader.ts.md) |   ↳ |  |
-| [`src/utils/plugins/pluginOptionsStorage.ts`](/src/src/utils/plugins/pluginOptionsStorage.ts.md) |   ↳ |  |
-| [`src/utils/plugins/pluginPolicy.ts`](/src/src/utils/plugins/pluginPolicy.ts.md) |   ↳ |  |
-| [`src/utils/plugins/pluginStartupCheck.ts`](/src/src/utils/plugins/pluginStartupCheck.ts.md) |   ↳ |  |
-| [`src/utils/plugins/pluginVersioning.ts`](/src/src/utils/plugins/pluginVersioning.ts.md) |   ↳ |  |
-| [`src/utils/plugins/reconciler.ts`](/src/src/utils/plugins/reconciler.ts.md) |   ↳ |  |
-| [`src/utils/plugins/refresh.ts`](/src/src/utils/plugins/refresh.ts.md) |   ↳ |  |
-| [`src/utils/plugins/schemas.ts`](/src/src/utils/plugins/schemas.ts.md) |   ↳ |  |
-| [`src/utils/plugins/validatePlugin.ts`](/src/src/utils/plugins/validatePlugin.ts.md) |   ↳ |  |
-| [`src/utils/plugins/walkPluginMarkdown.ts`](/src/src/utils/plugins/walkPluginMarkdown.ts.md) |   ↳ |  |
-| [`src/utils/plugins/zipCache.ts`](/src/src/utils/plugins/zipCache.ts.md) |   ↳ |  |
-| [`src/utils/plugins/zipCacheAdapters.ts`](/src/src/utils/plugins/zipCacheAdapters.ts.md) |   ↳ |  |
-
-### ML-13
-
-**主线**: ML-13 · 1 tasks · 37 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/utils/bash/ParsedCommand.ts`](/src/src/utils/bash/ParsedCommand.ts.md) |   ↳ |  |
-| [`src/utils/bash/ShellSnapshot.ts`](/src/src/utils/bash/ShellSnapshot.ts.md) |   ↳ |  |
-| [`src/utils/bash/ast.ts`](/src/src/utils/bash/ast.ts.md) |   ↳ |  |
-| [`src/utils/bash/bashParser.ts`](/src/src/utils/bash/bashParser.ts.md) |   ↳ |  |
-| [`src/utils/bash/bashPipeCommand.ts`](/src/src/utils/bash/bashPipeCommand.ts.md) |   ↳ |  |
-| [`src/utils/bash/commands.ts`](/src/src/utils/bash/commands.ts.md) |   ↳ |  |
-| [`src/utils/bash/heredoc.ts`](/src/src/utils/bash/heredoc.ts.md) |   ↳ |  |
-| [`src/utils/bash/parser.ts`](/src/src/utils/bash/parser.ts.md) |   ↳ |  |
-| [`src/utils/bash/prefix.ts`](/src/src/utils/bash/prefix.ts.md) |   ↳ |  |
-| [`src/utils/bash/registry.ts`](/src/src/utils/bash/registry.ts.md) |   ↳ |  |
-| [`src/utils/bash/shellCompletion.ts`](/src/src/utils/bash/shellCompletion.ts.md) |   ↳ |  |
-| [`src/utils/bash/shellPrefix.ts`](/src/src/utils/bash/shellPrefix.ts.md) |   ↳ |  |
-| [`src/utils/bash/shellQuote.ts`](/src/src/utils/bash/shellQuote.ts.md) |   ↳ |  |
-| [`src/utils/bash/shellQuoting.ts`](/src/src/utils/bash/shellQuoting.ts.md) |   ↳ |  |
-| [`src/utils/bash/specs/alias.ts`](/src/src/utils/bash/specs/alias.ts.md) |   ↳ |  |
-| [`src/utils/bash/specs/index.ts`](/src/src/utils/bash/specs/index.ts.md) |   ↳ |  |
-| [`src/utils/bash/specs/nohup.ts`](/src/src/utils/bash/specs/nohup.ts.md) |   ↳ |  |
-| [`src/utils/bash/specs/pyright.ts`](/src/src/utils/bash/specs/pyright.ts.md) |   ↳ |  |
-| [`src/utils/bash/specs/sleep.ts`](/src/src/utils/bash/specs/sleep.ts.md) |   ↳ |  |
-| [`src/utils/bash/specs/srun.ts`](/src/src/utils/bash/specs/srun.ts.md) |   ↳ |  |
-| [`src/utils/bash/specs/time.ts`](/src/src/utils/bash/specs/time.ts.md) |   ↳ |  |
-| [`src/utils/bash/specs/timeout.ts`](/src/src/utils/bash/specs/timeout.ts.md) |   ↳ |  |
-| [`src/utils/bash/treeSitterAnalysis.ts`](/src/src/utils/bash/treeSitterAnalysis.ts.md) |   ↳ |  |
-| [`src/utils/powershell/dangerousCmdlets.ts`](/src/src/utils/powershell/dangerousCmdlets.ts.md) |   ↳ |  |
-| [`src/utils/powershell/parser.ts`](/src/src/utils/powershell/parser.ts.md) |   ↳ |  |
-| [`src/utils/powershell/staticPrefix.ts`](/src/src/utils/powershell/staticPrefix.ts.md) |   ↳ |  |
-| [`src/utils/sandbox/sandbox-adapter.ts`](/src/src/utils/sandbox/sandbox-adapter.ts.md) |   ↳ |  |
-| [`src/utils/shell/bashProvider.ts`](/src/src/utils/shell/bashProvider.ts.md) |   ↳ |  |
-| [`src/utils/shell/outputLimits.ts`](/src/src/utils/shell/outputLimits.ts.md) |   ↳ |  |
-| [`src/utils/shell/powershellDetection.ts`](/src/src/utils/shell/powershellDetection.ts.md) |   ↳ |  |
-| [`src/utils/shell/powershellProvider.ts`](/src/src/utils/shell/powershellProvider.ts.md) |   ↳ |  |
-| [`src/utils/shell/prefix.ts`](/src/src/utils/shell/prefix.ts.md) |   ↳ |  |
-| [`src/utils/shell/readOnlyCommandValidation.ts`](/src/src/utils/shell/readOnlyCommandValidation.ts.md) |   ↳ |  |
-| [`src/utils/shell/resolveDefaultShell.ts`](/src/src/utils/shell/resolveDefaultShell.ts.md) |   ↳ |  |
-| [`src/utils/shell/shellProvider.ts`](/src/src/utils/shell/shellProvider.ts.md) |   ↳ |  |
-| [`src/utils/shell/shellToolUtils.ts`](/src/src/utils/shell/shellToolUtils.ts.md) |   ↳ |  |
-| [`src/utils/shell/specPrefix.ts`](/src/src/utils/shell/specPrefix.ts.md) |   ↳ |  |
-
-### ML-14
-
-**主线**: ML-14 · 1 tasks · 22 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/utils/swarm/It2SetupPrompt.tsx`](/src/src/utils/swarm/It2SetupPrompt.tsx.md) |   ↳ |  |
-| [`src/utils/swarm/backends/ITermBackend.ts`](/src/src/utils/swarm/backends/ITermBackend.ts.md) |   ↳ |  |
-| [`src/utils/swarm/backends/InProcessBackend.ts`](/src/src/utils/swarm/backends/InProcessBackend.ts.md) |   ↳ |  |
-| [`src/utils/swarm/backends/PaneBackendExecutor.ts`](/src/src/utils/swarm/backends/PaneBackendExecutor.ts.md) |   ↳ |  |
-| [`src/utils/swarm/backends/TmuxBackend.ts`](/src/src/utils/swarm/backends/TmuxBackend.ts.md) |   ↳ |  |
-| [`src/utils/swarm/backends/detection.ts`](/src/src/utils/swarm/backends/detection.ts.md) |   ↳ |  |
-| [`src/utils/swarm/backends/it2Setup.ts`](/src/src/utils/swarm/backends/it2Setup.ts.md) |   ↳ |  |
-| [`src/utils/swarm/backends/registry.ts`](/src/src/utils/swarm/backends/registry.ts.md) |   ↳ |  |
-| [`src/utils/swarm/backends/teammateModeSnapshot.ts`](/src/src/utils/swarm/backends/teammateModeSnapshot.ts.md) |   ↳ |  |
-| [`src/utils/swarm/backends/types.ts`](/src/src/utils/swarm/backends/types.ts.md) |   ↳ |  |
-| [`src/utils/swarm/constants.ts`](/src/src/utils/swarm/constants.ts.md) |   ↳ |  |
-| [`src/utils/swarm/inProcessRunner.ts`](/src/src/utils/swarm/inProcessRunner.ts.md) |   ↳ |  |
-| [`src/utils/swarm/leaderPermissionBridge.ts`](/src/src/utils/swarm/leaderPermissionBridge.ts.md) |   ↳ |  |
-| [`src/utils/swarm/permissionSync.ts`](/src/src/utils/swarm/permissionSync.ts.md) |   ↳ |  |
-| [`src/utils/swarm/reconnection.ts`](/src/src/utils/swarm/reconnection.ts.md) |   ↳ |  |
-| [`src/utils/swarm/spawnInProcess.ts`](/src/src/utils/swarm/spawnInProcess.ts.md) |   ↳ |  |
-| [`src/utils/swarm/spawnUtils.ts`](/src/src/utils/swarm/spawnUtils.ts.md) |   ↳ |  |
-| [`src/utils/swarm/teamHelpers.ts`](/src/src/utils/swarm/teamHelpers.ts.md) |   ↳ |  |
-| [`src/utils/swarm/teammateInit.ts`](/src/src/utils/swarm/teammateInit.ts.md) |   ↳ |  |
-| [`src/utils/swarm/teammateLayoutManager.ts`](/src/src/utils/swarm/teammateLayoutManager.ts.md) |   ↳ |  |
-| [`src/utils/swarm/teammateModel.ts`](/src/src/utils/swarm/teammateModel.ts.md) |   ↳ |  |
-| [`src/utils/swarm/teammatePromptAddendum.ts`](/src/src/utils/swarm/teammatePromptAddendum.ts.md) |   ↳ |  |
-
-### ML-15
-
-**主线**: ML-15 · 1 tasks · 9 源文件（无独立 Summary 报告）
-
-| 源文件 | Task | Task 分析文档 |
-|--------|------|-------------|
-| [`src/entrypoints/sdk/controlSchemas.ts`](/src/src/entrypoints/sdk/controlSchemas.ts.md) |   ↳ |  |
-| [`src/entrypoints/sdk/controlTypes.ts`](/src/src/entrypoints/sdk/controlTypes.ts.md) |   ↳ |  |
-| [`src/entrypoints/sdk/coreSchemas.ts`](/src/src/entrypoints/sdk/coreSchemas.ts.md) |   ↳ |  |
-| [`src/entrypoints/sdk/coreTypes.generated.ts`](/src/src/entrypoints/sdk/coreTypes.generated.ts.md) |   ↳ |  |
-| [`src/entrypoints/sdk/coreTypes.ts`](/src/src/entrypoints/sdk/coreTypes.ts.md) |   ↳ |  |
-| [`src/entrypoints/sdk/runtimeTypes.ts`](/src/src/entrypoints/sdk/runtimeTypes.ts.md) |   ↳ |  |
-| [`src/entrypoints/sdk/sdkUtilityTypes.ts`](/src/src/entrypoints/sdk/sdkUtilityTypes.ts.md) |   ↳ |  |
-| [`src/entrypoints/sdk/settingsTypes.generated.ts`](/src/src/entrypoints/sdk/settingsTypes.generated.ts.md) |   ↳ |  |
-| [`src/entrypoints/sdk/toolTypes.ts`](/src/src/entrypoints/sdk/toolTypes.ts.md) |   ↳ |  |
-
----
-
-## 按源码路径索引（反向查询）
-
-| 源码路径 | 主线 | Task | 分析文档 |
-|---------|------|------|---------|
-| [`shims/ant-claude-for-chrome-mcp/index.ts`](/src/shims/ant-claude-for-chrome-mcp/index.ts.md) | ML-01 |  |  |
-| [`shims/ant-computer-use-input/index.ts`](/src/shims/ant-computer-use-input/index.ts.md) | ML-01 |  |  |
-| [`shims/ant-computer-use-mcp/index.ts`](/src/shims/ant-computer-use-mcp/index.ts.md) | ML-01 |  |  |
-| [`shims/ant-computer-use-mcp/types.ts`](/src/shims/ant-computer-use-mcp/types.ts.md) | ML-01 |  |  |
-| [`shims/ant-computer-use-swift/index.ts`](/src/shims/ant-computer-use-swift/index.ts.md) | ML-01 |  |  |
-| [`src/QueryEngine.ts`](/src/src/QueryEngine.ts.md) | ML-02-1 |  |  |
-| [`src/Task.ts`](/src/src/Task.ts.md) | ML-08 |  |  |
-| [`src/Tool.ts`](/src/src/Tool.ts.md) | ML-02-3 |  |  |
-| [`src/assistant/sessionHistory.ts`](/src/src/assistant/sessionHistory.ts.md) | ML-01 |  |  |
-| [`src/bootstrap-entry.ts`](/src/src/bootstrap-entry.ts.md) | ML-01 |  |  |
-| [`src/bootstrap/state.ts`](/src/src/bootstrap/state.ts.md) | ML-01 |  |  |
-| [`src/bootstrapMacro.ts`](/src/src/bootstrapMacro.ts.md) | ML-01 |  |  |
-| [`src/bridge/bridgeApi.ts`](/src/src/bridge/bridgeApi.ts.md) | ML-09-1 |  |  |
-| [`src/bridge/bridgeConfig.ts`](/src/src/bridge/bridgeConfig.ts.md) | ML-09-1 |  |  |
-| [`src/bridge/bridgeDebug.ts`](/src/src/bridge/bridgeDebug.ts.md) | ML-09-1 |  |  |
-| [`src/bridge/bridgeEnabled.ts`](/src/src/bridge/bridgeEnabled.ts.md) | ML-09-1 |  |  |
-| [`src/bridge/bridgeMain.ts`](/src/src/bridge/bridgeMain.ts.md) | ML-09-2 |  |  |
-| [`src/bridge/bridgeMessaging.ts`](/src/src/bridge/bridgeMessaging.ts.md) | ML-09-2 |  |  |
-| [`src/bridge/bridgePermissionCallbacks.ts`](/src/src/bridge/bridgePermissionCallbacks.ts.md) | ML-09-2 |  |  |
-| [`src/bridge/bridgePointer.ts`](/src/src/bridge/bridgePointer.ts.md) | ML-09-2 |  |  |
-| [`src/bridge/bridgeStatusUtil.ts`](/src/src/bridge/bridgeStatusUtil.ts.md) | ML-09-2 |  |  |
-| [`src/bridge/bridgeUI.ts`](/src/src/bridge/bridgeUI.ts.md) | ML-09-2 |  |  |
-| [`src/bridge/capacityWake.ts`](/src/src/bridge/capacityWake.ts.md) | ML-09-1 |  |  |
-| [`src/bridge/codeSessionApi.ts`](/src/src/bridge/codeSessionApi.ts.md) | ML-09-2 |  |  |
-| [`src/bridge/createSession.ts`](/src/src/bridge/createSession.ts.md) | ML-09-2 |  |  |
-| [`src/bridge/debugUtils.ts`](/src/src/bridge/debugUtils.ts.md) | ML-09-1 |  |  |
-| [`src/bridge/envLessBridgeConfig.ts`](/src/src/bridge/envLessBridgeConfig.ts.md) | ML-09-1 |  |  |
-| [`src/bridge/flushGate.ts`](/src/src/bridge/flushGate.ts.md) | ML-09-1 |  |  |
-| [`src/bridge/inboundAttachments.ts`](/src/src/bridge/inboundAttachments.ts.md) | ML-09-2 |  |  |
-| [`src/bridge/inboundMessages.ts`](/src/src/bridge/inboundMessages.ts.md) | ML-09-2 |  |  |
-| [`src/bridge/initReplBridge.ts`](/src/src/bridge/initReplBridge.ts.md) | ML-09-1 |  |  |
-| [`src/bridge/jwtUtils.ts`](/src/src/bridge/jwtUtils.ts.md) | ML-09-1 |  |  |
-| [`src/bridge/peerSessions.ts`](/src/src/bridge/peerSessions.ts.md) | ML-09-2 |  |  |
-| [`src/bridge/pollConfig.ts`](/src/src/bridge/pollConfig.ts.md) | ML-09-1 |  |  |
-| [`src/bridge/pollConfigDefaults.ts`](/src/src/bridge/pollConfigDefaults.ts.md) | ML-09-1 |  |  |
-| [`src/bridge/remoteBridgeCore.ts`](/src/src/bridge/remoteBridgeCore.ts.md) | ML-09-2 |  |  |
-| [`src/bridge/replBridge.ts`](/src/src/bridge/replBridge.ts.md) | ML-09-1 |  |  |
-| [`src/bridge/replBridgeHandle.ts`](/src/src/bridge/replBridgeHandle.ts.md) | ML-09-1 |  |  |
-| [`src/bridge/replBridgeTransport.ts`](/src/src/bridge/replBridgeTransport.ts.md) | ML-09-2 |  |  |
-| [`src/bridge/sessionIdCompat.ts`](/src/src/bridge/sessionIdCompat.ts.md) | ML-09-1 |  |  |
-| [`src/bridge/sessionRunner.ts`](/src/src/bridge/sessionRunner.ts.md) | ML-09-2 |  |  |
-| [`src/bridge/trustedDevice.ts`](/src/src/bridge/trustedDevice.ts.md) | ML-09-1 |  |  |
-| [`src/bridge/types.ts`](/src/src/bridge/types.ts.md) | ML-09-1 |  |  |
-| [`src/bridge/webhookSanitizer.ts`](/src/src/bridge/webhookSanitizer.ts.md) | ML-09-2 |  |  |
-| [`src/bridge/workSecret.ts`](/src/src/bridge/workSecret.ts.md) | ML-09-1 |  |  |
-| [`src/buddy/CompanionSprite.tsx`](/src/src/buddy/CompanionSprite.tsx.md) | ML-01 |  |  |
-| [`src/buddy/companion.ts`](/src/src/buddy/companion.ts.md) | ML-01 |  |  |
-| [`src/buddy/prompt.ts`](/src/src/buddy/prompt.ts.md) | ML-01 |  |  |
-| [`src/buddy/sprites.ts`](/src/src/buddy/sprites.ts.md) | ML-07 |  |  |
-| [`src/buddy/types.ts`](/src/src/buddy/types.ts.md) | ML-01 |  |  |
-| [`src/buddy/useBuddyNotification.tsx`](/src/src/buddy/useBuddyNotification.tsx.md) | ML-01 |  |  |
-| [`src/cli/exit.ts`](/src/src/cli/exit.ts.md) | ML-09 |  |  |
-| [`src/cli/handlers/agents.ts`](/src/src/cli/handlers/agents.ts.md) | ML-09 |  |  |
-| [`src/cli/handlers/auth.ts`](/src/src/cli/handlers/auth.ts.md) | ML-06 |  |  |
-| [`src/cli/handlers/autoMode.ts`](/src/src/cli/handlers/autoMode.ts.md) | ML-09 |  |  |
-| [`src/cli/handlers/mcp.tsx`](/src/src/cli/handlers/mcp.tsx.md) | ML-09 |  |  |
-| [`src/cli/handlers/plugins.ts`](/src/src/cli/handlers/plugins.ts.md) | ML-09 |  |  |
-| [`src/cli/handlers/util.tsx`](/src/src/cli/handlers/util.tsx.md) | ML-09 |  |  |
-| [`src/cli/ndjsonSafeStringify.ts`](/src/src/cli/ndjsonSafeStringify.ts.md) | ML-09 |  |  |
-| [`src/cli/print.ts`](/src/src/cli/print.ts.md) | ML-01 |  |  |
-| [`src/cli/remoteIO.ts`](/src/src/cli/remoteIO.ts.md) | ML-09 |  |  |
-| [`src/cli/structuredIO.ts`](/src/src/cli/structuredIO.ts.md) | ML-01 |  |  |
-| [`src/cli/transports/HybridTransport.ts`](/src/src/cli/transports/HybridTransport.ts.md) | ML-09 |  |  |
-| [`src/cli/transports/SSETransport.ts`](/src/src/cli/transports/SSETransport.ts.md) | ML-09 |  |  |
-| [`src/cli/transports/SerialBatchEventUploader.ts`](/src/src/cli/transports/SerialBatchEventUploader.ts.md) | ML-09 |  |  |
-| [`src/cli/transports/Transport.ts`](/src/src/cli/transports/Transport.ts.md) | ML-09 |  |  |
-| [`src/cli/transports/WebSocketTransport.ts`](/src/src/cli/transports/WebSocketTransport.ts.md) | ML-09 |  |  |
-| [`src/cli/transports/WorkerStateUploader.ts`](/src/src/cli/transports/WorkerStateUploader.ts.md) | ML-09 |  |  |
-| [`src/cli/transports/ccrClient.ts`](/src/src/cli/transports/ccrClient.ts.md) | ML-09 |  |  |
-| [`src/cli/transports/transportUtils.ts`](/src/src/cli/transports/transportUtils.ts.md) | ML-09 |  |  |
-| [`src/cli/update.ts`](/src/src/cli/update.ts.md) | ML-09 |  |  |
-| [`src/commands.ts`](/src/src/commands.ts.md) | ML-01 |  |  |
-| [`src/commands/add-dir/add-dir.tsx`](/src/src/commands/add-dir/add-dir.tsx.md) | ML-01 |  |  |
-| [`src/commands/add-dir/index.ts`](/src/src/commands/add-dir/index.ts.md) | ML-01 |  |  |
-| [`src/commands/add-dir/validation.ts`](/src/src/commands/add-dir/validation.ts.md) | ML-01 |  |  |
-| [`src/commands/advisor.ts`](/src/src/commands/advisor.ts.md) | ML-01 |  |  |
-| [`src/commands/agents-platform/index.ts`](/src/src/commands/agents-platform/index.ts.md) | ML-01 |  |  |
-| [`src/commands/agents/agents.tsx`](/src/src/commands/agents/agents.tsx.md) | ML-01 |  |  |
-| [`src/commands/agents/index.ts`](/src/src/commands/agents/index.ts.md) | ML-01 |  |  |
-| [`src/commands/branch/branch.ts`](/src/src/commands/branch/branch.ts.md) | ML-01 |  |  |
-| [`src/commands/branch/index.ts`](/src/src/commands/branch/index.ts.md) | ML-01 |  |  |
-| [`src/commands/bridge-kick.ts`](/src/src/commands/bridge-kick.ts.md) | ML-01 |  |  |
-| [`src/commands/bridge/bridge.tsx`](/src/src/commands/bridge/bridge.tsx.md) | ML-01 |  |  |
-| [`src/commands/bridge/index.ts`](/src/src/commands/bridge/index.ts.md) | ML-01 |  |  |
-| [`src/commands/brief.ts`](/src/src/commands/brief.ts.md) | ML-01 |  |  |
-| [`src/commands/btw/btw.tsx`](/src/src/commands/btw/btw.tsx.md) | ML-01 |  |  |
-| [`src/commands/btw/index.ts`](/src/src/commands/btw/index.ts.md) | ML-01 |  |  |
-| [`src/commands/chrome/chrome.tsx`](/src/src/commands/chrome/chrome.tsx.md) | ML-01 |  |  |
-| [`src/commands/chrome/index.ts`](/src/src/commands/chrome/index.ts.md) | ML-01 |  |  |
-| [`src/commands/clear/caches.ts`](/src/src/commands/clear/caches.ts.md) | ML-01 |  |  |
-| [`src/commands/clear/clear.ts`](/src/src/commands/clear/clear.ts.md) | ML-01 |  |  |
-| [`src/commands/clear/conversation.ts`](/src/src/commands/clear/conversation.ts.md) | ML-01 |  |  |
-| [`src/commands/clear/index.ts`](/src/src/commands/clear/index.ts.md) | ML-01 |  |  |
-| [`src/commands/color/color.ts`](/src/src/commands/color/color.ts.md) | ML-01 |  |  |
-| [`src/commands/color/index.ts`](/src/src/commands/color/index.ts.md) | ML-01 |  |  |
-| [`src/commands/commit-push-pr.ts`](/src/src/commands/commit-push-pr.ts.md) | ML-01 |  |  |
-| [`src/commands/commit.ts`](/src/src/commands/commit.ts.md) | ML-01 |  |  |
-| [`src/commands/compact/compact.ts`](/src/src/commands/compact/compact.ts.md) | ML-01 |  |  |
-| [`src/commands/compact/index.ts`](/src/src/commands/compact/index.ts.md) | ML-01 |  |  |
-| [`src/commands/config/config.tsx`](/src/src/commands/config/config.tsx.md) | ML-01 |  |  |
-| [`src/commands/config/index.ts`](/src/src/commands/config/index.ts.md) | ML-01 |  |  |
-| [`src/commands/context/context-noninteractive.ts`](/src/src/commands/context/context-noninteractive.ts.md) | ML-01 |  |  |
-| [`src/commands/context/context.tsx`](/src/src/commands/context/context.tsx.md) | ML-01 |  |  |
-| [`src/commands/context/index.ts`](/src/src/commands/context/index.ts.md) | ML-01 |  |  |
-| [`src/commands/copy/copy.tsx`](/src/src/commands/copy/copy.tsx.md) | ML-01 |  |  |
-| [`src/commands/copy/index.ts`](/src/src/commands/copy/index.ts.md) | ML-01 |  |  |
-| [`src/commands/cost/cost.ts`](/src/src/commands/cost/cost.ts.md) | ML-01 |  |  |
-| [`src/commands/cost/index.ts`](/src/src/commands/cost/index.ts.md) | ML-01 |  |  |
-| [`src/commands/createMovedToPluginCommand.ts`](/src/src/commands/createMovedToPluginCommand.ts.md) | ML-01 |  |  |
-| [`src/commands/desktop/desktop.tsx`](/src/src/commands/desktop/desktop.tsx.md) | ML-01 |  |  |
-| [`src/commands/desktop/index.ts`](/src/src/commands/desktop/index.ts.md) | ML-01 |  |  |
-| [`src/commands/diff/diff.tsx`](/src/src/commands/diff/diff.tsx.md) | ML-01 |  |  |
-| [`src/commands/diff/index.ts`](/src/src/commands/diff/index.ts.md) | ML-01 |  |  |
-| [`src/commands/doctor/doctor.tsx`](/src/src/commands/doctor/doctor.tsx.md) | ML-01 |  |  |
-| [`src/commands/doctor/index.ts`](/src/src/commands/doctor/index.ts.md) | ML-01 |  |  |
-| [`src/commands/effort/effort.tsx`](/src/src/commands/effort/effort.tsx.md) | ML-01 |  |  |
-| [`src/commands/effort/index.ts`](/src/src/commands/effort/index.ts.md) | ML-01 |  |  |
-| [`src/commands/exit/exit.tsx`](/src/src/commands/exit/exit.tsx.md) | ML-01 |  |  |
-| [`src/commands/exit/index.ts`](/src/src/commands/exit/index.ts.md) | ML-01 |  |  |
-| [`src/commands/export/export.tsx`](/src/src/commands/export/export.tsx.md) | ML-01 |  |  |
-| [`src/commands/export/index.ts`](/src/src/commands/export/index.ts.md) | ML-01 |  |  |
-| [`src/commands/extra-usage/extra-usage-core.ts`](/src/src/commands/extra-usage/extra-usage-core.ts.md) | ML-01 |  |  |
-| [`src/commands/extra-usage/extra-usage-noninteractive.ts`](/src/src/commands/extra-usage/extra-usage-noninteractive.ts.md) | ML-01 |  |  |
-| [`src/commands/extra-usage/extra-usage.tsx`](/src/src/commands/extra-usage/extra-usage.tsx.md) | ML-01 |  |  |
-| [`src/commands/extra-usage/index.ts`](/src/src/commands/extra-usage/index.ts.md) | ML-01 |  |  |
-| [`src/commands/fast/fast.tsx`](/src/src/commands/fast/fast.tsx.md) | ML-01 |  |  |
-| [`src/commands/fast/index.ts`](/src/src/commands/fast/index.ts.md) | ML-01 |  |  |
-| [`src/commands/feedback/feedback.tsx`](/src/src/commands/feedback/feedback.tsx.md) | ML-01 |  |  |
-| [`src/commands/feedback/index.ts`](/src/src/commands/feedback/index.ts.md) | ML-01 |  |  |
-| [`src/commands/files/files.ts`](/src/src/commands/files/files.ts.md) | ML-01 |  |  |
-| [`src/commands/files/index.ts`](/src/src/commands/files/index.ts.md) | ML-01 |  |  |
-| [`src/commands/heapdump/heapdump.ts`](/src/src/commands/heapdump/heapdump.ts.md) | ML-01 |  |  |
-| [`src/commands/heapdump/index.ts`](/src/src/commands/heapdump/index.ts.md) | ML-01 |  |  |
-| [`src/commands/help/help.tsx`](/src/src/commands/help/help.tsx.md) | ML-01 |  |  |
-| [`src/commands/help/index.ts`](/src/src/commands/help/index.ts.md) | ML-01 |  |  |
-| [`src/commands/hooks/hooks.tsx`](/src/src/commands/hooks/hooks.tsx.md) | ML-01 |  |  |
-| [`src/commands/hooks/index.ts`](/src/src/commands/hooks/index.ts.md) | ML-01 |  |  |
-| [`src/commands/ide/ide.tsx`](/src/src/commands/ide/ide.tsx.md) | ML-01 |  |  |
-| [`src/commands/ide/index.ts`](/src/src/commands/ide/index.ts.md) | ML-01 |  |  |
-| [`src/commands/init-verifiers.ts`](/src/src/commands/init-verifiers.ts.md) | ML-01 |  |  |
-| [`src/commands/init.ts`](/src/src/commands/init.ts.md) | ML-01 |  |  |
-| [`src/commands/insights.ts`](/src/src/commands/insights.ts.md) | ML-01 |  |  |
-| [`src/commands/install-github-app/ApiKeyStep.tsx`](/src/src/commands/install-github-app/ApiKeyStep.tsx.md) | ML-01 |  |  |
-| [`src/commands/install-github-app/CheckExistingSecretStep.tsx`](/src/src/commands/install-github-app/CheckExistingSecretStep.tsx.md) | ML-01 |  |  |
-| [`src/commands/install-github-app/CheckGitHubStep.tsx`](/src/src/commands/install-github-app/CheckGitHubStep.tsx.md) | ML-01 |  |  |
-| [`src/commands/install-github-app/ChooseRepoStep.tsx`](/src/src/commands/install-github-app/ChooseRepoStep.tsx.md) | ML-01 |  |  |
-| [`src/commands/install-github-app/CreatingStep.tsx`](/src/src/commands/install-github-app/CreatingStep.tsx.md) | ML-01 |  |  |
-| [`src/commands/install-github-app/ErrorStep.tsx`](/src/src/commands/install-github-app/ErrorStep.tsx.md) | ML-01 |  |  |
-| [`src/commands/install-github-app/ExistingWorkflowStep.tsx`](/src/src/commands/install-github-app/ExistingWorkflowStep.tsx.md) | ML-01 |  |  |
-| [`src/commands/install-github-app/InstallAppStep.tsx`](/src/src/commands/install-github-app/InstallAppStep.tsx.md) | ML-01 |  |  |
-| [`src/commands/install-github-app/OAuthFlowStep.tsx`](/src/src/commands/install-github-app/OAuthFlowStep.tsx.md) | ML-01 |  |  |
-| [`src/commands/install-github-app/SuccessStep.tsx`](/src/src/commands/install-github-app/SuccessStep.tsx.md) | ML-01 |  |  |
-| [`src/commands/install-github-app/WarningsStep.tsx`](/src/src/commands/install-github-app/WarningsStep.tsx.md) | ML-01 |  |  |
-| [`src/commands/install-github-app/index.ts`](/src/src/commands/install-github-app/index.ts.md) | ML-01 |  |  |
-| [`src/commands/install-github-app/install-github-app.tsx`](/src/src/commands/install-github-app/install-github-app.tsx.md) | ML-01 |  |  |
-| [`src/commands/install-github-app/setupGitHubActions.ts`](/src/src/commands/install-github-app/setupGitHubActions.ts.md) | ML-01 |  |  |
-| [`src/commands/install-github-app/types.ts`](/src/src/commands/install-github-app/types.ts.md) | ML-01 |  |  |
-| [`src/commands/install-slack-app/index.ts`](/src/src/commands/install-slack-app/index.ts.md) | ML-01 |  |  |
-| [`src/commands/install-slack-app/install-slack-app.ts`](/src/src/commands/install-slack-app/install-slack-app.ts.md) | ML-01 |  |  |
-| [`src/commands/install.tsx`](/src/src/commands/install.tsx.md) | ML-01 |  |  |
-| [`src/commands/keybindings/index.ts`](/src/src/commands/keybindings/index.ts.md) | ML-01 |  |  |
-| [`src/commands/keybindings/keybindings.ts`](/src/src/commands/keybindings/keybindings.ts.md) | ML-01 |  |  |
-| [`src/commands/login/index.ts`](/src/src/commands/login/index.ts.md) | ML-01 |  |  |
-| [`src/commands/login/login.tsx`](/src/src/commands/login/login.tsx.md) | ML-01 |  |  |
-| [`src/commands/logout/index.ts`](/src/src/commands/logout/index.ts.md) | ML-01 |  |  |
-| [`src/commands/logout/logout.tsx`](/src/src/commands/logout/logout.tsx.md) | ML-01 |  |  |
-| [`src/commands/mcp/addCommand.ts`](/src/src/commands/mcp/addCommand.ts.md) | ML-01 |  |  |
-| [`src/commands/mcp/index.ts`](/src/src/commands/mcp/index.ts.md) | ML-01 |  |  |
-| [`src/commands/mcp/mcp.tsx`](/src/src/commands/mcp/mcp.tsx.md) | ML-01 |  |  |
-| [`src/commands/mcp/xaaIdpCommand.ts`](/src/src/commands/mcp/xaaIdpCommand.ts.md) | ML-01 |  |  |
-| [`src/commands/memory/index.ts`](/src/src/commands/memory/index.ts.md) | ML-01 |  |  |
-| [`src/commands/memory/memory.tsx`](/src/src/commands/memory/memory.tsx.md) | ML-01 |  |  |
-| [`src/commands/mobile/index.ts`](/src/src/commands/mobile/index.ts.md) | ML-01 |  |  |
-| [`src/commands/mobile/mobile.tsx`](/src/src/commands/mobile/mobile.tsx.md) | ML-01 |  |  |
-| [`src/commands/model/index.ts`](/src/src/commands/model/index.ts.md) | ML-01 |  |  |
-| [`src/commands/model/model.tsx`](/src/src/commands/model/model.tsx.md) | ML-01 |  |  |
-| [`src/commands/output-style/index.ts`](/src/src/commands/output-style/index.ts.md) | ML-01 |  |  |
-| [`src/commands/output-style/output-style.tsx`](/src/src/commands/output-style/output-style.tsx.md) | ML-01 |  |  |
-| [`src/commands/passes/index.ts`](/src/src/commands/passes/index.ts.md) | ML-01 |  |  |
-| [`src/commands/passes/passes.tsx`](/src/src/commands/passes/passes.tsx.md) | ML-01 |  |  |
-| [`src/commands/permissions/index.ts`](/src/src/commands/permissions/index.ts.md) | ML-01 |  |  |
-| [`src/commands/permissions/permissions.tsx`](/src/src/commands/permissions/permissions.tsx.md) | ML-01 |  |  |
-| [`src/commands/plan/index.ts`](/src/src/commands/plan/index.ts.md) | ML-01 |  |  |
-| [`src/commands/plan/plan.tsx`](/src/src/commands/plan/plan.tsx.md) | ML-01 |  |  |
-| [`src/commands/plugin/AddMarketplace.tsx`](/src/src/commands/plugin/AddMarketplace.tsx.md) | ML-01 |  |  |
-| [`src/commands/plugin/BrowseMarketplace.tsx`](/src/src/commands/plugin/BrowseMarketplace.tsx.md) | ML-01 |  |  |
-| [`src/commands/plugin/DiscoverPlugins.tsx`](/src/src/commands/plugin/DiscoverPlugins.tsx.md) | ML-01 |  |  |
-| [`src/commands/plugin/ManageMarketplaces.tsx`](/src/src/commands/plugin/ManageMarketplaces.tsx.md) | ML-01 |  |  |
-| [`src/commands/plugin/ManagePlugins.tsx`](/src/src/commands/plugin/ManagePlugins.tsx.md) | ML-12 |  |  |
-| [`src/commands/plugin/PluginErrors.tsx`](/src/src/commands/plugin/PluginErrors.tsx.md) | ML-01 |  |  |
-| [`src/commands/plugin/PluginOptionsDialog.tsx`](/src/src/commands/plugin/PluginOptionsDialog.tsx.md) | ML-01 |  |  |
-| [`src/commands/plugin/PluginOptionsFlow.tsx`](/src/src/commands/plugin/PluginOptionsFlow.tsx.md) | ML-01 |  |  |
-| [`src/commands/plugin/PluginSettings.tsx`](/src/src/commands/plugin/PluginSettings.tsx.md) | ML-12 |  |  |
-| [`src/commands/plugin/PluginTrustWarning.tsx`](/src/src/commands/plugin/PluginTrustWarning.tsx.md) | ML-01 |  |  |
-| [`src/commands/plugin/UnifiedInstalledCell.tsx`](/src/src/commands/plugin/UnifiedInstalledCell.tsx.md) | ML-01 |  |  |
-| [`src/commands/plugin/ValidatePlugin.tsx`](/src/src/commands/plugin/ValidatePlugin.tsx.md) | ML-01 |  |  |
-| [`src/commands/plugin/index.tsx`](/src/src/commands/plugin/index.tsx.md) | ML-01 |  |  |
-| [`src/commands/plugin/parseArgs.ts`](/src/src/commands/plugin/parseArgs.ts.md) | ML-01 |  |  |
-| [`src/commands/plugin/plugin.tsx`](/src/src/commands/plugin/plugin.tsx.md) | ML-01 |  |  |
-| [`src/commands/plugin/pluginDetailsHelpers.tsx`](/src/src/commands/plugin/pluginDetailsHelpers.tsx.md) | ML-01 |  |  |
-| [`src/commands/plugin/types.ts`](/src/src/commands/plugin/types.ts.md) | ML-01 |  |  |
-| [`src/commands/plugin/unifiedTypes.ts`](/src/src/commands/plugin/unifiedTypes.ts.md) | ML-01 |  |  |
-| [`src/commands/plugin/usePagination.ts`](/src/src/commands/plugin/usePagination.ts.md) | ML-01 |  |  |
-| [`src/commands/pr_comments/index.ts`](/src/src/commands/pr_comments/index.ts.md) | ML-01 |  |  |
-| [`src/commands/privacy-settings/index.ts`](/src/src/commands/privacy-settings/index.ts.md) | ML-01 |  |  |
-| [`src/commands/privacy-settings/privacy-settings.tsx`](/src/src/commands/privacy-settings/privacy-settings.tsx.md) | ML-01 |  |  |
-| [`src/commands/rate-limit-options/index.ts`](/src/src/commands/rate-limit-options/index.ts.md) | ML-01 |  |  |
-| [`src/commands/rate-limit-options/rate-limit-options.tsx`](/src/src/commands/rate-limit-options/rate-limit-options.tsx.md) | ML-01 |  |  |
-| [`src/commands/release-notes/index.ts`](/src/src/commands/release-notes/index.ts.md) | ML-01 |  |  |
-| [`src/commands/release-notes/release-notes.ts`](/src/src/commands/release-notes/release-notes.ts.md) | ML-01 |  |  |
-| [`src/commands/reload-plugins/index.ts`](/src/src/commands/reload-plugins/index.ts.md) | ML-01 |  |  |
-| [`src/commands/reload-plugins/reload-plugins.ts`](/src/src/commands/reload-plugins/reload-plugins.ts.md) | ML-01 |  |  |
-| [`src/commands/remote-env/index.ts`](/src/src/commands/remote-env/index.ts.md) | ML-01 |  |  |
-| [`src/commands/remote-env/remote-env.tsx`](/src/src/commands/remote-env/remote-env.tsx.md) | ML-01 |  |  |
-| [`src/commands/remote-setup/api.ts`](/src/src/commands/remote-setup/api.ts.md) | ML-01 |  |  |
-| [`src/commands/remote-setup/index.ts`](/src/src/commands/remote-setup/index.ts.md) | ML-01 |  |  |
-| [`src/commands/remote-setup/remote-setup.tsx`](/src/src/commands/remote-setup/remote-setup.tsx.md) | ML-01 |  |  |
-| [`src/commands/rename/generateSessionName.ts`](/src/src/commands/rename/generateSessionName.ts.md) | ML-01 |  |  |
-| [`src/commands/rename/index.ts`](/src/src/commands/rename/index.ts.md) | ML-01 |  |  |
-| [`src/commands/rename/rename.ts`](/src/src/commands/rename/rename.ts.md) | ML-01 |  |  |
-| [`src/commands/resume/index.ts`](/src/src/commands/resume/index.ts.md) | ML-01 |  |  |
-| [`src/commands/resume/resume.tsx`](/src/src/commands/resume/resume.tsx.md) | ML-01 |  |  |
-| [`src/commands/review.ts`](/src/src/commands/review.ts.md) | ML-01 |  |  |
-| [`src/commands/review/UltrareviewOverageDialog.tsx`](/src/src/commands/review/UltrareviewOverageDialog.tsx.md) | ML-01 |  |  |
-| [`src/commands/review/reviewRemote.ts`](/src/src/commands/review/reviewRemote.ts.md) | ML-01 |  |  |
-| [`src/commands/review/ultrareviewCommand.tsx`](/src/src/commands/review/ultrareviewCommand.tsx.md) | ML-01 |  |  |
-| [`src/commands/review/ultrareviewEnabled.ts`](/src/src/commands/review/ultrareviewEnabled.ts.md) | ML-01 |  |  |
-| [`src/commands/rewind/index.ts`](/src/src/commands/rewind/index.ts.md) | ML-01 |  |  |
-| [`src/commands/rewind/rewind.ts`](/src/src/commands/rewind/rewind.ts.md) | ML-01 |  |  |
-| [`src/commands/sandbox-toggle/index.ts`](/src/src/commands/sandbox-toggle/index.ts.md) | ML-01 |  |  |
-| [`src/commands/sandbox-toggle/sandbox-toggle.tsx`](/src/src/commands/sandbox-toggle/sandbox-toggle.tsx.md) | ML-01 |  |  |
-| [`src/commands/security-review.ts`](/src/src/commands/security-review.ts.md) | ML-01 |  |  |
-| [`src/commands/session/index.ts`](/src/src/commands/session/index.ts.md) | ML-01 |  |  |
-| [`src/commands/session/session.tsx`](/src/src/commands/session/session.tsx.md) | ML-01 |  |  |
-| [`src/commands/skills/index.ts`](/src/src/commands/skills/index.ts.md) | ML-01 |  |  |
-| [`src/commands/skills/skills.tsx`](/src/src/commands/skills/skills.tsx.md) | ML-01 |  |  |
-| [`src/commands/stats/index.ts`](/src/src/commands/stats/index.ts.md) | ML-01 |  |  |
-| [`src/commands/stats/stats.tsx`](/src/src/commands/stats/stats.tsx.md) | ML-01 |  |  |
-| [`src/commands/status/index.ts`](/src/src/commands/status/index.ts.md) | ML-01 |  |  |
-| [`src/commands/status/status.tsx`](/src/src/commands/status/status.tsx.md) | ML-01 |  |  |
-| [`src/commands/statusline.tsx`](/src/src/commands/statusline.tsx.md) | ML-01 |  |  |
-| [`src/commands/stickers/index.ts`](/src/src/commands/stickers/index.ts.md) | ML-01 |  |  |
-| [`src/commands/stickers/stickers.ts`](/src/src/commands/stickers/stickers.ts.md) | ML-01 |  |  |
-| [`src/commands/tag/index.ts`](/src/src/commands/tag/index.ts.md) | ML-01 |  |  |
-| [`src/commands/tag/tag.tsx`](/src/src/commands/tag/tag.tsx.md) | ML-01 |  |  |
-| [`src/commands/tasks/index.ts`](/src/src/commands/tasks/index.ts.md) | ML-01 |  |  |
-| [`src/commands/tasks/tasks.tsx`](/src/src/commands/tasks/tasks.tsx.md) | ML-01 |  |  |
-| [`src/commands/terminalSetup/index.ts`](/src/src/commands/terminalSetup/index.ts.md) | ML-01 |  |  |
-| [`src/commands/terminalSetup/terminalSetup.tsx`](/src/src/commands/terminalSetup/terminalSetup.tsx.md) | ML-01 |  |  |
-| [`src/commands/theme/index.ts`](/src/src/commands/theme/index.ts.md) | ML-01 |  |  |
-| [`src/commands/theme/theme.tsx`](/src/src/commands/theme/theme.tsx.md) | ML-01 |  |  |
-| [`src/commands/thinkback-play/index.ts`](/src/src/commands/thinkback-play/index.ts.md) | ML-01 |  |  |
-| [`src/commands/thinkback-play/thinkback-play.ts`](/src/src/commands/thinkback-play/thinkback-play.ts.md) | ML-01 |  |  |
-| [`src/commands/thinkback/index.ts`](/src/src/commands/thinkback/index.ts.md) | ML-01 |  |  |
-| [`src/commands/thinkback/thinkback.tsx`](/src/src/commands/thinkback/thinkback.tsx.md) | ML-01 |  |  |
-| [`src/commands/ultraplan.tsx`](/src/src/commands/ultraplan.tsx.md) | ML-01 |  |  |
-| [`src/commands/upgrade/index.ts`](/src/src/commands/upgrade/index.ts.md) | ML-01 |  |  |
-| [`src/commands/upgrade/upgrade.tsx`](/src/src/commands/upgrade/upgrade.tsx.md) | ML-01 |  |  |
-| [`src/commands/usage/index.ts`](/src/src/commands/usage/index.ts.md) | ML-01 |  |  |
-| [`src/commands/usage/usage.tsx`](/src/src/commands/usage/usage.tsx.md) | ML-01 |  |  |
-| [`src/commands/version.ts`](/src/src/commands/version.ts.md) | ML-01 |  |  |
-| [`src/commands/vim/index.ts`](/src/src/commands/vim/index.ts.md) | ML-01 |  |  |
-| [`src/commands/vim/vim.ts`](/src/src/commands/vim/vim.ts.md) | ML-01 |  |  |
-| [`src/commands/voice/index.ts`](/src/src/commands/voice/index.ts.md) | ML-01 |  |  |
-| [`src/commands/voice/voice.ts`](/src/src/commands/voice/voice.ts.md) | ML-01 |  |  |
-| [`src/components/AgentProgressLine.tsx`](/src/src/components/AgentProgressLine.tsx.md) | ML-07 |  |  |
-| [`src/components/App.tsx`](/src/src/components/App.tsx.md) | ML-07 |  |  |
-| [`src/components/ApproveApiKey.tsx`](/src/src/components/ApproveApiKey.tsx.md) | ML-07 |  |  |
-| [`src/components/AutoModeOptInDialog.tsx`](/src/src/components/AutoModeOptInDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/AutoUpdater.tsx`](/src/src/components/AutoUpdater.tsx.md) | ML-07 |  |  |
-| [`src/components/AutoUpdaterWrapper.tsx`](/src/src/components/AutoUpdaterWrapper.tsx.md) | ML-07 |  |  |
-| [`src/components/AwsAuthStatusBox.tsx`](/src/src/components/AwsAuthStatusBox.tsx.md) | ML-07-3 |  |  |
-| [`src/components/BaseTextInput.tsx`](/src/src/components/BaseTextInput.tsx.md) | ML-07 |  |  |
-| [`src/components/BashModeProgress.tsx`](/src/src/components/BashModeProgress.tsx.md) | ML-07 |  |  |
-| [`src/components/BridgeDialog.tsx`](/src/src/components/BridgeDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/BypassPermissionsModeDialog.tsx`](/src/src/components/BypassPermissionsModeDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/ChannelDowngradeDialog.tsx`](/src/src/components/ChannelDowngradeDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/ClaudeCodeHint/PluginHintMenu.tsx`](/src/src/components/ClaudeCodeHint/PluginHintMenu.tsx.md) | ML-07 |  |  |
-| [`src/components/ClaudeInChromeOnboarding.tsx`](/src/src/components/ClaudeInChromeOnboarding.tsx.md) | ML-07 |  |  |
-| [`src/components/ClaudeMdExternalIncludesDialog.tsx`](/src/src/components/ClaudeMdExternalIncludesDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/ClickableImageRef.tsx`](/src/src/components/ClickableImageRef.tsx.md) | ML-07 |  |  |
-| [`src/components/CompactSummary.tsx`](/src/src/components/CompactSummary.tsx.md) | ML-07 |  |  |
-| [`src/components/ConfigurableShortcutHint.tsx`](/src/src/components/ConfigurableShortcutHint.tsx.md) | ML-07 |  |  |
-| [`src/components/ConsoleOAuthFlow.tsx`](/src/src/components/ConsoleOAuthFlow.tsx.md) | ML-06 |  |  |
-| [`src/components/ContextSuggestions.tsx`](/src/src/components/ContextSuggestions.tsx.md) | ML-07 |  |  |
-| [`src/components/ContextVisualization.tsx`](/src/src/components/ContextVisualization.tsx.md) | ML-07 |  |  |
-| [`src/components/CoordinatorAgentStatus.tsx`](/src/src/components/CoordinatorAgentStatus.tsx.md) | ML-07 |  |  |
-| [`src/components/CostThresholdDialog.tsx`](/src/src/components/CostThresholdDialog.tsx.md) | ML-07-3 |  |  |
-| [`src/components/CtrlOToExpand.tsx`](/src/src/components/CtrlOToExpand.tsx.md) | ML-07 |  |  |
-| [`src/components/CustomSelect/SelectMulti.tsx`](/src/src/components/CustomSelect/SelectMulti.tsx.md) | ML-07 |  |  |
-| [`src/components/CustomSelect/index.ts`](/src/src/components/CustomSelect/index.ts.md) | ML-07 |  |  |
-| [`src/components/CustomSelect/option-map.ts`](/src/src/components/CustomSelect/option-map.ts.md) | ML-07 |  |  |
-| [`src/components/CustomSelect/select-input-option.tsx`](/src/src/components/CustomSelect/select-input-option.tsx.md) | ML-07 |  |  |
-| [`src/components/CustomSelect/select-option.tsx`](/src/src/components/CustomSelect/select-option.tsx.md) | ML-07 |  |  |
-| [`src/components/CustomSelect/select.tsx`](/src/src/components/CustomSelect/select.tsx.md) | ML-07 |  |  |
-| [`src/components/CustomSelect/use-multi-select-state.ts`](/src/src/components/CustomSelect/use-multi-select-state.ts.md) | ML-07 |  |  |
-| [`src/components/CustomSelect/use-select-input.ts`](/src/src/components/CustomSelect/use-select-input.ts.md) | ML-07 |  |  |
-| [`src/components/CustomSelect/use-select-navigation.ts`](/src/src/components/CustomSelect/use-select-navigation.ts.md) | ML-07 |  |  |
-| [`src/components/CustomSelect/use-select-state.ts`](/src/src/components/CustomSelect/use-select-state.ts.md) | ML-07 |  |  |
-| [`src/components/DesktopHandoff.tsx`](/src/src/components/DesktopHandoff.tsx.md) | ML-07 |  |  |
-| [`src/components/DesktopUpsell/DesktopUpsellStartup.tsx`](/src/src/components/DesktopUpsell/DesktopUpsellStartup.tsx.md) | ML-07 |  |  |
-| [`src/components/DevBar.tsx`](/src/src/components/DevBar.tsx.md) | ML-07-3 |  |  |
-| [`src/components/DevChannelsDialog.tsx`](/src/src/components/DevChannelsDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/DiagnosticsDisplay.tsx`](/src/src/components/DiagnosticsDisplay.tsx.md) | ML-07 |  |  |
-| [`src/components/EffortCallout.tsx`](/src/src/components/EffortCallout.tsx.md) | ML-07-3 |  |  |
-| [`src/components/EffortIndicator.ts`](/src/src/components/EffortIndicator.ts.md) | ML-07 |  |  |
-| [`src/components/ExitFlow.tsx`](/src/src/components/ExitFlow.tsx.md) | ML-07-3 |  |  |
-| [`src/components/ExportDialog.tsx`](/src/src/components/ExportDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/FallbackToolUseErrorMessage.tsx`](/src/src/components/FallbackToolUseErrorMessage.tsx.md) | ML-07 |  |  |
-| [`src/components/FallbackToolUseRejectedMessage.tsx`](/src/src/components/FallbackToolUseRejectedMessage.tsx.md) | ML-07 |  |  |
-| [`src/components/FastIcon.tsx`](/src/src/components/FastIcon.tsx.md) | ML-07 |  |  |
-| [`src/components/Feedback.tsx`](/src/src/components/Feedback.tsx.md) | ML-07 |  |  |
-| [`src/components/FeedbackSurvey/FeedbackSurvey.tsx`](/src/src/components/FeedbackSurvey/FeedbackSurvey.tsx.md) | ML-07-3 |  |  |
-| [`src/components/FeedbackSurvey/FeedbackSurveyView.tsx`](/src/src/components/FeedbackSurvey/FeedbackSurveyView.tsx.md) | ML-07 |  |  |
-| [`src/components/FeedbackSurvey/TranscriptSharePrompt.tsx`](/src/src/components/FeedbackSurvey/TranscriptSharePrompt.tsx.md) | ML-07 |  |  |
-| [`src/components/FeedbackSurvey/submitTranscriptShare.ts`](/src/src/components/FeedbackSurvey/submitTranscriptShare.ts.md) | ML-07 |  |  |
-| [`src/components/FeedbackSurvey/useDebouncedDigitInput.ts`](/src/src/components/FeedbackSurvey/useDebouncedDigitInput.ts.md) | ML-07 |  |  |
-| [`src/components/FeedbackSurvey/useFeedbackSurvey.tsx`](/src/src/components/FeedbackSurvey/useFeedbackSurvey.tsx.md) | ML-07 |  |  |
-| [`src/components/FeedbackSurvey/useFrustrationDetection.ts`](/src/src/components/FeedbackSurvey/useFrustrationDetection.ts.md) | ML-07 |  |  |
-| [`src/components/FeedbackSurvey/useMemorySurvey.tsx`](/src/src/components/FeedbackSurvey/useMemorySurvey.tsx.md) | ML-07 |  |  |
-| [`src/components/FeedbackSurvey/usePostCompactSurvey.tsx`](/src/src/components/FeedbackSurvey/usePostCompactSurvey.tsx.md) | ML-07 |  |  |
-| [`src/components/FeedbackSurvey/useSurveyState.tsx`](/src/src/components/FeedbackSurvey/useSurveyState.tsx.md) | ML-07 |  |  |
-| [`src/components/FeedbackSurvey/utils.ts`](/src/src/components/FeedbackSurvey/utils.ts.md) | ML-07 |  |  |
-| [`src/components/FileEditToolDiff.tsx`](/src/src/components/FileEditToolDiff.tsx.md) | ML-07 |  |  |
-| [`src/components/FileEditToolUpdatedMessage.tsx`](/src/src/components/FileEditToolUpdatedMessage.tsx.md) | ML-07 |  |  |
-| [`src/components/FileEditToolUseRejectedMessage.tsx`](/src/src/components/FileEditToolUseRejectedMessage.tsx.md) | ML-07 |  |  |
-| [`src/components/FilePathLink.tsx`](/src/src/components/FilePathLink.tsx.md) | ML-07 |  |  |
-| [`src/components/FullscreenLayout.tsx`](/src/src/components/FullscreenLayout.tsx.md) | ML-07-2 |  |  |
-| [`src/components/GlobalSearchDialog.tsx`](/src/src/components/GlobalSearchDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/HelpV2/Commands.tsx`](/src/src/components/HelpV2/Commands.tsx.md) | ML-07 |  |  |
-| [`src/components/HelpV2/General.tsx`](/src/src/components/HelpV2/General.tsx.md) | ML-07 |  |  |
-| [`src/components/HelpV2/HelpV2.tsx`](/src/src/components/HelpV2/HelpV2.tsx.md) | ML-07 |  |  |
-| [`src/components/HighlightedCode.tsx`](/src/src/components/HighlightedCode.tsx.md) | ML-07 |  |  |
-| [`src/components/HighlightedCode/Fallback.tsx`](/src/src/components/HighlightedCode/Fallback.tsx.md) | ML-07 |  |  |
-| [`src/components/HistorySearchDialog.tsx`](/src/src/components/HistorySearchDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/IdeAutoConnectDialog.tsx`](/src/src/components/IdeAutoConnectDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/IdeOnboardingDialog.tsx`](/src/src/components/IdeOnboardingDialog.tsx.md) | ML-07-3 |  |  |
-| [`src/components/IdeStatusIndicator.tsx`](/src/src/components/IdeStatusIndicator.tsx.md) | ML-07 |  |  |
-| [`src/components/IdleReturnDialog.tsx`](/src/src/components/IdleReturnDialog.tsx.md) | ML-07-3 |  |  |
-| [`src/components/InvalidConfigDialog.tsx`](/src/src/components/InvalidConfigDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/InvalidSettingsDialog.tsx`](/src/src/components/InvalidSettingsDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/KeybindingWarnings.tsx`](/src/src/components/KeybindingWarnings.tsx.md) | ML-07 |  |  |
-| [`src/components/LanguagePicker.tsx`](/src/src/components/LanguagePicker.tsx.md) | ML-07 |  |  |
-| [`src/components/LogSelector.tsx`](/src/src/components/LogSelector.tsx.md) | ML-07 |  |  |
-| [`src/components/LogoV2/AnimatedAsterisk.tsx`](/src/src/components/LogoV2/AnimatedAsterisk.tsx.md) | ML-07 |  |  |
-| [`src/components/LogoV2/AnimatedClawd.tsx`](/src/src/components/LogoV2/AnimatedClawd.tsx.md) | ML-07 |  |  |
-| [`src/components/LogoV2/ChannelsNotice.tsx`](/src/src/components/LogoV2/ChannelsNotice.tsx.md) | ML-07 |  |  |
-| [`src/components/LogoV2/Clawd.tsx`](/src/src/components/LogoV2/Clawd.tsx.md) | ML-07 |  |  |
-| [`src/components/LogoV2/CondensedLogo.tsx`](/src/src/components/LogoV2/CondensedLogo.tsx.md) | ML-07 |  |  |
-| [`src/components/LogoV2/EmergencyTip.tsx`](/src/src/components/LogoV2/EmergencyTip.tsx.md) | ML-07 |  |  |
-| [`src/components/LogoV2/Feed.tsx`](/src/src/components/LogoV2/Feed.tsx.md) | ML-07 |  |  |
-| [`src/components/LogoV2/FeedColumn.tsx`](/src/src/components/LogoV2/FeedColumn.tsx.md) | ML-07 |  |  |
-| [`src/components/LogoV2/GuestPassesUpsell.tsx`](/src/src/components/LogoV2/GuestPassesUpsell.tsx.md) | ML-07 |  |  |
-| [`src/components/LogoV2/LogoV2.tsx`](/src/src/components/LogoV2/LogoV2.tsx.md) | ML-07 |  |  |
-| [`src/components/LogoV2/Opus1mMergeNotice.tsx`](/src/src/components/LogoV2/Opus1mMergeNotice.tsx.md) | ML-07 |  |  |
-| [`src/components/LogoV2/OverageCreditUpsell.tsx`](/src/src/components/LogoV2/OverageCreditUpsell.tsx.md) | ML-07 |  |  |
-| [`src/components/LogoV2/VoiceModeNotice.tsx`](/src/src/components/LogoV2/VoiceModeNotice.tsx.md) | ML-07 |  |  |
-| [`src/components/LogoV2/WelcomeV2.tsx`](/src/src/components/LogoV2/WelcomeV2.tsx.md) | ML-07 |  |  |
-| [`src/components/LogoV2/feedConfigs.tsx`](/src/src/components/LogoV2/feedConfigs.tsx.md) | ML-07 |  |  |
-| [`src/components/LspRecommendation/LspRecommendationMenu.tsx`](/src/src/components/LspRecommendation/LspRecommendationMenu.tsx.md) | ML-07 |  |  |
-| [`src/components/MCPServerApprovalDialog.tsx`](/src/src/components/MCPServerApprovalDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/MCPServerDesktopImportDialog.tsx`](/src/src/components/MCPServerDesktopImportDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/MCPServerMultiselectDialog.tsx`](/src/src/components/MCPServerMultiselectDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/ManagedSettingsSecurityDialog/ManagedSettingsSecurityDialog.tsx`](/src/src/components/ManagedSettingsSecurityDialog/ManagedSettingsSecurityDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/ManagedSettingsSecurityDialog/utils.ts`](/src/src/components/ManagedSettingsSecurityDialog/utils.ts.md) | ML-07 |  |  |
-| [`src/components/Markdown.tsx`](/src/src/components/Markdown.tsx.md) | ML-07 |  |  |
-| [`src/components/MarkdownTable.tsx`](/src/src/components/MarkdownTable.tsx.md) | ML-07 |  |  |
-| [`src/components/MemoryUsageIndicator.tsx`](/src/src/components/MemoryUsageIndicator.tsx.md) | ML-07 |  |  |
-| [`src/components/Message.tsx`](/src/src/components/Message.tsx.md) | ML-07 |  |  |
-| [`src/components/MessageModel.tsx`](/src/src/components/MessageModel.tsx.md) | ML-07 |  |  |
-| [`src/components/MessageResponse.tsx`](/src/src/components/MessageResponse.tsx.md) | ML-07 |  |  |
-| [`src/components/MessageRow.tsx`](/src/src/components/MessageRow.tsx.md) | ML-07 |  |  |
-| [`src/components/MessageSelector.tsx`](/src/src/components/MessageSelector.tsx.md) | ML-07-3 |  |  |
-| [`src/components/MessageTimestamp.tsx`](/src/src/components/MessageTimestamp.tsx.md) | ML-07 |  |  |
-| [`src/components/Messages.tsx`](/src/src/components/Messages.tsx.md) | ML-07-2 |  |  |
-| [`src/components/ModelPicker.tsx`](/src/src/components/ModelPicker.tsx.md) | ML-07 |  |  |
-| [`src/components/NativeAutoUpdater.tsx`](/src/src/components/NativeAutoUpdater.tsx.md) | ML-07 |  |  |
-| [`src/components/NotebookEditToolUseRejectedMessage.tsx`](/src/src/components/NotebookEditToolUseRejectedMessage.tsx.md) | ML-07 |  |  |
-| [`src/components/OffscreenFreeze.tsx`](/src/src/components/OffscreenFreeze.tsx.md) | ML-07 |  |  |
-| [`src/components/Onboarding.tsx`](/src/src/components/Onboarding.tsx.md) | ML-07 |  |  |
-| [`src/components/OutputStylePicker.tsx`](/src/src/components/OutputStylePicker.tsx.md) | ML-07 |  |  |
-| [`src/components/PackageManagerAutoUpdater.tsx`](/src/src/components/PackageManagerAutoUpdater.tsx.md) | ML-07 |  |  |
-| [`src/components/Passes/Passes.tsx`](/src/src/components/Passes/Passes.tsx.md) | ML-07 |  |  |
-| [`src/components/PrBadge.tsx`](/src/src/components/PrBadge.tsx.md) | ML-07 |  |  |
-| [`src/components/PromptInput/HistorySearchInput.tsx`](/src/src/components/PromptInput/HistorySearchInput.tsx.md) | ML-07 |  |  |
-| [`src/components/PromptInput/IssueFlagBanner.tsx`](/src/src/components/PromptInput/IssueFlagBanner.tsx.md) | ML-07 |  |  |
-| [`src/components/PromptInput/Notifications.tsx`](/src/src/components/PromptInput/Notifications.tsx.md) | ML-07 |  |  |
-| [`src/components/PromptInput/PromptInput.tsx`](/src/src/components/PromptInput/PromptInput.tsx.md) | ML-07-2 |  |  |
-| [`src/components/PromptInput/PromptInputFooter.tsx`](/src/src/components/PromptInput/PromptInputFooter.tsx.md) | ML-07 |  |  |
-| [`src/components/PromptInput/PromptInputFooterLeftSide.tsx`](/src/src/components/PromptInput/PromptInputFooterLeftSide.tsx.md) | ML-07 |  |  |
-| [`src/components/PromptInput/PromptInputFooterSuggestions.tsx`](/src/src/components/PromptInput/PromptInputFooterSuggestions.tsx.md) | ML-07 |  |  |
-| [`src/components/PromptInput/PromptInputHelpMenu.tsx`](/src/src/components/PromptInput/PromptInputHelpMenu.tsx.md) | ML-07 |  |  |
-| [`src/components/PromptInput/PromptInputModeIndicator.tsx`](/src/src/components/PromptInput/PromptInputModeIndicator.tsx.md) | ML-07 |  |  |
-| [`src/components/PromptInput/PromptInputQueuedCommands.tsx`](/src/src/components/PromptInput/PromptInputQueuedCommands.tsx.md) | ML-07 |  |  |
-| [`src/components/PromptInput/PromptInputStashNotice.tsx`](/src/src/components/PromptInput/PromptInputStashNotice.tsx.md) | ML-07 |  |  |
-| [`src/components/PromptInput/SandboxPromptFooterHint.tsx`](/src/src/components/PromptInput/SandboxPromptFooterHint.tsx.md) | ML-07 |  |  |
-| [`src/components/PromptInput/ShimmeredInput.tsx`](/src/src/components/PromptInput/ShimmeredInput.tsx.md) | ML-07 |  |  |
-| [`src/components/PromptInput/VoiceIndicator.tsx`](/src/src/components/PromptInput/VoiceIndicator.tsx.md) | ML-07 |  |  |
-| [`src/components/PromptInput/inputModes.ts`](/src/src/components/PromptInput/inputModes.ts.md) | ML-07 |  |  |
-| [`src/components/PromptInput/inputPaste.ts`](/src/src/components/PromptInput/inputPaste.ts.md) | ML-07 |  |  |
-| [`src/components/PromptInput/useMaybeTruncateInput.ts`](/src/src/components/PromptInput/useMaybeTruncateInput.ts.md) | ML-07 |  |  |
-| [`src/components/PromptInput/usePromptInputPlaceholder.ts`](/src/src/components/PromptInput/usePromptInputPlaceholder.ts.md) | ML-07 |  |  |
-| [`src/components/PromptInput/useShowFastIconHint.ts`](/src/src/components/PromptInput/useShowFastIconHint.ts.md) | ML-07 |  |  |
-| [`src/components/PromptInput/useSwarmBanner.ts`](/src/src/components/PromptInput/useSwarmBanner.ts.md) | ML-07 |  |  |
-| [`src/components/PromptInput/utils.ts`](/src/src/components/PromptInput/utils.ts.md) | ML-07 |  |  |
-| [`src/components/QuickOpenDialog.tsx`](/src/src/components/QuickOpenDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/RemoteCallout.tsx`](/src/src/components/RemoteCallout.tsx.md) | ML-07-3 |  |  |
-| [`src/components/RemoteEnvironmentDialog.tsx`](/src/src/components/RemoteEnvironmentDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/ResumeTask.tsx`](/src/src/components/ResumeTask.tsx.md) | ML-07 |  |  |
-| [`src/components/SandboxViolationExpandedView.tsx`](/src/src/components/SandboxViolationExpandedView.tsx.md) | ML-07 |  |  |
-| [`src/components/ScrollKeybindingHandler.tsx`](/src/src/components/ScrollKeybindingHandler.tsx.md) | ML-07-2 |  |  |
-| [`src/components/SearchBox.tsx`](/src/src/components/SearchBox.tsx.md) | ML-07 |  |  |
-| [`src/components/SentryErrorBoundary.ts`](/src/src/components/SentryErrorBoundary.ts.md) | ML-07 |  |  |
-| [`src/components/SessionBackgroundHint.tsx`](/src/src/components/SessionBackgroundHint.tsx.md) | ML-07-3 |  |  |
-| [`src/components/SessionPreview.tsx`](/src/src/components/SessionPreview.tsx.md) | ML-07 |  |  |
-| [`src/components/Settings/Config.tsx`](/src/src/components/Settings/Config.tsx.md) | ML-07 |  |  |
-| [`src/components/Settings/Settings.tsx`](/src/src/components/Settings/Settings.tsx.md) | ML-07 |  |  |
-| [`src/components/Settings/Status.tsx`](/src/src/components/Settings/Status.tsx.md) | ML-07 |  |  |
-| [`src/components/Settings/Usage.tsx`](/src/src/components/Settings/Usage.tsx.md) | ML-07 |  |  |
-| [`src/components/ShowInIDEPrompt.tsx`](/src/src/components/ShowInIDEPrompt.tsx.md) | ML-07 |  |  |
-| [`src/components/SkillImprovementSurvey.tsx`](/src/src/components/SkillImprovementSurvey.tsx.md) | ML-07-3 |  |  |
-| [`src/components/Spinner.tsx`](/src/src/components/Spinner.tsx.md) | ML-07-2 |  |  |
-| [`src/components/Spinner/FlashingChar.tsx`](/src/src/components/Spinner/FlashingChar.tsx.md) | ML-07 |  |  |
-| [`src/components/Spinner/GlimmerMessage.tsx`](/src/src/components/Spinner/GlimmerMessage.tsx.md) | ML-07 |  |  |
-| [`src/components/Spinner/ShimmerChar.tsx`](/src/src/components/Spinner/ShimmerChar.tsx.md) | ML-07 |  |  |
-| [`src/components/Spinner/SpinnerAnimationRow.tsx`](/src/src/components/Spinner/SpinnerAnimationRow.tsx.md) | ML-07 |  |  |
-| [`src/components/Spinner/SpinnerGlyph.tsx`](/src/src/components/Spinner/SpinnerGlyph.tsx.md) | ML-07 |  |  |
-| [`src/components/Spinner/TeammateSpinnerLine.tsx`](/src/src/components/Spinner/TeammateSpinnerLine.tsx.md) | ML-07 |  |  |
-| [`src/components/Spinner/TeammateSpinnerTree.tsx`](/src/src/components/Spinner/TeammateSpinnerTree.tsx.md) | ML-07 |  |  |
-| [`src/components/Spinner/index.ts`](/src/src/components/Spinner/index.ts.md) | ML-07 |  |  |
-| [`src/components/Spinner/teammateSelectHint.ts`](/src/src/components/Spinner/teammateSelectHint.ts.md) | ML-07 |  |  |
-| [`src/components/Spinner/types.ts`](/src/src/components/Spinner/types.ts.md) | ML-07 |  |  |
-| [`src/components/Spinner/useShimmerAnimation.ts`](/src/src/components/Spinner/useShimmerAnimation.ts.md) | ML-07 |  |  |
-| [`src/components/Spinner/useStalledAnimation.ts`](/src/src/components/Spinner/useStalledAnimation.ts.md) | ML-07 |  |  |
-| [`src/components/Spinner/utils.ts`](/src/src/components/Spinner/utils.ts.md) | ML-07 |  |  |
-| [`src/components/Stats.tsx`](/src/src/components/Stats.tsx.md) | ML-07 |  |  |
-| [`src/components/StatusLine.tsx`](/src/src/components/StatusLine.tsx.md) | ML-07 |  |  |
-| [`src/components/StatusNotices.tsx`](/src/src/components/StatusNotices.tsx.md) | ML-07 |  |  |
-| [`src/components/StructuredDiff.tsx`](/src/src/components/StructuredDiff.tsx.md) | ML-07 |  |  |
-| [`src/components/StructuredDiff/Fallback.tsx`](/src/src/components/StructuredDiff/Fallback.tsx.md) | ML-07 |  |  |
-| [`src/components/StructuredDiff/colorDiff.ts`](/src/src/components/StructuredDiff/colorDiff.ts.md) | ML-07 |  |  |
-| [`src/components/StructuredDiffList.tsx`](/src/src/components/StructuredDiffList.tsx.md) | ML-07 |  |  |
-| [`src/components/TagTabs.tsx`](/src/src/components/TagTabs.tsx.md) | ML-07 |  |  |
-| [`src/components/TaskListV2.tsx`](/src/src/components/TaskListV2.tsx.md) | ML-07-3 |  |  |
-| [`src/components/TeammateViewHeader.tsx`](/src/src/components/TeammateViewHeader.tsx.md) | ML-07-3 |  |  |
-| [`src/components/TeleportError.tsx`](/src/src/components/TeleportError.tsx.md) | ML-07 |  |  |
-| [`src/components/TeleportProgress.tsx`](/src/src/components/TeleportProgress.tsx.md) | ML-07 |  |  |
-| [`src/components/TeleportRepoMismatchDialog.tsx`](/src/src/components/TeleportRepoMismatchDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/TeleportResumeWrapper.tsx`](/src/src/components/TeleportResumeWrapper.tsx.md) | ML-07 |  |  |
-| [`src/components/TeleportStash.tsx`](/src/src/components/TeleportStash.tsx.md) | ML-07 |  |  |
-| [`src/components/TextInput.tsx`](/src/src/components/TextInput.tsx.md) | ML-07 |  |  |
-| [`src/components/ThemePicker.tsx`](/src/src/components/ThemePicker.tsx.md) | ML-07 |  |  |
-| [`src/components/ThinkingToggle.tsx`](/src/src/components/ThinkingToggle.tsx.md) | ML-07 |  |  |
-| [`src/components/TokenWarning.tsx`](/src/src/components/TokenWarning.tsx.md) | ML-07 |  |  |
-| [`src/components/ToolUseLoader.tsx`](/src/src/components/ToolUseLoader.tsx.md) | ML-07 |  |  |
-| [`src/components/TrustDialog/TrustDialog.tsx`](/src/src/components/TrustDialog/TrustDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/TrustDialog/utils.ts`](/src/src/components/TrustDialog/utils.ts.md) | ML-07 |  |  |
-| [`src/components/ValidationErrorsList.tsx`](/src/src/components/ValidationErrorsList.tsx.md) | ML-07 |  |  |
-| [`src/components/VimTextInput.tsx`](/src/src/components/VimTextInput.tsx.md) | ML-07 |  |  |
-| [`src/components/VirtualMessageList.tsx`](/src/src/components/VirtualMessageList.tsx.md) | ML-07-2 |  |  |
-| [`src/components/WorkflowMultiselectDialog.tsx`](/src/src/components/WorkflowMultiselectDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/WorktreeExitDialog.tsx`](/src/src/components/WorktreeExitDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/AgentDetail.tsx`](/src/src/components/agents/AgentDetail.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/AgentEditor.tsx`](/src/src/components/agents/AgentEditor.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/AgentNavigationFooter.tsx`](/src/src/components/agents/AgentNavigationFooter.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/AgentsList.tsx`](/src/src/components/agents/AgentsList.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/AgentsMenu.tsx`](/src/src/components/agents/AgentsMenu.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/ColorPicker.tsx`](/src/src/components/agents/ColorPicker.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/ModelSelector.tsx`](/src/src/components/agents/ModelSelector.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/ToolSelector.tsx`](/src/src/components/agents/ToolSelector.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/agentFileUtils.ts`](/src/src/components/agents/agentFileUtils.ts.md) | ML-07 |  |  |
-| [`src/components/agents/generateAgent.ts`](/src/src/components/agents/generateAgent.ts.md) | ML-07 |  |  |
-| [`src/components/agents/new-agent-creation/CreateAgentWizard.tsx`](/src/src/components/agents/new-agent-creation/CreateAgentWizard.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/new-agent-creation/types.ts`](/src/src/components/agents/new-agent-creation/types.ts.md) | ML-07 |  |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/ColorStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/ColorStep.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/ConfirmStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/ConfirmStep.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/ConfirmStepWrapper.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/ConfirmStepWrapper.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/DescriptionStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/DescriptionStep.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/GenerateStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/GenerateStep.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/LocationStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/LocationStep.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/MemoryStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/MemoryStep.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/MethodStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/MethodStep.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/ModelStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/ModelStep.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/PromptStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/PromptStep.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/ToolsStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/ToolsStep.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/new-agent-creation/wizard-steps/TypeStep.tsx`](/src/src/components/agents/new-agent-creation/wizard-steps/TypeStep.tsx.md) | ML-07 |  |  |
-| [`src/components/agents/types.ts`](/src/src/components/agents/types.ts.md) | ML-07 |  |  |
-| [`src/components/agents/utils.ts`](/src/src/components/agents/utils.ts.md) | ML-07 |  |  |
-| [`src/components/agents/validateAgent.ts`](/src/src/components/agents/validateAgent.ts.md) | ML-07 |  |  |
-| [`src/components/design-system/Byline.tsx`](/src/src/components/design-system/Byline.tsx.md) | ML-07 |  |  |
-| [`src/components/design-system/Dialog.tsx`](/src/src/components/design-system/Dialog.tsx.md) | ML-07 |  |  |
-| [`src/components/design-system/Divider.tsx`](/src/src/components/design-system/Divider.tsx.md) | ML-07 |  |  |
-| [`src/components/design-system/FuzzyPicker.tsx`](/src/src/components/design-system/FuzzyPicker.tsx.md) | ML-07 |  |  |
-| [`src/components/design-system/KeyboardShortcutHint.tsx`](/src/src/components/design-system/KeyboardShortcutHint.tsx.md) | ML-07 |  |  |
-| [`src/components/design-system/ListItem.tsx`](/src/src/components/design-system/ListItem.tsx.md) | ML-07 |  |  |
-| [`src/components/design-system/LoadingState.tsx`](/src/src/components/design-system/LoadingState.tsx.md) | ML-07 |  |  |
-| [`src/components/design-system/Pane.tsx`](/src/src/components/design-system/Pane.tsx.md) | ML-07 |  |  |
-| [`src/components/design-system/ProgressBar.tsx`](/src/src/components/design-system/ProgressBar.tsx.md) | ML-07 |  |  |
-| [`src/components/design-system/Ratchet.tsx`](/src/src/components/design-system/Ratchet.tsx.md) | ML-07 |  |  |
-| [`src/components/design-system/StatusIcon.tsx`](/src/src/components/design-system/StatusIcon.tsx.md) | ML-07 |  |  |
-| [`src/components/design-system/Tabs.tsx`](/src/src/components/design-system/Tabs.tsx.md) | ML-07 |  |  |
-| [`src/components/design-system/ThemeProvider.tsx`](/src/src/components/design-system/ThemeProvider.tsx.md) | ML-07 |  |  |
-| [`src/components/design-system/ThemedBox.tsx`](/src/src/components/design-system/ThemedBox.tsx.md) | ML-07 |  |  |
-| [`src/components/design-system/ThemedText.tsx`](/src/src/components/design-system/ThemedText.tsx.md) | ML-07 |  |  |
-| [`src/components/design-system/color.ts`](/src/src/components/design-system/color.ts.md) | ML-07 |  |  |
-| [`src/components/diff/DiffDetailView.tsx`](/src/src/components/diff/DiffDetailView.tsx.md) | ML-07 |  |  |
-| [`src/components/diff/DiffDialog.tsx`](/src/src/components/diff/DiffDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/diff/DiffFileList.tsx`](/src/src/components/diff/DiffFileList.tsx.md) | ML-07 |  |  |
-| [`src/components/grove/Grove.tsx`](/src/src/components/grove/Grove.tsx.md) | ML-07 |  |  |
-| [`src/components/hooks/HooksConfigMenu.tsx`](/src/src/components/hooks/HooksConfigMenu.tsx.md) | ML-07 |  |  |
-| [`src/components/hooks/PromptDialog.tsx`](/src/src/components/hooks/PromptDialog.tsx.md) | ML-07-3 |  |  |
-| [`src/components/hooks/SelectEventMode.tsx`](/src/src/components/hooks/SelectEventMode.tsx.md) | ML-07 |  |  |
-| [`src/components/hooks/SelectHookMode.tsx`](/src/src/components/hooks/SelectHookMode.tsx.md) | ML-07 |  |  |
-| [`src/components/hooks/SelectMatcherMode.tsx`](/src/src/components/hooks/SelectMatcherMode.tsx.md) | ML-07 |  |  |
-| [`src/components/hooks/ViewHookMode.tsx`](/src/src/components/hooks/ViewHookMode.tsx.md) | ML-07 |  |  |
-| [`src/components/mcp/CapabilitiesSection.tsx`](/src/src/components/mcp/CapabilitiesSection.tsx.md) | ML-05 |  |  |
-| [`src/components/mcp/ElicitationDialog.tsx`](/src/src/components/mcp/ElicitationDialog.tsx.md) | ML-07-2 |  |  |
-| [`src/components/mcp/MCPAgentServerMenu.tsx`](/src/src/components/mcp/MCPAgentServerMenu.tsx.md) | ML-05 |  |  |
-| [`src/components/mcp/MCPListPanel.tsx`](/src/src/components/mcp/MCPListPanel.tsx.md) | ML-05 |  |  |
-| [`src/components/mcp/MCPReconnect.tsx`](/src/src/components/mcp/MCPReconnect.tsx.md) | ML-05 |  |  |
-| [`src/components/mcp/MCPRemoteServerMenu.tsx`](/src/src/components/mcp/MCPRemoteServerMenu.tsx.md) | ML-05 |  |  |
-| [`src/components/mcp/MCPSettings.tsx`](/src/src/components/mcp/MCPSettings.tsx.md) | ML-05 |  |  |
-| [`src/components/mcp/MCPStdioServerMenu.tsx`](/src/src/components/mcp/MCPStdioServerMenu.tsx.md) | ML-05 |  |  |
-| [`src/components/mcp/MCPToolDetailView.tsx`](/src/src/components/mcp/MCPToolDetailView.tsx.md) | ML-05 |  |  |
-| [`src/components/mcp/MCPToolListView.tsx`](/src/src/components/mcp/MCPToolListView.tsx.md) | ML-05 |  |  |
-| [`src/components/mcp/McpParsingWarnings.tsx`](/src/src/components/mcp/McpParsingWarnings.tsx.md) | ML-05 |  |  |
-| [`src/components/mcp/index.ts`](/src/src/components/mcp/index.ts.md) | ML-05 |  |  |
-| [`src/components/mcp/types.ts`](/src/src/components/mcp/types.ts.md) | ML-05 |  |  |
-| [`src/components/mcp/utils/reconnectHelpers.tsx`](/src/src/components/mcp/utils/reconnectHelpers.tsx.md) | ML-05 |  |  |
-| [`src/components/memory/MemoryFileSelector.tsx`](/src/src/components/memory/MemoryFileSelector.tsx.md) | ML-07 |  |  |
-| [`src/components/memory/MemoryUpdateNotification.tsx`](/src/src/components/memory/MemoryUpdateNotification.tsx.md) | ML-07 |  |  |
-| [`src/components/messageActions.tsx`](/src/src/components/messageActions.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/AdvisorMessage.tsx`](/src/src/components/messages/AdvisorMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/AssistantRedactedThinkingMessage.tsx`](/src/src/components/messages/AssistantRedactedThinkingMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/AssistantTextMessage.tsx`](/src/src/components/messages/AssistantTextMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/AssistantThinkingMessage.tsx`](/src/src/components/messages/AssistantThinkingMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/AssistantToolUseMessage.tsx`](/src/src/components/messages/AssistantToolUseMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/AttachmentMessage.tsx`](/src/src/components/messages/AttachmentMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/CollapsedReadSearchContent.tsx`](/src/src/components/messages/CollapsedReadSearchContent.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/CompactBoundaryMessage.tsx`](/src/src/components/messages/CompactBoundaryMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/GroupedToolUseContent.tsx`](/src/src/components/messages/GroupedToolUseContent.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/HighlightedThinkingText.tsx`](/src/src/components/messages/HighlightedThinkingText.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/HookProgressMessage.tsx`](/src/src/components/messages/HookProgressMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/PlanApprovalMessage.tsx`](/src/src/components/messages/PlanApprovalMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/RateLimitMessage.tsx`](/src/src/components/messages/RateLimitMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/ShutdownMessage.tsx`](/src/src/components/messages/ShutdownMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/SnipBoundaryMessage.tsx`](/src/src/components/messages/SnipBoundaryMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/SystemAPIErrorMessage.tsx`](/src/src/components/messages/SystemAPIErrorMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/SystemTextMessage.tsx`](/src/src/components/messages/SystemTextMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/TaskAssignmentMessage.tsx`](/src/src/components/messages/TaskAssignmentMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserAgentNotificationMessage.tsx`](/src/src/components/messages/UserAgentNotificationMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserBashInputMessage.tsx`](/src/src/components/messages/UserBashInputMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserBashOutputMessage.tsx`](/src/src/components/messages/UserBashOutputMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserChannelMessage.tsx`](/src/src/components/messages/UserChannelMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserCommandMessage.tsx`](/src/src/components/messages/UserCommandMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserCrossSessionMessage.tsx`](/src/src/components/messages/UserCrossSessionMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserForkBoilerplateMessage.tsx`](/src/src/components/messages/UserForkBoilerplateMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserGitHubWebhookMessage.tsx`](/src/src/components/messages/UserGitHubWebhookMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserImageMessage.tsx`](/src/src/components/messages/UserImageMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserLocalCommandOutputMessage.tsx`](/src/src/components/messages/UserLocalCommandOutputMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserMemoryInputMessage.tsx`](/src/src/components/messages/UserMemoryInputMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserPlanMessage.tsx`](/src/src/components/messages/UserPlanMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserPromptMessage.tsx`](/src/src/components/messages/UserPromptMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserResourceUpdateMessage.tsx`](/src/src/components/messages/UserResourceUpdateMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserTeammateMessage.tsx`](/src/src/components/messages/UserTeammateMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserTextMessage.tsx`](/src/src/components/messages/UserTextMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserToolResultMessage/RejectedPlanMessage.tsx`](/src/src/components/messages/UserToolResultMessage/RejectedPlanMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserToolResultMessage/RejectedToolUseMessage.tsx`](/src/src/components/messages/UserToolResultMessage/RejectedToolUseMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserToolResultMessage/UserToolCanceledMessage.tsx`](/src/src/components/messages/UserToolResultMessage/UserToolCanceledMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserToolResultMessage/UserToolErrorMessage.tsx`](/src/src/components/messages/UserToolResultMessage/UserToolErrorMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserToolResultMessage/UserToolRejectMessage.tsx`](/src/src/components/messages/UserToolResultMessage/UserToolRejectMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserToolResultMessage/UserToolResultMessage.tsx`](/src/src/components/messages/UserToolResultMessage/UserToolResultMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserToolResultMessage/UserToolSuccessMessage.tsx`](/src/src/components/messages/UserToolResultMessage/UserToolSuccessMessage.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/UserToolResultMessage/utils.tsx`](/src/src/components/messages/UserToolResultMessage/utils.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/nullRenderingAttachments.ts`](/src/src/components/messages/nullRenderingAttachments.ts.md) | ML-07-3 |  |  |
-| [`src/components/messages/teamMemCollapsed.tsx`](/src/src/components/messages/teamMemCollapsed.tsx.md) | ML-07-3 |  |  |
-| [`src/components/messages/teamMemSaved.ts`](/src/src/components/messages/teamMemSaved.ts.md) | ML-07-3 |  |  |
-| [`src/components/permissions/AskUserQuestionPermissionRequest/AskUserQuestionPermissionRequest.tsx`](/src/src/components/permissions/AskUserQuestionPermissionRequest/AskUserQuestionPermissionRequest.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/AskUserQuestionPermissionRequest/PreviewBox.tsx`](/src/src/components/permissions/AskUserQuestionPermissionRequest/PreviewBox.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/AskUserQuestionPermissionRequest/PreviewQuestionView.tsx`](/src/src/components/permissions/AskUserQuestionPermissionRequest/PreviewQuestionView.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/AskUserQuestionPermissionRequest/QuestionNavigationBar.tsx`](/src/src/components/permissions/AskUserQuestionPermissionRequest/QuestionNavigationBar.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/AskUserQuestionPermissionRequest/QuestionView.tsx`](/src/src/components/permissions/AskUserQuestionPermissionRequest/QuestionView.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/AskUserQuestionPermissionRequest/SubmitQuestionsView.tsx`](/src/src/components/permissions/AskUserQuestionPermissionRequest/SubmitQuestionsView.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/AskUserQuestionPermissionRequest/use-multiple-choice-state.ts`](/src/src/components/permissions/AskUserQuestionPermissionRequest/use-multiple-choice-state.ts.md) | ML-04-2 |  |  |
-| [`src/components/permissions/BashPermissionRequest/BashPermissionRequest.tsx`](/src/src/components/permissions/BashPermissionRequest/BashPermissionRequest.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/BashPermissionRequest/bashToolUseOptions.tsx`](/src/src/components/permissions/BashPermissionRequest/bashToolUseOptions.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/ComputerUseApproval/ComputerUseApproval.tsx`](/src/src/components/permissions/ComputerUseApproval/ComputerUseApproval.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/EnterPlanModePermissionRequest/EnterPlanModePermissionRequest.tsx`](/src/src/components/permissions/EnterPlanModePermissionRequest/EnterPlanModePermissionRequest.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/ExitPlanModePermissionRequest/ExitPlanModePermissionRequest.tsx`](/src/src/components/permissions/ExitPlanModePermissionRequest/ExitPlanModePermissionRequest.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/FallbackPermissionRequest.tsx`](/src/src/components/permissions/FallbackPermissionRequest.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/FileEditPermissionRequest/FileEditPermissionRequest.tsx`](/src/src/components/permissions/FileEditPermissionRequest/FileEditPermissionRequest.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/FilePermissionDialog/FilePermissionDialog.tsx`](/src/src/components/permissions/FilePermissionDialog/FilePermissionDialog.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/FilePermissionDialog/ideDiffConfig.ts`](/src/src/components/permissions/FilePermissionDialog/ideDiffConfig.ts.md) | ML-04-2 |  |  |
-| [`src/components/permissions/FilePermissionDialog/permissionOptions.tsx`](/src/src/components/permissions/FilePermissionDialog/permissionOptions.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/FilePermissionDialog/useFilePermissionDialog.ts`](/src/src/components/permissions/FilePermissionDialog/useFilePermissionDialog.ts.md) | ML-04-2 |  |  |
-| [`src/components/permissions/FilePermissionDialog/usePermissionHandler.ts`](/src/src/components/permissions/FilePermissionDialog/usePermissionHandler.ts.md) | ML-04-2 |  |  |
-| [`src/components/permissions/FileWritePermissionRequest/FileWritePermissionRequest.tsx`](/src/src/components/permissions/FileWritePermissionRequest/FileWritePermissionRequest.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/FileWritePermissionRequest/FileWriteToolDiff.tsx`](/src/src/components/permissions/FileWritePermissionRequest/FileWriteToolDiff.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/FilesystemPermissionRequest/FilesystemPermissionRequest.tsx`](/src/src/components/permissions/FilesystemPermissionRequest/FilesystemPermissionRequest.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/MonitorPermissionRequest/MonitorPermissionRequest.tsx`](/src/src/components/permissions/MonitorPermissionRequest/MonitorPermissionRequest.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/NotebookEditPermissionRequest/NotebookEditPermissionRequest.tsx`](/src/src/components/permissions/NotebookEditPermissionRequest/NotebookEditPermissionRequest.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/NotebookEditPermissionRequest/NotebookEditToolDiff.tsx`](/src/src/components/permissions/NotebookEditPermissionRequest/NotebookEditToolDiff.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/PermissionDecisionDebugInfo.tsx`](/src/src/components/permissions/PermissionDecisionDebugInfo.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/PermissionDialog.tsx`](/src/src/components/permissions/PermissionDialog.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/PermissionExplanation.tsx`](/src/src/components/permissions/PermissionExplanation.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/PermissionPrompt.tsx`](/src/src/components/permissions/PermissionPrompt.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/PermissionRequest.tsx`](/src/src/components/permissions/PermissionRequest.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/PermissionRequestTitle.tsx`](/src/src/components/permissions/PermissionRequestTitle.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/PermissionRuleExplanation.tsx`](/src/src/components/permissions/PermissionRuleExplanation.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/PowerShellPermissionRequest/PowerShellPermissionRequest.tsx`](/src/src/components/permissions/PowerShellPermissionRequest/PowerShellPermissionRequest.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/PowerShellPermissionRequest/powershellToolUseOptions.tsx`](/src/src/components/permissions/PowerShellPermissionRequest/powershellToolUseOptions.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/ReviewArtifactPermissionRequest/ReviewArtifactPermissionRequest.tsx`](/src/src/components/permissions/ReviewArtifactPermissionRequest/ReviewArtifactPermissionRequest.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/SandboxPermissionRequest.tsx`](/src/src/components/permissions/SandboxPermissionRequest.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/SedEditPermissionRequest/SedEditPermissionRequest.tsx`](/src/src/components/permissions/SedEditPermissionRequest/SedEditPermissionRequest.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/SkillPermissionRequest/SkillPermissionRequest.tsx`](/src/src/components/permissions/SkillPermissionRequest/SkillPermissionRequest.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/WebFetchPermissionRequest/WebFetchPermissionRequest.tsx`](/src/src/components/permissions/WebFetchPermissionRequest/WebFetchPermissionRequest.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/WorkerBadge.tsx`](/src/src/components/permissions/WorkerBadge.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/WorkerPendingPermission.tsx`](/src/src/components/permissions/WorkerPendingPermission.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/hooks.ts`](/src/src/components/permissions/hooks.ts.md) | ML-04-2 |  |  |
-| [`src/components/permissions/rules/AddPermissionRules.tsx`](/src/src/components/permissions/rules/AddPermissionRules.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/rules/AddWorkspaceDirectory.tsx`](/src/src/components/permissions/rules/AddWorkspaceDirectory.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/rules/PermissionRuleDescription.tsx`](/src/src/components/permissions/rules/PermissionRuleDescription.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/rules/PermissionRuleInput.tsx`](/src/src/components/permissions/rules/PermissionRuleInput.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/rules/PermissionRuleList.tsx`](/src/src/components/permissions/rules/PermissionRuleList.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/rules/RecentDenialsTab.tsx`](/src/src/components/permissions/rules/RecentDenialsTab.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/rules/RemoveWorkspaceDirectory.tsx`](/src/src/components/permissions/rules/RemoveWorkspaceDirectory.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/rules/WorkspaceTab.tsx`](/src/src/components/permissions/rules/WorkspaceTab.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/shellPermissionHelpers.tsx`](/src/src/components/permissions/shellPermissionHelpers.tsx.md) | ML-04-2 |  |  |
-| [`src/components/permissions/useShellPermissionFeedback.ts`](/src/src/components/permissions/useShellPermissionFeedback.ts.md) | ML-04-2 |  |  |
-| [`src/components/permissions/utils.ts`](/src/src/components/permissions/utils.ts.md) | ML-04-2 |  |  |
-| [`src/components/sandbox/SandboxConfigTab.tsx`](/src/src/components/sandbox/SandboxConfigTab.tsx.md) | ML-07 |  |  |
-| [`src/components/sandbox/SandboxDependenciesTab.tsx`](/src/src/components/sandbox/SandboxDependenciesTab.tsx.md) | ML-07 |  |  |
-| [`src/components/sandbox/SandboxDoctorSection.tsx`](/src/src/components/sandbox/SandboxDoctorSection.tsx.md) | ML-07 |  |  |
-| [`src/components/sandbox/SandboxOverridesTab.tsx`](/src/src/components/sandbox/SandboxOverridesTab.tsx.md) | ML-07 |  |  |
-| [`src/components/sandbox/SandboxSettings.tsx`](/src/src/components/sandbox/SandboxSettings.tsx.md) | ML-07 |  |  |
-| [`src/components/shell/ExpandShellOutputContext.tsx`](/src/src/components/shell/ExpandShellOutputContext.tsx.md) | ML-07 |  |  |
-| [`src/components/shell/OutputLine.tsx`](/src/src/components/shell/OutputLine.tsx.md) | ML-07 |  |  |
-| [`src/components/shell/ShellProgressMessage.tsx`](/src/src/components/shell/ShellProgressMessage.tsx.md) | ML-07 |  |  |
-| [`src/components/shell/ShellTimeDisplay.tsx`](/src/src/components/shell/ShellTimeDisplay.tsx.md) | ML-07 |  |  |
-| [`src/components/skills/SkillsMenu.tsx`](/src/src/components/skills/SkillsMenu.tsx.md) | ML-07 |  |  |
-| [`src/components/tasks/AsyncAgentDetailDialog.tsx`](/src/src/components/tasks/AsyncAgentDetailDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/tasks/BackgroundTask.tsx`](/src/src/components/tasks/BackgroundTask.tsx.md) | ML-07 |  |  |
-| [`src/components/tasks/BackgroundTaskStatus.tsx`](/src/src/components/tasks/BackgroundTaskStatus.tsx.md) | ML-07 |  |  |
-| [`src/components/tasks/BackgroundTasksDialog.tsx`](/src/src/components/tasks/BackgroundTasksDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/tasks/DreamDetailDialog.tsx`](/src/src/components/tasks/DreamDetailDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/tasks/InProcessTeammateDetailDialog.tsx`](/src/src/components/tasks/InProcessTeammateDetailDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/tasks/MonitorMcpDetailDialog.tsx`](/src/src/components/tasks/MonitorMcpDetailDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/tasks/RemoteSessionDetailDialog.tsx`](/src/src/components/tasks/RemoteSessionDetailDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/tasks/RemoteSessionProgress.tsx`](/src/src/components/tasks/RemoteSessionProgress.tsx.md) | ML-07 |  |  |
-| [`src/components/tasks/ShellDetailDialog.tsx`](/src/src/components/tasks/ShellDetailDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/tasks/ShellProgress.tsx`](/src/src/components/tasks/ShellProgress.tsx.md) | ML-07 |  |  |
-| [`src/components/tasks/WorkflowDetailDialog.tsx`](/src/src/components/tasks/WorkflowDetailDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/tasks/renderToolActivity.tsx`](/src/src/components/tasks/renderToolActivity.tsx.md) | ML-07 |  |  |
-| [`src/components/tasks/taskStatusUtils.tsx`](/src/src/components/tasks/taskStatusUtils.tsx.md) | ML-07 |  |  |
-| [`src/components/teams/TeamStatus.tsx`](/src/src/components/teams/TeamStatus.tsx.md) | ML-07 |  |  |
-| [`src/components/teams/TeamsDialog.tsx`](/src/src/components/teams/TeamsDialog.tsx.md) | ML-07 |  |  |
-| [`src/components/ui/OrderedList.tsx`](/src/src/components/ui/OrderedList.tsx.md) | ML-07 |  |  |
-| [`src/components/ui/OrderedListItem.tsx`](/src/src/components/ui/OrderedListItem.tsx.md) | ML-07 |  |  |
-| [`src/components/ui/TreeSelect.tsx`](/src/src/components/ui/TreeSelect.tsx.md) | ML-07 |  |  |
-| [`src/components/wizard/WizardDialogLayout.tsx`](/src/src/components/wizard/WizardDialogLayout.tsx.md) | ML-07 |  |  |
-| [`src/components/wizard/WizardNavigationFooter.tsx`](/src/src/components/wizard/WizardNavigationFooter.tsx.md) | ML-07 |  |  |
-| [`src/components/wizard/WizardProvider.tsx`](/src/src/components/wizard/WizardProvider.tsx.md) | ML-07 |  |  |
-| [`src/constants/apiLimits.ts`](/src/src/constants/apiLimits.ts.md) | ML-01 |  |  |
-| [`src/constants/betas.ts`](/src/src/constants/betas.ts.md) | ML-01 |  |  |
-| [`src/constants/common.ts`](/src/src/constants/common.ts.md) | ML-01 |  |  |
-| [`src/constants/cyberRiskInstruction.ts`](/src/src/constants/cyberRiskInstruction.ts.md) | ML-01 |  |  |
-| [`src/constants/errorIds.ts`](/src/src/constants/errorIds.ts.md) | ML-01 |  |  |
-| [`src/constants/figures.ts`](/src/src/constants/figures.ts.md) | ML-01 |  |  |
-| [`src/constants/files.ts`](/src/src/constants/files.ts.md) | ML-01 |  |  |
-| [`src/constants/github-app.ts`](/src/src/constants/github-app.ts.md) | ML-01 |  |  |
-| [`src/constants/oauth.ts`](/src/src/constants/oauth.ts.md) | ML-06 |  |  |
-| [`src/constants/outputStyles.ts`](/src/src/constants/outputStyles.ts.md) | ML-01 |  |  |
-| [`src/constants/product.ts`](/src/src/constants/product.ts.md) | ML-01 |  |  |
-| [`src/constants/prompts.ts`](/src/src/constants/prompts.ts.md) | ML-01 |  |  |
-| [`src/constants/spinnerVerbs.ts`](/src/src/constants/spinnerVerbs.ts.md) | ML-01 |  |  |
-| [`src/constants/system.ts`](/src/src/constants/system.ts.md) | ML-01 |  |  |
-| [`src/constants/systemPromptSections.ts`](/src/src/constants/systemPromptSections.ts.md) | ML-01 |  |  |
-| [`src/constants/toolLimits.ts`](/src/src/constants/toolLimits.ts.md) | ML-01 |  |  |
-| [`src/constants/tools.ts`](/src/src/constants/tools.ts.md) | ML-03-1 |  |  |
-| [`src/constants/xml.ts`](/src/src/constants/xml.ts.md) | ML-01 |  |  |
-| [`src/context.ts`](/src/src/context.ts.md) | ML-01 |  |  |
-| [`src/context/QueuedMessageContext.tsx`](/src/src/context/QueuedMessageContext.tsx.md) | ML-01 |  |  |
-| [`src/context/fpsMetrics.tsx`](/src/src/context/fpsMetrics.tsx.md) | ML-07-1 |  |  |
-| [`src/context/mailbox.tsx`](/src/src/context/mailbox.tsx.md) | ML-01 |  |  |
-| [`src/context/modalContext.tsx`](/src/src/context/modalContext.tsx.md) | ML-01 |  |  |
-| [`src/context/notifications.tsx`](/src/src/context/notifications.tsx.md) | ML-07-1 |  |  |
-| [`src/context/overlayContext.tsx`](/src/src/context/overlayContext.tsx.md) | ML-01 |  |  |
-| [`src/context/promptOverlayContext.tsx`](/src/src/context/promptOverlayContext.tsx.md) | ML-01 |  |  |
-| [`src/context/stats.tsx`](/src/src/context/stats.tsx.md) | ML-01 |  |  |
-| [`src/context/voice.tsx`](/src/src/context/voice.tsx.md) | ML-01 |  |  |
-| [`src/coordinator/coordinatorMode.ts`](/src/src/coordinator/coordinatorMode.ts.md) | ML-01 |  |  |
-| [`src/cost-tracker.ts`](/src/src/cost-tracker.ts.md) | ML-01 |  |  |
-| [`src/costHook.ts`](/src/src/costHook.ts.md) | ML-01 |  |  |
-| [`src/dev-entry.ts`](/src/src/dev-entry.ts.md) | ML-01 |  |  |
-| [`src/dialogLaunchers.tsx`](/src/src/dialogLaunchers.tsx.md) | ML-01 |  |  |
-| [`src/entrypoints/agentSdkTypes.ts`](/src/src/entrypoints/agentSdkTypes.ts.md) | ML-01 |  |  |
-| [`src/entrypoints/cli.tsx`](/src/src/entrypoints/cli.tsx.md) | ML-01 |  |  |
-| [`src/entrypoints/init.ts`](/src/src/entrypoints/init.ts.md) | ML-01 |  |  |
-| [`src/entrypoints/mcp.ts`](/src/src/entrypoints/mcp.ts.md) | ML-01 |  |  |
-| [`src/entrypoints/sandboxTypes.ts`](/src/src/entrypoints/sandboxTypes.ts.md) | ML-01 |  |  |
-| [`src/entrypoints/sdk/controlSchemas.ts`](/src/src/entrypoints/sdk/controlSchemas.ts.md) | ML-15 |  |  |
-| [`src/entrypoints/sdk/controlTypes.ts`](/src/src/entrypoints/sdk/controlTypes.ts.md) | ML-15 |  |  |
-| [`src/entrypoints/sdk/coreSchemas.ts`](/src/src/entrypoints/sdk/coreSchemas.ts.md) | ML-15 |  |  |
-| [`src/entrypoints/sdk/coreTypes.generated.ts`](/src/src/entrypoints/sdk/coreTypes.generated.ts.md) | ML-15 |  |  |
-| [`src/entrypoints/sdk/coreTypes.ts`](/src/src/entrypoints/sdk/coreTypes.ts.md) | ML-15 |  |  |
-| [`src/entrypoints/sdk/runtimeTypes.ts`](/src/src/entrypoints/sdk/runtimeTypes.ts.md) | ML-15 |  |  |
-| [`src/entrypoints/sdk/sdkUtilityTypes.ts`](/src/src/entrypoints/sdk/sdkUtilityTypes.ts.md) | ML-15 |  |  |
-| [`src/entrypoints/sdk/settingsTypes.generated.ts`](/src/src/entrypoints/sdk/settingsTypes.generated.ts.md) | ML-15 |  |  |
-| [`src/entrypoints/sdk/toolTypes.ts`](/src/src/entrypoints/sdk/toolTypes.ts.md) | ML-15 |  |  |
-| [`src/history.ts`](/src/src/history.ts.md) | ML-01 |  |  |
-| [`src/hooks/fileSuggestions.ts`](/src/src/hooks/fileSuggestions.ts.md) | ML-07 |  |  |
-| [`src/hooks/notifs/useAntOrgWarningNotification.ts`](/src/src/hooks/notifs/useAntOrgWarningNotification.ts.md) | ML-07 |  |  |
-| [`src/hooks/notifs/useAutoModeUnavailableNotification.ts`](/src/src/hooks/notifs/useAutoModeUnavailableNotification.ts.md) | ML-07 |  |  |
-| [`src/hooks/notifs/useCanSwitchToExistingSubscription.tsx`](/src/src/hooks/notifs/useCanSwitchToExistingSubscription.tsx.md) | ML-07 |  |  |
-| [`src/hooks/notifs/useDeprecationWarningNotification.tsx`](/src/src/hooks/notifs/useDeprecationWarningNotification.tsx.md) | ML-07 |  |  |
-| [`src/hooks/notifs/useFastModeNotification.tsx`](/src/src/hooks/notifs/useFastModeNotification.tsx.md) | ML-07 |  |  |
-| [`src/hooks/notifs/useIDEStatusIndicator.tsx`](/src/src/hooks/notifs/useIDEStatusIndicator.tsx.md) | ML-07 |  |  |
-| [`src/hooks/notifs/useInstallMessages.tsx`](/src/src/hooks/notifs/useInstallMessages.tsx.md) | ML-07 |  |  |
-| [`src/hooks/notifs/useLspInitializationNotification.tsx`](/src/src/hooks/notifs/useLspInitializationNotification.tsx.md) | ML-07 |  |  |
-| [`src/hooks/notifs/useMcpConnectivityStatus.tsx`](/src/src/hooks/notifs/useMcpConnectivityStatus.tsx.md) | ML-07 |  |  |
-| [`src/hooks/notifs/useModelMigrationNotifications.tsx`](/src/src/hooks/notifs/useModelMigrationNotifications.tsx.md) | ML-07 |  |  |
-| [`src/hooks/notifs/useNpmDeprecationNotification.tsx`](/src/src/hooks/notifs/useNpmDeprecationNotification.tsx.md) | ML-07 |  |  |
-| [`src/hooks/notifs/usePluginAutoupdateNotification.tsx`](/src/src/hooks/notifs/usePluginAutoupdateNotification.tsx.md) | ML-07 |  |  |
-| [`src/hooks/notifs/usePluginInstallationStatus.tsx`](/src/src/hooks/notifs/usePluginInstallationStatus.tsx.md) | ML-07 |  |  |
-| [`src/hooks/notifs/useRateLimitWarningNotification.tsx`](/src/src/hooks/notifs/useRateLimitWarningNotification.tsx.md) | ML-07 |  |  |
-| [`src/hooks/notifs/useSettingsErrors.tsx`](/src/src/hooks/notifs/useSettingsErrors.tsx.md) | ML-07 |  |  |
-| [`src/hooks/notifs/useStartupNotification.ts`](/src/src/hooks/notifs/useStartupNotification.ts.md) | ML-07 |  |  |
-| [`src/hooks/notifs/useTeammateShutdownNotification.ts`](/src/src/hooks/notifs/useTeammateShutdownNotification.ts.md) | ML-07 |  |  |
-| [`src/hooks/renderPlaceholder.ts`](/src/src/hooks/renderPlaceholder.ts.md) | ML-02 |  |  |
-| [`src/hooks/toolPermission/PermissionContext.ts`](/src/src/hooks/toolPermission/PermissionContext.ts.md) | ML-02 |  |  |
-| [`src/hooks/toolPermission/handlers/coordinatorHandler.ts`](/src/src/hooks/toolPermission/handlers/coordinatorHandler.ts.md) | ML-02 |  |  |
-| [`src/hooks/toolPermission/handlers/interactiveHandler.ts`](/src/src/hooks/toolPermission/handlers/interactiveHandler.ts.md) | ML-02 |  |  |
-| [`src/hooks/toolPermission/handlers/swarmWorkerHandler.ts`](/src/src/hooks/toolPermission/handlers/swarmWorkerHandler.ts.md) | ML-02 |  |  |
-| [`src/hooks/toolPermission/permissionLogging.ts`](/src/src/hooks/toolPermission/permissionLogging.ts.md) | ML-02 |  |  |
-| [`src/hooks/unifiedSuggestions.ts`](/src/src/hooks/unifiedSuggestions.ts.md) | ML-02 |  |  |
-| [`src/hooks/useAfterFirstRender.ts`](/src/src/hooks/useAfterFirstRender.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useApiKeyVerification.ts`](/src/src/hooks/useApiKeyVerification.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useArrowKeyHistory.tsx`](/src/src/hooks/useArrowKeyHistory.tsx.md) | ML-07-4 |  |  |
-| [`src/hooks/useAssistantHistory.ts`](/src/src/hooks/useAssistantHistory.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useAwaySummary.ts`](/src/src/hooks/useAwaySummary.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useBackgroundTaskNavigation.ts`](/src/src/hooks/useBackgroundTaskNavigation.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useBlink.ts`](/src/src/hooks/useBlink.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useCanUseTool.tsx`](/src/src/hooks/useCanUseTool.tsx.md) | ML-03-1 |  |  |
-| [`src/hooks/useCancelRequest.ts`](/src/src/hooks/useCancelRequest.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useChromeExtensionNotification.tsx`](/src/src/hooks/useChromeExtensionNotification.tsx.md) | ML-07-4 |  |  |
-| [`src/hooks/useClaudeCodeHintRecommendation.tsx`](/src/src/hooks/useClaudeCodeHintRecommendation.tsx.md) | ML-07-4 |  |  |
-| [`src/hooks/useClipboardImageHint.ts`](/src/src/hooks/useClipboardImageHint.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useCommandKeybindings.tsx`](/src/src/hooks/useCommandKeybindings.tsx.md) | ML-07-4 |  |  |
-| [`src/hooks/useCommandQueue.ts`](/src/src/hooks/useCommandQueue.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useCopyOnSelect.ts`](/src/src/hooks/useCopyOnSelect.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useDeferredHookMessages.ts`](/src/src/hooks/useDeferredHookMessages.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useDiffData.ts`](/src/src/hooks/useDiffData.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useDiffInIDE.ts`](/src/src/hooks/useDiffInIDE.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useDirectConnect.ts`](/src/src/hooks/useDirectConnect.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useDoublePress.ts`](/src/src/hooks/useDoublePress.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useDynamicConfig.ts`](/src/src/hooks/useDynamicConfig.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useElapsedTime.ts`](/src/src/hooks/useElapsedTime.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useExitOnCtrlCD.ts`](/src/src/hooks/useExitOnCtrlCD.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useExitOnCtrlCDWithKeybindings.ts`](/src/src/hooks/useExitOnCtrlCDWithKeybindings.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useFileHistorySnapshotInit.ts`](/src/src/hooks/useFileHistorySnapshotInit.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useGlobalKeybindings.tsx`](/src/src/hooks/useGlobalKeybindings.tsx.md) | ML-07-4 |  |  |
-| [`src/hooks/useHistorySearch.ts`](/src/src/hooks/useHistorySearch.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useIDEIntegration.tsx`](/src/src/hooks/useIDEIntegration.tsx.md) | ML-07-4 |  |  |
-| [`src/hooks/useIdeAtMentioned.ts`](/src/src/hooks/useIdeAtMentioned.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useIdeConnectionStatus.ts`](/src/src/hooks/useIdeConnectionStatus.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useIdeLogging.ts`](/src/src/hooks/useIdeLogging.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useIdeSelection.ts`](/src/src/hooks/useIdeSelection.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useInboxPoller.ts`](/src/src/hooks/useInboxPoller.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useInputBuffer.ts`](/src/src/hooks/useInputBuffer.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useIssueFlagBanner.ts`](/src/src/hooks/useIssueFlagBanner.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useLogMessages.ts`](/src/src/hooks/useLogMessages.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useLspPluginRecommendation.tsx`](/src/src/hooks/useLspPluginRecommendation.tsx.md) | ML-07-4 |  |  |
-| [`src/hooks/useMailboxBridge.ts`](/src/src/hooks/useMailboxBridge.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useMainLoopModel.ts`](/src/src/hooks/useMainLoopModel.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useManagePlugins.ts`](/src/src/hooks/useManagePlugins.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useMemoryUsage.ts`](/src/src/hooks/useMemoryUsage.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useMergedClients.ts`](/src/src/hooks/useMergedClients.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useMergedCommands.ts`](/src/src/hooks/useMergedCommands.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useMergedTools.ts`](/src/src/hooks/useMergedTools.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useMinDisplayTime.ts`](/src/src/hooks/useMinDisplayTime.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useNotifyAfterTimeout.ts`](/src/src/hooks/useNotifyAfterTimeout.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useOfficialMarketplaceNotification.tsx`](/src/src/hooks/useOfficialMarketplaceNotification.tsx.md) | ML-07-4 |  |  |
-| [`src/hooks/usePasteHandler.ts`](/src/src/hooks/usePasteHandler.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/usePluginRecommendationBase.tsx`](/src/src/hooks/usePluginRecommendationBase.tsx.md) | ML-07-4 |  |  |
-| [`src/hooks/usePrStatus.ts`](/src/src/hooks/usePrStatus.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/usePromptSuggestion.ts`](/src/src/hooks/usePromptSuggestion.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/usePromptsFromClaudeInChrome.tsx`](/src/src/hooks/usePromptsFromClaudeInChrome.tsx.md) | ML-07-4 |  |  |
-| [`src/hooks/useQueueProcessor.ts`](/src/src/hooks/useQueueProcessor.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useRemoteSession.ts`](/src/src/hooks/useRemoteSession.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useReplBridge.tsx`](/src/src/hooks/useReplBridge.tsx.md) | ML-07-4 |  |  |
-| [`src/hooks/useSSHSession.ts`](/src/src/hooks/useSSHSession.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useScheduledTasks.ts`](/src/src/hooks/useScheduledTasks.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useSearchInput.ts`](/src/src/hooks/useSearchInput.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useSessionBackgrounding.ts`](/src/src/hooks/useSessionBackgrounding.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useSettings.ts`](/src/src/hooks/useSettings.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useSettingsChange.ts`](/src/src/hooks/useSettingsChange.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useSkillImprovementSurvey.ts`](/src/src/hooks/useSkillImprovementSurvey.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useSkillsChange.ts`](/src/src/hooks/useSkillsChange.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useSwarmInitialization.ts`](/src/src/hooks/useSwarmInitialization.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useSwarmPermissionPoller.ts`](/src/src/hooks/useSwarmPermissionPoller.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useTaskListWatcher.ts`](/src/src/hooks/useTaskListWatcher.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useTasksV2.ts`](/src/src/hooks/useTasksV2.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useTeammateViewAutoExit.ts`](/src/src/hooks/useTeammateViewAutoExit.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useTeleportResume.tsx`](/src/src/hooks/useTeleportResume.tsx.md) | ML-07-4 |  |  |
-| [`src/hooks/useTerminalSize.ts`](/src/src/hooks/useTerminalSize.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useTextInput.ts`](/src/src/hooks/useTextInput.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useTimeout.ts`](/src/src/hooks/useTimeout.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useTurnDiffs.ts`](/src/src/hooks/useTurnDiffs.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useTypeahead.tsx`](/src/src/hooks/useTypeahead.tsx.md) | ML-07-5 |  |  |
-| [`src/hooks/useUpdateNotification.ts`](/src/src/hooks/useUpdateNotification.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useVimInput.ts`](/src/src/hooks/useVimInput.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useVirtualScroll.ts`](/src/src/hooks/useVirtualScroll.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useVoice.ts`](/src/src/hooks/useVoice.ts.md) | ML-07-5 |  |  |
-| [`src/hooks/useVoiceEnabled.ts`](/src/src/hooks/useVoiceEnabled.ts.md) | ML-07-4 |  |  |
-| [`src/hooks/useVoiceIntegration.tsx`](/src/src/hooks/useVoiceIntegration.tsx.md) | ML-07-4 |  |  |
-| [`src/ink.ts`](/src/src/ink.ts.md) | ML-01 |  |  |
-| [`src/ink/Ansi.tsx`](/src/src/ink/Ansi.tsx.md) | ML-07-1 |  |  |
-| [`src/ink/bidi.ts`](/src/src/ink/bidi.ts.md) | ML-07-1 |  |  |
-| [`src/ink/clearTerminal.ts`](/src/src/ink/clearTerminal.ts.md) | ML-07-1 |  |  |
-| [`src/ink/colorize.ts`](/src/src/ink/colorize.ts.md) | ML-07-1 |  |  |
-| [`src/ink/components/AlternateScreen.tsx`](/src/src/ink/components/AlternateScreen.tsx.md) | ML-07-1 |  |  |
-| [`src/ink/components/App.tsx`](/src/src/ink/components/App.tsx.md) | ML-07-1 |  |  |
-| [`src/ink/components/AppContext.ts`](/src/src/ink/components/AppContext.ts.md) | ML-07-1 |  |  |
-| [`src/ink/components/Box.tsx`](/src/src/ink/components/Box.tsx.md) | ML-07-1 |  |  |
-| [`src/ink/components/Button.tsx`](/src/src/ink/components/Button.tsx.md) | ML-07-1 |  |  |
-| [`src/ink/components/ClockContext.tsx`](/src/src/ink/components/ClockContext.tsx.md) | ML-07-1 |  |  |
-| [`src/ink/components/CursorDeclarationContext.ts`](/src/src/ink/components/CursorDeclarationContext.ts.md) | ML-07-1 |  |  |
-| [`src/ink/components/ErrorOverview.tsx`](/src/src/ink/components/ErrorOverview.tsx.md) | ML-07-1 |  |  |
-| [`src/ink/components/Link.tsx`](/src/src/ink/components/Link.tsx.md) | ML-07-1 |  |  |
-| [`src/ink/components/Newline.tsx`](/src/src/ink/components/Newline.tsx.md) | ML-07-1 |  |  |
-| [`src/ink/components/NoSelect.tsx`](/src/src/ink/components/NoSelect.tsx.md) | ML-07-1 |  |  |
-| [`src/ink/components/RawAnsi.tsx`](/src/src/ink/components/RawAnsi.tsx.md) | ML-07-1 |  |  |
-| [`src/ink/components/ScrollBox.tsx`](/src/src/ink/components/ScrollBox.tsx.md) | ML-07-1 |  |  |
-| [`src/ink/components/Spacer.tsx`](/src/src/ink/components/Spacer.tsx.md) | ML-07-1 |  |  |
-| [`src/ink/components/StdinContext.ts`](/src/src/ink/components/StdinContext.ts.md) | ML-07-1 |  |  |
-| [`src/ink/components/TerminalFocusContext.tsx`](/src/src/ink/components/TerminalFocusContext.tsx.md) | ML-07-1 |  |  |
-| [`src/ink/components/TerminalSizeContext.tsx`](/src/src/ink/components/TerminalSizeContext.tsx.md) | ML-07-1 |  |  |
-| [`src/ink/components/Text.tsx`](/src/src/ink/components/Text.tsx.md) | ML-07-1 |  |  |
-| [`src/ink/constants.ts`](/src/src/ink/constants.ts.md) | ML-07-1 |  |  |
-| [`src/ink/cursor.ts`](/src/src/ink/cursor.ts.md) | ML-07-1 |  |  |
-| [`src/ink/dom.ts`](/src/src/ink/dom.ts.md) | ML-07-1 |  |  |
-| [`src/ink/events/click-event.ts`](/src/src/ink/events/click-event.ts.md) | ML-07-1 |  |  |
-| [`src/ink/events/dispatcher.ts`](/src/src/ink/events/dispatcher.ts.md) | ML-07-1 |  |  |
-| [`src/ink/events/emitter.ts`](/src/src/ink/events/emitter.ts.md) | ML-07-1 |  |  |
-| [`src/ink/events/event-handlers.ts`](/src/src/ink/events/event-handlers.ts.md) | ML-07-1 |  |  |
-| [`src/ink/events/event.ts`](/src/src/ink/events/event.ts.md) | ML-07-1 |  |  |
-| [`src/ink/events/focus-event.ts`](/src/src/ink/events/focus-event.ts.md) | ML-07-1 |  |  |
-| [`src/ink/events/input-event.ts`](/src/src/ink/events/input-event.ts.md) | ML-07-1 |  |  |
-| [`src/ink/events/keyboard-event.ts`](/src/src/ink/events/keyboard-event.ts.md) | ML-07-1 |  |  |
-| [`src/ink/events/paste-event.ts`](/src/src/ink/events/paste-event.ts.md) | ML-07-1 |  |  |
-| [`src/ink/events/resize-event.ts`](/src/src/ink/events/resize-event.ts.md) | ML-07-1 |  |  |
-| [`src/ink/events/terminal-event.ts`](/src/src/ink/events/terminal-event.ts.md) | ML-07-1 |  |  |
-| [`src/ink/events/terminal-focus-event.ts`](/src/src/ink/events/terminal-focus-event.ts.md) | ML-07-1 |  |  |
-| [`src/ink/focus.ts`](/src/src/ink/focus.ts.md) | ML-07-1 |  |  |
-| [`src/ink/frame.ts`](/src/src/ink/frame.ts.md) | ML-07-1 |  |  |
-| [`src/ink/get-max-width.ts`](/src/src/ink/get-max-width.ts.md) | ML-07-1 |  |  |
-| [`src/ink/global.d.ts`](/src/src/ink/global.d.ts.md) | ML-07-1 |  |  |
-| [`src/ink/hit-test.ts`](/src/src/ink/hit-test.ts.md) | ML-07-1 |  |  |
-| [`src/ink/hooks/use-animation-frame.ts`](/src/src/ink/hooks/use-animation-frame.ts.md) | ML-07-1 |  |  |
-| [`src/ink/hooks/use-app.ts`](/src/src/ink/hooks/use-app.ts.md) | ML-07-1 |  |  |
-| [`src/ink/hooks/use-declared-cursor.ts`](/src/src/ink/hooks/use-declared-cursor.ts.md) | ML-07-1 |  |  |
-| [`src/ink/hooks/use-input.ts`](/src/src/ink/hooks/use-input.ts.md) | ML-07-1 |  |  |
-| [`src/ink/hooks/use-interval.ts`](/src/src/ink/hooks/use-interval.ts.md) | ML-07-1 |  |  |
-| [`src/ink/hooks/use-search-highlight.ts`](/src/src/ink/hooks/use-search-highlight.ts.md) | ML-07-1 |  |  |
-| [`src/ink/hooks/use-selection.ts`](/src/src/ink/hooks/use-selection.ts.md) | ML-07-1 |  |  |
-| [`src/ink/hooks/use-stdin.ts`](/src/src/ink/hooks/use-stdin.ts.md) | ML-07-1 |  |  |
-| [`src/ink/hooks/use-tab-status.ts`](/src/src/ink/hooks/use-tab-status.ts.md) | ML-07-1 |  |  |
-| [`src/ink/hooks/use-terminal-focus.ts`](/src/src/ink/hooks/use-terminal-focus.ts.md) | ML-07-1 |  |  |
-| [`src/ink/hooks/use-terminal-title.ts`](/src/src/ink/hooks/use-terminal-title.ts.md) | ML-07-1 |  |  |
-| [`src/ink/hooks/use-terminal-viewport.ts`](/src/src/ink/hooks/use-terminal-viewport.ts.md) | ML-07-1 |  |  |
-| [`src/ink/ink.tsx`](/src/src/ink/ink.tsx.md) | ML-07-5 |  |  |
-| [`src/ink/instances.ts`](/src/src/ink/instances.ts.md) | ML-07-1 |  |  |
-| [`src/ink/layout/engine.ts`](/src/src/ink/layout/engine.ts.md) | ML-07-1 |  |  |
-| [`src/ink/layout/geometry.ts`](/src/src/ink/layout/geometry.ts.md) | ML-07-1 |  |  |
-| [`src/ink/layout/node.ts`](/src/src/ink/layout/node.ts.md) | ML-07-1 |  |  |
-| [`src/ink/layout/yoga.ts`](/src/src/ink/layout/yoga.ts.md) | ML-07-1 |  |  |
-| [`src/ink/line-width-cache.ts`](/src/src/ink/line-width-cache.ts.md) | ML-07-1 |  |  |
-| [`src/ink/log-update.ts`](/src/src/ink/log-update.ts.md) | ML-07-1 |  |  |
-| [`src/ink/measure-element.ts`](/src/src/ink/measure-element.ts.md) | ML-07-1 |  |  |
-| [`src/ink/measure-text.ts`](/src/src/ink/measure-text.ts.md) | ML-07-1 |  |  |
-| [`src/ink/node-cache.ts`](/src/src/ink/node-cache.ts.md) | ML-07-1 |  |  |
-| [`src/ink/optimizer.ts`](/src/src/ink/optimizer.ts.md) | ML-07-1 |  |  |
-| [`src/ink/output.ts`](/src/src/ink/output.ts.md) | ML-07-1 |  |  |
-| [`src/ink/parse-keypress.ts`](/src/src/ink/parse-keypress.ts.md) | ML-07-1 |  |  |
-| [`src/ink/reconciler.ts`](/src/src/ink/reconciler.ts.md) | ML-07-1 |  |  |
-| [`src/ink/render-border.ts`](/src/src/ink/render-border.ts.md) | ML-07-1 |  |  |
-| [`src/ink/render-node-to-output.ts`](/src/src/ink/render-node-to-output.ts.md) | ML-07-5 |  |  |
-| [`src/ink/render-to-screen.ts`](/src/src/ink/render-to-screen.ts.md) | ML-07-1 |  |  |
-| [`src/ink/renderer.ts`](/src/src/ink/renderer.ts.md) | ML-07-1 |  |  |
-| [`src/ink/root.ts`](/src/src/ink/root.ts.md) | ML-07-1 |  |  |
-| [`src/ink/screen.ts`](/src/src/ink/screen.ts.md) | ML-07-5 |  |  |
-| [`src/ink/searchHighlight.ts`](/src/src/ink/searchHighlight.ts.md) | ML-07-1 |  |  |
-| [`src/ink/selection.ts`](/src/src/ink/selection.ts.md) | ML-07-1 |  |  |
-| [`src/ink/squash-text-nodes.ts`](/src/src/ink/squash-text-nodes.ts.md) | ML-07-1 |  |  |
-| [`src/ink/stringWidth.ts`](/src/src/ink/stringWidth.ts.md) | ML-07-1 |  |  |
-| [`src/ink/styles.ts`](/src/src/ink/styles.ts.md) | ML-07-1 |  |  |
-| [`src/ink/supports-hyperlinks.ts`](/src/src/ink/supports-hyperlinks.ts.md) | ML-07-1 |  |  |
-| [`src/ink/tabstops.ts`](/src/src/ink/tabstops.ts.md) | ML-07-1 |  |  |
-| [`src/ink/terminal-focus-state.ts`](/src/src/ink/terminal-focus-state.ts.md) | ML-07-1 |  |  |
-| [`src/ink/terminal-querier.ts`](/src/src/ink/terminal-querier.ts.md) | ML-07-1 |  |  |
-| [`src/ink/terminal.ts`](/src/src/ink/terminal.ts.md) | ML-07-1 |  |  |
-| [`src/ink/termio.ts`](/src/src/ink/termio.ts.md) | ML-07-1 |  |  |
-| [`src/ink/termio/ansi.ts`](/src/src/ink/termio/ansi.ts.md) | ML-07-1 |  |  |
-| [`src/ink/termio/csi.ts`](/src/src/ink/termio/csi.ts.md) | ML-07-1 |  |  |
-| [`src/ink/termio/dec.ts`](/src/src/ink/termio/dec.ts.md) | ML-07-1 |  |  |
-| [`src/ink/termio/esc.ts`](/src/src/ink/termio/esc.ts.md) | ML-07-1 |  |  |
-| [`src/ink/termio/osc.ts`](/src/src/ink/termio/osc.ts.md) | ML-07-1 |  |  |
-| [`src/ink/termio/parser.ts`](/src/src/ink/termio/parser.ts.md) | ML-07-1 |  |  |
-| [`src/ink/termio/sgr.ts`](/src/src/ink/termio/sgr.ts.md) | ML-07-1 |  |  |
-| [`src/ink/termio/tokenize.ts`](/src/src/ink/termio/tokenize.ts.md) | ML-07-1 |  |  |
-| [`src/ink/termio/types.ts`](/src/src/ink/termio/types.ts.md) | ML-07-1 |  |  |
-| [`src/ink/useTerminalNotification.ts`](/src/src/ink/useTerminalNotification.ts.md) | ML-07-1 |  |  |
-| [`src/ink/warn.ts`](/src/src/ink/warn.ts.md) | ML-07-1 |  |  |
-| [`src/ink/widest-line.ts`](/src/src/ink/widest-line.ts.md) | ML-07-1 |  |  |
-| [`src/ink/wrap-text.ts`](/src/src/ink/wrap-text.ts.md) | ML-07-1 |  |  |
-| [`src/ink/wrapAnsi.ts`](/src/src/ink/wrapAnsi.ts.md) | ML-07-1 |  |  |
-| [`src/interactiveHelpers.tsx`](/src/src/interactiveHelpers.tsx.md) | ML-01 |  |  |
-| [`src/keybindings/KeybindingContext.tsx`](/src/src/keybindings/KeybindingContext.tsx.md) | ML-01 |  |  |
-| [`src/keybindings/KeybindingProviderSetup.tsx`](/src/src/keybindings/KeybindingProviderSetup.tsx.md) | ML-07-1 |  |  |
-| [`src/keybindings/defaultBindings.ts`](/src/src/keybindings/defaultBindings.ts.md) | ML-01 |  |  |
-| [`src/keybindings/loadUserBindings.ts`](/src/src/keybindings/loadUserBindings.ts.md) | ML-01 |  |  |
-| [`src/keybindings/match.ts`](/src/src/keybindings/match.ts.md) | ML-01 |  |  |
-| [`src/keybindings/parser.ts`](/src/src/keybindings/parser.ts.md) | ML-01 |  |  |
-| [`src/keybindings/reservedShortcuts.ts`](/src/src/keybindings/reservedShortcuts.ts.md) | ML-01 |  |  |
-| [`src/keybindings/resolver.ts`](/src/src/keybindings/resolver.ts.md) | ML-01 |  |  |
-| [`src/keybindings/schema.ts`](/src/src/keybindings/schema.ts.md) | ML-01 |  |  |
-| [`src/keybindings/shortcutFormat.ts`](/src/src/keybindings/shortcutFormat.ts.md) | ML-07-1 |  |  |
-| [`src/keybindings/template.ts`](/src/src/keybindings/template.ts.md) | ML-01 |  |  |
-| [`src/keybindings/types.ts`](/src/src/keybindings/types.ts.md) | ML-01 |  |  |
-| [`src/keybindings/useKeybinding.ts`](/src/src/keybindings/useKeybinding.ts.md) | ML-01 |  |  |
-| [`src/keybindings/useShortcutDisplay.ts`](/src/src/keybindings/useShortcutDisplay.ts.md) | ML-07-1 |  |  |
-| [`src/keybindings/validate.ts`](/src/src/keybindings/validate.ts.md) | ML-01 |  |  |
-| [`src/main.tsx`](/src/src/main.tsx.md) | ML-01 |  |  |
-| [`src/memdir/findRelevantMemories.ts`](/src/src/memdir/findRelevantMemories.ts.md) | ML-11-1 |  |  |
-| [`src/memdir/memdir.ts`](/src/src/memdir/memdir.ts.md) | ML-11-1 |  |  |
-| [`src/memdir/memoryAge.ts`](/src/src/memdir/memoryAge.ts.md) | ML-11-1 |  |  |
-| [`src/memdir/memoryScan.ts`](/src/src/memdir/memoryScan.ts.md) | ML-11-1 |  |  |
-| [`src/memdir/memoryShapeTelemetry.ts`](/src/src/memdir/memoryShapeTelemetry.ts.md) | ML-11-1 |  |  |
-| [`src/memdir/memoryTypes.ts`](/src/src/memdir/memoryTypes.ts.md) | ML-11-1 |  |  |
-| [`src/memdir/paths.ts`](/src/src/memdir/paths.ts.md) | ML-11-1 |  |  |
-| [`src/memdir/teamMemPaths.ts`](/src/src/memdir/teamMemPaths.ts.md) | ML-11-1 |  |  |
-| [`src/memdir/teamMemPrompts.ts`](/src/src/memdir/teamMemPrompts.ts.md) | ML-11-1 |  |  |
-| [`src/migrations/migrateAutoUpdatesToSettings.ts`](/src/src/migrations/migrateAutoUpdatesToSettings.ts.md) | ML-01 |  |  |
-| [`src/migrations/migrateBypassPermissionsAcceptedToSettings.ts`](/src/src/migrations/migrateBypassPermissionsAcceptedToSettings.ts.md) | ML-04-1 |  |  |
-| [`src/migrations/migrateEnableAllProjectMcpServersToSettings.ts`](/src/src/migrations/migrateEnableAllProjectMcpServersToSettings.ts.md) | ML-01 |  |  |
-| [`src/migrations/migrateFennecToOpus.ts`](/src/src/migrations/migrateFennecToOpus.ts.md) | ML-01 |  |  |
-| [`src/migrations/migrateLegacyOpusToCurrent.ts`](/src/src/migrations/migrateLegacyOpusToCurrent.ts.md) | ML-01 |  |  |
-| [`src/migrations/migrateOpusToOpus1m.ts`](/src/src/migrations/migrateOpusToOpus1m.ts.md) | ML-01 |  |  |
-| [`src/migrations/migrateReplBridgeEnabledToRemoteControlAtStartup.ts`](/src/src/migrations/migrateReplBridgeEnabledToRemoteControlAtStartup.ts.md) | ML-01 |  |  |
-| [`src/migrations/migrateSonnet1mToSonnet45.ts`](/src/src/migrations/migrateSonnet1mToSonnet45.ts.md) | ML-01 |  |  |
-| [`src/migrations/migrateSonnet45ToSonnet46.ts`](/src/src/migrations/migrateSonnet45ToSonnet46.ts.md) | ML-01 |  |  |
-| [`src/migrations/resetAutoModeOptInForDefaultOffer.ts`](/src/src/migrations/resetAutoModeOptInForDefaultOffer.ts.md) | ML-01 |  |  |
-| [`src/migrations/resetProToOpusDefault.ts`](/src/src/migrations/resetProToOpusDefault.ts.md) | ML-01 |  |  |
-| [`src/moreright/useMoreRight.tsx`](/src/src/moreright/useMoreRight.tsx.md) | ML-01 |  |  |
-| [`src/native-ts/color-diff/index.ts`](/src/src/native-ts/color-diff/index.ts.md) | ML-07 |  |  |
-| [`src/native-ts/file-index/index.ts`](/src/src/native-ts/file-index/index.ts.md) | ML-02 |  |  |
-| [`src/native-ts/yoga-layout/enums.ts`](/src/src/native-ts/yoga-layout/enums.ts.md) | ML-02 |  |  |
-| [`src/native-ts/yoga-layout/index.ts`](/src/src/native-ts/yoga-layout/index.ts.md) | ML-07 |  |  |
-| [`src/outputStyles/loadOutputStylesDir.ts`](/src/src/outputStyles/loadOutputStylesDir.ts.md) | ML-01 |  |  |
-| [`src/plugins/builtinPlugins.ts`](/src/src/plugins/builtinPlugins.ts.md) | ML-01 |  |  |
-| [`src/plugins/bundled/index.ts`](/src/src/plugins/bundled/index.ts.md) | ML-01 |  |  |
-| [`src/proactive/index.ts`](/src/src/proactive/index.ts.md) | ML-01 |  |  |
-| [`src/projectOnboardingState.ts`](/src/src/projectOnboardingState.ts.md) | ML-01 |  |  |
-| [`src/query.ts`](/src/src/query.ts.md) | ML-02-2 |  |  |
-| [`src/query/config.ts`](/src/src/query/config.ts.md) | ML-02-2 |  |  |
-| [`src/query/deps.ts`](/src/src/query/deps.ts.md) | ML-02-2 |  |  |
-| [`src/query/stopHooks.ts`](/src/src/query/stopHooks.ts.md) | ML-02-2 |  |  |
-| [`src/query/tokenBudget.ts`](/src/src/query/tokenBudget.ts.md) | ML-01 |  |  |
-| [`src/query/transitions.ts`](/src/src/query/transitions.ts.md) | ML-02-2 |  |  |
-| [`src/remote/RemoteSessionManager.ts`](/src/src/remote/RemoteSessionManager.ts.md) | ML-01 |  |  |
-| [`src/remote/SessionsWebSocket.ts`](/src/src/remote/SessionsWebSocket.ts.md) | ML-01 |  |  |
-| [`src/remote/remotePermissionBridge.ts`](/src/src/remote/remotePermissionBridge.ts.md) | ML-04-1 |  |  |
-| [`src/remote/sdkMessageAdapter.ts`](/src/src/remote/sdkMessageAdapter.ts.md) | ML-01 |  |  |
-| [`src/replLauncher.tsx`](/src/src/replLauncher.tsx.md) | ML-01 |  |  |
-| [`src/schemas/hooks.ts`](/src/src/schemas/hooks.ts.md) | ML-01 |  |  |
-| [`src/screens/Doctor.tsx`](/src/src/screens/Doctor.tsx.md) | ML-07 |  |  |
-| [`src/screens/REPL.tsx`](/src/src/screens/REPL.tsx.md) | ML-07-1 |  |  |
-| [`src/screens/ResumeConversation.tsx`](/src/src/screens/ResumeConversation.tsx.md) | ML-01 |  |  |
-| [`src/server/createDirectConnectSession.ts`](/src/src/server/createDirectConnectSession.ts.md) | ML-01 |  |  |
-| [`src/server/directConnectManager.ts`](/src/src/server/directConnectManager.ts.md) | ML-01 |  |  |
-| [`src/server/types.ts`](/src/src/server/types.ts.md) | ML-01 |  |  |
-| [`src/services/AgentSummary/agentSummary.ts`](/src/src/services/AgentSummary/agentSummary.ts.md) | ML-05 |  |  |
-| [`src/services/MagicDocs/magicDocs.ts`](/src/src/services/MagicDocs/magicDocs.ts.md) | ML-05 |  |  |
-| [`src/services/MagicDocs/prompts.ts`](/src/src/services/MagicDocs/prompts.ts.md) | ML-05 |  |  |
-| [`src/services/PromptSuggestion/promptSuggestion.ts`](/src/src/services/PromptSuggestion/promptSuggestion.ts.md) | ML-05 |  |  |
-| [`src/services/PromptSuggestion/speculation.ts`](/src/src/services/PromptSuggestion/speculation.ts.md) | ML-05 |  |  |
-| [`src/services/SessionMemory/prompts.ts`](/src/src/services/SessionMemory/prompts.ts.md) | ML-11-1 |  |  |
-| [`src/services/SessionMemory/sessionMemory.ts`](/src/src/services/SessionMemory/sessionMemory.ts.md) | ML-11-1 |  |  |
-| [`src/services/SessionMemory/sessionMemoryUtils.ts`](/src/src/services/SessionMemory/sessionMemoryUtils.ts.md) | ML-11-1 |  |  |
-| [`src/services/analytics/config.ts`](/src/src/services/analytics/config.ts.md) | ML-05 |  |  |
-| [`src/services/analytics/datadog.ts`](/src/src/services/analytics/datadog.ts.md) | ML-05 |  |  |
-| [`src/services/analytics/firstPartyEventLogger.ts`](/src/src/services/analytics/firstPartyEventLogger.ts.md) | ML-05 |  |  |
-| [`src/services/analytics/firstPartyEventLoggingExporter.ts`](/src/src/services/analytics/firstPartyEventLoggingExporter.ts.md) | ML-05 |  |  |
-| [`src/services/analytics/growthbook.ts`](/src/src/services/analytics/growthbook.ts.md) | ML-06 |  |  |
-| [`src/services/analytics/index.ts`](/src/src/services/analytics/index.ts.md) | ML-05 |  |  |
-| [`src/services/analytics/metadata.ts`](/src/src/services/analytics/metadata.ts.md) | ML-05 |  |  |
-| [`src/services/analytics/sink.ts`](/src/src/services/analytics/sink.ts.md) | ML-05 |  |  |
-| [`src/services/analytics/sinkKillswitch.ts`](/src/src/services/analytics/sinkKillswitch.ts.md) | ML-05 |  |  |
-| [`src/services/api/adminRequests.ts`](/src/src/services/api/adminRequests.ts.md) | ML-10-1 |  |  |
-| [`src/services/api/bootstrap.ts`](/src/src/services/api/bootstrap.ts.md) | ML-06 |  |  |
-| [`src/services/api/claude.ts`](/src/src/services/api/claude.ts.md) | ML-02-3 |  |  |
-| [`src/services/api/client.ts`](/src/src/services/api/client.ts.md) | ML-02-3 |  |  |
-| [`src/services/api/dumpPrompts.ts`](/src/src/services/api/dumpPrompts.ts.md) | ML-10-1 |  |  |
-| [`src/services/api/emptyUsage.ts`](/src/src/services/api/emptyUsage.ts.md) | ML-10-1 |  |  |
-| [`src/services/api/errorUtils.ts`](/src/src/services/api/errorUtils.ts.md) | ML-10-1 |  |  |
-| [`src/services/api/errors.ts`](/src/src/services/api/errors.ts.md) | ML-02-3 |  |  |
-| [`src/services/api/filesApi.ts`](/src/src/services/api/filesApi.ts.md) | ML-10-1 |  |  |
-| [`src/services/api/firstTokenDate.ts`](/src/src/services/api/firstTokenDate.ts.md) | ML-10-1 |  |  |
-| [`src/services/api/grove.ts`](/src/src/services/api/grove.ts.md) | ML-10-1 |  |  |
-| [`src/services/api/logging.ts`](/src/src/services/api/logging.ts.md) | ML-02-3 |  |  |
-| [`src/services/api/metricsOptOut.ts`](/src/src/services/api/metricsOptOut.ts.md) | ML-10-1 |  |  |
-| [`src/services/api/overageCreditGrant.ts`](/src/src/services/api/overageCreditGrant.ts.md) | ML-10-1 |  |  |
-| [`src/services/api/promptCacheBreakDetection.ts`](/src/src/services/api/promptCacheBreakDetection.ts.md) | ML-10-1 |  |  |
-| [`src/services/api/referral.ts`](/src/src/services/api/referral.ts.md) | ML-10-1 |  |  |
-| [`src/services/api/sessionIngress.ts`](/src/src/services/api/sessionIngress.ts.md) | ML-10-1 |  |  |
-| [`src/services/api/ultrareviewQuota.ts`](/src/src/services/api/ultrareviewQuota.ts.md) | ML-10-1 |  |  |
-| [`src/services/api/usage.ts`](/src/src/services/api/usage.ts.md) | ML-10-1 |  |  |
-| [`src/services/api/withRetry.ts`](/src/src/services/api/withRetry.ts.md) | ML-02-3 |  |  |
-| [`src/services/autoDream/autoDream.ts`](/src/src/services/autoDream/autoDream.ts.md) | ML-05 |  |  |
-| [`src/services/autoDream/config.ts`](/src/src/services/autoDream/config.ts.md) | ML-05 |  |  |
-| [`src/services/autoDream/consolidationLock.ts`](/src/src/services/autoDream/consolidationLock.ts.md) | ML-05 |  |  |
-| [`src/services/autoDream/consolidationPrompt.ts`](/src/src/services/autoDream/consolidationPrompt.ts.md) | ML-05 |  |  |
-| [`src/services/awaySummary.ts`](/src/src/services/awaySummary.ts.md) | ML-05 |  |  |
-| [`src/services/claudeAiLimits.ts`](/src/src/services/claudeAiLimits.ts.md) | ML-10 |  |  |
-| [`src/services/claudeAiLimitsHook.ts`](/src/src/services/claudeAiLimitsHook.ts.md) | ML-05 |  |  |
-| [`src/services/compact/apiMicrocompact.ts`](/src/src/services/compact/apiMicrocompact.ts.md) | ML-11-1 |  |  |
-| [`src/services/compact/autoCompact.ts`](/src/src/services/compact/autoCompact.ts.md) | ML-02-2 |  |  |
-| [`src/services/compact/cachedMCConfig.ts`](/src/src/services/compact/cachedMCConfig.ts.md) | ML-11-1 |  |  |
-| [`src/services/compact/compact.ts`](/src/src/services/compact/compact.ts.md) | ML-02-2 |  |  |
-| [`src/services/compact/compactWarningHook.ts`](/src/src/services/compact/compactWarningHook.ts.md) | ML-11-1 |  |  |
-| [`src/services/compact/compactWarningState.ts`](/src/src/services/compact/compactWarningState.ts.md) | ML-11-1 |  |  |
-| [`src/services/compact/grouping.ts`](/src/src/services/compact/grouping.ts.md) | ML-11-1 |  |  |
-| [`src/services/compact/microCompact.ts`](/src/src/services/compact/microCompact.ts.md) | ML-11-1 |  |  |
-| [`src/services/compact/postCompactCleanup.ts`](/src/src/services/compact/postCompactCleanup.ts.md) | ML-11-1 |  |  |
-| [`src/services/compact/prompt.ts`](/src/src/services/compact/prompt.ts.md) | ML-11-1 |  |  |
-| [`src/services/compact/reactiveCompact.ts`](/src/src/services/compact/reactiveCompact.ts.md) | ML-11-1 |  |  |
-| [`src/services/compact/sessionMemoryCompact.ts`](/src/src/services/compact/sessionMemoryCompact.ts.md) | ML-11-1 |  |  |
-| [`src/services/compact/snipCompact.ts`](/src/src/services/compact/snipCompact.ts.md) | ML-11-1 |  |  |
-| [`src/services/compact/snipProjection.ts`](/src/src/services/compact/snipProjection.ts.md) | ML-11-1 |  |  |
-| [`src/services/compact/timeBasedMCConfig.ts`](/src/src/services/compact/timeBasedMCConfig.ts.md) | ML-11-1 |  |  |
-| [`src/services/contextCollapse/index.ts`](/src/src/services/contextCollapse/index.ts.md) | ML-11-1 |  |  |
-| [`src/services/contextCollapse/operations.ts`](/src/src/services/contextCollapse/operations.ts.md) | ML-11-1 |  |  |
-| [`src/services/contextCollapse/persist.ts`](/src/src/services/contextCollapse/persist.ts.md) | ML-11-1 |  |  |
-| [`src/services/diagnosticTracking.ts`](/src/src/services/diagnosticTracking.ts.md) | ML-05 |  |  |
-| [`src/services/extractMemories/extractMemories.ts`](/src/src/services/extractMemories/extractMemories.ts.md) | ML-05 |  |  |
-| [`src/services/extractMemories/prompts.ts`](/src/src/services/extractMemories/prompts.ts.md) | ML-05 |  |  |
-| [`src/services/internalLogging.ts`](/src/src/services/internalLogging.ts.md) | ML-05 |  |  |
-| [`src/services/lsp/LSPClient.ts`](/src/src/services/lsp/LSPClient.ts.md) | ML-05 |  |  |
-| [`src/services/lsp/LSPDiagnosticRegistry.ts`](/src/src/services/lsp/LSPDiagnosticRegistry.ts.md) | ML-05 |  |  |
-| [`src/services/lsp/LSPServerInstance.ts`](/src/src/services/lsp/LSPServerInstance.ts.md) | ML-05 |  |  |
-| [`src/services/lsp/LSPServerManager.ts`](/src/src/services/lsp/LSPServerManager.ts.md) | ML-05 |  |  |
-| [`src/services/lsp/config.ts`](/src/src/services/lsp/config.ts.md) | ML-05 |  |  |
-| [`src/services/lsp/manager.ts`](/src/src/services/lsp/manager.ts.md) | ML-05 |  |  |
-| [`src/services/lsp/passiveFeedback.ts`](/src/src/services/lsp/passiveFeedback.ts.md) | ML-05 |  |  |
-| [`src/services/lsp/types.ts`](/src/src/services/lsp/types.ts.md) | ML-05 |  |  |
-| [`src/services/mcp/InProcessTransport.ts`](/src/src/services/mcp/InProcessTransport.ts.md) | ML-05-2 |  |  |
-| [`src/services/mcp/MCPConnectionManager.tsx`](/src/src/services/mcp/MCPConnectionManager.tsx.md) | ML-05-1 |  |  |
-| [`src/services/mcp/SdkControlTransport.ts`](/src/src/services/mcp/SdkControlTransport.ts.md) | ML-05-2 |  |  |
-| [`src/services/mcp/auth.ts`](/src/src/services/mcp/auth.ts.md) | ML-05-2 |  |  |
-| [`src/services/mcp/channelAllowlist.ts`](/src/src/services/mcp/channelAllowlist.ts.md) | ML-05-3 |  |  |
-| [`src/services/mcp/channelNotification.ts`](/src/src/services/mcp/channelNotification.ts.md) | ML-05-3 |  |  |
-| [`src/services/mcp/channelPermissions.ts`](/src/src/services/mcp/channelPermissions.ts.md) | ML-04-1 |  |  |
-| [`src/services/mcp/claudeai.ts`](/src/src/services/mcp/claudeai.ts.md) | ML-05-1 |  |  |
-| [`src/services/mcp/client.ts`](/src/src/services/mcp/client.ts.md) | ML-05-2 |  |  |
-| [`src/services/mcp/config.ts`](/src/src/services/mcp/config.ts.md) | ML-05-1 |  |  |
-| [`src/services/mcp/elicitationHandler.ts`](/src/src/services/mcp/elicitationHandler.ts.md) | ML-05-2 |  |  |
-| [`src/services/mcp/envExpansion.ts`](/src/src/services/mcp/envExpansion.ts.md) | ML-05-1 |  |  |
-| [`src/services/mcp/headersHelper.ts`](/src/src/services/mcp/headersHelper.ts.md) | ML-05-2 |  |  |
-| [`src/services/mcp/mcpStringUtils.ts`](/src/src/services/mcp/mcpStringUtils.ts.md) | ML-05-1 |  |  |
-| [`src/services/mcp/normalization.ts`](/src/src/services/mcp/normalization.ts.md) | ML-05-1 |  |  |
-| [`src/services/mcp/oauthPort.ts`](/src/src/services/mcp/oauthPort.ts.md) | ML-05-2 |  |  |
-| [`src/services/mcp/officialRegistry.ts`](/src/src/services/mcp/officialRegistry.ts.md) | ML-05-1 |  |  |
-| [`src/services/mcp/types.ts`](/src/src/services/mcp/types.ts.md) | ML-05-1 |  |  |
-| [`src/services/mcp/useManageMCPConnections.ts`](/src/src/services/mcp/useManageMCPConnections.ts.md) | ML-05-1 |  |  |
-| [`src/services/mcp/utils.ts`](/src/src/services/mcp/utils.ts.md) | ML-05-2 |  |  |
-| [`src/services/mcp/vscodeSdkMcp.ts`](/src/src/services/mcp/vscodeSdkMcp.ts.md) | ML-05-3 |  |  |
-| [`src/services/mcp/xaa.ts`](/src/src/services/mcp/xaa.ts.md) | ML-05-2 |  |  |
-| [`src/services/mcp/xaaIdpLogin.ts`](/src/src/services/mcp/xaaIdpLogin.ts.md) | ML-05-2 |  |  |
-| [`src/services/mcpServerApproval.tsx`](/src/src/services/mcpServerApproval.tsx.md) | ML-05 |  |  |
-| [`src/services/mockRateLimits.ts`](/src/src/services/mockRateLimits.ts.md) | ML-06 |  |  |
-| [`src/services/notifier.ts`](/src/src/services/notifier.ts.md) | ML-05 |  |  |
-| [`src/services/oauth/auth-code-listener.ts`](/src/src/services/oauth/auth-code-listener.ts.md) | ML-06 |  |  |
-| [`src/services/oauth/client.ts`](/src/src/services/oauth/client.ts.md) | ML-06 |  |  |
-| [`src/services/oauth/crypto.ts`](/src/src/services/oauth/crypto.ts.md) | ML-06 |  |  |
-| [`src/services/oauth/getOauthProfile.ts`](/src/src/services/oauth/getOauthProfile.ts.md) | ML-06 |  |  |
-| [`src/services/oauth/index.ts`](/src/src/services/oauth/index.ts.md) | ML-06 |  |  |
-| [`src/services/oauth/types.ts`](/src/src/services/oauth/types.ts.md) | ML-06 |  |  |
-| [`src/services/plugins/PluginInstallationManager.ts`](/src/src/services/plugins/PluginInstallationManager.ts.md) | ML-12 |  |  |
-| [`src/services/plugins/pluginCliCommands.ts`](/src/src/services/plugins/pluginCliCommands.ts.md) | ML-12 |  |  |
-| [`src/services/plugins/pluginOperations.ts`](/src/src/services/plugins/pluginOperations.ts.md) | ML-12 |  |  |
-| [`src/services/policyLimits/index.ts`](/src/src/services/policyLimits/index.ts.md) | ML-06 |  |  |
-| [`src/services/policyLimits/types.ts`](/src/src/services/policyLimits/types.ts.md) | ML-06 |  |  |
-| [`src/services/preventSleep.ts`](/src/src/services/preventSleep.ts.md) | ML-05 |  |  |
-| [`src/services/rateLimitMessages.ts`](/src/src/services/rateLimitMessages.ts.md) | ML-05 |  |  |
-| [`src/services/rateLimitMocking.ts`](/src/src/services/rateLimitMocking.ts.md) | ML-05 |  |  |
-| [`src/services/remoteManagedSettings/index.ts`](/src/src/services/remoteManagedSettings/index.ts.md) | ML-06 |  |  |
-| [`src/services/remoteManagedSettings/securityCheck.tsx`](/src/src/services/remoteManagedSettings/securityCheck.tsx.md) | ML-05 |  |  |
-| [`src/services/remoteManagedSettings/syncCache.ts`](/src/src/services/remoteManagedSettings/syncCache.ts.md) | ML-06 |  |  |
-| [`src/services/remoteManagedSettings/syncCacheState.ts`](/src/src/services/remoteManagedSettings/syncCacheState.ts.md) | ML-06 |  |  |
-| [`src/services/remoteManagedSettings/types.ts`](/src/src/services/remoteManagedSettings/types.ts.md) | ML-06 |  |  |
-| [`src/services/settingsSync/index.ts`](/src/src/services/settingsSync/index.ts.md) | ML-05 |  |  |
-| [`src/services/settingsSync/types.ts`](/src/src/services/settingsSync/types.ts.md) | ML-05 |  |  |
-| [`src/services/skillSearch/featureCheck.ts`](/src/src/services/skillSearch/featureCheck.ts.md) | ML-05 |  |  |
-| [`src/services/skillSearch/localSearch.ts`](/src/src/services/skillSearch/localSearch.ts.md) | ML-05 |  |  |
-| [`src/services/skillSearch/prefetch.ts`](/src/src/services/skillSearch/prefetch.ts.md) | ML-05 |  |  |
-| [`src/services/skillSearch/remoteSkillLoader.ts`](/src/src/services/skillSearch/remoteSkillLoader.ts.md) | ML-05 |  |  |
-| [`src/services/skillSearch/remoteSkillState.ts`](/src/src/services/skillSearch/remoteSkillState.ts.md) | ML-05 |  |  |
-| [`src/services/skillSearch/signals.ts`](/src/src/services/skillSearch/signals.ts.md) | ML-05 |  |  |
-| [`src/services/skillSearch/telemetry.ts`](/src/src/services/skillSearch/telemetry.ts.md) | ML-05 |  |  |
-| [`src/services/teamMemorySync/index.ts`](/src/src/services/teamMemorySync/index.ts.md) | ML-05 |  |  |
-| [`src/services/teamMemorySync/secretScanner.ts`](/src/src/services/teamMemorySync/secretScanner.ts.md) | ML-05 |  |  |
-| [`src/services/teamMemorySync/teamMemSecretGuard.ts`](/src/src/services/teamMemorySync/teamMemSecretGuard.ts.md) | ML-05 |  |  |
-| [`src/services/teamMemorySync/types.ts`](/src/src/services/teamMemorySync/types.ts.md) | ML-05 |  |  |
-| [`src/services/teamMemorySync/watcher.ts`](/src/src/services/teamMemorySync/watcher.ts.md) | ML-05 |  |  |
-| [`src/services/tips/tipHistory.ts`](/src/src/services/tips/tipHistory.ts.md) | ML-05 |  |  |
-| [`src/services/tips/tipRegistry.ts`](/src/src/services/tips/tipRegistry.ts.md) | ML-05 |  |  |
-| [`src/services/tips/tipScheduler.ts`](/src/src/services/tips/tipScheduler.ts.md) | ML-05 |  |  |
-| [`src/services/tips/types.ts`](/src/src/services/tips/types.ts.md) | ML-05 |  |  |
-| [`src/services/tokenEstimation.ts`](/src/src/services/tokenEstimation.ts.md) | ML-11-1 |  |  |
-| [`src/services/toolUseSummary/toolUseSummaryGenerator.ts`](/src/src/services/toolUseSummary/toolUseSummaryGenerator.ts.md) | ML-05 |  |  |
-| [`src/services/tools/StreamingToolExecutor.ts`](/src/src/services/tools/StreamingToolExecutor.ts.md) | ML-02-3 |  |  |
-| [`src/services/tools/toolExecution.ts`](/src/src/services/tools/toolExecution.ts.md) | ML-03-2 |  |  |
-| [`src/services/tools/toolHooks.ts`](/src/src/services/tools/toolHooks.ts.md) | ML-04-1 |  |  |
-| [`src/services/tools/toolOrchestration.ts`](/src/src/services/tools/toolOrchestration.ts.md) | ML-02-3 |  |  |
-| [`src/services/vcr.ts`](/src/src/services/vcr.ts.md) | ML-05 |  |  |
-| [`src/services/voice.ts`](/src/src/services/voice.ts.md) | ML-05 |  |  |
-| [`src/services/voiceKeyterms.ts`](/src/src/services/voiceKeyterms.ts.md) | ML-05 |  |  |
-| [`src/services/voiceStreamSTT.ts`](/src/src/services/voiceStreamSTT.ts.md) | ML-05 |  |  |
-| [`src/setup.ts`](/src/src/setup.ts.md) | ML-01 |  |  |
-| [`src/skills/bundled/batch.ts`](/src/src/skills/bundled/batch.ts.md) | ML-12 |  |  |
-| [`src/skills/bundled/claudeApi.ts`](/src/src/skills/bundled/claudeApi.ts.md) | ML-12 |  |  |
-| [`src/skills/bundled/claudeApiContent.ts`](/src/src/skills/bundled/claudeApiContent.ts.md) | ML-12 |  |  |
-| [`src/skills/bundled/claudeInChrome.ts`](/src/src/skills/bundled/claudeInChrome.ts.md) | ML-12 |  |  |
-| [`src/skills/bundled/debug.ts`](/src/src/skills/bundled/debug.ts.md) | ML-12 |  |  |
-| [`src/skills/bundled/dream.ts`](/src/src/skills/bundled/dream.ts.md) | ML-12 |  |  |
-| [`src/skills/bundled/hunter.ts`](/src/src/skills/bundled/hunter.ts.md) | ML-12 |  |  |
-| [`src/skills/bundled/index.ts`](/src/src/skills/bundled/index.ts.md) | ML-12 |  |  |
-| [`src/skills/bundled/keybindings.ts`](/src/src/skills/bundled/keybindings.ts.md) | ML-12 |  |  |
-| [`src/skills/bundled/loop.ts`](/src/src/skills/bundled/loop.ts.md) | ML-12 |  |  |
-| [`src/skills/bundled/loremIpsum.ts`](/src/src/skills/bundled/loremIpsum.ts.md) | ML-12 |  |  |
-| [`src/skills/bundled/remember.ts`](/src/src/skills/bundled/remember.ts.md) | ML-12 |  |  |
-| [`src/skills/bundled/runSkillGenerator.ts`](/src/src/skills/bundled/runSkillGenerator.ts.md) | ML-12 |  |  |
-| [`src/skills/bundled/scheduleRemoteAgents.ts`](/src/src/skills/bundled/scheduleRemoteAgents.ts.md) | ML-12 |  |  |
-| [`src/skills/bundled/simplify.ts`](/src/src/skills/bundled/simplify.ts.md) | ML-12 |  |  |
-| [`src/skills/bundled/skillify.ts`](/src/src/skills/bundled/skillify.ts.md) | ML-12 |  |  |
-| [`src/skills/bundled/stuck.ts`](/src/src/skills/bundled/stuck.ts.md) | ML-12 |  |  |
-| [`src/skills/bundled/updateConfig.ts`](/src/src/skills/bundled/updateConfig.ts.md) | ML-12 |  |  |
-| [`src/skills/bundled/verify.ts`](/src/src/skills/bundled/verify.ts.md) | ML-12 |  |  |
-| [`src/skills/bundled/verifyContent.ts`](/src/src/skills/bundled/verifyContent.ts.md) | ML-12 |  |  |
-| [`src/skills/bundledSkills.ts`](/src/src/skills/bundledSkills.ts.md) | ML-12 |  |  |
-| [`src/skills/loadSkillsDir.ts`](/src/src/skills/loadSkillsDir.ts.md) | ML-12 |  |  |
-| [`src/skills/mcpSkillBuilders.ts`](/src/src/skills/mcpSkillBuilders.ts.md) | ML-12 |  |  |
-| [`src/state/AppState.tsx`](/src/src/state/AppState.tsx.md) | ML-07-1 |  |  |
-| [`src/state/AppStateStore.ts`](/src/src/state/AppStateStore.ts.md) | ML-01 |  |  |
-| [`src/state/onChangeAppState.ts`](/src/src/state/onChangeAppState.ts.md) | ML-01 |  |  |
-| [`src/state/selectors.ts`](/src/src/state/selectors.ts.md) | ML-01 |  |  |
-| [`src/state/store.ts`](/src/src/state/store.ts.md) | ML-01 |  |  |
-| [`src/state/teammateViewHelpers.ts`](/src/src/state/teammateViewHelpers.ts.md) | ML-01 |  |  |
-| [`src/tasks.ts`](/src/src/tasks.ts.md) | ML-08 |  |  |
-| [`src/tasks/DreamTask/DreamTask.ts`](/src/src/tasks/DreamTask/DreamTask.ts.md) | ML-08 |  |  |
-| [`src/tasks/InProcessTeammateTask/InProcessTeammateTask.tsx`](/src/src/tasks/InProcessTeammateTask/InProcessTeammateTask.tsx.md) | ML-08 |  |  |
-| [`src/tasks/InProcessTeammateTask/types.ts`](/src/src/tasks/InProcessTeammateTask/types.ts.md) | ML-08 |  |  |
-| [`src/tasks/LocalAgentTask/LocalAgentTask.tsx`](/src/src/tasks/LocalAgentTask/LocalAgentTask.tsx.md) | ML-08 |  |  |
-| [`src/tasks/LocalMainSessionTask.ts`](/src/src/tasks/LocalMainSessionTask.ts.md) | ML-08 |  |  |
-| [`src/tasks/LocalShellTask/LocalShellTask.tsx`](/src/src/tasks/LocalShellTask/LocalShellTask.tsx.md) | ML-08 |  |  |
-| [`src/tasks/LocalShellTask/guards.ts`](/src/src/tasks/LocalShellTask/guards.ts.md) | ML-08 |  |  |
-| [`src/tasks/LocalShellTask/killShellTasks.ts`](/src/src/tasks/LocalShellTask/killShellTasks.ts.md) | ML-08 |  |  |
-| [`src/tasks/LocalWorkflowTask/LocalWorkflowTask.ts`](/src/src/tasks/LocalWorkflowTask/LocalWorkflowTask.ts.md) | ML-08 |  |  |
-| [`src/tasks/MonitorMcpTask/MonitorMcpTask.ts`](/src/src/tasks/MonitorMcpTask/MonitorMcpTask.ts.md) | ML-08 |  |  |
-| [`src/tasks/RemoteAgentTask/RemoteAgentTask.tsx`](/src/src/tasks/RemoteAgentTask/RemoteAgentTask.tsx.md) | ML-08 |  |  |
-| [`src/tasks/pillLabel.ts`](/src/src/tasks/pillLabel.ts.md) | ML-08 |  |  |
-| [`src/tasks/stopTask.ts`](/src/src/tasks/stopTask.ts.md) | ML-08 |  |  |
-| [`src/tasks/types.ts`](/src/src/tasks/types.ts.md) | ML-08 |  |  |
-| [`src/tools.ts`](/src/src/tools.ts.md) | ML-01 |  |  |
-| [`src/tools/AgentTool/AgentTool.tsx`](/src/src/tools/AgentTool/AgentTool.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/AgentTool/UI.tsx`](/src/src/tools/AgentTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/AgentTool/agentColorManager.ts`](/src/src/tools/AgentTool/agentColorManager.ts.md) | ML-03-2 |  |  |
-| [`src/tools/AgentTool/agentDisplay.ts`](/src/src/tools/AgentTool/agentDisplay.ts.md) | ML-03-2 |  |  |
-| [`src/tools/AgentTool/agentMemory.ts`](/src/src/tools/AgentTool/agentMemory.ts.md) | ML-03-2 |  |  |
-| [`src/tools/AgentTool/agentMemorySnapshot.ts`](/src/src/tools/AgentTool/agentMemorySnapshot.ts.md) | ML-03-2 |  |  |
-| [`src/tools/AgentTool/agentToolUtils.ts`](/src/src/tools/AgentTool/agentToolUtils.ts.md) | ML-03-2 |  |  |
-| [`src/tools/AgentTool/built-in/claudeCodeGuideAgent.ts`](/src/src/tools/AgentTool/built-in/claudeCodeGuideAgent.ts.md) | ML-03-2 |  |  |
-| [`src/tools/AgentTool/built-in/exploreAgent.ts`](/src/src/tools/AgentTool/built-in/exploreAgent.ts.md) | ML-03-2 |  |  |
-| [`src/tools/AgentTool/built-in/generalPurposeAgent.ts`](/src/src/tools/AgentTool/built-in/generalPurposeAgent.ts.md) | ML-03-2 |  |  |
-| [`src/tools/AgentTool/built-in/planAgent.ts`](/src/src/tools/AgentTool/built-in/planAgent.ts.md) | ML-03-2 |  |  |
-| [`src/tools/AgentTool/built-in/statuslineSetup.ts`](/src/src/tools/AgentTool/built-in/statuslineSetup.ts.md) | ML-03-2 |  |  |
-| [`src/tools/AgentTool/built-in/verificationAgent.ts`](/src/src/tools/AgentTool/built-in/verificationAgent.ts.md) | ML-03-2 |  |  |
-| [`src/tools/AgentTool/builtInAgents.ts`](/src/src/tools/AgentTool/builtInAgents.ts.md) | ML-03-2 |  |  |
-| [`src/tools/AgentTool/constants.ts`](/src/src/tools/AgentTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/AgentTool/forkSubagent.ts`](/src/src/tools/AgentTool/forkSubagent.ts.md) | ML-03-2 |  |  |
-| [`src/tools/AgentTool/loadAgentsDir.ts`](/src/src/tools/AgentTool/loadAgentsDir.ts.md) | ML-03-2 |  |  |
-| [`src/tools/AgentTool/prompt.ts`](/src/src/tools/AgentTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/AgentTool/resumeAgent.ts`](/src/src/tools/AgentTool/resumeAgent.ts.md) | ML-03-2 |  |  |
-| [`src/tools/AgentTool/runAgent.ts`](/src/src/tools/AgentTool/runAgent.ts.md) | ML-03-2 |  |  |
-| [`src/tools/AskUserQuestionTool/AskUserQuestionTool.tsx`](/src/src/tools/AskUserQuestionTool/AskUserQuestionTool.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/AskUserQuestionTool/prompt.ts`](/src/src/tools/AskUserQuestionTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/BashTool/BashTool.tsx`](/src/src/tools/BashTool/BashTool.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/BashTool/BashToolResultMessage.tsx`](/src/src/tools/BashTool/BashToolResultMessage.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/BashTool/UI.tsx`](/src/src/tools/BashTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/BashTool/bashCommandHelpers.ts`](/src/src/tools/BashTool/bashCommandHelpers.ts.md) | ML-03-2 |  |  |
-| [`src/tools/BashTool/bashPermissions.ts`](/src/src/tools/BashTool/bashPermissions.ts.md) | ML-03-2 |  |  |
-| [`src/tools/BashTool/bashSecurity.ts`](/src/src/tools/BashTool/bashSecurity.ts.md) | ML-03-2 |  |  |
-| [`src/tools/BashTool/commandSemantics.ts`](/src/src/tools/BashTool/commandSemantics.ts.md) | ML-03-2 |  |  |
-| [`src/tools/BashTool/commentLabel.ts`](/src/src/tools/BashTool/commentLabel.ts.md) | ML-03-2 |  |  |
-| [`src/tools/BashTool/destructiveCommandWarning.ts`](/src/src/tools/BashTool/destructiveCommandWarning.ts.md) | ML-03-2 |  |  |
-| [`src/tools/BashTool/modeValidation.ts`](/src/src/tools/BashTool/modeValidation.ts.md) | ML-03-2 |  |  |
-| [`src/tools/BashTool/pathValidation.ts`](/src/src/tools/BashTool/pathValidation.ts.md) | ML-03-2 |  |  |
-| [`src/tools/BashTool/prompt.ts`](/src/src/tools/BashTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/BashTool/readOnlyValidation.ts`](/src/src/tools/BashTool/readOnlyValidation.ts.md) | ML-03-2 |  |  |
-| [`src/tools/BashTool/sedEditParser.ts`](/src/src/tools/BashTool/sedEditParser.ts.md) | ML-03-2 |  |  |
-| [`src/tools/BashTool/sedValidation.ts`](/src/src/tools/BashTool/sedValidation.ts.md) | ML-03-2 |  |  |
-| [`src/tools/BashTool/shouldUseSandbox.ts`](/src/src/tools/BashTool/shouldUseSandbox.ts.md) | ML-03-2 |  |  |
-| [`src/tools/BashTool/toolName.ts`](/src/src/tools/BashTool/toolName.ts.md) | ML-03-2 |  |  |
-| [`src/tools/BashTool/utils.ts`](/src/src/tools/BashTool/utils.ts.md) | ML-03-2 |  |  |
-| [`src/tools/BriefTool/BriefTool.ts`](/src/src/tools/BriefTool/BriefTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/BriefTool/UI.tsx`](/src/src/tools/BriefTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/BriefTool/attachments.ts`](/src/src/tools/BriefTool/attachments.ts.md) | ML-03-2 |  |  |
-| [`src/tools/BriefTool/prompt.ts`](/src/src/tools/BriefTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/BriefTool/upload.ts`](/src/src/tools/BriefTool/upload.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ConfigTool/ConfigTool.ts`](/src/src/tools/ConfigTool/ConfigTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ConfigTool/UI.tsx`](/src/src/tools/ConfigTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/ConfigTool/constants.ts`](/src/src/tools/ConfigTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ConfigTool/prompt.ts`](/src/src/tools/ConfigTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ConfigTool/supportedSettings.ts`](/src/src/tools/ConfigTool/supportedSettings.ts.md) | ML-03-2 |  |  |
-| [`src/tools/DiscoverSkillsTool/prompt.ts`](/src/src/tools/DiscoverSkillsTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/EnterPlanModeTool/EnterPlanModeTool.ts`](/src/src/tools/EnterPlanModeTool/EnterPlanModeTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/EnterPlanModeTool/UI.tsx`](/src/src/tools/EnterPlanModeTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/EnterPlanModeTool/constants.ts`](/src/src/tools/EnterPlanModeTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/EnterPlanModeTool/prompt.ts`](/src/src/tools/EnterPlanModeTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/EnterWorktreeTool/EnterWorktreeTool.ts`](/src/src/tools/EnterWorktreeTool/EnterWorktreeTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/EnterWorktreeTool/UI.tsx`](/src/src/tools/EnterWorktreeTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/EnterWorktreeTool/constants.ts`](/src/src/tools/EnterWorktreeTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/EnterWorktreeTool/prompt.ts`](/src/src/tools/EnterWorktreeTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ExitPlanModeTool/ExitPlanModeV2Tool.ts`](/src/src/tools/ExitPlanModeTool/ExitPlanModeV2Tool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ExitPlanModeTool/UI.tsx`](/src/src/tools/ExitPlanModeTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/ExitPlanModeTool/constants.ts`](/src/src/tools/ExitPlanModeTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ExitPlanModeTool/prompt.ts`](/src/src/tools/ExitPlanModeTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ExitWorktreeTool/ExitWorktreeTool.ts`](/src/src/tools/ExitWorktreeTool/ExitWorktreeTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ExitWorktreeTool/UI.tsx`](/src/src/tools/ExitWorktreeTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/ExitWorktreeTool/constants.ts`](/src/src/tools/ExitWorktreeTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ExitWorktreeTool/prompt.ts`](/src/src/tools/ExitWorktreeTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/FileEditTool/FileEditTool.ts`](/src/src/tools/FileEditTool/FileEditTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/FileEditTool/UI.tsx`](/src/src/tools/FileEditTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/FileEditTool/constants.ts`](/src/src/tools/FileEditTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/FileEditTool/prompt.ts`](/src/src/tools/FileEditTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/FileEditTool/types.ts`](/src/src/tools/FileEditTool/types.ts.md) | ML-03-2 |  |  |
-| [`src/tools/FileEditTool/utils.ts`](/src/src/tools/FileEditTool/utils.ts.md) | ML-03-2 |  |  |
-| [`src/tools/FileReadTool/FileReadTool.ts`](/src/src/tools/FileReadTool/FileReadTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/FileReadTool/UI.tsx`](/src/src/tools/FileReadTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/FileReadTool/imageProcessor.ts`](/src/src/tools/FileReadTool/imageProcessor.ts.md) | ML-03-2 |  |  |
-| [`src/tools/FileReadTool/limits.ts`](/src/src/tools/FileReadTool/limits.ts.md) | ML-03-2 |  |  |
-| [`src/tools/FileReadTool/prompt.ts`](/src/src/tools/FileReadTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/FileWriteTool/FileWriteTool.ts`](/src/src/tools/FileWriteTool/FileWriteTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/FileWriteTool/UI.tsx`](/src/src/tools/FileWriteTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/FileWriteTool/prompt.ts`](/src/src/tools/FileWriteTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/GlobTool/GlobTool.ts`](/src/src/tools/GlobTool/GlobTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/GlobTool/UI.tsx`](/src/src/tools/GlobTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/GlobTool/prompt.ts`](/src/src/tools/GlobTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/GrepTool/GrepTool.ts`](/src/src/tools/GrepTool/GrepTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/GrepTool/UI.tsx`](/src/src/tools/GrepTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/GrepTool/prompt.ts`](/src/src/tools/GrepTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/LSPTool/LSPTool.ts`](/src/src/tools/LSPTool/LSPTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/LSPTool/UI.tsx`](/src/src/tools/LSPTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/LSPTool/formatters.ts`](/src/src/tools/LSPTool/formatters.ts.md) | ML-03-2 |  |  |
-| [`src/tools/LSPTool/prompt.ts`](/src/src/tools/LSPTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/LSPTool/schemas.ts`](/src/src/tools/LSPTool/schemas.ts.md) | ML-03-2 |  |  |
-| [`src/tools/LSPTool/symbolContext.ts`](/src/src/tools/LSPTool/symbolContext.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ListMcpResourcesTool/ListMcpResourcesTool.ts`](/src/src/tools/ListMcpResourcesTool/ListMcpResourcesTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ListMcpResourcesTool/UI.tsx`](/src/src/tools/ListMcpResourcesTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/ListMcpResourcesTool/prompt.ts`](/src/src/tools/ListMcpResourcesTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/MCPTool/MCPTool.ts`](/src/src/tools/MCPTool/MCPTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/MCPTool/UI.tsx`](/src/src/tools/MCPTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/MCPTool/classifyForCollapse.ts`](/src/src/tools/MCPTool/classifyForCollapse.ts.md) | ML-03-2 |  |  |
-| [`src/tools/MCPTool/prompt.ts`](/src/src/tools/MCPTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/McpAuthTool/McpAuthTool.ts`](/src/src/tools/McpAuthTool/McpAuthTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/MonitorTool/MonitorTool.ts`](/src/src/tools/MonitorTool/MonitorTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/NotebookEditTool/NotebookEditTool.ts`](/src/src/tools/NotebookEditTool/NotebookEditTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/NotebookEditTool/UI.tsx`](/src/src/tools/NotebookEditTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/NotebookEditTool/constants.ts`](/src/src/tools/NotebookEditTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/NotebookEditTool/prompt.ts`](/src/src/tools/NotebookEditTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/OverflowTestTool/OverflowTestTool.ts`](/src/src/tools/OverflowTestTool/OverflowTestTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/PowerShellTool/PowerShellTool.tsx`](/src/src/tools/PowerShellTool/PowerShellTool.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/PowerShellTool/UI.tsx`](/src/src/tools/PowerShellTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/PowerShellTool/clmTypes.ts`](/src/src/tools/PowerShellTool/clmTypes.ts.md) | ML-03-2 |  |  |
-| [`src/tools/PowerShellTool/commandSemantics.ts`](/src/src/tools/PowerShellTool/commandSemantics.ts.md) | ML-03-2 |  |  |
-| [`src/tools/PowerShellTool/commonParameters.ts`](/src/src/tools/PowerShellTool/commonParameters.ts.md) | ML-03-2 |  |  |
-| [`src/tools/PowerShellTool/destructiveCommandWarning.ts`](/src/src/tools/PowerShellTool/destructiveCommandWarning.ts.md) | ML-03-2 |  |  |
-| [`src/tools/PowerShellTool/gitSafety.ts`](/src/src/tools/PowerShellTool/gitSafety.ts.md) | ML-03-2 |  |  |
-| [`src/tools/PowerShellTool/modeValidation.ts`](/src/src/tools/PowerShellTool/modeValidation.ts.md) | ML-03-2 |  |  |
-| [`src/tools/PowerShellTool/pathValidation.ts`](/src/src/tools/PowerShellTool/pathValidation.ts.md) | ML-03-2 |  |  |
-| [`src/tools/PowerShellTool/powershellPermissions.ts`](/src/src/tools/PowerShellTool/powershellPermissions.ts.md) | ML-03-2 |  |  |
-| [`src/tools/PowerShellTool/powershellSecurity.ts`](/src/src/tools/PowerShellTool/powershellSecurity.ts.md) | ML-03-2 |  |  |
-| [`src/tools/PowerShellTool/prompt.ts`](/src/src/tools/PowerShellTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/PowerShellTool/readOnlyValidation.ts`](/src/src/tools/PowerShellTool/readOnlyValidation.ts.md) | ML-03-2 |  |  |
-| [`src/tools/PowerShellTool/toolName.ts`](/src/src/tools/PowerShellTool/toolName.ts.md) | ML-03-2 |  |  |
-| [`src/tools/REPLTool/constants.ts`](/src/src/tools/REPLTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/REPLTool/primitiveTools.ts`](/src/src/tools/REPLTool/primitiveTools.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ReadMcpResourceTool/ReadMcpResourceTool.ts`](/src/src/tools/ReadMcpResourceTool/ReadMcpResourceTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ReadMcpResourceTool/UI.tsx`](/src/src/tools/ReadMcpResourceTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/ReadMcpResourceTool/prompt.ts`](/src/src/tools/ReadMcpResourceTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/RemoteTriggerTool/RemoteTriggerTool.ts`](/src/src/tools/RemoteTriggerTool/RemoteTriggerTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/RemoteTriggerTool/UI.tsx`](/src/src/tools/RemoteTriggerTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/RemoteTriggerTool/prompt.ts`](/src/src/tools/RemoteTriggerTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ReviewArtifactTool/ReviewArtifactTool.ts`](/src/src/tools/ReviewArtifactTool/ReviewArtifactTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ScheduleCronTool/CronCreateTool.ts`](/src/src/tools/ScheduleCronTool/CronCreateTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ScheduleCronTool/CronDeleteTool.ts`](/src/src/tools/ScheduleCronTool/CronDeleteTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ScheduleCronTool/CronListTool.ts`](/src/src/tools/ScheduleCronTool/CronListTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ScheduleCronTool/UI.tsx`](/src/src/tools/ScheduleCronTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/ScheduleCronTool/prompt.ts`](/src/src/tools/ScheduleCronTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/SendMessageTool/SendMessageTool.ts`](/src/src/tools/SendMessageTool/SendMessageTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/SendMessageTool/UI.tsx`](/src/src/tools/SendMessageTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/SendMessageTool/constants.ts`](/src/src/tools/SendMessageTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/SendMessageTool/prompt.ts`](/src/src/tools/SendMessageTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/SendUserFileTool/prompt.ts`](/src/src/tools/SendUserFileTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/SkillTool/SkillTool.ts`](/src/src/tools/SkillTool/SkillTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/SkillTool/UI.tsx`](/src/src/tools/SkillTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/SkillTool/constants.ts`](/src/src/tools/SkillTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/SkillTool/prompt.ts`](/src/src/tools/SkillTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/SleepTool/prompt.ts`](/src/src/tools/SleepTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/SnipTool/prompt.ts`](/src/src/tools/SnipTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/SyntheticOutputTool/SyntheticOutputTool.ts`](/src/src/tools/SyntheticOutputTool/SyntheticOutputTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TaskCreateTool/TaskCreateTool.ts`](/src/src/tools/TaskCreateTool/TaskCreateTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TaskCreateTool/constants.ts`](/src/src/tools/TaskCreateTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TaskCreateTool/prompt.ts`](/src/src/tools/TaskCreateTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TaskGetTool/TaskGetTool.ts`](/src/src/tools/TaskGetTool/TaskGetTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TaskGetTool/constants.ts`](/src/src/tools/TaskGetTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TaskGetTool/prompt.ts`](/src/src/tools/TaskGetTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TaskListTool/TaskListTool.ts`](/src/src/tools/TaskListTool/TaskListTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TaskListTool/constants.ts`](/src/src/tools/TaskListTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TaskListTool/prompt.ts`](/src/src/tools/TaskListTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TaskOutputTool/TaskOutputTool.tsx`](/src/src/tools/TaskOutputTool/TaskOutputTool.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/TaskOutputTool/constants.ts`](/src/src/tools/TaskOutputTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TaskStopTool/TaskStopTool.ts`](/src/src/tools/TaskStopTool/TaskStopTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TaskStopTool/UI.tsx`](/src/src/tools/TaskStopTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/TaskStopTool/prompt.ts`](/src/src/tools/TaskStopTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TaskUpdateTool/TaskUpdateTool.ts`](/src/src/tools/TaskUpdateTool/TaskUpdateTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TaskUpdateTool/constants.ts`](/src/src/tools/TaskUpdateTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TaskUpdateTool/prompt.ts`](/src/src/tools/TaskUpdateTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TeamCreateTool/TeamCreateTool.ts`](/src/src/tools/TeamCreateTool/TeamCreateTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TeamCreateTool/UI.tsx`](/src/src/tools/TeamCreateTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/TeamCreateTool/constants.ts`](/src/src/tools/TeamCreateTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TeamCreateTool/prompt.ts`](/src/src/tools/TeamCreateTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TeamDeleteTool/TeamDeleteTool.ts`](/src/src/tools/TeamDeleteTool/TeamDeleteTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TeamDeleteTool/UI.tsx`](/src/src/tools/TeamDeleteTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/TeamDeleteTool/constants.ts`](/src/src/tools/TeamDeleteTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TeamDeleteTool/prompt.ts`](/src/src/tools/TeamDeleteTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TerminalCaptureTool/prompt.ts`](/src/src/tools/TerminalCaptureTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TodoWriteTool/TodoWriteTool.ts`](/src/src/tools/TodoWriteTool/TodoWriteTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TodoWriteTool/constants.ts`](/src/src/tools/TodoWriteTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TodoWriteTool/prompt.ts`](/src/src/tools/TodoWriteTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ToolSearchTool/ToolSearchTool.ts`](/src/src/tools/ToolSearchTool/ToolSearchTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ToolSearchTool/constants.ts`](/src/src/tools/ToolSearchTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/ToolSearchTool/prompt.ts`](/src/src/tools/ToolSearchTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/TungstenTool/TungstenLiveMonitor.tsx`](/src/src/tools/TungstenTool/TungstenLiveMonitor.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/TungstenTool/TungstenTool.ts`](/src/src/tools/TungstenTool/TungstenTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/VerifyPlanExecutionTool/constants.ts`](/src/src/tools/VerifyPlanExecutionTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/WebBrowserTool/WebBrowserPanel.tsx`](/src/src/tools/WebBrowserTool/WebBrowserPanel.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/WebFetchTool/UI.tsx`](/src/src/tools/WebFetchTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/WebFetchTool/WebFetchTool.ts`](/src/src/tools/WebFetchTool/WebFetchTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/WebFetchTool/preapproved.ts`](/src/src/tools/WebFetchTool/preapproved.ts.md) | ML-03-2 |  |  |
-| [`src/tools/WebFetchTool/prompt.ts`](/src/src/tools/WebFetchTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/WebFetchTool/utils.ts`](/src/src/tools/WebFetchTool/utils.ts.md) | ML-03-2 |  |  |
-| [`src/tools/WebSearchTool/UI.tsx`](/src/src/tools/WebSearchTool/UI.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/WebSearchTool/WebSearchTool.ts`](/src/src/tools/WebSearchTool/WebSearchTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/WebSearchTool/prompt.ts`](/src/src/tools/WebSearchTool/prompt.ts.md) | ML-03-2 |  |  |
-| [`src/tools/WorkflowTool/WorkflowPermissionRequest.tsx`](/src/src/tools/WorkflowTool/WorkflowPermissionRequest.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/WorkflowTool/WorkflowTool.ts`](/src/src/tools/WorkflowTool/WorkflowTool.ts.md) | ML-03-2 |  |  |
-| [`src/tools/WorkflowTool/constants.ts`](/src/src/tools/WorkflowTool/constants.ts.md) | ML-03-2 |  |  |
-| [`src/tools/WorkflowTool/createWorkflowCommand.ts`](/src/src/tools/WorkflowTool/createWorkflowCommand.ts.md) | ML-03-2 |  |  |
-| [`src/tools/shared/gitOperationTracking.ts`](/src/src/tools/shared/gitOperationTracking.ts.md) | ML-03-2 |  |  |
-| [`src/tools/shared/spawnMultiAgent.ts`](/src/src/tools/shared/spawnMultiAgent.ts.md) | ML-03-2 |  |  |
-| [`src/tools/testing/TestingPermissionTool.tsx`](/src/src/tools/testing/TestingPermissionTool.tsx.md) | ML-03-2 |  |  |
-| [`src/tools/utils.ts`](/src/src/tools/utils.ts.md) | ML-03-2 |  |  |
-| [`src/types/command.ts`](/src/src/types/command.ts.md) | ML-01 |  |  |
-| [`src/types/generated/events_mono/claude_code/v1/claude_code_internal_event.ts`](/src/src/types/generated/events_mono/claude_code/v1/claude_code_internal_event.ts.md) | ML-01 |  |  |
-| [`src/types/generated/events_mono/common/v1/auth.ts`](/src/src/types/generated/events_mono/common/v1/auth.ts.md) | ML-01 |  |  |
-| [`src/types/generated/events_mono/growthbook/v1/growthbook_experiment_event.ts`](/src/src/types/generated/events_mono/growthbook/v1/growthbook_experiment_event.ts.md) | ML-01 |  |  |
-| [`src/types/generated/google/protobuf/timestamp.ts`](/src/src/types/generated/google/protobuf/timestamp.ts.md) | ML-01 |  |  |
-| [`src/types/hooks.ts`](/src/src/types/hooks.ts.md) | ML-01 |  |  |
-| [`src/types/ids.ts`](/src/src/types/ids.ts.md) | ML-01 |  |  |
-| [`src/types/logs.ts`](/src/src/types/logs.ts.md) | ML-01 |  |  |
-| [`src/types/message.ts`](/src/src/types/message.ts.md) | ML-01 |  |  |
-| [`src/types/permissions.ts`](/src/src/types/permissions.ts.md) | ML-01 |  |  |
-| [`src/types/plugin.ts`](/src/src/types/plugin.ts.md) | ML-01 |  |  |
-| [`src/types/textInputTypes.ts`](/src/src/types/textInputTypes.ts.md) | ML-01 |  |  |
-| [`src/types/tools.ts`](/src/src/types/tools.ts.md) | ML-03-1 |  |  |
-| [`src/upstreamproxy/relay.ts`](/src/src/upstreamproxy/relay.ts.md) | ML-01 |  |  |
-| [`src/upstreamproxy/upstreamproxy.ts`](/src/src/upstreamproxy/upstreamproxy.ts.md) | ML-01 |  |  |
-| [`src/utils/CircularBuffer.ts`](/src/src/utils/CircularBuffer.ts.md) | ML-02 |  |  |
-| [`src/utils/Cursor.ts`](/src/src/utils/Cursor.ts.md) | ML-02 |  |  |
-| [`src/utils/QueryGuard.ts`](/src/src/utils/QueryGuard.ts.md) | ML-02 |  |  |
-| [`src/utils/Shell.ts`](/src/src/utils/Shell.ts.md) | ML-02 |  |  |
-| [`src/utils/ShellCommand.ts`](/src/src/utils/ShellCommand.ts.md) | ML-02 |  |  |
-| [`src/utils/abortController.ts`](/src/src/utils/abortController.ts.md) | ML-02 |  |  |
-| [`src/utils/activityManager.ts`](/src/src/utils/activityManager.ts.md) | ML-02 |  |  |
-| [`src/utils/advisor.ts`](/src/src/utils/advisor.ts.md) | ML-02 |  |  |
-| [`src/utils/agentContext.ts`](/src/src/utils/agentContext.ts.md) | ML-02 |  |  |
-| [`src/utils/agentId.ts`](/src/src/utils/agentId.ts.md) | ML-02 |  |  |
-| [`src/utils/agentSwarmsEnabled.ts`](/src/src/utils/agentSwarmsEnabled.ts.md) | ML-02 |  |  |
-| [`src/utils/agenticSessionSearch.ts`](/src/src/utils/agenticSessionSearch.ts.md) | ML-02 |  |  |
-| [`src/utils/analyzeContext.ts`](/src/src/utils/analyzeContext.ts.md) | ML-02 |  |  |
-| [`src/utils/ansiToPng.ts`](/src/src/utils/ansiToPng.ts.md) | ML-02 |  |  |
-| [`src/utils/ansiToSvg.ts`](/src/src/utils/ansiToSvg.ts.md) | ML-02 |  |  |
-| [`src/utils/api.ts`](/src/src/utils/api.ts.md) | ML-02-4 |  |  |
-| [`src/utils/apiPreconnect.ts`](/src/src/utils/apiPreconnect.ts.md) | ML-02 |  |  |
-| [`src/utils/appleTerminalBackup.ts`](/src/src/utils/appleTerminalBackup.ts.md) | ML-02 |  |  |
-| [`src/utils/argumentSubstitution.ts`](/src/src/utils/argumentSubstitution.ts.md) | ML-02 |  |  |
-| [`src/utils/asciicast.ts`](/src/src/utils/asciicast.ts.md) | ML-02 |  |  |
-| [`src/utils/attachments.ts`](/src/src/utils/attachments.ts.md) | ML-02 |  |  |
-| [`src/utils/attribution.ts`](/src/src/utils/attribution.ts.md) | ML-02 |  |  |
-| [`src/utils/auth.ts`](/src/src/utils/auth.ts.md) | ML-06 |  |  |
-| [`src/utils/authFileDescriptor.ts`](/src/src/utils/authFileDescriptor.ts.md) | ML-02 |  |  |
-| [`src/utils/authPortable.ts`](/src/src/utils/authPortable.ts.md) | ML-02 |  |  |
-| [`src/utils/autoModeDenials.ts`](/src/src/utils/autoModeDenials.ts.md) | ML-02 |  |  |
-| [`src/utils/autoRunIssue.tsx`](/src/src/utils/autoRunIssue.tsx.md) | ML-02 |  |  |
-| [`src/utils/autoUpdater.ts`](/src/src/utils/autoUpdater.ts.md) | ML-02 |  |  |
-| [`src/utils/aws.ts`](/src/src/utils/aws.ts.md) | ML-06 |  |  |
-| [`src/utils/awsAuthStatusManager.ts`](/src/src/utils/awsAuthStatusManager.ts.md) | ML-06 |  |  |
-| [`src/utils/background/remote/preconditions.ts`](/src/src/utils/background/remote/preconditions.ts.md) | ML-02 |  |  |
-| [`src/utils/background/remote/remoteSession.ts`](/src/src/utils/background/remote/remoteSession.ts.md) | ML-02 |  |  |
-| [`src/utils/backgroundHousekeeping.ts`](/src/src/utils/backgroundHousekeeping.ts.md) | ML-02 |  |  |
-| [`src/utils/bash/ParsedCommand.ts`](/src/src/utils/bash/ParsedCommand.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/ShellSnapshot.ts`](/src/src/utils/bash/ShellSnapshot.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/ast.ts`](/src/src/utils/bash/ast.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/bashParser.ts`](/src/src/utils/bash/bashParser.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/bashPipeCommand.ts`](/src/src/utils/bash/bashPipeCommand.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/commands.ts`](/src/src/utils/bash/commands.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/heredoc.ts`](/src/src/utils/bash/heredoc.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/parser.ts`](/src/src/utils/bash/parser.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/prefix.ts`](/src/src/utils/bash/prefix.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/registry.ts`](/src/src/utils/bash/registry.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/shellCompletion.ts`](/src/src/utils/bash/shellCompletion.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/shellPrefix.ts`](/src/src/utils/bash/shellPrefix.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/shellQuote.ts`](/src/src/utils/bash/shellQuote.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/shellQuoting.ts`](/src/src/utils/bash/shellQuoting.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/specs/alias.ts`](/src/src/utils/bash/specs/alias.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/specs/index.ts`](/src/src/utils/bash/specs/index.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/specs/nohup.ts`](/src/src/utils/bash/specs/nohup.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/specs/pyright.ts`](/src/src/utils/bash/specs/pyright.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/specs/sleep.ts`](/src/src/utils/bash/specs/sleep.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/specs/srun.ts`](/src/src/utils/bash/specs/srun.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/specs/time.ts`](/src/src/utils/bash/specs/time.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/specs/timeout.ts`](/src/src/utils/bash/specs/timeout.ts.md) | ML-13 |  |  |
-| [`src/utils/bash/treeSitterAnalysis.ts`](/src/src/utils/bash/treeSitterAnalysis.ts.md) | ML-13 |  |  |
-| [`src/utils/betas.ts`](/src/src/utils/betas.ts.md) | ML-02 |  |  |
-| [`src/utils/billing.ts`](/src/src/utils/billing.ts.md) | ML-02 |  |  |
-| [`src/utils/binaryCheck.ts`](/src/src/utils/binaryCheck.ts.md) | ML-02 |  |  |
-| [`src/utils/browser.ts`](/src/src/utils/browser.ts.md) | ML-02 |  |  |
-| [`src/utils/bufferedWriter.ts`](/src/src/utils/bufferedWriter.ts.md) | ML-02 |  |  |
-| [`src/utils/bundledMode.ts`](/src/src/utils/bundledMode.ts.md) | ML-02 |  |  |
-| [`src/utils/caCerts.ts`](/src/src/utils/caCerts.ts.md) | ML-02 |  |  |
-| [`src/utils/caCertsConfig.ts`](/src/src/utils/caCertsConfig.ts.md) | ML-02 |  |  |
-| [`src/utils/cachePaths.ts`](/src/src/utils/cachePaths.ts.md) | ML-02 |  |  |
-| [`src/utils/classifierApprovals.ts`](/src/src/utils/classifierApprovals.ts.md) | ML-02 |  |  |
-| [`src/utils/classifierApprovalsHook.ts`](/src/src/utils/classifierApprovalsHook.ts.md) | ML-02 |  |  |
-| [`src/utils/claudeCodeHints.ts`](/src/src/utils/claudeCodeHints.ts.md) | ML-02 |  |  |
-| [`src/utils/claudeDesktop.ts`](/src/src/utils/claudeDesktop.ts.md) | ML-02 |  |  |
-| [`src/utils/claudeInChrome/chromeNativeHost.ts`](/src/src/utils/claudeInChrome/chromeNativeHost.ts.md) | ML-01 |  |  |
-| [`src/utils/claudeInChrome/common.ts`](/src/src/utils/claudeInChrome/common.ts.md) | ML-01 |  |  |
-| [`src/utils/claudeInChrome/mcpServer.ts`](/src/src/utils/claudeInChrome/mcpServer.ts.md) | ML-01 |  |  |
-| [`src/utils/claudeInChrome/prompt.ts`](/src/src/utils/claudeInChrome/prompt.ts.md) | ML-01 |  |  |
-| [`src/utils/claudeInChrome/setup.ts`](/src/src/utils/claudeInChrome/setup.ts.md) | ML-01 |  |  |
-| [`src/utils/claudeInChrome/setupPortable.ts`](/src/src/utils/claudeInChrome/setupPortable.ts.md) | ML-01 |  |  |
-| [`src/utils/claudeInChrome/toolRendering.tsx`](/src/src/utils/claudeInChrome/toolRendering.tsx.md) | ML-01 |  |  |
-| [`src/utils/claudemd.ts`](/src/src/utils/claudemd.ts.md) | ML-02 |  |  |
-| [`src/utils/cleanup.ts`](/src/src/utils/cleanup.ts.md) | ML-02 |  |  |
-| [`src/utils/cleanupRegistry.ts`](/src/src/utils/cleanupRegistry.ts.md) | ML-02 |  |  |
-| [`src/utils/cliArgs.ts`](/src/src/utils/cliArgs.ts.md) | ML-02 |  |  |
-| [`src/utils/cliHighlight.ts`](/src/src/utils/cliHighlight.ts.md) | ML-02 |  |  |
-| [`src/utils/codeIndexing.ts`](/src/src/utils/codeIndexing.ts.md) | ML-02 |  |  |
-| [`src/utils/collapseBackgroundBashNotifications.ts`](/src/src/utils/collapseBackgroundBashNotifications.ts.md) | ML-02 |  |  |
-| [`src/utils/collapseHookSummaries.ts`](/src/src/utils/collapseHookSummaries.ts.md) | ML-02 |  |  |
-| [`src/utils/collapseReadSearch.ts`](/src/src/utils/collapseReadSearch.ts.md) | ML-02 |  |  |
-| [`src/utils/collapseTeammateShutdowns.ts`](/src/src/utils/collapseTeammateShutdowns.ts.md) | ML-02 |  |  |
-| [`src/utils/combinedAbortSignal.ts`](/src/src/utils/combinedAbortSignal.ts.md) | ML-02 |  |  |
-| [`src/utils/commandLifecycle.ts`](/src/src/utils/commandLifecycle.ts.md) | ML-02 |  |  |
-| [`src/utils/commitAttribution.ts`](/src/src/utils/commitAttribution.ts.md) | ML-02 |  |  |
-| [`src/utils/completionCache.ts`](/src/src/utils/completionCache.ts.md) | ML-02 |  |  |
-| [`src/utils/computerUse/appNames.ts`](/src/src/utils/computerUse/appNames.ts.md) | ML-03 |  |  |
-| [`src/utils/computerUse/cleanup.ts`](/src/src/utils/computerUse/cleanup.ts.md) | ML-03 |  |  |
-| [`src/utils/computerUse/common.ts`](/src/src/utils/computerUse/common.ts.md) | ML-03 |  |  |
-| [`src/utils/computerUse/computerUseLock.ts`](/src/src/utils/computerUse/computerUseLock.ts.md) | ML-03 |  |  |
-| [`src/utils/computerUse/drainRunLoop.ts`](/src/src/utils/computerUse/drainRunLoop.ts.md) | ML-03 |  |  |
-| [`src/utils/computerUse/escHotkey.ts`](/src/src/utils/computerUse/escHotkey.ts.md) | ML-03 |  |  |
-| [`src/utils/computerUse/executor.ts`](/src/src/utils/computerUse/executor.ts.md) | ML-03 |  |  |
-| [`src/utils/computerUse/gates.ts`](/src/src/utils/computerUse/gates.ts.md) | ML-03 |  |  |
-| [`src/utils/computerUse/hostAdapter.ts`](/src/src/utils/computerUse/hostAdapter.ts.md) | ML-03 |  |  |
-| [`src/utils/computerUse/inputLoader.ts`](/src/src/utils/computerUse/inputLoader.ts.md) | ML-03 |  |  |
-| [`src/utils/computerUse/mcpServer.ts`](/src/src/utils/computerUse/mcpServer.ts.md) | ML-03 |  |  |
-| [`src/utils/computerUse/setup.ts`](/src/src/utils/computerUse/setup.ts.md) | ML-03 |  |  |
-| [`src/utils/computerUse/swiftLoader.ts`](/src/src/utils/computerUse/swiftLoader.ts.md) | ML-03 |  |  |
-| [`src/utils/computerUse/toolRendering.tsx`](/src/src/utils/computerUse/toolRendering.tsx.md) | ML-03 |  |  |
-| [`src/utils/computerUse/wrapper.tsx`](/src/src/utils/computerUse/wrapper.tsx.md) | ML-03 |  |  |
-| [`src/utils/concurrentSessions.ts`](/src/src/utils/concurrentSessions.ts.md) | ML-02 |  |  |
-| [`src/utils/config.ts`](/src/src/utils/config.ts.md) | ML-01 |  |  |
-| [`src/utils/configConstants.ts`](/src/src/utils/configConstants.ts.md) | ML-02 |  |  |
-| [`src/utils/contentArray.ts`](/src/src/utils/contentArray.ts.md) | ML-02 |  |  |
-| [`src/utils/context.ts`](/src/src/utils/context.ts.md) | ML-02 |  |  |
-| [`src/utils/contextAnalysis.ts`](/src/src/utils/contextAnalysis.ts.md) | ML-11-1 |  |  |
-| [`src/utils/contextSuggestions.ts`](/src/src/utils/contextSuggestions.ts.md) | ML-02 |  |  |
-| [`src/utils/controlMessageCompat.ts`](/src/src/utils/controlMessageCompat.ts.md) | ML-02 |  |  |
-| [`src/utils/conversationRecovery.ts`](/src/src/utils/conversationRecovery.ts.md) | ML-02 |  |  |
-| [`src/utils/cron.ts`](/src/src/utils/cron.ts.md) | ML-02 |  |  |
-| [`src/utils/cronJitterConfig.ts`](/src/src/utils/cronJitterConfig.ts.md) | ML-02 |  |  |
-| [`src/utils/cronScheduler.ts`](/src/src/utils/cronScheduler.ts.md) | ML-02 |  |  |
-| [`src/utils/cronTasks.ts`](/src/src/utils/cronTasks.ts.md) | ML-02 |  |  |
-| [`src/utils/cronTasksLock.ts`](/src/src/utils/cronTasksLock.ts.md) | ML-02 |  |  |
-| [`src/utils/crossProjectResume.ts`](/src/src/utils/crossProjectResume.ts.md) | ML-02 |  |  |
-| [`src/utils/cwd.ts`](/src/src/utils/cwd.ts.md) | ML-02 |  |  |
-| [`src/utils/debug.ts`](/src/src/utils/debug.ts.md) | ML-02 |  |  |
-| [`src/utils/debugFilter.ts`](/src/src/utils/debugFilter.ts.md) | ML-02 |  |  |
-| [`src/utils/deepLink/banner.ts`](/src/src/utils/deepLink/banner.ts.md) | ML-02 |  |  |
-| [`src/utils/deepLink/parseDeepLink.ts`](/src/src/utils/deepLink/parseDeepLink.ts.md) | ML-02 |  |  |
-| [`src/utils/deepLink/protocolHandler.ts`](/src/src/utils/deepLink/protocolHandler.ts.md) | ML-02 |  |  |
-| [`src/utils/deepLink/registerProtocol.ts`](/src/src/utils/deepLink/registerProtocol.ts.md) | ML-02 |  |  |
-| [`src/utils/deepLink/terminalLauncher.ts`](/src/src/utils/deepLink/terminalLauncher.ts.md) | ML-02 |  |  |
-| [`src/utils/deepLink/terminalPreference.ts`](/src/src/utils/deepLink/terminalPreference.ts.md) | ML-02 |  |  |
-| [`src/utils/desktopDeepLink.ts`](/src/src/utils/desktopDeepLink.ts.md) | ML-02 |  |  |
-| [`src/utils/detectRepository.ts`](/src/src/utils/detectRepository.ts.md) | ML-02 |  |  |
-| [`src/utils/diagLogs.ts`](/src/src/utils/diagLogs.ts.md) | ML-02 |  |  |
-| [`src/utils/diff.ts`](/src/src/utils/diff.ts.md) | ML-02 |  |  |
-| [`src/utils/directMemberMessage.ts`](/src/src/utils/directMemberMessage.ts.md) | ML-02 |  |  |
-| [`src/utils/displayTags.ts`](/src/src/utils/displayTags.ts.md) | ML-02 |  |  |
-| [`src/utils/doctorContextWarnings.ts`](/src/src/utils/doctorContextWarnings.ts.md) | ML-02 |  |  |
-| [`src/utils/doctorDiagnostic.ts`](/src/src/utils/doctorDiagnostic.ts.md) | ML-02 |  |  |
-| [`src/utils/dxt/helpers.ts`](/src/src/utils/dxt/helpers.ts.md) | ML-02 |  |  |
-| [`src/utils/dxt/zip.ts`](/src/src/utils/dxt/zip.ts.md) | ML-02 |  |  |
-| [`src/utils/earlyInput.ts`](/src/src/utils/earlyInput.ts.md) | ML-01 |  |  |
-| [`src/utils/editor.ts`](/src/src/utils/editor.ts.md) | ML-02 |  |  |
-| [`src/utils/effort.ts`](/src/src/utils/effort.ts.md) | ML-02 |  |  |
-| [`src/utils/embeddedTools.ts`](/src/src/utils/embeddedTools.ts.md) | ML-03-1 |  |  |
-| [`src/utils/env.ts`](/src/src/utils/env.ts.md) | ML-02 |  |  |
-| [`src/utils/envDynamic.ts`](/src/src/utils/envDynamic.ts.md) | ML-02 |  |  |
-| [`src/utils/envUtils.ts`](/src/src/utils/envUtils.ts.md) | ML-02 |  |  |
-| [`src/utils/envValidation.ts`](/src/src/utils/envValidation.ts.md) | ML-02 |  |  |
-| [`src/utils/errorLogSink.ts`](/src/src/utils/errorLogSink.ts.md) | ML-02 |  |  |
-| [`src/utils/errors.ts`](/src/src/utils/errors.ts.md) | ML-02 |  |  |
-| [`src/utils/exampleCommands.ts`](/src/src/utils/exampleCommands.ts.md) | ML-02 |  |  |
-| [`src/utils/execFileNoThrow.ts`](/src/src/utils/execFileNoThrow.ts.md) | ML-06 |  |  |
-| [`src/utils/execFileNoThrowPortable.ts`](/src/src/utils/execFileNoThrowPortable.ts.md) | ML-02 |  |  |
-| [`src/utils/execSyncWrapper.ts`](/src/src/utils/execSyncWrapper.ts.md) | ML-02 |  |  |
-| [`src/utils/exportRenderer.tsx`](/src/src/utils/exportRenderer.tsx.md) | ML-02 |  |  |
-| [`src/utils/extraUsage.ts`](/src/src/utils/extraUsage.ts.md) | ML-02 |  |  |
-| [`src/utils/fastMode.ts`](/src/src/utils/fastMode.ts.md) | ML-02 |  |  |
-| [`src/utils/file.ts`](/src/src/utils/file.ts.md) | ML-03 |  |  |
-| [`src/utils/fileHistory.ts`](/src/src/utils/fileHistory.ts.md) | ML-03 |  |  |
-| [`src/utils/fileOperationAnalytics.ts`](/src/src/utils/fileOperationAnalytics.ts.md) | ML-02 |  |  |
-| [`src/utils/filePersistence/filePersistence.ts`](/src/src/utils/filePersistence/filePersistence.ts.md) | ML-02 |  |  |
-| [`src/utils/filePersistence/outputsScanner.ts`](/src/src/utils/filePersistence/outputsScanner.ts.md) | ML-02 |  |  |
-| [`src/utils/fileRead.ts`](/src/src/utils/fileRead.ts.md) | ML-02 |  |  |
-| [`src/utils/fileReadCache.ts`](/src/src/utils/fileReadCache.ts.md) | ML-02 |  |  |
-| [`src/utils/fileStateCache.ts`](/src/src/utils/fileStateCache.ts.md) | ML-02 |  |  |
-| [`src/utils/findExecutable.ts`](/src/src/utils/findExecutable.ts.md) | ML-02 |  |  |
-| [`src/utils/fingerprint.ts`](/src/src/utils/fingerprint.ts.md) | ML-02 |  |  |
-| [`src/utils/forkedAgent.ts`](/src/src/utils/forkedAgent.ts.md) | ML-11-1 |  |  |
-| [`src/utils/format.ts`](/src/src/utils/format.ts.md) | ML-02 |  |  |
-| [`src/utils/formatBriefTimestamp.ts`](/src/src/utils/formatBriefTimestamp.ts.md) | ML-02 |  |  |
-| [`src/utils/fpsTracker.ts`](/src/src/utils/fpsTracker.ts.md) | ML-02 |  |  |
-| [`src/utils/frontmatterParser.ts`](/src/src/utils/frontmatterParser.ts.md) | ML-02 |  |  |
-| [`src/utils/fsOperations.ts`](/src/src/utils/fsOperations.ts.md) | ML-02 |  |  |
-| [`src/utils/fullscreen.ts`](/src/src/utils/fullscreen.ts.md) | ML-02 |  |  |
-| [`src/utils/generatedFiles.ts`](/src/src/utils/generatedFiles.ts.md) | ML-02 |  |  |
-| [`src/utils/generators.ts`](/src/src/utils/generators.ts.md) | ML-02 |  |  |
-| [`src/utils/genericProcessUtils.ts`](/src/src/utils/genericProcessUtils.ts.md) | ML-02 |  |  |
-| [`src/utils/getWorktreePaths.ts`](/src/src/utils/getWorktreePaths.ts.md) | ML-02 |  |  |
-| [`src/utils/getWorktreePathsPortable.ts`](/src/src/utils/getWorktreePathsPortable.ts.md) | ML-02 |  |  |
-| [`src/utils/ghPrStatus.ts`](/src/src/utils/ghPrStatus.ts.md) | ML-02 |  |  |
-| [`src/utils/git.ts`](/src/src/utils/git.ts.md) | ML-03 |  |  |
-| [`src/utils/git/gitConfigParser.ts`](/src/src/utils/git/gitConfigParser.ts.md) | ML-02 |  |  |
-| [`src/utils/git/gitFilesystem.ts`](/src/src/utils/git/gitFilesystem.ts.md) | ML-03 |  |  |
-| [`src/utils/git/gitignore.ts`](/src/src/utils/git/gitignore.ts.md) | ML-02 |  |  |
-| [`src/utils/gitDiff.ts`](/src/src/utils/gitDiff.ts.md) | ML-03 |  |  |
-| [`src/utils/gitSettings.ts`](/src/src/utils/gitSettings.ts.md) | ML-02 |  |  |
-| [`src/utils/github/ghAuthStatus.ts`](/src/src/utils/github/ghAuthStatus.ts.md) | ML-02 |  |  |
-| [`src/utils/githubRepoPathMapping.ts`](/src/src/utils/githubRepoPathMapping.ts.md) | ML-02 |  |  |
-| [`src/utils/glob.ts`](/src/src/utils/glob.ts.md) | ML-02 |  |  |
-| [`src/utils/gracefulShutdown.ts`](/src/src/utils/gracefulShutdown.ts.md) | ML-02 |  |  |
-| [`src/utils/groupToolUses.ts`](/src/src/utils/groupToolUses.ts.md) | ML-02 |  |  |
-| [`src/utils/handlePromptSubmit.ts`](/src/src/utils/handlePromptSubmit.ts.md) | ML-02 |  |  |
-| [`src/utils/hash.ts`](/src/src/utils/hash.ts.md) | ML-02 |  |  |
-| [`src/utils/headlessProfiler.ts`](/src/src/utils/headlessProfiler.ts.md) | ML-02 |  |  |
-| [`src/utils/heapDumpService.ts`](/src/src/utils/heapDumpService.ts.md) | ML-02 |  |  |
-| [`src/utils/heatmap.ts`](/src/src/utils/heatmap.ts.md) | ML-02 |  |  |
-| [`src/utils/highlightMatch.tsx`](/src/src/utils/highlightMatch.tsx.md) | ML-02 |  |  |
-| [`src/utils/hooks.ts`](/src/src/utils/hooks.ts.md) | ML-02 |  |  |
-| [`src/utils/hooks/AsyncHookRegistry.ts`](/src/src/utils/hooks/AsyncHookRegistry.ts.md) | ML-02 |  |  |
-| [`src/utils/hooks/apiQueryHookHelper.ts`](/src/src/utils/hooks/apiQueryHookHelper.ts.md) | ML-02 |  |  |
-| [`src/utils/hooks/execAgentHook.ts`](/src/src/utils/hooks/execAgentHook.ts.md) | ML-02 |  |  |
-| [`src/utils/hooks/execHttpHook.ts`](/src/src/utils/hooks/execHttpHook.ts.md) | ML-02 |  |  |
-| [`src/utils/hooks/execPromptHook.ts`](/src/src/utils/hooks/execPromptHook.ts.md) | ML-02 |  |  |
-| [`src/utils/hooks/fileChangedWatcher.ts`](/src/src/utils/hooks/fileChangedWatcher.ts.md) | ML-02 |  |  |
-| [`src/utils/hooks/hookEvents.ts`](/src/src/utils/hooks/hookEvents.ts.md) | ML-02 |  |  |
-| [`src/utils/hooks/hookHelpers.ts`](/src/src/utils/hooks/hookHelpers.ts.md) | ML-02 |  |  |
-| [`src/utils/hooks/hooksConfigManager.ts`](/src/src/utils/hooks/hooksConfigManager.ts.md) | ML-02 |  |  |
-| [`src/utils/hooks/hooksConfigSnapshot.ts`](/src/src/utils/hooks/hooksConfigSnapshot.ts.md) | ML-02 |  |  |
-| [`src/utils/hooks/hooksSettings.ts`](/src/src/utils/hooks/hooksSettings.ts.md) | ML-02 |  |  |
-| [`src/utils/hooks/postSamplingHooks.ts`](/src/src/utils/hooks/postSamplingHooks.ts.md) | ML-02 |  |  |
-| [`src/utils/hooks/registerFrontmatterHooks.ts`](/src/src/utils/hooks/registerFrontmatterHooks.ts.md) | ML-02 |  |  |
-| [`src/utils/hooks/registerSkillHooks.ts`](/src/src/utils/hooks/registerSkillHooks.ts.md) | ML-02 |  |  |
-| [`src/utils/hooks/sessionHooks.ts`](/src/src/utils/hooks/sessionHooks.ts.md) | ML-02 |  |  |
-| [`src/utils/hooks/skillImprovement.ts`](/src/src/utils/hooks/skillImprovement.ts.md) | ML-02 |  |  |
-| [`src/utils/hooks/ssrfGuard.ts`](/src/src/utils/hooks/ssrfGuard.ts.md) | ML-02 |  |  |
-| [`src/utils/horizontalScroll.ts`](/src/src/utils/horizontalScroll.ts.md) | ML-02 |  |  |
-| [`src/utils/http.ts`](/src/src/utils/http.ts.md) | ML-06 |  |  |
-| [`src/utils/hyperlink.ts`](/src/src/utils/hyperlink.ts.md) | ML-02 |  |  |
-| [`src/utils/iTermBackup.ts`](/src/src/utils/iTermBackup.ts.md) | ML-02 |  |  |
-| [`src/utils/ide.ts`](/src/src/utils/ide.ts.md) | ML-02 |  |  |
-| [`src/utils/idePathConversion.ts`](/src/src/utils/idePathConversion.ts.md) | ML-02 |  |  |
-| [`src/utils/idleTimeout.ts`](/src/src/utils/idleTimeout.ts.md) | ML-02 |  |  |
-| [`src/utils/imagePaste.ts`](/src/src/utils/imagePaste.ts.md) | ML-02 |  |  |
-| [`src/utils/imageResizer.ts`](/src/src/utils/imageResizer.ts.md) | ML-02 |  |  |
-| [`src/utils/imageStore.ts`](/src/src/utils/imageStore.ts.md) | ML-02 |  |  |
-| [`src/utils/imageValidation.ts`](/src/src/utils/imageValidation.ts.md) | ML-02 |  |  |
-| [`src/utils/immediateCommand.ts`](/src/src/utils/immediateCommand.ts.md) | ML-02 |  |  |
-| [`src/utils/inProcessTeammateHelpers.ts`](/src/src/utils/inProcessTeammateHelpers.ts.md) | ML-02 |  |  |
-| [`src/utils/ink.ts`](/src/src/utils/ink.ts.md) | ML-02 |  |  |
-| [`src/utils/intl.ts`](/src/src/utils/intl.ts.md) | ML-02 |  |  |
-| [`src/utils/jetbrains.ts`](/src/src/utils/jetbrains.ts.md) | ML-02 |  |  |
-| [`src/utils/json.ts`](/src/src/utils/json.ts.md) | ML-02 |  |  |
-| [`src/utils/jsonRead.ts`](/src/src/utils/jsonRead.ts.md) | ML-02 |  |  |
-| [`src/utils/listSessionsImpl.ts`](/src/src/utils/listSessionsImpl.ts.md) | ML-02 |  |  |
-| [`src/utils/localInstaller.ts`](/src/src/utils/localInstaller.ts.md) | ML-02 |  |  |
-| [`src/utils/lockfile.ts`](/src/src/utils/lockfile.ts.md) | ML-02 |  |  |
-| [`src/utils/log.ts`](/src/src/utils/log.ts.md) | ML-02 |  |  |
-| [`src/utils/logoV2Utils.ts`](/src/src/utils/logoV2Utils.ts.md) | ML-02 |  |  |
-| [`src/utils/mailbox.ts`](/src/src/utils/mailbox.ts.md) | ML-02 |  |  |
-| [`src/utils/managedEnv.ts`](/src/src/utils/managedEnv.ts.md) | ML-02 |  |  |
-| [`src/utils/managedEnvConstants.ts`](/src/src/utils/managedEnvConstants.ts.md) | ML-02 |  |  |
-| [`src/utils/markdown.ts`](/src/src/utils/markdown.ts.md) | ML-02 |  |  |
-| [`src/utils/markdownConfigLoader.ts`](/src/src/utils/markdownConfigLoader.ts.md) | ML-02 |  |  |
-| [`src/utils/mcp/dateTimeParser.ts`](/src/src/utils/mcp/dateTimeParser.ts.md) | ML-02 |  |  |
-| [`src/utils/mcp/elicitationValidation.ts`](/src/src/utils/mcp/elicitationValidation.ts.md) | ML-02 |  |  |
-| [`src/utils/mcpInstructionsDelta.ts`](/src/src/utils/mcpInstructionsDelta.ts.md) | ML-02 |  |  |
-| [`src/utils/mcpOutputStorage.ts`](/src/src/utils/mcpOutputStorage.ts.md) | ML-02 |  |  |
-| [`src/utils/mcpValidation.ts`](/src/src/utils/mcpValidation.ts.md) | ML-02 |  |  |
-| [`src/utils/mcpWebSocketTransport.ts`](/src/src/utils/mcpWebSocketTransport.ts.md) | ML-02 |  |  |
-| [`src/utils/memoize.ts`](/src/src/utils/memoize.ts.md) | ML-02 |  |  |
-| [`src/utils/memoryFileDetection.ts`](/src/src/utils/memoryFileDetection.ts.md) | ML-02 |  |  |
-| [`src/utils/messageQueueManager.ts`](/src/src/utils/messageQueueManager.ts.md) | ML-02 |  |  |
-| [`src/utils/messages.ts`](/src/src/utils/messages.ts.md) | ML-02-4 |  |  |
-| [`src/utils/messages/mappers.ts`](/src/src/utils/messages/mappers.ts.md) | ML-02 |  |  |
-| [`src/utils/messages/systemInit.ts`](/src/src/utils/messages/systemInit.ts.md) | ML-02 |  |  |
-| [`src/utils/model/agent.ts`](/src/src/utils/model/agent.ts.md) | ML-02 |  |  |
-| [`src/utils/model/aliases.ts`](/src/src/utils/model/aliases.ts.md) | ML-02 |  |  |
-| [`src/utils/model/antModels.ts`](/src/src/utils/model/antModels.ts.md) | ML-02 |  |  |
-| [`src/utils/model/bedrock.ts`](/src/src/utils/model/bedrock.ts.md) | ML-02 |  |  |
-| [`src/utils/model/check1mAccess.ts`](/src/src/utils/model/check1mAccess.ts.md) | ML-02 |  |  |
-| [`src/utils/model/configs.ts`](/src/src/utils/model/configs.ts.md) | ML-02 |  |  |
-| [`src/utils/model/contextWindowUpgradeCheck.ts`](/src/src/utils/model/contextWindowUpgradeCheck.ts.md) | ML-02 |  |  |
-| [`src/utils/model/deprecation.ts`](/src/src/utils/model/deprecation.ts.md) | ML-02 |  |  |
-| [`src/utils/model/model.ts`](/src/src/utils/model/model.ts.md) | ML-02 |  |  |
-| [`src/utils/model/modelAllowlist.ts`](/src/src/utils/model/modelAllowlist.ts.md) | ML-02 |  |  |
-| [`src/utils/model/modelCapabilities.ts`](/src/src/utils/model/modelCapabilities.ts.md) | ML-02 |  |  |
-| [`src/utils/model/modelOptions.ts`](/src/src/utils/model/modelOptions.ts.md) | ML-02 |  |  |
-| [`src/utils/model/modelStrings.ts`](/src/src/utils/model/modelStrings.ts.md) | ML-02 |  |  |
-| [`src/utils/model/modelSupportOverrides.ts`](/src/src/utils/model/modelSupportOverrides.ts.md) | ML-02 |  |  |
-| [`src/utils/model/providers.ts`](/src/src/utils/model/providers.ts.md) | ML-02 |  |  |
-| [`src/utils/model/validateModel.ts`](/src/src/utils/model/validateModel.ts.md) | ML-02 |  |  |
-| [`src/utils/modelCost.ts`](/src/src/utils/modelCost.ts.md) | ML-02 |  |  |
-| [`src/utils/modifiers.ts`](/src/src/utils/modifiers.ts.md) | ML-02 |  |  |
-| [`src/utils/mtls.ts`](/src/src/utils/mtls.ts.md) | ML-02 |  |  |
-| [`src/utils/nativeInstaller/download.ts`](/src/src/utils/nativeInstaller/download.ts.md) | ML-02 |  |  |
-| [`src/utils/nativeInstaller/index.ts`](/src/src/utils/nativeInstaller/index.ts.md) | ML-02 |  |  |
-| [`src/utils/nativeInstaller/installer.ts`](/src/src/utils/nativeInstaller/installer.ts.md) | ML-02 |  |  |
-| [`src/utils/nativeInstaller/packageManagers.ts`](/src/src/utils/nativeInstaller/packageManagers.ts.md) | ML-02 |  |  |
-| [`src/utils/nativeInstaller/pidLock.ts`](/src/src/utils/nativeInstaller/pidLock.ts.md) | ML-02 |  |  |
-| [`src/utils/notebook.ts`](/src/src/utils/notebook.ts.md) | ML-02 |  |  |
-| [`src/utils/objectGroupBy.ts`](/src/src/utils/objectGroupBy.ts.md) | ML-02 |  |  |
-| [`src/utils/pasteStore.ts`](/src/src/utils/pasteStore.ts.md) | ML-02 |  |  |
-| [`src/utils/path.ts`](/src/src/utils/path.ts.md) | ML-02 |  |  |
-| [`src/utils/pdf.ts`](/src/src/utils/pdf.ts.md) | ML-02 |  |  |
-| [`src/utils/pdfUtils.ts`](/src/src/utils/pdfUtils.ts.md) | ML-02 |  |  |
-| [`src/utils/peerAddress.ts`](/src/src/utils/peerAddress.ts.md) | ML-02 |  |  |
-| [`src/utils/permissions/PermissionMode.ts`](/src/src/utils/permissions/PermissionMode.ts.md) | ML-04-1 |  |  |
-| [`src/utils/permissions/PermissionPromptToolResultSchema.ts`](/src/src/utils/permissions/PermissionPromptToolResultSchema.ts.md) | ML-04-1 |  |  |
-| [`src/utils/permissions/PermissionResult.ts`](/src/src/utils/permissions/PermissionResult.ts.md) | ML-04-1 |  |  |
-| [`src/utils/permissions/PermissionRule.ts`](/src/src/utils/permissions/PermissionRule.ts.md) | ML-04-1 |  |  |
-| [`src/utils/permissions/PermissionUpdate.ts`](/src/src/utils/permissions/PermissionUpdate.ts.md) | ML-04-1 |  |  |
-| [`src/utils/permissions/PermissionUpdateSchema.ts`](/src/src/utils/permissions/PermissionUpdateSchema.ts.md) | ML-04-1 |  |  |
-| [`src/utils/permissions/autoModeState.ts`](/src/src/utils/permissions/autoModeState.ts.md) | ML-04-1 |  |  |
-| [`src/utils/permissions/bashClassifier.ts`](/src/src/utils/permissions/bashClassifier.ts.md) | ML-04-2 |  |  |
-| [`src/utils/permissions/bypassPermissionsKillswitch.ts`](/src/src/utils/permissions/bypassPermissionsKillswitch.ts.md) | ML-04-1 |  |  |
-| [`src/utils/permissions/classifierDecision.ts`](/src/src/utils/permissions/classifierDecision.ts.md) | ML-04-1 |  |  |
-| [`src/utils/permissions/classifierShared.ts`](/src/src/utils/permissions/classifierShared.ts.md) | ML-04-2 |  |  |
-| [`src/utils/permissions/dangerousPatterns.ts`](/src/src/utils/permissions/dangerousPatterns.ts.md) | ML-04-2 |  |  |
-| [`src/utils/permissions/denialTracking.ts`](/src/src/utils/permissions/denialTracking.ts.md) | ML-04-1 |  |  |
-| [`src/utils/permissions/filesystem.ts`](/src/src/utils/permissions/filesystem.ts.md) | ML-04-2 |  |  |
-| [`src/utils/permissions/getNextPermissionMode.ts`](/src/src/utils/permissions/getNextPermissionMode.ts.md) | ML-04-1 |  |  |
-| [`src/utils/permissions/pathValidation.ts`](/src/src/utils/permissions/pathValidation.ts.md) | ML-04-1 |  |  |
-| [`src/utils/permissions/permissionExplainer.ts`](/src/src/utils/permissions/permissionExplainer.ts.md) | ML-04-1 |  |  |
-| [`src/utils/permissions/permissionRuleParser.ts`](/src/src/utils/permissions/permissionRuleParser.ts.md) | ML-04-1 |  |  |
-| [`src/utils/permissions/permissionSetup.ts`](/src/src/utils/permissions/permissionSetup.ts.md) | ML-04-2 |  |  |
-| [`src/utils/permissions/permissions.ts`](/src/src/utils/permissions/permissions.ts.md) | ML-04-1 |  |  |
-| [`src/utils/permissions/permissionsLoader.ts`](/src/src/utils/permissions/permissionsLoader.ts.md) | ML-04-1 |  |  |
-| [`src/utils/permissions/shadowedRuleDetection.ts`](/src/src/utils/permissions/shadowedRuleDetection.ts.md) | ML-04-1 |  |  |
-| [`src/utils/permissions/shellRuleMatching.ts`](/src/src/utils/permissions/shellRuleMatching.ts.md) | ML-04-1 |  |  |
-| [`src/utils/permissions/yolo-classifier-prompts/auto_mode_system_prompt.txt`](/src/src/utils/permissions/yolo-classifier-prompts/auto_mode_system_prompt.txt.md) | ML-04-2 |  |  |
-| [`src/utils/permissions/yolo-classifier-prompts/permissions_anthropic.txt`](/src/src/utils/permissions/yolo-classifier-prompts/permissions_anthropic.txt.md) | ML-04-2 |  |  |
-| [`src/utils/permissions/yolo-classifier-prompts/permissions_external.txt`](/src/src/utils/permissions/yolo-classifier-prompts/permissions_external.txt.md) | ML-04-2 |  |  |
-| [`src/utils/permissions/yoloClassifier.ts`](/src/src/utils/permissions/yoloClassifier.ts.md) | ML-04-2 |  |  |
-| [`src/utils/planModeV2.ts`](/src/src/utils/planModeV2.ts.md) | ML-02 |  |  |
-| [`src/utils/plans.ts`](/src/src/utils/plans.ts.md) | ML-02 |  |  |
-| [`src/utils/platform.ts`](/src/src/utils/platform.ts.md) | ML-02 |  |  |
-| [`src/utils/plugins/addDirPluginSettings.ts`](/src/src/utils/plugins/addDirPluginSettings.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/cacheUtils.ts`](/src/src/utils/plugins/cacheUtils.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/dependencyResolver.ts`](/src/src/utils/plugins/dependencyResolver.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/fetchTelemetry.ts`](/src/src/utils/plugins/fetchTelemetry.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/gitAvailability.ts`](/src/src/utils/plugins/gitAvailability.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/headlessPluginInstall.ts`](/src/src/utils/plugins/headlessPluginInstall.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/hintRecommendation.ts`](/src/src/utils/plugins/hintRecommendation.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/installCounts.ts`](/src/src/utils/plugins/installCounts.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/installedPluginsManager.ts`](/src/src/utils/plugins/installedPluginsManager.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/loadPluginAgents.ts`](/src/src/utils/plugins/loadPluginAgents.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/loadPluginCommands.ts`](/src/src/utils/plugins/loadPluginCommands.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/loadPluginHooks.ts`](/src/src/utils/plugins/loadPluginHooks.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/loadPluginOutputStyles.ts`](/src/src/utils/plugins/loadPluginOutputStyles.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/lspPluginIntegration.ts`](/src/src/utils/plugins/lspPluginIntegration.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/lspRecommendation.ts`](/src/src/utils/plugins/lspRecommendation.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/managedPlugins.ts`](/src/src/utils/plugins/managedPlugins.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/marketplaceHelpers.ts`](/src/src/utils/plugins/marketplaceHelpers.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/marketplaceManager.ts`](/src/src/utils/plugins/marketplaceManager.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/mcpPluginIntegration.ts`](/src/src/utils/plugins/mcpPluginIntegration.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/mcpbHandler.ts`](/src/src/utils/plugins/mcpbHandler.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/officialMarketplace.ts`](/src/src/utils/plugins/officialMarketplace.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/officialMarketplaceGcs.ts`](/src/src/utils/plugins/officialMarketplaceGcs.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/officialMarketplaceStartupCheck.ts`](/src/src/utils/plugins/officialMarketplaceStartupCheck.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/orphanedPluginFilter.ts`](/src/src/utils/plugins/orphanedPluginFilter.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/parseMarketplaceInput.ts`](/src/src/utils/plugins/parseMarketplaceInput.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/performStartupChecks.tsx`](/src/src/utils/plugins/performStartupChecks.tsx.md) | ML-12 |  |  |
-| [`src/utils/plugins/pluginAutoupdate.ts`](/src/src/utils/plugins/pluginAutoupdate.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/pluginBlocklist.ts`](/src/src/utils/plugins/pluginBlocklist.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/pluginDirectories.ts`](/src/src/utils/plugins/pluginDirectories.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/pluginFlagging.ts`](/src/src/utils/plugins/pluginFlagging.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/pluginIdentifier.ts`](/src/src/utils/plugins/pluginIdentifier.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/pluginInstallationHelpers.ts`](/src/src/utils/plugins/pluginInstallationHelpers.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/pluginLoader.ts`](/src/src/utils/plugins/pluginLoader.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/pluginOptionsStorage.ts`](/src/src/utils/plugins/pluginOptionsStorage.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/pluginPolicy.ts`](/src/src/utils/plugins/pluginPolicy.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/pluginStartupCheck.ts`](/src/src/utils/plugins/pluginStartupCheck.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/pluginVersioning.ts`](/src/src/utils/plugins/pluginVersioning.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/reconciler.ts`](/src/src/utils/plugins/reconciler.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/refresh.ts`](/src/src/utils/plugins/refresh.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/schemas.ts`](/src/src/utils/plugins/schemas.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/validatePlugin.ts`](/src/src/utils/plugins/validatePlugin.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/walkPluginMarkdown.ts`](/src/src/utils/plugins/walkPluginMarkdown.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/zipCache.ts`](/src/src/utils/plugins/zipCache.ts.md) | ML-12 |  |  |
-| [`src/utils/plugins/zipCacheAdapters.ts`](/src/src/utils/plugins/zipCacheAdapters.ts.md) | ML-12 |  |  |
-| [`src/utils/powershell/dangerousCmdlets.ts`](/src/src/utils/powershell/dangerousCmdlets.ts.md) | ML-13 |  |  |
-| [`src/utils/powershell/parser.ts`](/src/src/utils/powershell/parser.ts.md) | ML-13 |  |  |
-| [`src/utils/powershell/staticPrefix.ts`](/src/src/utils/powershell/staticPrefix.ts.md) | ML-13 |  |  |
-| [`src/utils/preflightChecks.tsx`](/src/src/utils/preflightChecks.tsx.md) | ML-02 |  |  |
-| [`src/utils/privacyLevel.ts`](/src/src/utils/privacyLevel.ts.md) | ML-02 |  |  |
-| [`src/utils/process.ts`](/src/src/utils/process.ts.md) | ML-02 |  |  |
-| [`src/utils/processUserInput/processBashCommand.tsx`](/src/src/utils/processUserInput/processBashCommand.tsx.md) | ML-02 |  |  |
-| [`src/utils/processUserInput/processSlashCommand.tsx`](/src/src/utils/processUserInput/processSlashCommand.tsx.md) | ML-02 |  |  |
-| [`src/utils/processUserInput/processTextPrompt.ts`](/src/src/utils/processUserInput/processTextPrompt.ts.md) | ML-02 |  |  |
-| [`src/utils/processUserInput/processUserInput.ts`](/src/src/utils/processUserInput/processUserInput.ts.md) | ML-02-1 |  |  |
-| [`src/utils/profilerBase.ts`](/src/src/utils/profilerBase.ts.md) | ML-02 |  |  |
-| [`src/utils/promptCategory.ts`](/src/src/utils/promptCategory.ts.md) | ML-02 |  |  |
-| [`src/utils/promptEditor.ts`](/src/src/utils/promptEditor.ts.md) | ML-02 |  |  |
-| [`src/utils/promptShellExecution.ts`](/src/src/utils/promptShellExecution.ts.md) | ML-02 |  |  |
-| [`src/utils/proxy.ts`](/src/src/utils/proxy.ts.md) | ML-02 |  |  |
-| [`src/utils/queryContext.ts`](/src/src/utils/queryContext.ts.md) | ML-02-1 |  |  |
-| [`src/utils/queryHelpers.ts`](/src/src/utils/queryHelpers.ts.md) | ML-02-4 |  |  |
-| [`src/utils/queryProfiler.ts`](/src/src/utils/queryProfiler.ts.md) | ML-02 |  |  |
-| [`src/utils/queueProcessor.ts`](/src/src/utils/queueProcessor.ts.md) | ML-02 |  |  |
-| [`src/utils/readEditContext.ts`](/src/src/utils/readEditContext.ts.md) | ML-02 |  |  |
-| [`src/utils/readFileInRange.ts`](/src/src/utils/readFileInRange.ts.md) | ML-02 |  |  |
-| [`src/utils/releaseNotes.ts`](/src/src/utils/releaseNotes.ts.md) | ML-02 |  |  |
-| [`src/utils/renderOptions.ts`](/src/src/utils/renderOptions.ts.md) | ML-02 |  |  |
-| [`src/utils/ripgrep.ts`](/src/src/utils/ripgrep.ts.md) | ML-03 |  |  |
-| [`src/utils/sandbox/sandbox-adapter.ts`](/src/src/utils/sandbox/sandbox-adapter.ts.md) | ML-13 |  |  |
-| [`src/utils/sanitization.ts`](/src/src/utils/sanitization.ts.md) | ML-02 |  |  |
-| [`src/utils/screenshotClipboard.ts`](/src/src/utils/screenshotClipboard.ts.md) | ML-02 |  |  |
-| [`src/utils/sdkEventQueue.ts`](/src/src/utils/sdkEventQueue.ts.md) | ML-02 |  |  |
-| [`src/utils/secureStorage/fallbackStorage.ts`](/src/src/utils/secureStorage/fallbackStorage.ts.md) | ML-06 |  |  |
-| [`src/utils/secureStorage/index.ts`](/src/src/utils/secureStorage/index.ts.md) | ML-06 |  |  |
-| [`src/utils/secureStorage/keychainPrefetch.ts`](/src/src/utils/secureStorage/keychainPrefetch.ts.md) | ML-06 |  |  |
-| [`src/utils/secureStorage/macOsKeychainHelpers.ts`](/src/src/utils/secureStorage/macOsKeychainHelpers.ts.md) | ML-06 |  |  |
-| [`src/utils/secureStorage/macOsKeychainStorage.ts`](/src/src/utils/secureStorage/macOsKeychainStorage.ts.md) | ML-06 |  |  |
-| [`src/utils/secureStorage/plainTextStorage.ts`](/src/src/utils/secureStorage/plainTextStorage.ts.md) | ML-06 |  |  |
-| [`src/utils/secureStorage/types.ts`](/src/src/utils/secureStorage/types.ts.md) | ML-06 |  |  |
-| [`src/utils/semanticBoolean.ts`](/src/src/utils/semanticBoolean.ts.md) | ML-02 |  |  |
-| [`src/utils/semanticNumber.ts`](/src/src/utils/semanticNumber.ts.md) | ML-02 |  |  |
-| [`src/utils/semver.ts`](/src/src/utils/semver.ts.md) | ML-02 |  |  |
-| [`src/utils/sequential.ts`](/src/src/utils/sequential.ts.md) | ML-02 |  |  |
-| [`src/utils/sessionActivity.ts`](/src/src/utils/sessionActivity.ts.md) | ML-02 |  |  |
-| [`src/utils/sessionEnvVars.ts`](/src/src/utils/sessionEnvVars.ts.md) | ML-02 |  |  |
-| [`src/utils/sessionEnvironment.ts`](/src/src/utils/sessionEnvironment.ts.md) | ML-02 |  |  |
-| [`src/utils/sessionFileAccessHooks.ts`](/src/src/utils/sessionFileAccessHooks.ts.md) | ML-02 |  |  |
-| [`src/utils/sessionIngressAuth.ts`](/src/src/utils/sessionIngressAuth.ts.md) | ML-02 |  |  |
-| [`src/utils/sessionRestore.ts`](/src/src/utils/sessionRestore.ts.md) | ML-11 |  |  |
-| [`src/utils/sessionStart.ts`](/src/src/utils/sessionStart.ts.md) | ML-02 |  |  |
-| [`src/utils/sessionState.ts`](/src/src/utils/sessionState.ts.md) | ML-02 |  |  |
-| [`src/utils/sessionStorage.ts`](/src/src/utils/sessionStorage.ts.md) | ML-11 |  |  |
-| [`src/utils/sessionStoragePortable.ts`](/src/src/utils/sessionStoragePortable.ts.md) | ML-11 |  |  |
-| [`src/utils/sessionTitle.ts`](/src/src/utils/sessionTitle.ts.md) | ML-02 |  |  |
-| [`src/utils/sessionUrl.ts`](/src/src/utils/sessionUrl.ts.md) | ML-02 |  |  |
-| [`src/utils/set.ts`](/src/src/utils/set.ts.md) | ML-02 |  |  |
-| [`src/utils/settings/allErrors.ts`](/src/src/utils/settings/allErrors.ts.md) | ML-01 |  |  |
-| [`src/utils/settings/applySettingsChange.ts`](/src/src/utils/settings/applySettingsChange.ts.md) | ML-01 |  |  |
-| [`src/utils/settings/changeDetector.ts`](/src/src/utils/settings/changeDetector.ts.md) | ML-01 |  |  |
-| [`src/utils/settings/constants.ts`](/src/src/utils/settings/constants.ts.md) | ML-01 |  |  |
-| [`src/utils/settings/internalWrites.ts`](/src/src/utils/settings/internalWrites.ts.md) | ML-01 |  |  |
-| [`src/utils/settings/managedPath.ts`](/src/src/utils/settings/managedPath.ts.md) | ML-01 |  |  |
-| [`src/utils/settings/mdm/constants.ts`](/src/src/utils/settings/mdm/constants.ts.md) | ML-01 |  |  |
-| [`src/utils/settings/mdm/rawRead.ts`](/src/src/utils/settings/mdm/rawRead.ts.md) | ML-01 |  |  |
-| [`src/utils/settings/mdm/settings.ts`](/src/src/utils/settings/mdm/settings.ts.md) | ML-01 |  |  |
-| [`src/utils/settings/permissionValidation.ts`](/src/src/utils/settings/permissionValidation.ts.md) | ML-01 |  |  |
-| [`src/utils/settings/pluginOnlyPolicy.ts`](/src/src/utils/settings/pluginOnlyPolicy.ts.md) | ML-01 |  |  |
-| [`src/utils/settings/schemaOutput.ts`](/src/src/utils/settings/schemaOutput.ts.md) | ML-01 |  |  |
-| [`src/utils/settings/settings.ts`](/src/src/utils/settings/settings.ts.md) | ML-01 |  |  |
-| [`src/utils/settings/settingsCache.ts`](/src/src/utils/settings/settingsCache.ts.md) | ML-01 |  |  |
-| [`src/utils/settings/toolValidationConfig.ts`](/src/src/utils/settings/toolValidationConfig.ts.md) | ML-01 |  |  |
-| [`src/utils/settings/types.ts`](/src/src/utils/settings/types.ts.md) | ML-01 |  |  |
-| [`src/utils/settings/validateEditTool.ts`](/src/src/utils/settings/validateEditTool.ts.md) | ML-01 |  |  |
-| [`src/utils/settings/validation.ts`](/src/src/utils/settings/validation.ts.md) | ML-01 |  |  |
-| [`src/utils/settings/validationTips.ts`](/src/src/utils/settings/validationTips.ts.md) | ML-01 |  |  |
-| [`src/utils/shell/bashProvider.ts`](/src/src/utils/shell/bashProvider.ts.md) | ML-13 |  |  |
-| [`src/utils/shell/outputLimits.ts`](/src/src/utils/shell/outputLimits.ts.md) | ML-13 |  |  |
-| [`src/utils/shell/powershellDetection.ts`](/src/src/utils/shell/powershellDetection.ts.md) | ML-13 |  |  |
-| [`src/utils/shell/powershellProvider.ts`](/src/src/utils/shell/powershellProvider.ts.md) | ML-13 |  |  |
-| [`src/utils/shell/prefix.ts`](/src/src/utils/shell/prefix.ts.md) | ML-13 |  |  |
-| [`src/utils/shell/readOnlyCommandValidation.ts`](/src/src/utils/shell/readOnlyCommandValidation.ts.md) | ML-13 |  |  |
-| [`src/utils/shell/resolveDefaultShell.ts`](/src/src/utils/shell/resolveDefaultShell.ts.md) | ML-13 |  |  |
-| [`src/utils/shell/shellProvider.ts`](/src/src/utils/shell/shellProvider.ts.md) | ML-13 |  |  |
-| [`src/utils/shell/shellToolUtils.ts`](/src/src/utils/shell/shellToolUtils.ts.md) | ML-13 |  |  |
-| [`src/utils/shell/specPrefix.ts`](/src/src/utils/shell/specPrefix.ts.md) | ML-13 |  |  |
-| [`src/utils/shellConfig.ts`](/src/src/utils/shellConfig.ts.md) | ML-02 |  |  |
-| [`src/utils/sideQuery.ts`](/src/src/utils/sideQuery.ts.md) | ML-02 |  |  |
-| [`src/utils/sideQuestion.ts`](/src/src/utils/sideQuestion.ts.md) | ML-02 |  |  |
-| [`src/utils/signal.ts`](/src/src/utils/signal.ts.md) | ML-02 |  |  |
-| [`src/utils/sinks.ts`](/src/src/utils/sinks.ts.md) | ML-01 |  |  |
-| [`src/utils/skills/skillChangeDetector.ts`](/src/src/utils/skills/skillChangeDetector.ts.md) | ML-02 |  |  |
-| [`src/utils/slashCommandParsing.ts`](/src/src/utils/slashCommandParsing.ts.md) | ML-02 |  |  |
-| [`src/utils/sleep.ts`](/src/src/utils/sleep.ts.md) | ML-02 |  |  |
-| [`src/utils/sliceAnsi.ts`](/src/src/utils/sliceAnsi.ts.md) | ML-02 |  |  |
-| [`src/utils/slowOperations.ts`](/src/src/utils/slowOperations.ts.md) | ML-02 |  |  |
-| [`src/utils/standaloneAgent.ts`](/src/src/utils/standaloneAgent.ts.md) | ML-02 |  |  |
-| [`src/utils/startupProfiler.ts`](/src/src/utils/startupProfiler.ts.md) | ML-01 |  |  |
-| [`src/utils/staticRender.tsx`](/src/src/utils/staticRender.tsx.md) | ML-02 |  |  |
-| [`src/utils/stats.ts`](/src/src/utils/stats.ts.md) | ML-02 |  |  |
-| [`src/utils/statsCache.ts`](/src/src/utils/statsCache.ts.md) | ML-02 |  |  |
-| [`src/utils/status.tsx`](/src/src/utils/status.tsx.md) | ML-02 |  |  |
-| [`src/utils/statusNoticeDefinitions.tsx`](/src/src/utils/statusNoticeDefinitions.tsx.md) | ML-02 |  |  |
-| [`src/utils/statusNoticeHelpers.ts`](/src/src/utils/statusNoticeHelpers.ts.md) | ML-02 |  |  |
-| [`src/utils/stream.ts`](/src/src/utils/stream.ts.md) | ML-02 |  |  |
-| [`src/utils/streamJsonStdoutGuard.ts`](/src/src/utils/streamJsonStdoutGuard.ts.md) | ML-02 |  |  |
-| [`src/utils/streamlinedTransform.ts`](/src/src/utils/streamlinedTransform.ts.md) | ML-02 |  |  |
-| [`src/utils/stringUtils.ts`](/src/src/utils/stringUtils.ts.md) | ML-02 |  |  |
-| [`src/utils/subprocessEnv.ts`](/src/src/utils/subprocessEnv.ts.md) | ML-02 |  |  |
-| [`src/utils/suggestions/commandSuggestions.ts`](/src/src/utils/suggestions/commandSuggestions.ts.md) | ML-02 |  |  |
-| [`src/utils/suggestions/directoryCompletion.ts`](/src/src/utils/suggestions/directoryCompletion.ts.md) | ML-02 |  |  |
-| [`src/utils/suggestions/shellHistoryCompletion.ts`](/src/src/utils/suggestions/shellHistoryCompletion.ts.md) | ML-02 |  |  |
-| [`src/utils/suggestions/skillUsageTracking.ts`](/src/src/utils/suggestions/skillUsageTracking.ts.md) | ML-02 |  |  |
-| [`src/utils/suggestions/slackChannelSuggestions.ts`](/src/src/utils/suggestions/slackChannelSuggestions.ts.md) | ML-02 |  |  |
-| [`src/utils/swarm/It2SetupPrompt.tsx`](/src/src/utils/swarm/It2SetupPrompt.tsx.md) | ML-14 |  |  |
-| [`src/utils/swarm/backends/ITermBackend.ts`](/src/src/utils/swarm/backends/ITermBackend.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/backends/InProcessBackend.ts`](/src/src/utils/swarm/backends/InProcessBackend.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/backends/PaneBackendExecutor.ts`](/src/src/utils/swarm/backends/PaneBackendExecutor.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/backends/TmuxBackend.ts`](/src/src/utils/swarm/backends/TmuxBackend.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/backends/detection.ts`](/src/src/utils/swarm/backends/detection.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/backends/it2Setup.ts`](/src/src/utils/swarm/backends/it2Setup.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/backends/registry.ts`](/src/src/utils/swarm/backends/registry.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/backends/teammateModeSnapshot.ts`](/src/src/utils/swarm/backends/teammateModeSnapshot.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/backends/types.ts`](/src/src/utils/swarm/backends/types.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/constants.ts`](/src/src/utils/swarm/constants.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/inProcessRunner.ts`](/src/src/utils/swarm/inProcessRunner.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/leaderPermissionBridge.ts`](/src/src/utils/swarm/leaderPermissionBridge.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/permissionSync.ts`](/src/src/utils/swarm/permissionSync.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/reconnection.ts`](/src/src/utils/swarm/reconnection.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/spawnInProcess.ts`](/src/src/utils/swarm/spawnInProcess.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/spawnUtils.ts`](/src/src/utils/swarm/spawnUtils.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/teamHelpers.ts`](/src/src/utils/swarm/teamHelpers.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/teammateInit.ts`](/src/src/utils/swarm/teammateInit.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/teammateLayoutManager.ts`](/src/src/utils/swarm/teammateLayoutManager.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/teammateModel.ts`](/src/src/utils/swarm/teammateModel.ts.md) | ML-14 |  |  |
-| [`src/utils/swarm/teammatePromptAddendum.ts`](/src/src/utils/swarm/teammatePromptAddendum.ts.md) | ML-14 |  |  |
-| [`src/utils/systemDirectories.ts`](/src/src/utils/systemDirectories.ts.md) | ML-02 |  |  |
-| [`src/utils/systemPrompt.ts`](/src/src/utils/systemPrompt.ts.md) | ML-02 |  |  |
-| [`src/utils/systemTheme.ts`](/src/src/utils/systemTheme.ts.md) | ML-02 |  |  |
-| [`src/utils/taggedId.ts`](/src/src/utils/taggedId.ts.md) | ML-02 |  |  |
-| [`src/utils/task/TaskOutput.ts`](/src/src/utils/task/TaskOutput.ts.md) | ML-08 |  |  |
-| [`src/utils/task/diskOutput.ts`](/src/src/utils/task/diskOutput.ts.md) | ML-08 |  |  |
-| [`src/utils/task/framework.ts`](/src/src/utils/task/framework.ts.md) | ML-08 |  |  |
-| [`src/utils/task/outputFormatting.ts`](/src/src/utils/task/outputFormatting.ts.md) | ML-08 |  |  |
-| [`src/utils/task/sdkProgress.ts`](/src/src/utils/task/sdkProgress.ts.md) | ML-08 |  |  |
-| [`src/utils/tasks.ts`](/src/src/utils/tasks.ts.md) | ML-02 |  |  |
-| [`src/utils/teamDiscovery.ts`](/src/src/utils/teamDiscovery.ts.md) | ML-02 |  |  |
-| [`src/utils/teamMemoryOps.ts`](/src/src/utils/teamMemoryOps.ts.md) | ML-02 |  |  |
-| [`src/utils/teammate.ts`](/src/src/utils/teammate.ts.md) | ML-02 |  |  |
-| [`src/utils/teammateContext.ts`](/src/src/utils/teammateContext.ts.md) | ML-02 |  |  |
-| [`src/utils/teammateMailbox.ts`](/src/src/utils/teammateMailbox.ts.md) | ML-02 |  |  |
-| [`src/utils/telemetry/betaSessionTracing.ts`](/src/src/utils/telemetry/betaSessionTracing.ts.md) | ML-06 |  |  |
-| [`src/utils/telemetry/bigqueryExporter.ts`](/src/src/utils/telemetry/bigqueryExporter.ts.md) | ML-06 |  |  |
-| [`src/utils/telemetry/events.ts`](/src/src/utils/telemetry/events.ts.md) | ML-06 |  |  |
-| [`src/utils/telemetry/instrumentation.ts`](/src/src/utils/telemetry/instrumentation.ts.md) | ML-06 |  |  |
-| [`src/utils/telemetry/logger.ts`](/src/src/utils/telemetry/logger.ts.md) | ML-06 |  |  |
-| [`src/utils/telemetry/perfettoTracing.ts`](/src/src/utils/telemetry/perfettoTracing.ts.md) | ML-06 |  |  |
-| [`src/utils/telemetry/pluginTelemetry.ts`](/src/src/utils/telemetry/pluginTelemetry.ts.md) | ML-06 |  |  |
-| [`src/utils/telemetry/sessionTracing.ts`](/src/src/utils/telemetry/sessionTracing.ts.md) | ML-06 |  |  |
-| [`src/utils/telemetry/skillLoadedEvent.ts`](/src/src/utils/telemetry/skillLoadedEvent.ts.md) | ML-06 |  |  |
-| [`src/utils/telemetryAttributes.ts`](/src/src/utils/telemetryAttributes.ts.md) | ML-06 |  |  |
-| [`src/utils/teleport.tsx`](/src/src/utils/teleport.tsx.md) | ML-02 |  |  |
-| [`src/utils/teleport/api.ts`](/src/src/utils/teleport/api.ts.md) | ML-02 |  |  |
-| [`src/utils/teleport/environmentSelection.ts`](/src/src/utils/teleport/environmentSelection.ts.md) | ML-02 |  |  |
-| [`src/utils/teleport/environments.ts`](/src/src/utils/teleport/environments.ts.md) | ML-02 |  |  |
-| [`src/utils/teleport/gitBundle.ts`](/src/src/utils/teleport/gitBundle.ts.md) | ML-02 |  |  |
-| [`src/utils/tempfile.ts`](/src/src/utils/tempfile.ts.md) | ML-02 |  |  |
-| [`src/utils/terminal.ts`](/src/src/utils/terminal.ts.md) | ML-02 |  |  |
-| [`src/utils/terminalPanel.ts`](/src/src/utils/terminalPanel.ts.md) | ML-02 |  |  |
-| [`src/utils/textHighlighting.ts`](/src/src/utils/textHighlighting.ts.md) | ML-02 |  |  |
-| [`src/utils/theme.ts`](/src/src/utils/theme.ts.md) | ML-02 |  |  |
-| [`src/utils/thinking.ts`](/src/src/utils/thinking.ts.md) | ML-02 |  |  |
-| [`src/utils/timeouts.ts`](/src/src/utils/timeouts.ts.md) | ML-02 |  |  |
-| [`src/utils/tmuxSocket.ts`](/src/src/utils/tmuxSocket.ts.md) | ML-02 |  |  |
-| [`src/utils/todo/types.ts`](/src/src/utils/todo/types.ts.md) | ML-02 |  |  |
-| [`src/utils/tokenBudget.ts`](/src/src/utils/tokenBudget.ts.md) | ML-02 |  |  |
-| [`src/utils/tokens.ts`](/src/src/utils/tokens.ts.md) | ML-02-2 |  |  |
-| [`src/utils/toolErrors.ts`](/src/src/utils/toolErrors.ts.md) | ML-02 |  |  |
-| [`src/utils/toolPool.ts`](/src/src/utils/toolPool.ts.md) | ML-02 |  |  |
-| [`src/utils/toolResultStorage.ts`](/src/src/utils/toolResultStorage.ts.md) | ML-03-2 |  |  |
-| [`src/utils/toolSchemaCache.ts`](/src/src/utils/toolSchemaCache.ts.md) | ML-02 |  |  |
-| [`src/utils/toolSearch.ts`](/src/src/utils/toolSearch.ts.md) | ML-03-1 |  |  |
-| [`src/utils/transcriptSearch.ts`](/src/src/utils/transcriptSearch.ts.md) | ML-02 |  |  |
-| [`src/utils/treeify.ts`](/src/src/utils/treeify.ts.md) | ML-02 |  |  |
-| [`src/utils/truncate.ts`](/src/src/utils/truncate.ts.md) | ML-02 |  |  |
-| [`src/utils/ultraplan/ccrSession.ts`](/src/src/utils/ultraplan/ccrSession.ts.md) | ML-02 |  |  |
-| [`src/utils/ultraplan/keyword.ts`](/src/src/utils/ultraplan/keyword.ts.md) | ML-02 |  |  |
-| [`src/utils/unaryLogging.ts`](/src/src/utils/unaryLogging.ts.md) | ML-02 |  |  |
-| [`src/utils/undercover.ts`](/src/src/utils/undercover.ts.md) | ML-02 |  |  |
-| [`src/utils/user.ts`](/src/src/utils/user.ts.md) | ML-02 |  |  |
-| [`src/utils/userPromptKeywords.ts`](/src/src/utils/userPromptKeywords.ts.md) | ML-02 |  |  |
-| [`src/utils/uuid.ts`](/src/src/utils/uuid.ts.md) | ML-02 |  |  |
-| [`src/utils/warningHandler.ts`](/src/src/utils/warningHandler.ts.md) | ML-01 |  |  |
-| [`src/utils/which.ts`](/src/src/utils/which.ts.md) | ML-02 |  |  |
-| [`src/utils/windowsPaths.ts`](/src/src/utils/windowsPaths.ts.md) | ML-02 |  |  |
-| [`src/utils/words.ts`](/src/src/utils/words.ts.md) | ML-02 |  |  |
-| [`src/utils/workloadContext.ts`](/src/src/utils/workloadContext.ts.md) | ML-02 |  |  |
-| [`src/utils/worktree.ts`](/src/src/utils/worktree.ts.md) | ML-02 |  |  |
-| [`src/utils/xdg.ts`](/src/src/utils/xdg.ts.md) | ML-02 |  |  |
-| [`src/utils/xml.ts`](/src/src/utils/xml.ts.md) | ML-02 |  |  |
-| [`src/utils/yaml.ts`](/src/src/utils/yaml.ts.md) | ML-02 |  |  |
-| [`src/utils/zodToJsonSchema.ts`](/src/src/utils/zodToJsonSchema.ts.md) | ML-02 |  |  |
-| [`src/vim/motions.ts`](/src/src/vim/motions.ts.md) | ML-01 |  |  |
-| [`src/vim/operators.ts`](/src/src/vim/operators.ts.md) | ML-07 |  |  |
-| [`src/vim/textObjects.ts`](/src/src/vim/textObjects.ts.md) | ML-01 |  |  |
-| [`src/vim/transitions.ts`](/src/src/vim/transitions.ts.md) | ML-01 |  |  |
-| [`src/vim/types.ts`](/src/src/vim/types.ts.md) | ML-01 |  |  |
-| [`src/voice/voiceModeEnabled.ts`](/src/src/voice/voiceModeEnabled.ts.md) | ML-01 |  |  |
-| [`vendor/audio-capture-src/index.ts`](/src/vendor/audio-capture-src/index.ts.md) | ML-01 |  |  |
-| [`vendor/image-processor-src/index.ts`](/src/vendor/image-processor-src/index.ts.md) | ML-01 |  |  |
-| [`vendor/modifiers-napi-src/index.ts`](/src/vendor/modifiers-napi-src/index.ts.md) | ML-01 |  |  |
-| [`vendor/url-handler-src/index.ts`](/src/vendor/url-handler-src/index.ts.md) | ML-01 |  |  |
+# Source ↔ Report Mapping
+
+## Overview
+
+- **Total files**: 1954
+- **Mainlines**: 34
+- **Summaries**: 5
+
+## ML-01 (345 files)
+
+📋 **Summary**: [summary-ML-01-cli-entry-routing](/branches/main/report/summary-ML-01-cli-entry-routing)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `shims/ant-claude-for-chrome-mcp/index.ts` | 113 | PI-14 | LOW |
+| 2 | `shims/ant-computer-use-input/index.ts` | 93 | PI-14 | LOW |
+| 3 | `shims/ant-computer-use-mcp/index.ts` | 195 | PI-14 | LOW |
+| 4 | `shims/ant-computer-use-mcp/types.ts` | 30 | PI-14 | LOW |
+| 5 | `shims/ant-computer-use-swift/index.ts` | 297 | PI-14 | MEDIUM |
+| 6 | `src/assistant/sessionHistory.ts` | 87 | PI-14 | LOW |
+| 7 | `src/bootstrap-entry.ts` | 5 |  | LOW |
+| 8 | `src/bootstrap/state.ts` | 1758 |  | HIGH |
+| 9 | `src/bootstrapMacro.ts` | 29 |  | LOW |
+| 10 | `src/buddy/CompanionSprite.tsx` | 370 | PI-14 | MEDIUM |
+| 11 | `src/buddy/companion.ts` | 133 | PI-14 | LOW |
+| 12 | `src/buddy/prompt.ts` | 36 | PI-14 | LOW |
+| 13 | `src/buddy/types.ts` | 148 | PI-14 | LOW |
+| 14 | `src/buddy/useBuddyNotification.tsx` | 97 | PI-14 | LOW |
+| 15 | `src/cli/print.ts` | 5594 |  | HIGH |
+| 16 | `src/cli/structuredIO.ts` | 859 |  | MEDIUM |
+| 17 | `src/commands.ts` | 754 |  | MEDIUM |
+| 18 | `src/commands/add-dir/add-dir.tsx` | 126 |  | LOW |
+| 19 | `src/commands/add-dir/index.ts` | 11 | PI-02 | LOW |
+| 20 | `src/commands/add-dir/validation.ts` | 110 |  | LOW |
+| 21 | `src/commands/advisor.ts` | 109 |  | LOW |
+| 22 | `src/commands/agents-platform/index.ts` | 21 | PI-02 | LOW |
+| 23 | `src/commands/agents/agents.tsx` | 12 | PI-02 | LOW |
+| 24 | `src/commands/agents/index.ts` | 10 | PI-02 | LOW |
+| 25 | `src/commands/branch/branch.ts` | 296 |  | MEDIUM |
+| 26 | `src/commands/branch/index.ts` | 14 | PI-02 | LOW |
+| 27 | `src/commands/bridge-kick.ts` | 200 |  | LOW |
+| 28 | `src/commands/bridge/bridge.tsx` | 509 |  | MEDIUM |
+| 29 | `src/commands/bridge/index.ts` | 26 | PI-02 | LOW |
+| 30 | `src/commands/brief.ts` | 130 |  | LOW |
+| 31 | `src/commands/btw/btw.tsx` | 243 |  | MEDIUM |
+| 32 | `src/commands/btw/index.ts` | 13 | PI-02 | LOW |
+| 33 | `src/commands/chrome/chrome.tsx` | 285 |  | MEDIUM |
+| 34 | `src/commands/chrome/index.ts` | 13 | PI-02 | LOW |
+| 35 | `src/commands/clear/caches.ts` | 144 |  | LOW |
+| 36 | `src/commands/clear/clear.ts` | 7 | PI-02 | LOW |
+| 37 | `src/commands/clear/conversation.ts` | 251 |  | MEDIUM |
+| 38 | `src/commands/clear/index.ts` | 19 | PI-02 | LOW |
+| 39 | `src/commands/color/color.ts` | 93 |  | LOW |
+| 40 | `src/commands/color/index.ts` | 16 | PI-02 | LOW |
+| 41 | `src/commands/commit-push-pr.ts` | 158 |  | LOW |
+| 42 | `src/commands/commit.ts` | 92 |  | LOW |
+| 43 | `src/commands/compact/compact.ts` | 287 |  | MEDIUM |
+| 44 | `src/commands/compact/index.ts` | 15 | PI-02 | LOW |
+| 45 | `src/commands/config/config.tsx` | 7 | PI-02 | LOW |
+| 46 | `src/commands/config/index.ts` | 11 | PI-02 | LOW |
+| 47 | `src/commands/context/context-noninteractive.ts` | 325 |  | MEDIUM |
+| 48 | `src/commands/context/context.tsx` | 64 |  | LOW |
+| 49 | `src/commands/context/index.ts` | 24 | PI-02 | LOW |
+| 50 | `src/commands/copy/copy.tsx` | 371 |  | MEDIUM |
+| 51 | `src/commands/copy/index.ts` | 15 | PI-02 | LOW |
+| 52 | `src/commands/cost/cost.ts` | 24 | PI-02 | LOW |
+| 53 | `src/commands/cost/index.ts` | 23 | PI-02 | LOW |
+| 54 | `src/commands/createMovedToPluginCommand.ts` | 65 |  | LOW |
+| 55 | `src/commands/desktop/desktop.tsx` | 9 | PI-02 | LOW |
+| 56 | `src/commands/desktop/index.ts` | 26 | PI-02 | LOW |
+| 57 | `src/commands/diff/diff.tsx` | 9 | PI-02 | LOW |
+| 58 | `src/commands/diff/index.ts` | 8 | PI-02 | LOW |
+| 59 | `src/commands/doctor/doctor.tsx` | 7 | PI-02 | LOW |
+| 60 | `src/commands/doctor/index.ts` | 12 | PI-02 | LOW |
+| 61 | `src/commands/effort/effort.tsx` | 183 |  | LOW |
+| 62 | `src/commands/effort/index.ts` | 13 | PI-02 | LOW |
+| 63 | `src/commands/exit/exit.tsx` | 33 | PI-02 | LOW |
+| 64 | `src/commands/exit/index.ts` | 12 | PI-02 | LOW |
+| 65 | `src/commands/export/export.tsx` | 91 |  | LOW |
+| 66 | `src/commands/export/index.ts` | 11 | PI-02 | LOW |
+| 67 | `src/commands/extra-usage/extra-usage-core.ts` | 118 |  | LOW |
+| 68 | `src/commands/extra-usage/extra-usage-noninteractive.ts` | 16 | PI-02 | LOW |
+| 69 | `src/commands/extra-usage/extra-usage.tsx` | 17 | PI-02 | LOW |
+| 70 | `src/commands/extra-usage/index.ts` | 31 | PI-02 | LOW |
+| 71 | `src/commands/fast/fast.tsx` | 269 |  | MEDIUM |
+| 72 | `src/commands/fast/index.ts` | 26 | PI-02 | LOW |
+| 73 | `src/commands/feedback/feedback.tsx` | 25 | PI-02 | LOW |
+| 74 | `src/commands/feedback/index.ts` | 26 | PI-02 | LOW |
+| 75 | `src/commands/files/files.ts` | 19 | PI-02 | LOW |
+| 76 | `src/commands/files/index.ts` | 12 | PI-02 | LOW |
+| 77 | `src/commands/heapdump/heapdump.ts` | 17 | PI-02 | LOW |
+| 78 | `src/commands/heapdump/index.ts` | 12 | PI-02 | LOW |
+| 79 | `src/commands/help/help.tsx` | 11 | PI-02 | LOW |
+| 80 | `src/commands/help/index.ts` | 10 |  | LOW |
+| 81 | `src/commands/hooks/hooks.tsx` | 13 | PI-02 | LOW |
+| 82 | `src/commands/hooks/index.ts` | 11 | PI-02 | LOW |
+| 83 | `src/commands/ide/ide.tsx` | 646 |  | MEDIUM |
+| 84 | `src/commands/ide/index.ts` | 11 | PI-02 | LOW |
+| 85 | `src/commands/init-verifiers.ts` | 262 |  | MEDIUM |
+| 86 | `src/commands/init.ts` | 256 |  | MEDIUM |
+| 87 | `src/commands/insights.ts` | 3200 |  | HIGH |
+| 88 | `src/commands/install-github-app/ApiKeyStep.tsx` | 231 |  | MEDIUM |
+| 89 | `src/commands/install-github-app/CheckExistingSecretStep.tsx` | 190 |  | LOW |
+| 90 | `src/commands/install-github-app/CheckGitHubStep.tsx` | 15 | PI-02 | LOW |
+| 91 | `src/commands/install-github-app/ChooseRepoStep.tsx` | 211 |  | MEDIUM |
+| 92 | `src/commands/install-github-app/CreatingStep.tsx` | 65 |  | LOW |
+| 93 | `src/commands/install-github-app/ErrorStep.tsx` | 85 |  | LOW |
+| 94 | `src/commands/install-github-app/ExistingWorkflowStep.tsx` | 103 |  | LOW |
+| 95 | `src/commands/install-github-app/InstallAppStep.tsx` | 94 |  | LOW |
+| 96 | `src/commands/install-github-app/OAuthFlowStep.tsx` | 276 |  | MEDIUM |
+| 97 | `src/commands/install-github-app/SuccessStep.tsx` | 96 |  | LOW |
+| 98 | `src/commands/install-github-app/WarningsStep.tsx` | 73 |  | LOW |
+| 99 | `src/commands/install-github-app/index.ts` | 13 | PI-02 | LOW |
+| 100 | `src/commands/install-github-app/install-github-app.tsx` | 587 |  | MEDIUM |
+| 101 | `src/commands/install-github-app/setupGitHubActions.ts` | 325 |  | MEDIUM |
+| 102 | `src/commands/install-github-app/types.ts` | 3 | PI-02 | LOW |
+| 103 | `src/commands/install-slack-app/index.ts` | 12 | PI-02 | LOW |
+| 104 | `src/commands/install-slack-app/install-slack-app.ts` | 30 | PI-02 | LOW |
+| 105 | `src/commands/install.tsx` | 300 |  | MEDIUM |
+| 106 | `src/commands/keybindings/index.ts` | 13 | PI-02 | LOW |
+| 107 | `src/commands/keybindings/keybindings.ts` | 53 |  | LOW |
+| 108 | `src/commands/login/index.ts` | 14 | PI-02 | LOW |
+| 109 | `src/commands/login/login.tsx` | 104 |  | LOW |
+| 110 | `src/commands/logout/index.ts` | 10 | PI-02 | LOW |
+| 111 | `src/commands/logout/logout.tsx` | 82 |  | LOW |
+| 112 | `src/commands/mcp/addCommand.ts` | 280 |  | MEDIUM |
+| 113 | `src/commands/mcp/index.ts` | 12 | PI-02 | LOW |
+| 114 | `src/commands/mcp/mcp.tsx` | 85 |  | LOW |
+| 115 | `src/commands/mcp/xaaIdpCommand.ts` | 266 |  | MEDIUM |
+| 116 | `src/commands/memory/index.ts` | 10 | PI-02 | LOW |
+| 117 | `src/commands/memory/memory.tsx` | 90 |  | LOW |
+| 118 | `src/commands/mobile/index.ts` | 11 | PI-02 | LOW |
+| 119 | `src/commands/mobile/mobile.tsx` | 274 |  | MEDIUM |
+| 120 | `src/commands/model/index.ts` | 16 | PI-02 | LOW |
+| 121 | `src/commands/model/model.tsx` | 297 |  | MEDIUM |
+| 122 | `src/commands/output-style/index.ts` | 11 | PI-02 | LOW |
+| 123 | `src/commands/output-style/output-style.tsx` | 7 | PI-02 | LOW |
+| 124 | `src/commands/passes/index.ts` | 22 | PI-02 | LOW |
+| 125 | `src/commands/passes/passes.tsx` | 24 | PI-02 | LOW |
+| 126 | `src/commands/permissions/index.ts` | 11 | PI-02 | LOW |
+| 127 | `src/commands/permissions/permissions.tsx` | 10 | PI-02 | LOW |
+| 128 | `src/commands/plan/index.ts` | 11 | PI-02 | LOW |
+| 129 | `src/commands/plan/plan.tsx` | 122 |  | LOW |
+| 130 | `src/commands/plugin/AddMarketplace.tsx` | 162 |  | LOW |
+| 131 | `src/commands/plugin/BrowseMarketplace.tsx` | 802 |  | MEDIUM |
+| 132 | `src/commands/plugin/DiscoverPlugins.tsx` | 781 |  | MEDIUM |
+| 133 | `src/commands/plugin/ManageMarketplaces.tsx` | 838 |  | MEDIUM |
+| 134 | `src/commands/plugin/PluginErrors.tsx` | 124 |  | LOW |
+| 135 | `src/commands/plugin/PluginOptionsDialog.tsx` | 357 |  | MEDIUM |
+| 136 | `src/commands/plugin/PluginOptionsFlow.tsx` | 135 |  | LOW |
+| 137 | `src/commands/plugin/PluginTrustWarning.tsx` | 32 | PI-02 | LOW |
+| 138 | `src/commands/plugin/UnifiedInstalledCell.tsx` | 565 |  | MEDIUM |
+| 139 | `src/commands/plugin/ValidatePlugin.tsx` | 98 |  | LOW |
+| 140 | `src/commands/plugin/index.tsx` | 11 | PI-02 | LOW |
+| 141 | `src/commands/plugin/parseArgs.ts` | 103 |  | LOW |
+| 142 | `src/commands/plugin/plugin.tsx` | 7 | PI-02 | LOW |
+| 143 | `src/commands/plugin/pluginDetailsHelpers.tsx` | 117 |  | LOW |
+| 144 | `src/commands/plugin/types.ts` | 2 | PI-02 | LOW |
+| 145 | `src/commands/plugin/unifiedTypes.ts` | 2 | PI-02 | LOW |
+| 146 | `src/commands/plugin/usePagination.ts` | 171 |  | LOW |
+| 147 | `src/commands/pr_comments/index.ts` | 50 | PI-02 | LOW |
+| 148 | `src/commands/privacy-settings/index.ts` | 14 | PI-02 | LOW |
+| 149 | `src/commands/privacy-settings/privacy-settings.tsx` | 58 |  | LOW |
+| 150 | `src/commands/rate-limit-options/index.ts` | 19 | PI-02 | LOW |
+| 151 | `src/commands/rate-limit-options/rate-limit-options.tsx` | 210 |  | MEDIUM |
+| 152 | `src/commands/release-notes/index.ts` | 11 | PI-02 | LOW |
+| 153 | `src/commands/release-notes/release-notes.ts` | 50 | PI-02 | LOW |
+| 154 | `src/commands/reload-plugins/index.ts` | 18 | PI-02 | LOW |
+| 155 | `src/commands/reload-plugins/reload-plugins.ts` | 61 |  | LOW |
+| 156 | `src/commands/remote-env/index.ts` | 15 | PI-02 | LOW |
+| 157 | `src/commands/remote-env/remote-env.tsx` | 7 | PI-02 | LOW |
+| 158 | `src/commands/remote-setup/api.ts` | 182 |  | LOW |
+| 159 | `src/commands/remote-setup/index.ts` | 20 | PI-02 | LOW |
+| 160 | `src/commands/remote-setup/remote-setup.tsx` | 187 |  | LOW |
+| 161 | `src/commands/rename/generateSessionName.ts` | 67 |  | LOW |
+| 162 | `src/commands/rename/index.ts` | 12 | PI-02 | LOW |
+| 163 | `src/commands/rename/rename.ts` | 87 |  | LOW |
+| 164 | `src/commands/resume/index.ts` | 12 | PI-02 | LOW |
+| 165 | `src/commands/resume/resume.tsx` | 275 |  | MEDIUM |
+| 166 | `src/commands/review.ts` | 57 |  | LOW |
+| 167 | `src/commands/review/UltrareviewOverageDialog.tsx` | 96 |  | LOW |
+| 168 | `src/commands/review/reviewRemote.ts` | 316 |  | MEDIUM |
+| 169 | `src/commands/review/ultrareviewCommand.tsx` | 58 |  | LOW |
+| 170 | `src/commands/review/ultrareviewEnabled.ts` | 14 | PI-02 | LOW |
+| 171 | `src/commands/rewind/index.ts` | 13 | PI-02 | LOW |
+| 172 | `src/commands/rewind/rewind.ts` | 13 | PI-02 | LOW |
+| 173 | `src/commands/sandbox-toggle/index.ts` | 50 | PI-02 | LOW |
+| 174 | `src/commands/sandbox-toggle/sandbox-toggle.tsx` | 83 |  | LOW |
+| 175 | `src/commands/security-review.ts` | 243 |  | MEDIUM |
+| 176 | `src/commands/session/index.ts` | 16 | PI-02 | LOW |
+| 177 | `src/commands/session/session.tsx` | 140 |  | LOW |
+| 178 | `src/commands/skills/index.ts` | 10 | PI-02 | LOW |
+| 179 | `src/commands/skills/skills.tsx` | 8 | PI-02 | LOW |
+| 180 | `src/commands/stats/index.ts` | 10 | PI-02 | LOW |
+| 181 | `src/commands/stats/stats.tsx` | 7 | PI-02 | LOW |
+| 182 | `src/commands/status/index.ts` | 12 | PI-02 | LOW |
+| 183 | `src/commands/status/status.tsx` | 8 | PI-02 | LOW |
+| 184 | `src/commands/statusline.tsx` | 24 | PI-02 | LOW |
+| 185 | `src/commands/stickers/index.ts` | 11 | PI-02 | LOW |
+| 186 | `src/commands/stickers/stickers.ts` | 16 | PI-02 | LOW |
+| 187 | `src/commands/tag/index.ts` | 12 | PI-02 | LOW |
+| 188 | `src/commands/tag/tag.tsx` | 215 |  | MEDIUM |
+| 189 | `src/commands/tasks/index.ts` | 11 | PI-02 | LOW |
+| 190 | `src/commands/tasks/tasks.tsx` | 8 | PI-02 | LOW |
+| 191 | `src/commands/terminalSetup/index.ts` | 23 | PI-02 | LOW |
+| 192 | `src/commands/terminalSetup/terminalSetup.tsx` | 531 |  | MEDIUM |
+| 193 | `src/commands/theme/index.ts` | 10 | PI-02 | LOW |
+| 194 | `src/commands/theme/theme.tsx` | 57 |  | LOW |
+| 195 | `src/commands/thinkback-play/index.ts` | 17 | PI-02 | LOW |
+| 196 | `src/commands/thinkback-play/thinkback-play.ts` | 43 | PI-02 | LOW |
+| 197 | `src/commands/thinkback/index.ts` | 13 | PI-02 | LOW |
+| 198 | `src/commands/thinkback/thinkback.tsx` | 554 |  | MEDIUM |
+| 199 | `src/commands/ultraplan.tsx` | 471 |  | MEDIUM |
+| 200 | `src/commands/upgrade/index.ts` | 16 | PI-02 | LOW |
+| 201 | `src/commands/upgrade/upgrade.tsx` | 38 | PI-02 | LOW |
+| 202 | `src/commands/usage/index.ts` | 9 | PI-02 | LOW |
+| 203 | `src/commands/usage/usage.tsx` | 7 | PI-02 | LOW |
+| 204 | `src/commands/version.ts` | 22 | PI-02 | LOW |
+| 205 | `src/commands/vim/index.ts` | 11 | PI-02 | LOW |
+| 206 | `src/commands/vim/vim.ts` | 38 | PI-02 | LOW |
+| 207 | `src/commands/voice/index.ts` | 20 | PI-02 | LOW |
+| 208 | `src/commands/voice/voice.ts` | 150 |  | LOW |
+| 209 | `src/constants/apiLimits.ts` | 94 | PI-14 | LOW |
+| 210 | `src/constants/betas.ts` | 52 | PI-14 | LOW |
+| 211 | `src/constants/common.ts` | 33 | PI-14 | LOW |
+| 212 | `src/constants/cyberRiskInstruction.ts` | 24 | PI-14 | LOW |
+| 213 | `src/constants/errorIds.ts` | 15 | PI-14 | LOW |
+| 214 | `src/constants/figures.ts` | 45 | PI-14 | LOW |
+| 215 | `src/constants/files.ts` | 156 | PI-14 | LOW |
+| 216 | `src/constants/github-app.ts` | 144 | PI-14 | LOW |
+| 217 | `src/constants/outputStyles.ts` | 216 | PI-14 | MEDIUM |
+| 218 | `src/constants/product.ts` | 76 | PI-14 | LOW |
+| 219 | `src/constants/prompts.ts` | 914 |  | MEDIUM |
+| 220 | `src/constants/spinnerVerbs.ts` | 204 | PI-14 | MEDIUM |
+| 221 | `src/constants/system.ts` | 95 | PI-14 | LOW |
+| 222 | `src/constants/systemPromptSections.ts` | 68 | PI-14 | LOW |
+| 223 | `src/constants/toolLimits.ts` | 56 | PI-14 | LOW |
+| 224 | `src/constants/xml.ts` | 86 | PI-14 | LOW |
+| 225 | `src/context.ts` | 189 |  | LOW |
+| 226 | `src/context/QueuedMessageContext.tsx` | 62 | PI-14 | LOW |
+| 227 | `src/context/mailbox.tsx` | 37 | PI-14 | LOW |
+| 228 | `src/context/modalContext.tsx` | 57 | PI-14 | LOW |
+| 229 | `src/context/overlayContext.tsx` | 150 | PI-14 | LOW |
+| 230 | `src/context/promptOverlayContext.tsx` | 124 | PI-14 | LOW |
+| 231 | `src/context/stats.tsx` | 219 | PI-14 | MEDIUM |
+| 232 | `src/context/voice.tsx` | 87 | PI-14 | LOW |
+| 233 | `src/coordinator/coordinatorMode.ts` | 369 | PI-14 | MEDIUM |
+| 234 | `src/cost-tracker.ts` | 323 | PI-14 | MEDIUM |
+| 235 | `src/costHook.ts` | 22 | PI-14 | LOW |
+| 236 | `src/dev-entry.ts` | 122 | PI-14 | LOW |
+| 237 | `src/dialogLaunchers.tsx` | 132 |  | LOW |
+| 238 | `src/entrypoints/agentSdkTypes.ts` | 443 | PI-14 | MEDIUM |
+| 239 | `src/entrypoints/cli.tsx` | 303 |  | MEDIUM |
+| 240 | `src/entrypoints/init.ts` | 340 |  | MEDIUM |
+| 241 | `src/entrypoints/mcp.ts` | 196 | PI-14 | LOW |
+| 242 | `src/entrypoints/sandboxTypes.ts` | 156 | PI-14 | LOW |
+| 243 | `src/history.ts` | 464 | PI-14 | MEDIUM |
+| 244 | `src/ink.ts` | 85 |  | LOW |
+| 245 | `src/interactiveHelpers.tsx` | 365 |  | MEDIUM |
+| 246 | `src/keybindings/KeybindingContext.tsx` | 242 | PI-14 | MEDIUM |
+| 247 | `src/keybindings/defaultBindings.ts` | 340 | PI-14 | MEDIUM |
+| 248 | `src/keybindings/loadUserBindings.ts` | 472 | PI-14 | MEDIUM |
+| 249 | `src/keybindings/match.ts` | 120 | PI-14 | LOW |
+| 250 | `src/keybindings/parser.ts` | 203 | PI-14 | MEDIUM |
+| 251 | `src/keybindings/reservedShortcuts.ts` | 127 | PI-14 | LOW |
+| 252 | `src/keybindings/resolver.ts` | 244 | PI-14 | MEDIUM |
+| 253 | `src/keybindings/schema.ts` | 236 | PI-14 | MEDIUM |
+| 254 | `src/keybindings/template.ts` | 52 | PI-14 | LOW |
+| 255 | `src/keybindings/types.ts` | 17 | PI-14 | LOW |
+| 256 | `src/keybindings/useKeybinding.ts` | 196 | PI-14 | LOW |
+| 257 | `src/keybindings/validate.ts` | 498 | PI-14 | MEDIUM |
+| 258 | `src/main.tsx` | 4690 |  | HIGH |
+| 259 | `src/migrations/migrateAutoUpdatesToSettings.ts` | 61 | PI-14 | LOW |
+| 260 | `src/migrations/migrateEnableAllProjectMcpServersToSettings.ts` | 118 | PI-14 | LOW |
+| 261 | `src/migrations/migrateFennecToOpus.ts` | 45 | PI-14 | LOW |
+| 262 | `src/migrations/migrateLegacyOpusToCurrent.ts` | 57 | PI-14 | LOW |
+| 263 | `src/migrations/migrateOpusToOpus1m.ts` | 43 | PI-14 | LOW |
+| 264 | `src/migrations/migrateReplBridgeEnabledToRemoteControlAtStartup.ts` | 22 | PI-14 | LOW |
+| 265 | `src/migrations/migrateSonnet1mToSonnet45.ts` | 48 | PI-14 | LOW |
+| 266 | `src/migrations/migrateSonnet45ToSonnet46.ts` | 67 | PI-14 | LOW |
+| 267 | `src/migrations/resetAutoModeOptInForDefaultOffer.ts` | 51 | PI-14 | LOW |
+| 268 | `src/migrations/resetProToOpusDefault.ts` | 51 | PI-14 | LOW |
+| 269 | `src/moreright/useMoreRight.tsx` | 25 | PI-14 | LOW |
+| 270 | `src/outputStyles/loadOutputStylesDir.ts` | 98 | PI-14 | LOW |
+| 271 | `src/plugins/builtinPlugins.ts` | 159 | PI-14 | LOW |
+| 272 | `src/plugins/bundled/index.ts` | 23 | PI-14 | LOW |
+| 273 | `src/proactive/index.ts` | 57 | PI-14 | LOW |
+| 274 | `src/projectOnboardingState.ts` | 83 | PI-14 | LOW |
+| 275 | `src/query/tokenBudget.ts` | 93 | PI-14 | LOW |
+| 276 | `src/remote/RemoteSessionManager.ts` | 343 | PI-14 | MEDIUM |
+| 277 | `src/remote/SessionsWebSocket.ts` | 404 | PI-14 | MEDIUM |
+| 278 | `src/remote/sdkMessageAdapter.ts` | 302 | PI-14 | MEDIUM |
+| 279 | `src/replLauncher.tsx` | 23 |  | LOW |
+| 280 | `src/schemas/hooks.ts` | 222 | PI-14 | MEDIUM |
+| 281 | `src/screens/ResumeConversation.tsx` | 398 | PI-14 | MEDIUM |
+| 282 | `src/server/createDirectConnectSession.ts` | 88 | PI-14 | LOW |
+| 283 | `src/server/directConnectManager.ts` | 213 | PI-14 | MEDIUM |
+| 284 | `src/server/types.ts` | 57 | PI-14 | LOW |
+| 285 | `src/setup.ts` | 477 | PI-14 | MEDIUM |
+| 286 | `src/state/AppStateStore.ts` | 569 |  | MEDIUM |
+| 287 | `src/state/onChangeAppState.ts` | 171 | PI-14 | LOW |
+| 288 | `src/state/selectors.ts` | 76 | PI-14 | LOW |
+| 289 | `src/state/store.ts` | 34 | PI-14 | LOW |
+| 290 | `src/state/teammateViewHelpers.ts` | 141 | PI-14 | LOW |
+| 291 | `src/tools.ts` | 389 |  | MEDIUM |
+| 292 | `src/types/command.ts` | 216 |  | MEDIUM |
+| 293 | `src/types/generated/events_mono/claude_code/v1/claude_code_internal_event.ts` | 865 | PI-14 | MEDIUM |
+| 294 | `src/types/generated/events_mono/common/v1/auth.ts` | 100 | PI-14 | LOW |
+| 295 | `src/types/generated/events_mono/growthbook/v1/growthbook_experiment_event.ts` | 223 | PI-14 | MEDIUM |
+| 296 | `src/types/generated/google/protobuf/timestamp.ts` | 187 | PI-14 | LOW |
+| 297 | `src/types/hooks.ts` | 290 | PI-14 | MEDIUM |
+| 298 | `src/types/ids.ts` | 44 | PI-14 | LOW |
+| 299 | `src/types/logs.ts` | 330 | PI-14 | MEDIUM |
+| 300 | `src/types/message.ts` | 134 | PI-14 | LOW |
+| 301 | `src/types/permissions.ts` | 441 | PI-14 | MEDIUM |
+| 302 | `src/types/plugin.ts` | 363 | PI-14 | MEDIUM |
+| 303 | `src/types/textInputTypes.ts` | 387 | PI-14 | MEDIUM |
+| 304 | `src/upstreamproxy/relay.ts` | 455 | PI-14 | MEDIUM |
+| 305 | `src/upstreamproxy/upstreamproxy.ts` | 285 | PI-14 | MEDIUM |
+| 306 | `src/utils/claudeInChrome/chromeNativeHost.ts` | 527 | PI-14 | MEDIUM |
+| 307 | `src/utils/claudeInChrome/common.ts` | 540 | PI-14 | MEDIUM |
+| 308 | `src/utils/claudeInChrome/mcpServer.ts` | 293 | PI-14 | MEDIUM |
+| 309 | `src/utils/claudeInChrome/prompt.ts` | 83 | PI-14 | LOW |
+| 310 | `src/utils/claudeInChrome/setup.ts` | 400 | PI-14 | MEDIUM |
+| 311 | `src/utils/claudeInChrome/setupPortable.ts` | 233 | PI-14 | MEDIUM |
+| 312 | `src/utils/claudeInChrome/toolRendering.tsx` | 261 | PI-14 | MEDIUM |
+| 313 | `src/utils/config.ts` | 1817 |  | HIGH |
+| 314 | `src/utils/earlyInput.ts` | 191 |  | LOW |
+| 315 | `src/utils/settings/allErrors.ts` | 32 | PI-11 | LOW |
+| 316 | `src/utils/settings/applySettingsChange.ts` | 92 |  | LOW |
+| 317 | `src/utils/settings/changeDetector.ts` | 488 |  | MEDIUM |
+| 318 | `src/utils/settings/constants.ts` | 202 |  | MEDIUM |
+| 319 | `src/utils/settings/internalWrites.ts` | 37 | PI-11 | LOW |
+| 320 | `src/utils/settings/managedPath.ts` | 34 | PI-11 | LOW |
+| 321 | `src/utils/settings/mdm/constants.ts` | 81 |  | LOW |
+| 322 | `src/utils/settings/mdm/rawRead.ts` | 130 |  | LOW |
+| 323 | `src/utils/settings/mdm/settings.ts` | 316 |  | MEDIUM |
+| 324 | `src/utils/settings/permissionValidation.ts` | 262 |  | MEDIUM |
+| 325 | `src/utils/settings/pluginOnlyPolicy.ts` | 60 |  | LOW |
+| 326 | `src/utils/settings/schemaOutput.ts` | 8 | PI-11 | LOW |
+| 327 | `src/utils/settings/settings.ts` | 1015 |  | HIGH |
+| 328 | `src/utils/settings/settingsCache.ts` | 80 |  | LOW |
+| 329 | `src/utils/settings/toolValidationConfig.ts` | 103 |  | LOW |
+| 330 | `src/utils/settings/types.ts` | 1148 |  | HIGH |
+| 331 | `src/utils/settings/validateEditTool.ts` | 45 | PI-11 | LOW |
+| 332 | `src/utils/settings/validation.ts` | 265 |  | MEDIUM |
+| 333 | `src/utils/settings/validationTips.ts` | 164 |  | LOW |
+| 334 | `src/utils/sinks.ts` | 16 |  | LOW |
+| 335 | `src/utils/startupProfiler.ts` | 194 |  | LOW |
+| 336 | `src/utils/warningHandler.ts` | 121 |  | LOW |
+| 337 | `src/vim/motions.ts` | 82 | PI-14 | LOW |
+| 338 | `src/vim/textObjects.ts` | 186 | PI-14 | LOW |
+| 339 | `src/vim/transitions.ts` | 490 | PI-14 | MEDIUM |
+| 340 | `src/vim/types.ts` | 199 | PI-14 | LOW |
+| 341 | `src/voice/voiceModeEnabled.ts` | 54 | PI-14 | LOW |
+| 342 | `vendor/audio-capture-src/index.ts` | 151 | PI-14 | LOW |
+| 343 | `vendor/image-processor-src/index.ts` | 162 | PI-14 | LOW |
+| 344 | `vendor/modifiers-napi-src/index.ts` | 67 | PI-14 | LOW |
+| 345 | `vendor/url-handler-src/index.ts` | 58 | PI-14 | LOW |
+
+## ML-02 (342 files)
+
+📋 **Summary**: [summary-ML-02-query-engine-core](/branches/main/report/summary-ML-02-query-engine-core)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/hooks/renderPlaceholder.ts` | 51 | PI-12 | LOW |
+| 2 | `src/hooks/toolPermission/PermissionContext.ts` | 388 | PI-12 | MEDIUM |
+| 3 | `src/hooks/toolPermission/handlers/coordinatorHandler.ts` | 65 | PI-12 | LOW |
+| 4 | `src/hooks/toolPermission/handlers/interactiveHandler.ts` | 536 | PI-12 | MEDIUM |
+| 5 | `src/hooks/toolPermission/handlers/swarmWorkerHandler.ts` | 159 | PI-12 | LOW |
+| 6 | `src/hooks/toolPermission/permissionLogging.ts` | 238 | PI-12 | MEDIUM |
+| 7 | `src/hooks/unifiedSuggestions.ts` | 202 | PI-12 | MEDIUM |
+| 8 | `src/native-ts/file-index/index.ts` | 370 | PI-12 | MEDIUM |
+| 9 | `src/native-ts/yoga-layout/enums.ts` | 134 | PI-12 | LOW |
+| 10 | `src/utils/CircularBuffer.ts` | 84 | PI-12 | LOW |
+| 11 | `src/utils/Cursor.ts` | 1530 |  | HIGH |
+| 12 | `src/utils/QueryGuard.ts` | 121 | PI-12 | LOW |
+| 13 | `src/utils/Shell.ts` | 474 | PI-12 | MEDIUM |
+| 14 | `src/utils/ShellCommand.ts` | 465 | PI-12 | MEDIUM |
+| 15 | `src/utils/abortController.ts` | 99 | PI-12 | LOW |
+| 16 | `src/utils/activityManager.ts` | 164 | PI-12 | LOW |
+| 17 | `src/utils/advisor.ts` | 145 | PI-12 | LOW |
+| 18 | `src/utils/agentContext.ts` | 178 | PI-12 | LOW |
+| 19 | `src/utils/agentId.ts` | 99 | PI-12 | LOW |
+| 20 | `src/utils/agentSwarmsEnabled.ts` | 44 | PI-12 | LOW |
+| 21 | `src/utils/agenticSessionSearch.ts` | 307 | PI-12 | MEDIUM |
+| 22 | `src/utils/analyzeContext.ts` | 1382 |  | HIGH |
+| 23 | `src/utils/ansiToPng.ts` | 334 | PI-12 | MEDIUM |
+| 24 | `src/utils/ansiToSvg.ts` | 272 | PI-12 | MEDIUM |
+| 25 | `src/utils/apiPreconnect.ts` | 71 | PI-12 | LOW |
+| 26 | `src/utils/appleTerminalBackup.ts` | 124 | PI-12 | LOW |
+| 27 | `src/utils/argumentSubstitution.ts` | 145 | PI-12 | LOW |
+| 28 | `src/utils/asciicast.ts` | 239 | PI-12 | MEDIUM |
+| 29 | `src/utils/attachments.ts` | 3997 |  | HIGH |
+| 30 | `src/utils/attribution.ts` | 393 | PI-12 | MEDIUM |
+| 31 | `src/utils/authFileDescriptor.ts` | 196 | PI-12 | LOW |
+| 32 | `src/utils/authPortable.ts` | 19 | PI-12 | LOW |
+| 33 | `src/utils/autoModeDenials.ts` | 26 | PI-12 | LOW |
+| 34 | `src/utils/autoRunIssue.tsx` | 121 | PI-12 | LOW |
+| 35 | `src/utils/autoUpdater.ts` | 561 |  | MEDIUM |
+| 36 | `src/utils/background/remote/preconditions.ts` | 235 | PI-12 | MEDIUM |
+| 37 | `src/utils/background/remote/remoteSession.ts` | 98 | PI-12 | LOW |
+| 38 | `src/utils/backgroundHousekeeping.ts` | 94 | PI-12 | LOW |
+| 39 | `src/utils/betas.ts` | 434 | PI-12 | MEDIUM |
+| 40 | `src/utils/billing.ts` | 78 | PI-12 | LOW |
+| 41 | `src/utils/binaryCheck.ts` | 53 | PI-12 | LOW |
+| 42 | `src/utils/browser.ts` | 68 | PI-12 | LOW |
+| 43 | `src/utils/bufferedWriter.ts` | 100 | PI-12 | LOW |
+| 44 | `src/utils/bundledMode.ts` | 22 | PI-12 | LOW |
+| 45 | `src/utils/caCerts.ts` | 115 | PI-12 | LOW |
+| 46 | `src/utils/caCertsConfig.ts` | 88 | PI-12 | LOW |
+| 47 | `src/utils/cachePaths.ts` | 38 | PI-12 | LOW |
+| 48 | `src/utils/classifierApprovals.ts` | 88 | PI-12 | LOW |
+| 49 | `src/utils/classifierApprovalsHook.ts` | 17 | PI-12 | LOW |
+| 50 | `src/utils/claudeCodeHints.ts` | 193 | PI-12 | LOW |
+| 51 | `src/utils/claudeDesktop.ts` | 152 | PI-12 | LOW |
+| 52 | `src/utils/claudemd.ts` | 1479 |  | HIGH |
+| 53 | `src/utils/cleanup.ts` | 602 |  | MEDIUM |
+| 54 | `src/utils/cleanupRegistry.ts` | 25 | PI-12 | LOW |
+| 55 | `src/utils/cliArgs.ts` | 60 | PI-12 | LOW |
+| 56 | `src/utils/cliHighlight.ts` | 54 | PI-12 | LOW |
+| 57 | `src/utils/codeIndexing.ts` | 206 | PI-12 | MEDIUM |
+| 58 | `src/utils/collapseBackgroundBashNotifications.ts` | 84 | PI-12 | LOW |
+| 59 | `src/utils/collapseHookSummaries.ts` | 59 | PI-12 | LOW |
+| 60 | `src/utils/collapseReadSearch.ts` | 1109 |  | HIGH |
+| 61 | `src/utils/collapseTeammateShutdowns.ts` | 55 | PI-12 | LOW |
+| 62 | `src/utils/combinedAbortSignal.ts` | 47 | PI-12 | LOW |
+| 63 | `src/utils/commandLifecycle.ts` | 21 | PI-12 | LOW |
+| 64 | `src/utils/commitAttribution.ts` | 961 |  | MEDIUM |
+| 65 | `src/utils/completionCache.ts` | 166 | PI-12 | LOW |
+| 66 | `src/utils/concurrentSessions.ts` | 204 | PI-12 | MEDIUM |
+| 67 | `src/utils/configConstants.ts` | 21 | PI-12 | LOW |
+| 68 | `src/utils/contentArray.ts` | 51 | PI-12 | LOW |
+| 69 | `src/utils/context.ts` | 221 | PI-12 | MEDIUM |
+| 70 | `src/utils/contextSuggestions.ts` | 235 | PI-12 | MEDIUM |
+| 71 | `src/utils/controlMessageCompat.ts` | 32 | PI-12 | LOW |
+| 72 | `src/utils/conversationRecovery.ts` | 597 |  | MEDIUM |
+| 73 | `src/utils/cron.ts` | 308 | PI-12 | MEDIUM |
+| 74 | `src/utils/cronJitterConfig.ts` | 75 | PI-12 | LOW |
+| 75 | `src/utils/cronScheduler.ts` | 565 |  | MEDIUM |
+| 76 | `src/utils/cronTasks.ts` | 458 | PI-12 | MEDIUM |
+| 77 | `src/utils/cronTasksLock.ts` | 195 | PI-12 | LOW |
+| 78 | `src/utils/crossProjectResume.ts` | 75 | PI-12 | LOW |
+| 79 | `src/utils/cwd.ts` | 32 | PI-12 | LOW |
+| 80 | `src/utils/debug.ts` | 268 | PI-12 | MEDIUM |
+| 81 | `src/utils/debugFilter.ts` | 157 | PI-12 | LOW |
+| 82 | `src/utils/deepLink/banner.ts` | 123 | PI-12 | LOW |
+| 83 | `src/utils/deepLink/parseDeepLink.ts` | 170 | PI-12 | LOW |
+| 84 | `src/utils/deepLink/protocolHandler.ts` | 136 | PI-12 | LOW |
+| 85 | `src/utils/deepLink/registerProtocol.ts` | 348 | PI-12 | MEDIUM |
+| 86 | `src/utils/deepLink/terminalLauncher.ts` | 557 | PI-12 | MEDIUM |
+| 87 | `src/utils/deepLink/terminalPreference.ts` | 54 | PI-12 | LOW |
+| 88 | `src/utils/desktopDeepLink.ts` | 236 | PI-12 | MEDIUM |
+| 89 | `src/utils/detectRepository.ts` | 178 | PI-12 | LOW |
+| 90 | `src/utils/diagLogs.ts` | 94 | PI-12 | LOW |
+| 91 | `src/utils/diff.ts` | 177 | PI-12 | LOW |
+| 92 | `src/utils/directMemberMessage.ts` | 69 | PI-12 | LOW |
+| 93 | `src/utils/displayTags.ts` | 51 | PI-12 | LOW |
+| 94 | `src/utils/doctorContextWarnings.ts` | 265 | PI-12 | MEDIUM |
+| 95 | `src/utils/doctorDiagnostic.ts` | 625 |  | MEDIUM |
+| 96 | `src/utils/dxt/helpers.ts` | 88 | PI-12 | LOW |
+| 97 | `src/utils/dxt/zip.ts` | 226 | PI-12 | MEDIUM |
+| 98 | `src/utils/editor.ts` | 183 | PI-12 | LOW |
+| 99 | `src/utils/effort.ts` | 329 | PI-12 | MEDIUM |
+| 100 | `src/utils/env.ts` | 347 | PI-12 | MEDIUM |
+| 101 | `src/utils/envDynamic.ts` | 151 | PI-12 | LOW |
+| 102 | `src/utils/envUtils.ts` | 183 | PI-12 | LOW |
+| 103 | `src/utils/envValidation.ts` | 38 | PI-12 | LOW |
+| 104 | `src/utils/errorLogSink.ts` | 235 | PI-12 | MEDIUM |
+| 105 | `src/utils/errors.ts` | 238 | PI-12 | MEDIUM |
+| 106 | `src/utils/exampleCommands.ts` | 184 | PI-12 | LOW |
+| 107 | `src/utils/execFileNoThrowPortable.ts` | 89 | PI-12 | LOW |
+| 108 | `src/utils/execSyncWrapper.ts` | 38 | PI-12 | LOW |
+| 109 | `src/utils/exportRenderer.tsx` | 97 | PI-12 | LOW |
+| 110 | `src/utils/extraUsage.ts` | 23 | PI-12 | LOW |
+| 111 | `src/utils/fastMode.ts` | 532 |  | MEDIUM |
+| 112 | `src/utils/fileOperationAnalytics.ts` | 71 | PI-12 | LOW |
+| 113 | `src/utils/filePersistence/filePersistence.ts` | 287 | PI-12 | MEDIUM |
+| 114 | `src/utils/filePersistence/outputsScanner.ts` | 126 | PI-12 | LOW |
+| 115 | `src/utils/fileRead.ts` | 102 | PI-12 | LOW |
+| 116 | `src/utils/fileReadCache.ts` | 96 | PI-12 | LOW |
+| 117 | `src/utils/fileStateCache.ts` | 142 | PI-12 | LOW |
+| 118 | `src/utils/findExecutable.ts` | 17 | PI-12 | LOW |
+| 119 | `src/utils/fingerprint.ts` | 76 | PI-12 | LOW |
+| 120 | `src/utils/format.ts` | 308 | PI-12 | MEDIUM |
+| 121 | `src/utils/formatBriefTimestamp.ts` | 81 | PI-12 | LOW |
+| 122 | `src/utils/fpsTracker.ts` | 47 | PI-12 | LOW |
+| 123 | `src/utils/frontmatterParser.ts` | 370 | PI-12 | MEDIUM |
+| 124 | `src/utils/fsOperations.ts` | 770 |  | MEDIUM |
+| 125 | `src/utils/fullscreen.ts` | 202 | PI-12 | MEDIUM |
+| 126 | `src/utils/generatedFiles.ts` | 136 | PI-12 | LOW |
+| 127 | `src/utils/generators.ts` | 88 | PI-12 | LOW |
+| 128 | `src/utils/genericProcessUtils.ts` | 184 | PI-12 | LOW |
+| 129 | `src/utils/getWorktreePaths.ts` | 70 | PI-12 | LOW |
+| 130 | `src/utils/getWorktreePathsPortable.ts` | 27 | PI-12 | LOW |
+| 131 | `src/utils/ghPrStatus.ts` | 106 | PI-12 | LOW |
+| 132 | `src/utils/git/gitConfigParser.ts` | 277 | PI-12 | MEDIUM |
+| 133 | `src/utils/git/gitignore.ts` | 99 | PI-12 | LOW |
+| 134 | `src/utils/gitSettings.ts` | 18 | PI-12 | LOW |
+| 135 | `src/utils/github/ghAuthStatus.ts` | 29 | PI-12 | LOW |
+| 136 | `src/utils/githubRepoPathMapping.ts` | 162 | PI-12 | LOW |
+| 137 | `src/utils/glob.ts` | 130 | PI-12 | LOW |
+| 138 | `src/utils/gracefulShutdown.ts` | 529 |  | MEDIUM |
+| 139 | `src/utils/groupToolUses.ts` | 182 | PI-12 | LOW |
+| 140 | `src/utils/handlePromptSubmit.ts` | 610 |  | MEDIUM |
+| 141 | `src/utils/hash.ts` | 46 | PI-12 | LOW |
+| 142 | `src/utils/headlessProfiler.ts` | 178 | PI-12 | LOW |
+| 143 | `src/utils/heapDumpService.ts` | 303 | PI-12 | MEDIUM |
+| 144 | `src/utils/heatmap.ts` | 198 | PI-12 | LOW |
+| 145 | `src/utils/highlightMatch.tsx` | 27 | PI-12 | LOW |
+| 146 | `src/utils/hooks.ts` | 5022 | PI-12 | HIGH |
+| 147 | `src/utils/hooks/AsyncHookRegistry.ts` | 309 | PI-12 | MEDIUM |
+| 148 | `src/utils/hooks/apiQueryHookHelper.ts` | 141 | PI-12 | LOW |
+| 149 | `src/utils/hooks/execAgentHook.ts` | 339 | PI-12 | MEDIUM |
+| 150 | `src/utils/hooks/execHttpHook.ts` | 242 | PI-12 | MEDIUM |
+| 151 | `src/utils/hooks/execPromptHook.ts` | 211 | PI-12 | MEDIUM |
+| 152 | `src/utils/hooks/fileChangedWatcher.ts` | 191 | PI-12 | LOW |
+| 153 | `src/utils/hooks/hookEvents.ts` | 192 | PI-12 | LOW |
+| 154 | `src/utils/hooks/hookHelpers.ts` | 83 | PI-12 | LOW |
+| 155 | `src/utils/hooks/hooksConfigManager.ts` | 400 | PI-12 | MEDIUM |
+| 156 | `src/utils/hooks/hooksConfigSnapshot.ts` | 133 | PI-12 | LOW |
+| 157 | `src/utils/hooks/hooksSettings.ts` | 271 | PI-12 | MEDIUM |
+| 158 | `src/utils/hooks/postSamplingHooks.ts` | 70 | PI-12 | LOW |
+| 159 | `src/utils/hooks/registerFrontmatterHooks.ts` | 67 | PI-12 | LOW |
+| 160 | `src/utils/hooks/registerSkillHooks.ts` | 64 | PI-12 | LOW |
+| 161 | `src/utils/hooks/sessionHooks.ts` | 447 | PI-12 | MEDIUM |
+| 162 | `src/utils/hooks/skillImprovement.ts` | 267 | PI-12 | MEDIUM |
+| 163 | `src/utils/hooks/ssrfGuard.ts` | 294 | PI-12 | MEDIUM |
+| 164 | `src/utils/horizontalScroll.ts` | 137 | PI-12 | LOW |
+| 165 | `src/utils/hyperlink.ts` | 39 | PI-12 | LOW |
+| 166 | `src/utils/iTermBackup.ts` | 73 | PI-12 | LOW |
+| 167 | `src/utils/ide.ts` | 1494 |  | HIGH |
+| 168 | `src/utils/idePathConversion.ts` | 90 | PI-12 | LOW |
+| 169 | `src/utils/idleTimeout.ts` | 53 | PI-12 | LOW |
+| 170 | `src/utils/imagePaste.ts` | 416 | PI-12 | MEDIUM |
+| 171 | `src/utils/imageResizer.ts` | 880 |  | MEDIUM |
+| 172 | `src/utils/imageStore.ts` | 167 | PI-12 | LOW |
+| 173 | `src/utils/imageValidation.ts` | 104 | PI-12 | LOW |
+| 174 | `src/utils/immediateCommand.ts` | 15 | PI-12 | LOW |
+| 175 | `src/utils/inProcessTeammateHelpers.ts` | 102 | PI-12 | LOW |
+| 176 | `src/utils/ink.ts` | 26 | PI-12 | LOW |
+| 177 | `src/utils/intl.ts` | 94 | PI-12 | LOW |
+| 178 | `src/utils/jetbrains.ts` | 191 | PI-12 | LOW |
+| 179 | `src/utils/json.ts` | 277 | PI-12 | MEDIUM |
+| 180 | `src/utils/jsonRead.ts` | 16 | PI-12 | LOW |
+| 181 | `src/utils/listSessionsImpl.ts` | 454 | PI-12 | MEDIUM |
+| 182 | `src/utils/localInstaller.ts` | 162 | PI-12 | LOW |
+| 183 | `src/utils/lockfile.ts` | 43 | PI-12 | LOW |
+| 184 | `src/utils/log.ts` | 362 | PI-12 | MEDIUM |
+| 185 | `src/utils/logoV2Utils.ts` | 350 | PI-12 | MEDIUM |
+| 186 | `src/utils/mailbox.ts` | 73 | PI-12 | LOW |
+| 187 | `src/utils/managedEnv.ts` | 199 | PI-12 | LOW |
+| 188 | `src/utils/managedEnvConstants.ts` | 191 | PI-12 | LOW |
+| 189 | `src/utils/markdown.ts` | 381 | PI-12 | MEDIUM |
+| 190 | `src/utils/markdownConfigLoader.ts` | 600 |  | MEDIUM |
+| 191 | `src/utils/mcp/dateTimeParser.ts` | 121 | PI-12 | LOW |
+| 192 | `src/utils/mcp/elicitationValidation.ts` | 336 | PI-12 | MEDIUM |
+| 193 | `src/utils/mcpInstructionsDelta.ts` | 130 | PI-12 | LOW |
+| 194 | `src/utils/mcpOutputStorage.ts` | 189 | PI-12 | LOW |
+| 195 | `src/utils/mcpValidation.ts` | 208 | PI-12 | MEDIUM |
+| 196 | `src/utils/mcpWebSocketTransport.ts` | 200 | PI-12 | LOW |
+| 197 | `src/utils/memoize.ts` | 269 | PI-12 | MEDIUM |
+| 198 | `src/utils/memoryFileDetection.ts` | 289 | PI-12 | MEDIUM |
+| 199 | `src/utils/messageQueueManager.ts` | 547 |  | MEDIUM |
+| 200 | `src/utils/messages/mappers.ts` | 290 | PI-12 | MEDIUM |
+| 201 | `src/utils/messages/systemInit.ts` | 96 | PI-12 | LOW |
+| 202 | `src/utils/model/agent.ts` | 157 | PI-12 | LOW |
+| 203 | `src/utils/model/aliases.ts` | 25 | PI-12 | LOW |
+| 204 | `src/utils/model/antModels.ts` | 64 | PI-12 | LOW |
+| 205 | `src/utils/model/bedrock.ts` | 265 | PI-12 | MEDIUM |
+| 206 | `src/utils/model/check1mAccess.ts` | 72 | PI-12 | LOW |
+| 207 | `src/utils/model/configs.ts` | 118 | PI-12 | LOW |
+| 208 | `src/utils/model/contextWindowUpgradeCheck.ts` | 47 | PI-12 | LOW |
+| 209 | `src/utils/model/deprecation.ts` | 101 | PI-12 | LOW |
+| 210 | `src/utils/model/model.ts` | 618 | PI-12 | MEDIUM |
+| 211 | `src/utils/model/modelAllowlist.ts` | 170 | PI-12 | LOW |
+| 212 | `src/utils/model/modelCapabilities.ts` | 118 | PI-12 | LOW |
+| 213 | `src/utils/model/modelOptions.ts` | 540 | PI-12 | MEDIUM |
+| 214 | `src/utils/model/modelStrings.ts` | 166 | PI-12 | LOW |
+| 215 | `src/utils/model/modelSupportOverrides.ts` | 50 | PI-12 | LOW |
+| 216 | `src/utils/model/providers.ts` | 40 | PI-12 | LOW |
+| 217 | `src/utils/model/validateModel.ts` | 159 | PI-12 | LOW |
+| 218 | `src/utils/modelCost.ts` | 231 | PI-12 | MEDIUM |
+| 219 | `src/utils/modifiers.ts` | 36 | PI-12 | LOW |
+| 220 | `src/utils/mtls.ts` | 179 | PI-12 | LOW |
+| 221 | `src/utils/nativeInstaller/download.ts` | 523 | PI-12 | MEDIUM |
+| 222 | `src/utils/nativeInstaller/index.ts` | 18 | PI-12 | LOW |
+| 223 | `src/utils/nativeInstaller/installer.ts` | 1708 | PI-12 | HIGH |
+| 224 | `src/utils/nativeInstaller/packageManagers.ts` | 336 | PI-12 | MEDIUM |
+| 225 | `src/utils/nativeInstaller/pidLock.ts` | 433 | PI-12 | MEDIUM |
+| 226 | `src/utils/notebook.ts` | 224 | PI-12 | MEDIUM |
+| 227 | `src/utils/objectGroupBy.ts` | 18 | PI-12 | LOW |
+| 228 | `src/utils/pasteStore.ts` | 104 | PI-12 | LOW |
+| 229 | `src/utils/path.ts` | 155 | PI-12 | LOW |
+| 230 | `src/utils/pdf.ts` | 300 | PI-12 | MEDIUM |
+| 231 | `src/utils/pdfUtils.ts` | 70 | PI-12 | LOW |
+| 232 | `src/utils/peerAddress.ts` | 21 | PI-12 | LOW |
+| 233 | `src/utils/planModeV2.ts` | 95 | PI-12 | LOW |
+| 234 | `src/utils/plans.ts` | 397 | PI-12 | MEDIUM |
+| 235 | `src/utils/platform.ts` | 150 | PI-12 | LOW |
+| 236 | `src/utils/preflightChecks.tsx` | 150 | PI-12 | LOW |
+| 237 | `src/utils/privacyLevel.ts` | 55 | PI-12 | LOW |
+| 238 | `src/utils/process.ts` | 68 | PI-12 | LOW |
+| 239 | `src/utils/processUserInput/processBashCommand.tsx` | 139 | PI-12 | LOW |
+| 240 | `src/utils/processUserInput/processSlashCommand.tsx` | 921 |  | MEDIUM |
+| 241 | `src/utils/processUserInput/processTextPrompt.ts` | 100 | PI-12 | LOW |
+| 242 | `src/utils/profilerBase.ts` | 46 | PI-12 | LOW |
+| 243 | `src/utils/promptCategory.ts` | 49 | PI-12 | LOW |
+| 244 | `src/utils/promptEditor.ts` | 188 | PI-12 | LOW |
+| 245 | `src/utils/promptShellExecution.ts` | 183 | PI-12 | LOW |
+| 246 | `src/utils/proxy.ts` | 426 | PI-12 | MEDIUM |
+| 247 | `src/utils/queryProfiler.ts` | 301 | PI-12 | MEDIUM |
+| 248 | `src/utils/queueProcessor.ts` | 95 | PI-12 | LOW |
+| 249 | `src/utils/readEditContext.ts` | 227 | PI-12 | MEDIUM |
+| 250 | `src/utils/readFileInRange.ts` | 383 | PI-12 | MEDIUM |
+| 251 | `src/utils/releaseNotes.ts` | 360 | PI-12 | MEDIUM |
+| 252 | `src/utils/renderOptions.ts` | 77 | PI-12 | LOW |
+| 253 | `src/utils/sanitization.ts` | 91 | PI-12 | LOW |
+| 254 | `src/utils/screenshotClipboard.ts` | 121 | PI-12 | LOW |
+| 255 | `src/utils/sdkEventQueue.ts` | 134 | PI-12 | LOW |
+| 256 | `src/utils/semanticBoolean.ts` | 29 | PI-12 | LOW |
+| 257 | `src/utils/semanticNumber.ts` | 36 | PI-12 | LOW |
+| 258 | `src/utils/semver.ts` | 59 | PI-12 | LOW |
+| 259 | `src/utils/sequential.ts` | 56 | PI-12 | LOW |
+| 260 | `src/utils/sessionActivity.ts` | 133 | PI-12 | LOW |
+| 261 | `src/utils/sessionEnvVars.ts` | 22 | PI-12 | LOW |
+| 262 | `src/utils/sessionEnvironment.ts` | 166 | PI-12 | LOW |
+| 263 | `src/utils/sessionFileAccessHooks.ts` | 250 | PI-12 | MEDIUM |
+| 264 | `src/utils/sessionIngressAuth.ts` | 140 | PI-12 | LOW |
+| 265 | `src/utils/sessionStart.ts` | 232 | PI-12 | MEDIUM |
+| 266 | `src/utils/sessionState.ts` | 150 | PI-12 | LOW |
+| 267 | `src/utils/sessionTitle.ts` | 129 | PI-12 | LOW |
+| 268 | `src/utils/sessionUrl.ts` | 64 | PI-12 | LOW |
+| 269 | `src/utils/set.ts` | 53 | PI-12 | LOW |
+| 270 | `src/utils/shellConfig.ts` | 167 | PI-12 | LOW |
+| 271 | `src/utils/sideQuery.ts` | 222 | PI-12 | MEDIUM |
+| 272 | `src/utils/sideQuestion.ts` | 155 | PI-12 | LOW |
+| 273 | `src/utils/signal.ts` | 43 | PI-12 | LOW |
+| 274 | `src/utils/skills/skillChangeDetector.ts` | 311 | PI-12 | MEDIUM |
+| 275 | `src/utils/slashCommandParsing.ts` | 60 | PI-12 | LOW |
+| 276 | `src/utils/sleep.ts` | 84 | PI-12 | LOW |
+| 277 | `src/utils/sliceAnsi.ts` | 91 | PI-12 | LOW |
+| 278 | `src/utils/slowOperations.ts` | 286 | PI-12 | MEDIUM |
+| 279 | `src/utils/standaloneAgent.ts` | 23 | PI-12 | LOW |
+| 280 | `src/utils/staticRender.tsx` | 115 | PI-12 | LOW |
+| 281 | `src/utils/stats.ts` | 1061 |  | HIGH |
+| 282 | `src/utils/statsCache.ts` | 434 | PI-12 | MEDIUM |
+| 283 | `src/utils/status.tsx` | 361 | PI-12 | MEDIUM |
+| 284 | `src/utils/statusNoticeDefinitions.tsx` | 197 | PI-12 | LOW |
+| 285 | `src/utils/statusNoticeHelpers.ts` | 20 | PI-12 | LOW |
+| 286 | `src/utils/stream.ts` | 76 | PI-12 | LOW |
+| 287 | `src/utils/streamJsonStdoutGuard.ts` | 123 | PI-12 | LOW |
+| 288 | `src/utils/streamlinedTransform.ts` | 201 | PI-12 | MEDIUM |
+| 289 | `src/utils/stringUtils.ts` | 235 | PI-12 | MEDIUM |
+| 290 | `src/utils/subprocessEnv.ts` | 99 | PI-12 | LOW |
+| 291 | `src/utils/suggestions/commandSuggestions.ts` | 567 |  | MEDIUM |
+| 292 | `src/utils/suggestions/directoryCompletion.ts` | 263 | PI-12 | MEDIUM |
+| 293 | `src/utils/suggestions/shellHistoryCompletion.ts` | 119 | PI-12 | LOW |
+| 294 | `src/utils/suggestions/skillUsageTracking.ts` | 55 | PI-12 | LOW |
+| 295 | `src/utils/suggestions/slackChannelSuggestions.ts` | 209 | PI-12 | MEDIUM |
+| 296 | `src/utils/systemDirectories.ts` | 74 | PI-12 | LOW |
+| 297 | `src/utils/systemPrompt.ts` | 123 | PI-12 | LOW |
+| 298 | `src/utils/systemTheme.ts` | 119 | PI-12 | LOW |
+| 299 | `src/utils/taggedId.ts` | 54 | PI-12 | LOW |
+| 300 | `src/utils/tasks.ts` | 862 |  | MEDIUM |
+| 301 | `src/utils/teamDiscovery.ts` | 81 | PI-12 | LOW |
+| 302 | `src/utils/teamMemoryOps.ts` | 88 | PI-12 | LOW |
+| 303 | `src/utils/teammate.ts` | 292 | PI-12 | MEDIUM |
+| 304 | `src/utils/teammateContext.ts` | 96 | PI-12 | LOW |
+| 305 | `src/utils/teammateMailbox.ts` | 1183 |  | HIGH |
+| 306 | `src/utils/teleport.tsx` | 1225 |  | HIGH |
+| 307 | `src/utils/teleport/api.ts` | 466 | PI-12 | MEDIUM |
+| 308 | `src/utils/teleport/environmentSelection.ts` | 77 | PI-12 | LOW |
+| 309 | `src/utils/teleport/environments.ts` | 120 | PI-12 | LOW |
+| 310 | `src/utils/teleport/gitBundle.ts` | 292 | PI-12 | MEDIUM |
+| 311 | `src/utils/tempfile.ts` | 31 | PI-12 | LOW |
+| 312 | `src/utils/terminal.ts` | 131 | PI-12 | LOW |
+| 313 | `src/utils/terminalPanel.ts` | 191 | PI-12 | LOW |
+| 314 | `src/utils/textHighlighting.ts` | 166 | PI-12 | LOW |
+| 315 | `src/utils/theme.ts` | 639 |  | MEDIUM |
+| 316 | `src/utils/thinking.ts` | 162 | PI-12 | LOW |
+| 317 | `src/utils/timeouts.ts` | 39 | PI-12 | LOW |
+| 318 | `src/utils/tmuxSocket.ts` | 427 | PI-12 | MEDIUM |
+| 319 | `src/utils/todo/types.ts` | 18 | PI-12 | LOW |
+| 320 | `src/utils/tokenBudget.ts` | 73 | PI-12 | LOW |
+| 321 | `src/utils/toolErrors.ts` | 132 | PI-12 | LOW |
+| 322 | `src/utils/toolPool.ts` | 79 | PI-12 | LOW |
+| 323 | `src/utils/toolSchemaCache.ts` | 26 | PI-12 | LOW |
+| 324 | `src/utils/transcriptSearch.ts` | 202 | PI-12 | MEDIUM |
+| 325 | `src/utils/treeify.ts` | 170 | PI-12 | LOW |
+| 326 | `src/utils/truncate.ts` | 179 | PI-12 | LOW |
+| 327 | `src/utils/ultraplan/ccrSession.ts` | 349 | PI-12 | MEDIUM |
+| 328 | `src/utils/ultraplan/keyword.ts` | 127 | PI-12 | LOW |
+| 329 | `src/utils/unaryLogging.ts` | 39 | PI-12 | LOW |
+| 330 | `src/utils/undercover.ts` | 89 | PI-12 | LOW |
+| 331 | `src/utils/user.ts` | 194 | PI-12 | LOW |
+| 332 | `src/utils/userPromptKeywords.ts` | 27 | PI-12 | LOW |
+| 333 | `src/utils/uuid.ts` | 27 | PI-12 | LOW |
+| 334 | `src/utils/which.ts` | 82 | PI-12 | LOW |
+| 335 | `src/utils/windowsPaths.ts` | 173 | PI-12 | LOW |
+| 336 | `src/utils/words.ts` | 800 |  | MEDIUM |
+| 337 | `src/utils/workloadContext.ts` | 57 | PI-12 | LOW |
+| 338 | `src/utils/worktree.ts` | 1519 |  | HIGH |
+| 339 | `src/utils/xdg.ts` | 65 | PI-12 | LOW |
+| 340 | `src/utils/xml.ts` | 16 | PI-12 | LOW |
+| 341 | `src/utils/yaml.ts` | 15 | PI-12 | LOW |
+| 342 | `src/utils/zodToJsonSchema.ts` | 23 | PI-12 | LOW |
+
+## ML-02-1 (3 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/QueryEngine.ts` | 1295 |  | HIGH |
+| 2 | `src/utils/processUserInput/processUserInput.ts` | 605 |  | MEDIUM |
+| 3 | `src/utils/queryContext.ts` | 179 |  | LOW |
+
+## ML-02-2 (8 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/query.ts` | 1729 |  | HIGH |
+| 2 | `src/query/config.ts` | 46 |  | LOW |
+| 3 | `src/query/deps.ts` | 40 |  | LOW |
+| 4 | `src/query/stopHooks.ts` | 473 |  | MEDIUM |
+| 5 | `src/query/transitions.ts` | 3 |  | LOW |
+| 6 | `src/services/compact/autoCompact.ts` | 351 |  | MEDIUM |
+| 7 | `src/services/compact/compact.ts` | 1705 |  | HIGH |
+| 8 | `src/utils/tokens.ts` | 261 |  | MEDIUM |
+
+## ML-02-3 (8 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/Tool.ts` | 792 |  | MEDIUM |
+| 2 | `src/services/api/claude.ts` | 3419 |  | HIGH |
+| 3 | `src/services/api/client.ts` | 389 |  | MEDIUM |
+| 4 | `src/services/api/errors.ts` | 1207 |  | HIGH |
+| 5 | `src/services/api/logging.ts` | 788 |  | MEDIUM |
+| 6 | `src/services/api/withRetry.ts` | 822 |  | MEDIUM |
+| 7 | `src/services/tools/StreamingToolExecutor.ts` | 530 |  | MEDIUM |
+| 8 | `src/services/tools/toolOrchestration.ts` | 188 |  | LOW |
+
+## ML-02-4 (3 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/utils/api.ts` | 718 |  | MEDIUM |
+| 2 | `src/utils/messages.ts` | 5512 |  | HIGH |
+| 3 | `src/utils/queryHelpers.ts` | 552 |  | MEDIUM |
+
+## ML-03 (21 files)
+
+📋 **Summary**: [summary-ML-03-tool-system-dispatch](/branches/main/report/summary-ML-03-tool-system-dispatch)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/utils/computerUse/appNames.ts` | 196 |  | LOW |
+| 2 | `src/utils/computerUse/cleanup.ts` | 86 |  | LOW |
+| 3 | `src/utils/computerUse/common.ts` | 61 |  | LOW |
+| 4 | `src/utils/computerUse/computerUseLock.ts` | 215 |  | MEDIUM |
+| 5 | `src/utils/computerUse/drainRunLoop.ts` | 79 |  | LOW |
+| 6 | `src/utils/computerUse/escHotkey.ts` | 54 |  | LOW |
+| 7 | `src/utils/computerUse/executor.ts` | 658 |  | MEDIUM |
+| 8 | `src/utils/computerUse/gates.ts` | 72 |  | LOW |
+| 9 | `src/utils/computerUse/hostAdapter.ts` | 69 |  | LOW |
+| 10 | `src/utils/computerUse/inputLoader.ts` | 45 | PI-18 | LOW |
+| 11 | `src/utils/computerUse/mcpServer.ts` | 106 |  | LOW |
+| 12 | `src/utils/computerUse/setup.ts` | 53 |  | LOW |
+| 13 | `src/utils/computerUse/swiftLoader.ts` | 39 | PI-18 | LOW |
+| 14 | `src/utils/computerUse/toolRendering.tsx` | 124 |  | LOW |
+| 15 | `src/utils/computerUse/wrapper.tsx` | 335 |  | MEDIUM |
+| 16 | `src/utils/file.ts` | 584 |  | MEDIUM |
+| 17 | `src/utils/fileHistory.ts` | 1115 |  | HIGH |
+| 18 | `src/utils/git.ts` | 926 |  | MEDIUM |
+| 19 | `src/utils/git/gitFilesystem.ts` | 699 |  | MEDIUM |
+| 20 | `src/utils/gitDiff.ts` | 532 |  | MEDIUM |
+| 21 | `src/utils/ripgrep.ts` | 679 |  | MEDIUM |
+
+## ML-03-1 (5 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/constants/tools.ts` | 112 |  | LOW |
+| 2 | `src/hooks/useCanUseTool.tsx` | 203 |  | MEDIUM |
+| 3 | `src/types/tools.ts` | 15 |  | LOW |
+| 4 | `src/utils/embeddedTools.ts` | 29 |  | LOW |
+| 5 | `src/utils/toolSearch.ts` | 756 |  | MEDIUM |
+
+## ML-03-2 (201 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/services/tools/toolExecution.ts` | 1745 |  | HIGH |
+| 2 | `src/tools/AgentTool/AgentTool.tsx` | 1397 |  | HIGH |
+| 3 | `src/tools/AgentTool/UI.tsx` | 871 |  | MEDIUM |
+| 4 | `src/tools/AgentTool/agentColorManager.ts` | 66 |  | LOW |
+| 5 | `src/tools/AgentTool/agentDisplay.ts` | 104 |  | LOW |
+| 6 | `src/tools/AgentTool/agentMemory.ts` | 177 |  | LOW |
+| 7 | `src/tools/AgentTool/agentMemorySnapshot.ts` | 197 |  | LOW |
+| 8 | `src/tools/AgentTool/agentToolUtils.ts` | 686 |  | MEDIUM |
+| 9 | `src/tools/AgentTool/built-in/claudeCodeGuideAgent.ts` | 205 |  | MEDIUM |
+| 10 | `src/tools/AgentTool/built-in/exploreAgent.ts` | 83 |  | LOW |
+| 11 | `src/tools/AgentTool/built-in/generalPurposeAgent.ts` | 34 |  | LOW |
+| 12 | `src/tools/AgentTool/built-in/planAgent.ts` | 92 |  | LOW |
+| 13 | `src/tools/AgentTool/built-in/statuslineSetup.ts` | 144 |  | LOW |
+| 14 | `src/tools/AgentTool/built-in/verificationAgent.ts` | 152 |  | LOW |
+| 15 | `src/tools/AgentTool/builtInAgents.ts` | 72 |  | LOW |
+| 16 | `src/tools/AgentTool/constants.ts` | 12 | PI-01 | LOW |
+| 17 | `src/tools/AgentTool/forkSubagent.ts` | 210 |  | MEDIUM |
+| 18 | `src/tools/AgentTool/loadAgentsDir.ts` | 755 |  | MEDIUM |
+| 19 | `src/tools/AgentTool/prompt.ts` | 287 |  | MEDIUM |
+| 20 | `src/tools/AgentTool/resumeAgent.ts` | 265 |  | MEDIUM |
+| 21 | `src/tools/AgentTool/runAgent.ts` | 973 |  | MEDIUM |
+| 22 | `src/tools/AskUserQuestionTool/AskUserQuestionTool.tsx` | 265 |  | MEDIUM |
+| 23 | `src/tools/AskUserQuestionTool/prompt.ts` | 44 | PI-01 | LOW |
+| 24 | `src/tools/BashTool/BashTool.tsx` | 1143 |  | HIGH |
+| 25 | `src/tools/BashTool/BashToolResultMessage.tsx` | 190 |  | LOW |
+| 26 | `src/tools/BashTool/UI.tsx` | 184 |  | LOW |
+| 27 | `src/tools/BashTool/bashCommandHelpers.ts` | 265 |  | MEDIUM |
+| 28 | `src/tools/BashTool/bashPermissions.ts` | 2621 |  | HIGH |
+| 29 | `src/tools/BashTool/bashSecurity.ts` | 2592 |  | HIGH |
+| 30 | `src/tools/BashTool/commandSemantics.ts` | 140 |  | LOW |
+| 31 | `src/tools/BashTool/commentLabel.ts` | 13 | PI-01 | LOW |
+| 32 | `src/tools/BashTool/destructiveCommandWarning.ts` | 102 |  | LOW |
+| 33 | `src/tools/BashTool/modeValidation.ts` | 115 |  | LOW |
+| 34 | `src/tools/BashTool/pathValidation.ts` | 1303 |  | HIGH |
+| 35 | `src/tools/BashTool/prompt.ts` | 369 |  | MEDIUM |
+| 36 | `src/tools/BashTool/readOnlyValidation.ts` | 1990 |  | HIGH |
+| 37 | `src/tools/BashTool/sedEditParser.ts` | 322 |  | MEDIUM |
+| 38 | `src/tools/BashTool/sedValidation.ts` | 684 |  | MEDIUM |
+| 39 | `src/tools/BashTool/shouldUseSandbox.ts` | 153 |  | LOW |
+| 40 | `src/tools/BashTool/toolName.ts` | 2 | PI-01 | LOW |
+| 41 | `src/tools/BashTool/utils.ts` | 223 |  | MEDIUM |
+| 42 | `src/tools/BriefTool/BriefTool.ts` | 204 |  | MEDIUM |
+| 43 | `src/tools/BriefTool/UI.tsx` | 100 |  | LOW |
+| 44 | `src/tools/BriefTool/attachments.ts` | 110 |  | LOW |
+| 45 | `src/tools/BriefTool/prompt.ts` | 22 | PI-01 | LOW |
+| 46 | `src/tools/BriefTool/upload.ts` | 174 |  | LOW |
+| 47 | `src/tools/ConfigTool/ConfigTool.ts` | 467 |  | MEDIUM |
+| 48 | `src/tools/ConfigTool/UI.tsx` | 37 | PI-01 | LOW |
+| 49 | `src/tools/ConfigTool/constants.ts` | 1 | PI-01 | LOW |
+| 50 | `src/tools/ConfigTool/prompt.ts` | 93 |  | LOW |
+| 51 | `src/tools/ConfigTool/supportedSettings.ts` | 211 |  | MEDIUM |
+| 52 | `src/tools/DiscoverSkillsTool/prompt.ts` | 1 | PI-01 | LOW |
+| 53 | `src/tools/EnterPlanModeTool/EnterPlanModeTool.ts` | 126 |  | LOW |
+| 54 | `src/tools/EnterPlanModeTool/UI.tsx` | 32 | PI-01 | LOW |
+| 55 | `src/tools/EnterPlanModeTool/constants.ts` | 1 | PI-01 | LOW |
+| 56 | `src/tools/EnterPlanModeTool/prompt.ts` | 170 |  | LOW |
+| 57 | `src/tools/EnterWorktreeTool/EnterWorktreeTool.ts` | 127 |  | LOW |
+| 58 | `src/tools/EnterWorktreeTool/UI.tsx` | 19 | PI-01 | LOW |
+| 59 | `src/tools/EnterWorktreeTool/constants.ts` | 1 | PI-01 | LOW |
+| 60 | `src/tools/EnterWorktreeTool/prompt.ts` | 30 | PI-01 | LOW |
+| 61 | `src/tools/ExitPlanModeTool/ExitPlanModeV2Tool.ts` | 493 |  | MEDIUM |
+| 62 | `src/tools/ExitPlanModeTool/UI.tsx` | 81 |  | LOW |
+| 63 | `src/tools/ExitPlanModeTool/constants.ts` | 2 | PI-01 | LOW |
+| 64 | `src/tools/ExitPlanModeTool/prompt.ts` | 29 | PI-01 | LOW |
+| 65 | `src/tools/ExitWorktreeTool/ExitWorktreeTool.ts` | 329 |  | MEDIUM |
+| 66 | `src/tools/ExitWorktreeTool/UI.tsx` | 24 | PI-01 | LOW |
+| 67 | `src/tools/ExitWorktreeTool/constants.ts` | 1 | PI-01 | LOW |
+| 68 | `src/tools/ExitWorktreeTool/prompt.ts` | 32 | PI-01 | LOW |
+| 69 | `src/tools/FileEditTool/FileEditTool.ts` | 625 |  | MEDIUM |
+| 70 | `src/tools/FileEditTool/UI.tsx` | 288 |  | MEDIUM |
+| 71 | `src/tools/FileEditTool/constants.ts` | 11 | PI-01 | LOW |
+| 72 | `src/tools/FileEditTool/prompt.ts` | 28 | PI-01 | LOW |
+| 73 | `src/tools/FileEditTool/types.ts` | 85 |  | LOW |
+| 74 | `src/tools/FileEditTool/utils.ts` | 775 |  | MEDIUM |
+| 75 | `src/tools/FileReadTool/FileReadTool.ts` | 1183 |  | HIGH |
+| 76 | `src/tools/FileReadTool/UI.tsx` | 184 |  | LOW |
+| 77 | `src/tools/FileReadTool/imageProcessor.ts` | 94 |  | LOW |
+| 78 | `src/tools/FileReadTool/limits.ts` | 92 |  | LOW |
+| 79 | `src/tools/FileReadTool/prompt.ts` | 49 | PI-01 | LOW |
+| 80 | `src/tools/FileWriteTool/FileWriteTool.ts` | 434 |  | MEDIUM |
+| 81 | `src/tools/FileWriteTool/UI.tsx` | 404 |  | MEDIUM |
+| 82 | `src/tools/FileWriteTool/prompt.ts` | 18 | PI-01 | LOW |
+| 83 | `src/tools/GlobTool/GlobTool.ts` | 198 |  | LOW |
+| 84 | `src/tools/GlobTool/UI.tsx` | 62 |  | LOW |
+| 85 | `src/tools/GlobTool/prompt.ts` | 7 | PI-01 | LOW |
+| 86 | `src/tools/GrepTool/GrepTool.ts` | 577 |  | MEDIUM |
+| 87 | `src/tools/GrepTool/UI.tsx` | 200 |  | LOW |
+| 88 | `src/tools/GrepTool/prompt.ts` | 18 | PI-01 | LOW |
+| 89 | `src/tools/LSPTool/LSPTool.ts` | 860 |  | MEDIUM |
+| 90 | `src/tools/LSPTool/UI.tsx` | 227 |  | MEDIUM |
+| 91 | `src/tools/LSPTool/formatters.ts` | 592 |  | MEDIUM |
+| 92 | `src/tools/LSPTool/prompt.ts` | 21 | PI-01 | LOW |
+| 93 | `src/tools/LSPTool/schemas.ts` | 215 |  | MEDIUM |
+| 94 | `src/tools/LSPTool/symbolContext.ts` | 90 |  | LOW |
+| 95 | `src/tools/ListMcpResourcesTool/ListMcpResourcesTool.ts` | 123 |  | LOW |
+| 96 | `src/tools/ListMcpResourcesTool/UI.tsx` | 28 | PI-01 | LOW |
+| 97 | `src/tools/ListMcpResourcesTool/prompt.ts` | 20 | PI-01 | LOW |
+| 98 | `src/tools/MCPTool/MCPTool.ts` | 77 |  | LOW |
+| 99 | `src/tools/MCPTool/UI.tsx` | 402 |  | MEDIUM |
+| 100 | `src/tools/MCPTool/classifyForCollapse.ts` | 604 |  | MEDIUM |
+| 101 | `src/tools/MCPTool/prompt.ts` | 3 | PI-01 | LOW |
+| 102 | `src/tools/McpAuthTool/McpAuthTool.ts` | 215 |  | MEDIUM |
+| 103 | `src/tools/MonitorTool/MonitorTool.ts` | 1 | PI-01 | LOW |
+| 104 | `src/tools/NotebookEditTool/NotebookEditTool.ts` | 490 |  | MEDIUM |
+| 105 | `src/tools/NotebookEditTool/UI.tsx` | 92 |  | LOW |
+| 106 | `src/tools/NotebookEditTool/constants.ts` | 2 | PI-01 | LOW |
+| 107 | `src/tools/NotebookEditTool/prompt.ts` | 3 | PI-01 | LOW |
+| 108 | `src/tools/OverflowTestTool/OverflowTestTool.ts` | 1 | PI-01 | LOW |
+| 109 | `src/tools/PowerShellTool/PowerShellTool.tsx` | 1000 |  | MEDIUM |
+| 110 | `src/tools/PowerShellTool/UI.tsx` | 130 |  | LOW |
+| 111 | `src/tools/PowerShellTool/clmTypes.ts` | 211 |  | MEDIUM |
+| 112 | `src/tools/PowerShellTool/commandSemantics.ts` | 142 |  | LOW |
+| 113 | `src/tools/PowerShellTool/commonParameters.ts` | 30 | PI-01 | LOW |
+| 114 | `src/tools/PowerShellTool/destructiveCommandWarning.ts` | 109 |  | LOW |
+| 115 | `src/tools/PowerShellTool/gitSafety.ts` | 176 |  | LOW |
+| 116 | `src/tools/PowerShellTool/modeValidation.ts` | 404 |  | MEDIUM |
+| 117 | `src/tools/PowerShellTool/pathValidation.ts` | 2049 |  | HIGH |
+| 118 | `src/tools/PowerShellTool/powershellPermissions.ts` | 1648 |  | HIGH |
+| 119 | `src/tools/PowerShellTool/powershellSecurity.ts` | 1090 |  | HIGH |
+| 120 | `src/tools/PowerShellTool/prompt.ts` | 145 |  | LOW |
+| 121 | `src/tools/PowerShellTool/readOnlyValidation.ts` | 1823 |  | HIGH |
+| 122 | `src/tools/PowerShellTool/toolName.ts` | 2 | PI-01 | LOW |
+| 123 | `src/tools/REPLTool/constants.ts` | 46 | PI-01 | LOW |
+| 124 | `src/tools/REPLTool/primitiveTools.ts` | 39 | PI-01 | LOW |
+| 125 | `src/tools/ReadMcpResourceTool/ReadMcpResourceTool.ts` | 158 |  | LOW |
+| 126 | `src/tools/ReadMcpResourceTool/UI.tsx` | 36 | PI-01 | LOW |
+| 127 | `src/tools/ReadMcpResourceTool/prompt.ts` | 16 | PI-01 | LOW |
+| 128 | `src/tools/RemoteTriggerTool/RemoteTriggerTool.ts` | 161 |  | LOW |
+| 129 | `src/tools/RemoteTriggerTool/UI.tsx` | 16 | PI-01 | LOW |
+| 130 | `src/tools/RemoteTriggerTool/prompt.ts` | 15 | PI-01 | LOW |
+| 131 | `src/tools/ReviewArtifactTool/ReviewArtifactTool.ts` | 1 | PI-01 | LOW |
+| 132 | `src/tools/ScheduleCronTool/CronCreateTool.ts` | 157 |  | LOW |
+| 133 | `src/tools/ScheduleCronTool/CronDeleteTool.ts` | 95 |  | LOW |
+| 134 | `src/tools/ScheduleCronTool/CronListTool.ts` | 97 |  | LOW |
+| 135 | `src/tools/ScheduleCronTool/UI.tsx` | 59 |  | LOW |
+| 136 | `src/tools/ScheduleCronTool/prompt.ts` | 135 |  | LOW |
+| 137 | `src/tools/SendMessageTool/SendMessageTool.ts` | 917 |  | MEDIUM |
+| 138 | `src/tools/SendMessageTool/UI.tsx` | 30 | PI-01 | LOW |
+| 139 | `src/tools/SendMessageTool/constants.ts` | 1 | PI-01 | LOW |
+| 140 | `src/tools/SendMessageTool/prompt.ts` | 49 | PI-01 | LOW |
+| 141 | `src/tools/SendUserFileTool/prompt.ts` | 1 | PI-01 | LOW |
+| 142 | `src/tools/SkillTool/SkillTool.ts` | 1108 |  | HIGH |
+| 143 | `src/tools/SkillTool/UI.tsx` | 127 |  | LOW |
+| 144 | `src/tools/SkillTool/constants.ts` | 1 | PI-01 | LOW |
+| 145 | `src/tools/SkillTool/prompt.ts` | 241 |  | MEDIUM |
+| 146 | `src/tools/SleepTool/prompt.ts` | 17 | PI-01 | LOW |
+| 147 | `src/tools/SnipTool/prompt.ts` | 1 | PI-01 | LOW |
+| 148 | `src/tools/SyntheticOutputTool/SyntheticOutputTool.ts` | 163 |  | LOW |
+| 149 | `src/tools/TaskCreateTool/TaskCreateTool.ts` | 138 |  | LOW |
+| 150 | `src/tools/TaskCreateTool/constants.ts` | 1 | PI-01 | LOW |
+| 151 | `src/tools/TaskCreateTool/prompt.ts` | 56 |  | LOW |
+| 152 | `src/tools/TaskGetTool/TaskGetTool.ts` | 128 |  | LOW |
+| 153 | `src/tools/TaskGetTool/constants.ts` | 1 | PI-01 | LOW |
+| 154 | `src/tools/TaskGetTool/prompt.ts` | 24 | PI-01 | LOW |
+| 155 | `src/tools/TaskListTool/TaskListTool.ts` | 116 |  | LOW |
+| 156 | `src/tools/TaskListTool/constants.ts` | 1 | PI-01 | LOW |
+| 157 | `src/tools/TaskListTool/prompt.ts` | 49 | PI-01 | LOW |
+| 158 | `src/tools/TaskOutputTool/TaskOutputTool.tsx` | 583 |  | MEDIUM |
+| 159 | `src/tools/TaskOutputTool/constants.ts` | 1 | PI-01 | LOW |
+| 160 | `src/tools/TaskStopTool/TaskStopTool.ts` | 131 |  | LOW |
+| 161 | `src/tools/TaskStopTool/UI.tsx` | 40 | PI-01 | LOW |
+| 162 | `src/tools/TaskStopTool/prompt.ts` | 8 | PI-01 | LOW |
+| 163 | `src/tools/TaskUpdateTool/TaskUpdateTool.ts` | 406 |  | MEDIUM |
+| 164 | `src/tools/TaskUpdateTool/constants.ts` | 1 | PI-01 | LOW |
+| 165 | `src/tools/TaskUpdateTool/prompt.ts` | 77 |  | LOW |
+| 166 | `src/tools/TeamCreateTool/TeamCreateTool.ts` | 240 |  | MEDIUM |
+| 167 | `src/tools/TeamCreateTool/UI.tsx` | 5 | PI-01 | LOW |
+| 168 | `src/tools/TeamCreateTool/constants.ts` | 1 | PI-01 | LOW |
+| 169 | `src/tools/TeamCreateTool/prompt.ts` | 113 |  | LOW |
+| 170 | `src/tools/TeamDeleteTool/TeamDeleteTool.ts` | 139 |  | LOW |
+| 171 | `src/tools/TeamDeleteTool/UI.tsx` | 19 | PI-01 | LOW |
+| 172 | `src/tools/TeamDeleteTool/constants.ts` | 1 | PI-01 | LOW |
+| 173 | `src/tools/TeamDeleteTool/prompt.ts` | 16 | PI-01 | LOW |
+| 174 | `src/tools/TerminalCaptureTool/prompt.ts` | 1 | PI-01 | LOW |
+| 175 | `src/tools/TodoWriteTool/TodoWriteTool.ts` | 115 |  | LOW |
+| 176 | `src/tools/TodoWriteTool/constants.ts` | 1 | PI-01 | LOW |
+| 177 | `src/tools/TodoWriteTool/prompt.ts` | 184 |  | LOW |
+| 178 | `src/tools/ToolSearchTool/ToolSearchTool.ts` | 471 |  | MEDIUM |
+| 179 | `src/tools/ToolSearchTool/constants.ts` | 1 | PI-01 | LOW |
+| 180 | `src/tools/ToolSearchTool/prompt.ts` | 121 |  | LOW |
+| 181 | `src/tools/TungstenTool/TungstenLiveMonitor.tsx` | 3 | PI-01 | LOW |
+| 182 | `src/tools/TungstenTool/TungstenTool.ts` | 50 | PI-01 | LOW |
+| 183 | `src/tools/VerifyPlanExecutionTool/constants.ts` | 1 | PI-01 | LOW |
+| 184 | `src/tools/WebBrowserTool/WebBrowserPanel.tsx` | 3 | PI-01 | LOW |
+| 185 | `src/tools/WebFetchTool/UI.tsx` | 71 |  | LOW |
+| 186 | `src/tools/WebFetchTool/WebFetchTool.ts` | 318 |  | MEDIUM |
+| 187 | `src/tools/WebFetchTool/preapproved.ts` | 166 |  | LOW |
+| 188 | `src/tools/WebFetchTool/prompt.ts` | 46 | PI-01 | LOW |
+| 189 | `src/tools/WebFetchTool/utils.ts` | 530 |  | MEDIUM |
+| 190 | `src/tools/WebSearchTool/UI.tsx` | 100 |  | LOW |
+| 191 | `src/tools/WebSearchTool/WebSearchTool.ts` | 435 |  | MEDIUM |
+| 192 | `src/tools/WebSearchTool/prompt.ts` | 34 | PI-01 | LOW |
+| 193 | `src/tools/WorkflowTool/WorkflowPermissionRequest.tsx` | 3 | PI-01 | LOW |
+| 194 | `src/tools/WorkflowTool/WorkflowTool.ts` | 1 | PI-01 | LOW |
+| 195 | `src/tools/WorkflowTool/constants.ts` | 1 | PI-01 | LOW |
+| 196 | `src/tools/WorkflowTool/createWorkflowCommand.ts` | 3 | PI-01 | LOW |
+| 197 | `src/tools/shared/gitOperationTracking.ts` | 277 |  | MEDIUM |
+| 198 | `src/tools/shared/spawnMultiAgent.ts` | 1093 |  | HIGH |
+| 199 | `src/tools/testing/TestingPermissionTool.tsx` | 73 |  | LOW |
+| 200 | `src/tools/utils.ts` | 40 |  | LOW |
+| 201 | `src/utils/toolResultStorage.ts` | 1040 |  | HIGH |
+
+## ML-04-1 (22 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/migrations/migrateBypassPermissionsAcceptedToSettings.ts` | 40 |  | LOW |
+| 2 | `src/remote/remotePermissionBridge.ts` | 78 |  | LOW |
+| 3 | `src/services/mcp/channelPermissions.ts` | 240 |  | MEDIUM |
+| 4 | `src/services/tools/toolHooks.ts` | 650 |  | MEDIUM |
+| 5 | `src/utils/permissions/PermissionMode.ts` | 141 |  | LOW |
+| 6 | `src/utils/permissions/PermissionPromptToolResultSchema.ts` | 127 |  | LOW |
+| 7 | `src/utils/permissions/PermissionResult.ts` | 35 |  | LOW |
+| 8 | `src/utils/permissions/PermissionRule.ts` | 40 |  | LOW |
+| 9 | `src/utils/permissions/PermissionUpdate.ts` | 389 |  | MEDIUM |
+| 10 | `src/utils/permissions/PermissionUpdateSchema.ts` | 78 |  | LOW |
+| 11 | `src/utils/permissions/autoModeState.ts` | 39 |  | LOW |
+| 12 | `src/utils/permissions/bypassPermissionsKillswitch.ts` | 155 |  | LOW |
+| 13 | `src/utils/permissions/classifierDecision.ts` | 98 |  | LOW |
+| 14 | `src/utils/permissions/denialTracking.ts` | 45 |  | LOW |
+| 15 | `src/utils/permissions/getNextPermissionMode.ts` | 101 |  | LOW |
+| 16 | `src/utils/permissions/pathValidation.ts` | 485 |  | MEDIUM |
+| 17 | `src/utils/permissions/permissionExplainer.ts` | 250 |  | MEDIUM |
+| 18 | `src/utils/permissions/permissionRuleParser.ts` | 198 |  | LOW |
+| 19 | `src/utils/permissions/permissions.ts` | 1486 |  | HIGH |
+| 20 | `src/utils/permissions/permissionsLoader.ts` | 296 |  | MEDIUM |
+| 21 | `src/utils/permissions/shadowedRuleDetection.ts` | 234 |  | MEDIUM |
+| 22 | `src/utils/permissions/shellRuleMatching.ts` | 228 |  | MEDIUM |
+
+## ML-04-2 (62 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/components/permissions/AskUserQuestionPermissionRequest/AskUserQuestionPermissionRequest.tsx` | 644 |  | MEDIUM |
+| 2 | `src/components/permissions/AskUserQuestionPermissionRequest/PreviewBox.tsx` | 228 |  | MEDIUM |
+| 3 | `src/components/permissions/AskUserQuestionPermissionRequest/PreviewQuestionView.tsx` | 327 |  | MEDIUM |
+| 4 | `src/components/permissions/AskUserQuestionPermissionRequest/QuestionNavigationBar.tsx` | 177 |  | LOW |
+| 5 | `src/components/permissions/AskUserQuestionPermissionRequest/QuestionView.tsx` | 464 |  | MEDIUM |
+| 6 | `src/components/permissions/AskUserQuestionPermissionRequest/SubmitQuestionsView.tsx` | 143 |  | LOW |
+| 7 | `src/components/permissions/AskUserQuestionPermissionRequest/use-multiple-choice-state.ts` | 179 |  | LOW |
+| 8 | `src/components/permissions/BashPermissionRequest/BashPermissionRequest.tsx` | 481 |  | MEDIUM |
+| 9 | `src/components/permissions/BashPermissionRequest/bashToolUseOptions.tsx` | 146 |  | LOW |
+| 10 | `src/components/permissions/ComputerUseApproval/ComputerUseApproval.tsx` | 440 |  | MEDIUM |
+| 11 | `src/components/permissions/EnterPlanModePermissionRequest/EnterPlanModePermissionRequest.tsx` | 121 |  | LOW |
+| 12 | `src/components/permissions/ExitPlanModePermissionRequest/ExitPlanModePermissionRequest.tsx` | 767 |  | MEDIUM |
+| 13 | `src/components/permissions/FallbackPermissionRequest.tsx` | 332 |  | MEDIUM |
+| 14 | `src/components/permissions/FileEditPermissionRequest/FileEditPermissionRequest.tsx` | 181 |  | LOW |
+| 15 | `src/components/permissions/FilePermissionDialog/FilePermissionDialog.tsx` | 203 |  | MEDIUM |
+| 16 | `src/components/permissions/FilePermissionDialog/ideDiffConfig.ts` | 42 | PI-06 | LOW |
+| 17 | `src/components/permissions/FilePermissionDialog/permissionOptions.tsx` | 176 |  | LOW |
+| 18 | `src/components/permissions/FilePermissionDialog/useFilePermissionDialog.ts` | 212 |  | MEDIUM |
+| 19 | `src/components/permissions/FilePermissionDialog/usePermissionHandler.ts` | 185 |  | LOW |
+| 20 | `src/components/permissions/FileWritePermissionRequest/FileWritePermissionRequest.tsx` | 160 |  | LOW |
+| 21 | `src/components/permissions/FileWritePermissionRequest/FileWriteToolDiff.tsx` | 88 |  | LOW |
+| 22 | `src/components/permissions/FilesystemPermissionRequest/FilesystemPermissionRequest.tsx` | 114 |  | LOW |
+| 23 | `src/components/permissions/MonitorPermissionRequest/MonitorPermissionRequest.tsx` | 3 | PI-06 | LOW |
+| 24 | `src/components/permissions/NotebookEditPermissionRequest/NotebookEditPermissionRequest.tsx` | 165 |  | LOW |
+| 25 | `src/components/permissions/NotebookEditPermissionRequest/NotebookEditToolDiff.tsx` | 234 |  | MEDIUM |
+| 26 | `src/components/permissions/PermissionDecisionDebugInfo.tsx` | 459 |  | MEDIUM |
+| 27 | `src/components/permissions/PermissionDialog.tsx` | 71 |  | LOW |
+| 28 | `src/components/permissions/PermissionExplanation.tsx` | 271 |  | MEDIUM |
+| 29 | `src/components/permissions/PermissionPrompt.tsx` | 335 |  | MEDIUM |
+| 30 | `src/components/permissions/PermissionRequest.tsx` | 216 |  | MEDIUM |
+| 31 | `src/components/permissions/PermissionRequestTitle.tsx` | 65 |  | LOW |
+| 32 | `src/components/permissions/PermissionRuleExplanation.tsx` | 120 |  | LOW |
+| 33 | `src/components/permissions/PowerShellPermissionRequest/PowerShellPermissionRequest.tsx` | 234 |  | MEDIUM |
+| 34 | `src/components/permissions/PowerShellPermissionRequest/powershellToolUseOptions.tsx` | 90 |  | LOW |
+| 35 | `src/components/permissions/ReviewArtifactPermissionRequest/ReviewArtifactPermissionRequest.tsx` | 3 | PI-06 | LOW |
+| 36 | `src/components/permissions/SandboxPermissionRequest.tsx` | 162 |  | LOW |
+| 37 | `src/components/permissions/SedEditPermissionRequest/SedEditPermissionRequest.tsx` | 229 |  | MEDIUM |
+| 38 | `src/components/permissions/SkillPermissionRequest/SkillPermissionRequest.tsx` | 368 |  | MEDIUM |
+| 39 | `src/components/permissions/WebFetchPermissionRequest/WebFetchPermissionRequest.tsx` | 257 |  | MEDIUM |
+| 40 | `src/components/permissions/WorkerBadge.tsx` | 48 | PI-06 | LOW |
+| 41 | `src/components/permissions/WorkerPendingPermission.tsx` | 104 |  | LOW |
+| 42 | `src/components/permissions/hooks.ts` | 209 |  | MEDIUM |
+| 43 | `src/components/permissions/rules/AddPermissionRules.tsx` | 179 |  | LOW |
+| 44 | `src/components/permissions/rules/AddWorkspaceDirectory.tsx` | 339 |  | MEDIUM |
+| 45 | `src/components/permissions/rules/PermissionRuleDescription.tsx` | 75 |  | LOW |
+| 46 | `src/components/permissions/rules/PermissionRuleInput.tsx` | 137 |  | LOW |
+| 47 | `src/components/permissions/rules/PermissionRuleList.tsx` | 1178 |  | HIGH |
+| 48 | `src/components/permissions/rules/RecentDenialsTab.tsx` | 206 |  | MEDIUM |
+| 49 | `src/components/permissions/rules/RemoveWorkspaceDirectory.tsx` | 109 |  | LOW |
+| 50 | `src/components/permissions/rules/WorkspaceTab.tsx` | 149 |  | LOW |
+| 51 | `src/components/permissions/shellPermissionHelpers.tsx` | 163 |  | LOW |
+| 52 | `src/components/permissions/useShellPermissionFeedback.ts` | 148 |  | LOW |
+| 53 | `src/components/permissions/utils.ts` | 25 | PI-06 | LOW |
+| 54 | `src/utils/permissions/bashClassifier.ts` | 61 |  | LOW |
+| 55 | `src/utils/permissions/classifierShared.ts` | 39 |  | LOW |
+| 56 | `src/utils/permissions/dangerousPatterns.ts` | 80 |  | LOW |
+| 57 | `src/utils/permissions/filesystem.ts` | 1777 |  | HIGH |
+| 58 | `src/utils/permissions/permissionSetup.ts` | 1532 |  | HIGH |
+| 59 | `src/utils/permissions/yolo-classifier-prompts/auto_mode_system_prompt.txt` | 33 |  | LOW |
+| 60 | `src/utils/permissions/yolo-classifier-prompts/permissions_anthropic.txt` | 19 |  | LOW |
+| 61 | `src/utils/permissions/yolo-classifier-prompts/permissions_external.txt` | 22 |  | LOW |
+| 62 | `src/utils/permissions/yoloClassifier.ts` | 1495 |  | HIGH |
+
+## ML-05 (73 files)
+
+📋 **Summary**: [summary-ML-05-mcp-service-integration](/branches/main/report/summary-ML-05-mcp-service-integration)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/components/mcp/CapabilitiesSection.tsx` | 60 |  | LOW |
+| 2 | `src/components/mcp/MCPAgentServerMenu.tsx` | 182 |  | LOW |
+| 3 | `src/components/mcp/MCPListPanel.tsx` | 503 |  | MEDIUM |
+| 4 | `src/components/mcp/MCPReconnect.tsx` | 166 |  | LOW |
+| 5 | `src/components/mcp/MCPRemoteServerMenu.tsx` | 648 |  | MEDIUM |
+| 6 | `src/components/mcp/MCPSettings.tsx` | 397 |  | MEDIUM |
+| 7 | `src/components/mcp/MCPStdioServerMenu.tsx` | 176 |  | LOW |
+| 8 | `src/components/mcp/MCPToolDetailView.tsx` | 211 |  | MEDIUM |
+| 9 | `src/components/mcp/MCPToolListView.tsx` | 140 |  | LOW |
+| 10 | `src/components/mcp/McpParsingWarnings.tsx` | 212 |  | MEDIUM |
+| 11 | `src/components/mcp/index.ts` | 9 | PI-20 | LOW |
+| 12 | `src/components/mcp/types.ts` | 7 | PI-20 | LOW |
+| 13 | `src/components/mcp/utils/reconnectHelpers.tsx` | 48 | PI-20 | LOW |
+| 14 | `src/services/AgentSummary/agentSummary.ts` | 179 | PI-05 | LOW |
+| 15 | `src/services/MagicDocs/magicDocs.ts` | 254 | PI-05 | MEDIUM |
+| 16 | `src/services/MagicDocs/prompts.ts` | 127 | PI-05 | LOW |
+| 17 | `src/services/PromptSuggestion/promptSuggestion.ts` | 523 | PI-05 | MEDIUM |
+| 18 | `src/services/PromptSuggestion/speculation.ts` | 991 | PI-05 | MEDIUM |
+| 19 | `src/services/analytics/config.ts` | 38 | PI-05 | LOW |
+| 20 | `src/services/analytics/datadog.ts` | 307 | PI-05 | MEDIUM |
+| 21 | `src/services/analytics/firstPartyEventLogger.ts` | 449 | PI-05 | MEDIUM |
+| 22 | `src/services/analytics/firstPartyEventLoggingExporter.ts` | 806 | PI-05 | MEDIUM |
+| 23 | `src/services/analytics/index.ts` | 173 | PI-05 | LOW |
+| 24 | `src/services/analytics/metadata.ts` | 973 | PI-05 | MEDIUM |
+| 25 | `src/services/analytics/sink.ts` | 114 | PI-05 | LOW |
+| 26 | `src/services/analytics/sinkKillswitch.ts` | 25 | PI-05 | LOW |
+| 27 | `src/services/autoDream/autoDream.ts` | 324 | PI-05 | MEDIUM |
+| 28 | `src/services/autoDream/config.ts` | 21 | PI-05 | LOW |
+| 29 | `src/services/autoDream/consolidationLock.ts` | 140 | PI-05 | LOW |
+| 30 | `src/services/autoDream/consolidationPrompt.ts` | 65 | PI-05 | LOW |
+| 31 | `src/services/awaySummary.ts` | 74 | PI-05 | LOW |
+| 32 | `src/services/claudeAiLimitsHook.ts` | 23 | PI-05 | LOW |
+| 33 | `src/services/diagnosticTracking.ts` | 397 | PI-05 | MEDIUM |
+| 34 | `src/services/extractMemories/extractMemories.ts` | 615 | PI-05 | MEDIUM |
+| 35 | `src/services/extractMemories/prompts.ts` | 154 | PI-05 | LOW |
+| 36 | `src/services/internalLogging.ts` | 90 | PI-05 | LOW |
+| 37 | `src/services/lsp/LSPClient.ts` | 447 | PI-05 | MEDIUM |
+| 38 | `src/services/lsp/LSPDiagnosticRegistry.ts` | 386 | PI-05 | MEDIUM |
+| 39 | `src/services/lsp/LSPServerInstance.ts` | 511 | PI-05 | MEDIUM |
+| 40 | `src/services/lsp/LSPServerManager.ts` | 420 | PI-05 | MEDIUM |
+| 41 | `src/services/lsp/config.ts` | 79 | PI-05 | LOW |
+| 42 | `src/services/lsp/manager.ts` | 289 | PI-05 | MEDIUM |
+| 43 | `src/services/lsp/passiveFeedback.ts` | 328 | PI-05 | MEDIUM |
+| 44 | `src/services/lsp/types.ts` | 2 | PI-05 | LOW |
+| 45 | `src/services/mcpServerApproval.tsx` | 40 | PI-05 | LOW |
+| 46 | `src/services/notifier.ts` | 156 | PI-05 | LOW |
+| 47 | `src/services/preventSleep.ts` | 165 | PI-05 | LOW |
+| 48 | `src/services/rateLimitMessages.ts` | 344 | PI-05 | MEDIUM |
+| 49 | `src/services/rateLimitMocking.ts` | 144 | PI-05 | LOW |
+| 50 | `src/services/remoteManagedSettings/securityCheck.tsx` | 73 | PI-05 | LOW |
+| 51 | `src/services/settingsSync/index.ts` | 581 | PI-05 | MEDIUM |
+| 52 | `src/services/settingsSync/types.ts` | 67 | PI-05 | LOW |
+| 53 | `src/services/skillSearch/featureCheck.ts` | 3 | PI-05 | LOW |
+| 54 | `src/services/skillSearch/localSearch.ts` | 3 | PI-05 | LOW |
+| 55 | `src/services/skillSearch/prefetch.ts` | 1 | PI-05 | LOW |
+| 56 | `src/services/skillSearch/remoteSkillLoader.ts` | 3 | PI-05 | LOW |
+| 57 | `src/services/skillSearch/remoteSkillState.ts` | 3 | PI-05 | LOW |
+| 58 | `src/services/skillSearch/signals.ts` | 3 | PI-05 | LOW |
+| 59 | `src/services/skillSearch/telemetry.ts` | 1 | PI-05 | LOW |
+| 60 | `src/services/teamMemorySync/index.ts` | 1256 | PI-05 | HIGH |
+| 61 | `src/services/teamMemorySync/secretScanner.ts` | 324 | PI-05 | MEDIUM |
+| 62 | `src/services/teamMemorySync/teamMemSecretGuard.ts` | 44 | PI-05 | LOW |
+| 63 | `src/services/teamMemorySync/types.ts` | 156 | PI-05 | LOW |
+| 64 | `src/services/teamMemorySync/watcher.ts` | 387 | PI-05 | MEDIUM |
+| 65 | `src/services/tips/tipHistory.ts` | 17 | PI-05 | LOW |
+| 66 | `src/services/tips/tipRegistry.ts` | 686 | PI-05 | MEDIUM |
+| 67 | `src/services/tips/tipScheduler.ts` | 58 | PI-05 | LOW |
+| 68 | `src/services/tips/types.ts` | 2 | PI-05 | LOW |
+| 69 | `src/services/toolUseSummary/toolUseSummaryGenerator.ts` | 112 | PI-05 | LOW |
+| 70 | `src/services/vcr.ts` | 406 | PI-05 | MEDIUM |
+| 71 | `src/services/voice.ts` | 525 |  | MEDIUM |
+| 72 | `src/services/voiceKeyterms.ts` | 106 | PI-05 | LOW |
+| 73 | `src/services/voiceStreamSTT.ts` | 544 |  | MEDIUM |
+
+## ML-05-1 (9 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/services/mcp/MCPConnectionManager.tsx` | 72 |  | LOW |
+| 2 | `src/services/mcp/claudeai.ts` | 164 |  | LOW |
+| 3 | `src/services/mcp/config.ts` | 1578 |  | HIGH |
+| 4 | `src/services/mcp/envExpansion.ts` | 38 |  | LOW |
+| 5 | `src/services/mcp/mcpStringUtils.ts` | 106 |  | LOW |
+| 6 | `src/services/mcp/normalization.ts` | 23 |  | LOW |
+| 7 | `src/services/mcp/officialRegistry.ts` | 72 |  | LOW |
+| 8 | `src/services/mcp/types.ts` | 258 |  | MEDIUM |
+| 9 | `src/services/mcp/useManageMCPConnections.ts` | 1141 |  | HIGH |
+
+## ML-05-2 (10 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/services/mcp/InProcessTransport.ts` | 63 |  | LOW |
+| 2 | `src/services/mcp/SdkControlTransport.ts` | 136 |  | LOW |
+| 3 | `src/services/mcp/auth.ts` | 2465 |  | HIGH |
+| 4 | `src/services/mcp/client.ts` | 3348 |  | HIGH |
+| 5 | `src/services/mcp/elicitationHandler.ts` | 313 |  | MEDIUM |
+| 6 | `src/services/mcp/headersHelper.ts` | 138 |  | LOW |
+| 7 | `src/services/mcp/oauthPort.ts` | 78 |  | LOW |
+| 8 | `src/services/mcp/utils.ts` | 575 |  | MEDIUM |
+| 9 | `src/services/mcp/xaa.ts` | 511 |  | MEDIUM |
+| 10 | `src/services/mcp/xaaIdpLogin.ts` | 487 |  | MEDIUM |
+
+## ML-05-3 (3 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/services/mcp/channelAllowlist.ts` | 76 |  | LOW |
+| 2 | `src/services/mcp/channelNotification.ts` | 316 |  | MEDIUM |
+| 3 | `src/services/mcp/vscodeSdkMcp.ts` | 112 |  | LOW |
+
+## ML-06 (40 files)
+
+📋 **Summary**: [summary-ML-06-auth-session-management](/branches/main/report/summary-ML-06-auth-session-management)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/cli/handlers/auth.ts` | 330 |  | MEDIUM |
+| 2 | `src/components/ConsoleOAuthFlow.tsx` | 630 |  | MEDIUM |
+| 3 | `src/constants/oauth.ts` | 234 |  | MEDIUM |
+| 4 | `src/services/analytics/growthbook.ts` | 1155 |  | HIGH |
+| 5 | `src/services/api/bootstrap.ts` | 141 |  | LOW |
+| 6 | `src/services/mockRateLimits.ts` | 882 |  | MEDIUM |
+| 7 | `src/services/oauth/auth-code-listener.ts` | 211 |  | MEDIUM |
+| 8 | `src/services/oauth/client.ts` | 577 |  | MEDIUM |
+| 9 | `src/services/oauth/crypto.ts` | 23 |  | LOW |
+| 10 | `src/services/oauth/getOauthProfile.ts` | 53 |  | LOW |
+| 11 | `src/services/oauth/index.ts` | 198 |  | LOW |
+| 12 | `src/services/oauth/types.ts` | 13 |  | LOW |
+| 13 | `src/services/policyLimits/index.ts` | 663 |  | MEDIUM |
+| 14 | `src/services/policyLimits/types.ts` | 27 |  | LOW |
+| 15 | `src/services/remoteManagedSettings/index.ts` | 638 |  | MEDIUM |
+| 16 | `src/services/remoteManagedSettings/syncCache.ts` | 112 |  | LOW |
+| 17 | `src/services/remoteManagedSettings/syncCacheState.ts` | 96 |  | LOW |
+| 18 | `src/services/remoteManagedSettings/types.ts` | 31 |  | LOW |
+| 19 | `src/utils/auth.ts` | 2002 |  | HIGH |
+| 20 | `src/utils/aws.ts` | 74 |  | LOW |
+| 21 | `src/utils/awsAuthStatusManager.ts` | 81 |  | LOW |
+| 22 | `src/utils/execFileNoThrow.ts` | 150 |  | LOW |
+| 23 | `src/utils/http.ts` | 136 |  | LOW |
+| 24 | `src/utils/secureStorage/fallbackStorage.ts` | 70 |  | LOW |
+| 25 | `src/utils/secureStorage/index.ts` | 17 |  | LOW |
+| 26 | `src/utils/secureStorage/keychainPrefetch.ts` | 116 |  | LOW |
+| 27 | `src/utils/secureStorage/macOsKeychainHelpers.ts` | 111 |  | LOW |
+| 28 | `src/utils/secureStorage/macOsKeychainStorage.ts` | 231 |  | MEDIUM |
+| 29 | `src/utils/secureStorage/plainTextStorage.ts` | 84 |  | LOW |
+| 30 | `src/utils/secureStorage/types.ts` | 7 |  | LOW |
+| 31 | `src/utils/telemetry/betaSessionTracing.ts` | 491 |  | MEDIUM |
+| 32 | `src/utils/telemetry/bigqueryExporter.ts` | 252 |  | MEDIUM |
+| 33 | `src/utils/telemetry/events.ts` | 75 |  | LOW |
+| 34 | `src/utils/telemetry/instrumentation.ts` | 825 |  | MEDIUM |
+| 35 | `src/utils/telemetry/logger.ts` | 26 | PI-24 | LOW |
+| 36 | `src/utils/telemetry/perfettoTracing.ts` | 1120 |  | HIGH |
+| 37 | `src/utils/telemetry/pluginTelemetry.ts` | 289 |  | MEDIUM |
+| 38 | `src/utils/telemetry/sessionTracing.ts` | 927 |  | MEDIUM |
+| 39 | `src/utils/telemetry/skillLoadedEvent.ts` | 39 | PI-24 | LOW |
+| 40 | `src/utils/telemetryAttributes.ts` | 71 |  | LOW |
+
+## ML-07 (285 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/buddy/sprites.ts` | 514 |  | MEDIUM |
+| 2 | `src/components/AgentProgressLine.tsx` | 135 | PI-13 | LOW |
+| 3 | `src/components/App.tsx` | 96 | PI-13 | LOW |
+| 4 | `src/components/ApproveApiKey.tsx` | 122 | PI-13 | LOW |
+| 5 | `src/components/AutoModeOptInDialog.tsx` | 141 | PI-13 | LOW |
+| 6 | `src/components/AutoUpdater.tsx` | 197 | PI-13 | LOW |
+| 7 | `src/components/AutoUpdaterWrapper.tsx` | 90 | PI-13 | LOW |
+| 8 | `src/components/BaseTextInput.tsx` | 135 | PI-13 | LOW |
+| 9 | `src/components/BashModeProgress.tsx` | 55 | PI-13 | LOW |
+| 10 | `src/components/BridgeDialog.tsx` | 400 | PI-13 | MEDIUM |
+| 11 | `src/components/BypassPermissionsModeDialog.tsx` | 86 | PI-13 | LOW |
+| 12 | `src/components/ChannelDowngradeDialog.tsx` | 101 | PI-13 | LOW |
+| 13 | `src/components/ClaudeCodeHint/PluginHintMenu.tsx` | 77 | PI-13 | LOW |
+| 14 | `src/components/ClaudeInChromeOnboarding.tsx` | 120 | PI-13 | LOW |
+| 15 | `src/components/ClaudeMdExternalIncludesDialog.tsx` | 136 | PI-13 | LOW |
+| 16 | `src/components/ClickableImageRef.tsx` | 72 | PI-13 | LOW |
+| 17 | `src/components/CompactSummary.tsx` | 117 | PI-13 | LOW |
+| 18 | `src/components/ConfigurableShortcutHint.tsx` | 56 | PI-13 | LOW |
+| 19 | `src/components/ContextSuggestions.tsx` | 46 | PI-13 | LOW |
+| 20 | `src/components/ContextVisualization.tsx` | 488 | PI-13 | MEDIUM |
+| 21 | `src/components/CoordinatorAgentStatus.tsx` | 272 | PI-13 | MEDIUM |
+| 22 | `src/components/CtrlOToExpand.tsx` | 50 | PI-13 | LOW |
+| 23 | `src/components/CustomSelect/SelectMulti.tsx` | 212 | PI-13 | MEDIUM |
+| 24 | `src/components/CustomSelect/index.ts` | 3 | PI-13 | LOW |
+| 25 | `src/components/CustomSelect/option-map.ts` | 50 | PI-13 | LOW |
+| 26 | `src/components/CustomSelect/select-input-option.tsx` | 487 | PI-13 | MEDIUM |
+| 27 | `src/components/CustomSelect/select-option.tsx` | 67 | PI-13 | LOW |
+| 28 | `src/components/CustomSelect/select.tsx` | 689 | PI-13 | MEDIUM |
+| 29 | `src/components/CustomSelect/use-multi-select-state.ts` | 414 | PI-13 | MEDIUM |
+| 30 | `src/components/CustomSelect/use-select-input.ts` | 287 | PI-13 | MEDIUM |
+| 31 | `src/components/CustomSelect/use-select-navigation.ts` | 653 | PI-13 | MEDIUM |
+| 32 | `src/components/CustomSelect/use-select-state.ts` | 157 | PI-13 | LOW |
+| 33 | `src/components/DesktopHandoff.tsx` | 192 | PI-13 | LOW |
+| 34 | `src/components/DesktopUpsell/DesktopUpsellStartup.tsx` | 170 | PI-13 | LOW |
+| 35 | `src/components/DevChannelsDialog.tsx` | 104 | PI-13 | LOW |
+| 36 | `src/components/DiagnosticsDisplay.tsx` | 94 | PI-13 | LOW |
+| 37 | `src/components/EffortIndicator.ts` | 42 | PI-13 | LOW |
+| 38 | `src/components/ExportDialog.tsx` | 127 | PI-13 | LOW |
+| 39 | `src/components/FallbackToolUseErrorMessage.tsx` | 115 | PI-13 | LOW |
+| 40 | `src/components/FallbackToolUseRejectedMessage.tsx` | 15 | PI-13 | LOW |
+| 41 | `src/components/FastIcon.tsx` | 45 | PI-13 | LOW |
+| 42 | `src/components/Feedback.tsx` | 591 |  | MEDIUM |
+| 43 | `src/components/FeedbackSurvey/FeedbackSurveyView.tsx` | 107 | PI-13 | LOW |
+| 44 | `src/components/FeedbackSurvey/TranscriptSharePrompt.tsx` | 87 | PI-13 | LOW |
+| 45 | `src/components/FeedbackSurvey/submitTranscriptShare.ts` | 112 | PI-13 | LOW |
+| 46 | `src/components/FeedbackSurvey/useDebouncedDigitInput.ts` | 82 | PI-13 | LOW |
+| 47 | `src/components/FeedbackSurvey/useFeedbackSurvey.tsx` | 295 | PI-13 | MEDIUM |
+| 48 | `src/components/FeedbackSurvey/useFrustrationDetection.ts` | 3 | PI-13 | LOW |
+| 49 | `src/components/FeedbackSurvey/useMemorySurvey.tsx` | 212 | PI-13 | MEDIUM |
+| 50 | `src/components/FeedbackSurvey/usePostCompactSurvey.tsx` | 205 | PI-13 | MEDIUM |
+| 51 | `src/components/FeedbackSurvey/useSurveyState.tsx` | 99 | PI-13 | LOW |
+| 52 | `src/components/FeedbackSurvey/utils.ts` | 8 | PI-13 | LOW |
+| 53 | `src/components/FileEditToolDiff.tsx` | 180 | PI-13 | LOW |
+| 54 | `src/components/FileEditToolUpdatedMessage.tsx` | 123 | PI-13 | LOW |
+| 55 | `src/components/FileEditToolUseRejectedMessage.tsx` | 169 | PI-13 | LOW |
+| 56 | `src/components/FilePathLink.tsx` | 42 | PI-13 | LOW |
+| 57 | `src/components/GlobalSearchDialog.tsx` | 342 | PI-13 | MEDIUM |
+| 58 | `src/components/HelpV2/Commands.tsx` | 81 | PI-13 | LOW |
+| 59 | `src/components/HelpV2/General.tsx` | 22 | PI-13 | LOW |
+| 60 | `src/components/HelpV2/HelpV2.tsx` | 183 | PI-13 | LOW |
+| 61 | `src/components/HighlightedCode.tsx` | 189 | PI-13 | LOW |
+| 62 | `src/components/HighlightedCode/Fallback.tsx` | 192 | PI-13 | LOW |
+| 63 | `src/components/HistorySearchDialog.tsx` | 117 | PI-13 | LOW |
+| 64 | `src/components/IdeAutoConnectDialog.tsx` | 153 | PI-13 | LOW |
+| 65 | `src/components/IdeStatusIndicator.tsx` | 57 | PI-13 | LOW |
+| 66 | `src/components/InvalidConfigDialog.tsx` | 155 | PI-13 | LOW |
+| 67 | `src/components/InvalidSettingsDialog.tsx` | 88 | PI-13 | LOW |
+| 68 | `src/components/KeybindingWarnings.tsx` | 54 | PI-13 | LOW |
+| 69 | `src/components/LanguagePicker.tsx` | 85 | PI-13 | LOW |
+| 70 | `src/components/LogSelector.tsx` | 1574 |  | HIGH |
+| 71 | `src/components/LogoV2/AnimatedAsterisk.tsx` | 49 | PI-13 | LOW |
+| 72 | `src/components/LogoV2/AnimatedClawd.tsx` | 123 | PI-13 | LOW |
+| 73 | `src/components/LogoV2/ChannelsNotice.tsx` | 265 | PI-13 | MEDIUM |
+| 74 | `src/components/LogoV2/Clawd.tsx` | 239 | PI-13 | MEDIUM |
+| 75 | `src/components/LogoV2/CondensedLogo.tsx` | 160 | PI-13 | LOW |
+| 76 | `src/components/LogoV2/EmergencyTip.tsx` | 57 | PI-13 | LOW |
+| 77 | `src/components/LogoV2/Feed.tsx` | 111 | PI-13 | LOW |
+| 78 | `src/components/LogoV2/FeedColumn.tsx` | 58 | PI-13 | LOW |
+| 79 | `src/components/LogoV2/GuestPassesUpsell.tsx` | 69 | PI-13 | LOW |
+| 80 | `src/components/LogoV2/LogoV2.tsx` | 542 | PI-13 | MEDIUM |
+| 81 | `src/components/LogoV2/Opus1mMergeNotice.tsx` | 54 | PI-13 | LOW |
+| 82 | `src/components/LogoV2/OverageCreditUpsell.tsx` | 165 | PI-13 | LOW |
+| 83 | `src/components/LogoV2/VoiceModeNotice.tsx` | 67 | PI-13 | LOW |
+| 84 | `src/components/LogoV2/WelcomeV2.tsx` | 432 | PI-13 | MEDIUM |
+| 85 | `src/components/LogoV2/feedConfigs.tsx` | 91 | PI-13 | LOW |
+| 86 | `src/components/LspRecommendation/LspRecommendationMenu.tsx` | 87 | PI-13 | LOW |
+| 87 | `src/components/MCPServerApprovalDialog.tsx` | 114 | PI-13 | LOW |
+| 88 | `src/components/MCPServerDesktopImportDialog.tsx` | 202 | PI-13 | MEDIUM |
+| 89 | `src/components/MCPServerMultiselectDialog.tsx` | 132 | PI-13 | LOW |
+| 90 | `src/components/ManagedSettingsSecurityDialog/ManagedSettingsSecurityDialog.tsx` | 148 | PI-13 | LOW |
+| 91 | `src/components/ManagedSettingsSecurityDialog/utils.ts` | 144 | PI-13 | LOW |
+| 92 | `src/components/Markdown.tsx` | 235 | PI-13 | MEDIUM |
+| 93 | `src/components/MarkdownTable.tsx` | 321 | PI-13 | MEDIUM |
+| 94 | `src/components/MemoryUsageIndicator.tsx` | 36 | PI-13 | LOW |
+| 95 | `src/components/Message.tsx` | 626 |  | MEDIUM |
+| 96 | `src/components/MessageModel.tsx` | 42 | PI-13 | LOW |
+| 97 | `src/components/MessageResponse.tsx` | 77 | PI-13 | LOW |
+| 98 | `src/components/MessageRow.tsx` | 382 | PI-13 | MEDIUM |
+| 99 | `src/components/MessageTimestamp.tsx` | 62 | PI-13 | LOW |
+| 100 | `src/components/ModelPicker.tsx` | 447 | PI-13 | MEDIUM |
+| 101 | `src/components/NativeAutoUpdater.tsx` | 192 | PI-13 | LOW |
+| 102 | `src/components/NotebookEditToolUseRejectedMessage.tsx` | 91 | PI-13 | LOW |
+| 103 | `src/components/OffscreenFreeze.tsx` | 43 | PI-13 | LOW |
+| 104 | `src/components/Onboarding.tsx` | 243 | PI-13 | MEDIUM |
+| 105 | `src/components/OutputStylePicker.tsx` | 111 | PI-13 | LOW |
+| 106 | `src/components/PackageManagerAutoUpdater.tsx` | 103 | PI-13 | LOW |
+| 107 | `src/components/Passes/Passes.tsx` | 183 | PI-13 | LOW |
+| 108 | `src/components/PrBadge.tsx` | 96 | PI-13 | LOW |
+| 109 | `src/components/PromptInput/HistorySearchInput.tsx` | 50 | PI-13 | LOW |
+| 110 | `src/components/PromptInput/IssueFlagBanner.tsx` | 11 | PI-13 | LOW |
+| 111 | `src/components/PromptInput/Notifications.tsx` | 331 | PI-13 | MEDIUM |
+| 112 | `src/components/PromptInput/PromptInputFooter.tsx` | 190 | PI-13 | LOW |
+| 113 | `src/components/PromptInput/PromptInputFooterLeftSide.tsx` | 516 | PI-13 | MEDIUM |
+| 114 | `src/components/PromptInput/PromptInputFooterSuggestions.tsx` | 292 | PI-13 | MEDIUM |
+| 115 | `src/components/PromptInput/PromptInputHelpMenu.tsx` | 357 | PI-13 | MEDIUM |
+| 116 | `src/components/PromptInput/PromptInputModeIndicator.tsx` | 92 | PI-13 | LOW |
+| 117 | `src/components/PromptInput/PromptInputQueuedCommands.tsx` | 116 | PI-13 | LOW |
+| 118 | `src/components/PromptInput/PromptInputStashNotice.tsx` | 24 | PI-13 | LOW |
+| 119 | `src/components/PromptInput/SandboxPromptFooterHint.tsx` | 63 | PI-13 | LOW |
+| 120 | `src/components/PromptInput/ShimmeredInput.tsx` | 142 | PI-13 | LOW |
+| 121 | `src/components/PromptInput/VoiceIndicator.tsx` | 136 | PI-13 | LOW |
+| 122 | `src/components/PromptInput/inputModes.ts` | 33 | PI-13 | LOW |
+| 123 | `src/components/PromptInput/inputPaste.ts` | 90 | PI-13 | LOW |
+| 124 | `src/components/PromptInput/useMaybeTruncateInput.ts` | 58 | PI-13 | LOW |
+| 125 | `src/components/PromptInput/usePromptInputPlaceholder.ts` | 76 | PI-13 | LOW |
+| 126 | `src/components/PromptInput/useShowFastIconHint.ts` | 31 | PI-13 | LOW |
+| 127 | `src/components/PromptInput/useSwarmBanner.ts` | 155 | PI-13 | LOW |
+| 128 | `src/components/PromptInput/utils.ts` | 60 | PI-13 | LOW |
+| 129 | `src/components/QuickOpenDialog.tsx` | 243 | PI-13 | MEDIUM |
+| 130 | `src/components/RemoteEnvironmentDialog.tsx` | 339 | PI-13 | MEDIUM |
+| 131 | `src/components/ResumeTask.tsx` | 267 | PI-13 | MEDIUM |
+| 132 | `src/components/SandboxViolationExpandedView.tsx` | 98 | PI-13 | LOW |
+| 133 | `src/components/SearchBox.tsx` | 71 | PI-13 | LOW |
+| 134 | `src/components/SentryErrorBoundary.ts` | 28 | PI-13 | LOW |
+| 135 | `src/components/SessionPreview.tsx` | 193 | PI-13 | LOW |
+| 136 | `src/components/Settings/Config.tsx` | 1821 | PI-13 | HIGH |
+| 137 | `src/components/Settings/Settings.tsx` | 136 | PI-13 | LOW |
+| 138 | `src/components/Settings/Status.tsx` | 240 | PI-13 | MEDIUM |
+| 139 | `src/components/Settings/Usage.tsx` | 376 | PI-13 | MEDIUM |
+| 140 | `src/components/ShowInIDEPrompt.tsx` | 169 | PI-13 | LOW |
+| 141 | `src/components/Spinner/FlashingChar.tsx` | 60 | PI-13 | LOW |
+| 142 | `src/components/Spinner/GlimmerMessage.tsx` | 327 | PI-13 | MEDIUM |
+| 143 | `src/components/Spinner/ShimmerChar.tsx` | 35 | PI-13 | LOW |
+| 144 | `src/components/Spinner/SpinnerAnimationRow.tsx` | 264 | PI-13 | MEDIUM |
+| 145 | `src/components/Spinner/SpinnerGlyph.tsx` | 79 | PI-13 | LOW |
+| 146 | `src/components/Spinner/TeammateSpinnerLine.tsx` | 232 | PI-13 | MEDIUM |
+| 147 | `src/components/Spinner/TeammateSpinnerTree.tsx` | 271 | PI-13 | MEDIUM |
+| 148 | `src/components/Spinner/index.ts` | 10 | PI-13 | LOW |
+| 149 | `src/components/Spinner/teammateSelectHint.ts` | 1 | PI-13 | LOW |
+| 150 | `src/components/Spinner/types.ts` | 6 | PI-13 | LOW |
+| 151 | `src/components/Spinner/useShimmerAnimation.ts` | 31 | PI-13 | LOW |
+| 152 | `src/components/Spinner/useStalledAnimation.ts` | 75 | PI-13 | LOW |
+| 153 | `src/components/Spinner/utils.ts` | 84 | PI-13 | LOW |
+| 154 | `src/components/Stats.tsx` | 1227 |  | HIGH |
+| 155 | `src/components/StatusLine.tsx` | 323 | PI-13 | MEDIUM |
+| 156 | `src/components/StatusNotices.tsx` | 54 | PI-13 | LOW |
+| 157 | `src/components/StructuredDiff.tsx` | 189 | PI-13 | LOW |
+| 158 | `src/components/StructuredDiff/Fallback.tsx` | 486 | PI-13 | MEDIUM |
+| 159 | `src/components/StructuredDiff/colorDiff.ts` | 37 | PI-13 | LOW |
+| 160 | `src/components/StructuredDiffList.tsx` | 29 | PI-13 | LOW |
+| 161 | `src/components/TagTabs.tsx` | 138 | PI-13 | LOW |
+| 162 | `src/components/TeleportError.tsx` | 188 | PI-13 | LOW |
+| 163 | `src/components/TeleportProgress.tsx` | 139 | PI-13 | LOW |
+| 164 | `src/components/TeleportRepoMismatchDialog.tsx` | 103 | PI-13 | LOW |
+| 165 | `src/components/TeleportResumeWrapper.tsx` | 166 | PI-13 | LOW |
+| 166 | `src/components/TeleportStash.tsx` | 115 | PI-13 | LOW |
+| 167 | `src/components/TextInput.tsx` | 123 | PI-13 | LOW |
+| 168 | `src/components/ThemePicker.tsx` | 332 | PI-13 | MEDIUM |
+| 169 | `src/components/ThinkingToggle.tsx` | 152 | PI-13 | LOW |
+| 170 | `src/components/TokenWarning.tsx` | 178 | PI-13 | LOW |
+| 171 | `src/components/ToolUseLoader.tsx` | 41 | PI-13 | LOW |
+| 172 | `src/components/TrustDialog/TrustDialog.tsx` | 289 | PI-13 | MEDIUM |
+| 173 | `src/components/TrustDialog/utils.ts` | 245 | PI-13 | MEDIUM |
+| 174 | `src/components/ValidationErrorsList.tsx` | 147 | PI-13 | LOW |
+| 175 | `src/components/VimTextInput.tsx` | 139 | PI-13 | LOW |
+| 176 | `src/components/WorkflowMultiselectDialog.tsx` | 127 | PI-13 | LOW |
+| 177 | `src/components/WorktreeExitDialog.tsx` | 230 | PI-13 | MEDIUM |
+| 178 | `src/components/agents/AgentDetail.tsx` | 219 |  | MEDIUM |
+| 179 | `src/components/agents/AgentEditor.tsx` | 177 |  | LOW |
+| 180 | `src/components/agents/AgentNavigationFooter.tsx` | 25 | PI-09 | LOW |
+| 181 | `src/components/agents/AgentsList.tsx` | 439 |  | MEDIUM |
+| 182 | `src/components/agents/AgentsMenu.tsx` | 799 |  | MEDIUM |
+| 183 | `src/components/agents/ColorPicker.tsx` | 111 |  | LOW |
+| 184 | `src/components/agents/ModelSelector.tsx` | 67 |  | LOW |
+| 185 | `src/components/agents/ToolSelector.tsx` | 561 |  | MEDIUM |
+| 186 | `src/components/agents/agentFileUtils.ts` | 272 |  | MEDIUM |
+| 187 | `src/components/agents/generateAgent.ts` | 197 |  | LOW |
+| 188 | `src/components/agents/new-agent-creation/CreateAgentWizard.tsx` | 96 |  | LOW |
+| 189 | `src/components/agents/new-agent-creation/types.ts` | 1 | PI-09 | LOW |
+| 190 | `src/components/agents/new-agent-creation/wizard-steps/ColorStep.tsx` | 83 |  | LOW |
+| 191 | `src/components/agents/new-agent-creation/wizard-steps/ConfirmStep.tsx` | 377 |  | MEDIUM |
+| 192 | `src/components/agents/new-agent-creation/wizard-steps/ConfirmStepWrapper.tsx` | 73 |  | LOW |
+| 193 | `src/components/agents/new-agent-creation/wizard-steps/DescriptionStep.tsx` | 122 |  | LOW |
+| 194 | `src/components/agents/new-agent-creation/wizard-steps/GenerateStep.tsx` | 142 |  | LOW |
+| 195 | `src/components/agents/new-agent-creation/wizard-steps/LocationStep.tsx` | 79 |  | LOW |
+| 196 | `src/components/agents/new-agent-creation/wizard-steps/MemoryStep.tsx` | 112 |  | LOW |
+| 197 | `src/components/agents/new-agent-creation/wizard-steps/MethodStep.tsx` | 79 |  | LOW |
+| 198 | `src/components/agents/new-agent-creation/wizard-steps/ModelStep.tsx` | 51 |  | LOW |
+| 199 | `src/components/agents/new-agent-creation/wizard-steps/PromptStep.tsx` | 127 |  | LOW |
+| 200 | `src/components/agents/new-agent-creation/wizard-steps/ToolsStep.tsx` | 60 |  | LOW |
+| 201 | `src/components/agents/new-agent-creation/wizard-steps/TypeStep.tsx` | 102 |  | LOW |
+| 202 | `src/components/agents/types.ts` | 6 | PI-09 | LOW |
+| 203 | `src/components/agents/utils.ts` | 18 | PI-09 | LOW |
+| 204 | `src/components/agents/validateAgent.ts` | 109 |  | LOW |
+| 205 | `src/components/design-system/Byline.tsx` | 76 |  | LOW |
+| 206 | `src/components/design-system/Dialog.tsx` | 137 |  | LOW |
+| 207 | `src/components/design-system/Divider.tsx` | 148 |  | LOW |
+| 208 | `src/components/design-system/FuzzyPicker.tsx` | 311 |  | MEDIUM |
+| 209 | `src/components/design-system/KeyboardShortcutHint.tsx` | 80 |  | LOW |
+| 210 | `src/components/design-system/ListItem.tsx` | 243 |  | MEDIUM |
+| 211 | `src/components/design-system/LoadingState.tsx` | 93 |  | LOW |
+| 212 | `src/components/design-system/Pane.tsx` | 76 |  | LOW |
+| 213 | `src/components/design-system/ProgressBar.tsx` | 85 |  | LOW |
+| 214 | `src/components/design-system/Ratchet.tsx` | 79 |  | LOW |
+| 215 | `src/components/design-system/StatusIcon.tsx` | 94 |  | LOW |
+| 216 | `src/components/design-system/Tabs.tsx` | 339 |  | MEDIUM |
+| 217 | `src/components/design-system/ThemeProvider.tsx` | 169 |  | LOW |
+| 218 | `src/components/design-system/ThemedBox.tsx` | 155 |  | LOW |
+| 219 | `src/components/design-system/ThemedText.tsx` | 123 |  | LOW |
+| 220 | `src/components/design-system/color.ts` | 30 | PI-15 | LOW |
+| 221 | `src/components/diff/DiffDetailView.tsx` | 280 | PI-13 | MEDIUM |
+| 222 | `src/components/diff/DiffDialog.tsx` | 382 | PI-13 | MEDIUM |
+| 223 | `src/components/diff/DiffFileList.tsx` | 291 | PI-13 | MEDIUM |
+| 224 | `src/components/grove/Grove.tsx` | 462 | PI-13 | MEDIUM |
+| 225 | `src/components/hooks/HooksConfigMenu.tsx` | 577 |  | MEDIUM |
+| 226 | `src/components/hooks/SelectEventMode.tsx` | 126 | PI-13 | LOW |
+| 227 | `src/components/hooks/SelectHookMode.tsx` | 111 | PI-13 | LOW |
+| 228 | `src/components/hooks/SelectMatcherMode.tsx` | 143 | PI-13 | LOW |
+| 229 | `src/components/hooks/ViewHookMode.tsx` | 198 | PI-13 | LOW |
+| 230 | `src/components/memory/MemoryFileSelector.tsx` | 437 | PI-13 | MEDIUM |
+| 231 | `src/components/memory/MemoryUpdateNotification.tsx` | 44 | PI-13 | LOW |
+| 232 | `src/components/sandbox/SandboxConfigTab.tsx` | 44 | PI-13 | LOW |
+| 233 | `src/components/sandbox/SandboxDependenciesTab.tsx` | 119 | PI-13 | LOW |
+| 234 | `src/components/sandbox/SandboxDoctorSection.tsx` | 45 | PI-13 | LOW |
+| 235 | `src/components/sandbox/SandboxOverridesTab.tsx` | 192 | PI-13 | LOW |
+| 236 | `src/components/sandbox/SandboxSettings.tsx` | 295 | PI-13 | MEDIUM |
+| 237 | `src/components/shell/ExpandShellOutputContext.tsx` | 35 | PI-13 | LOW |
+| 238 | `src/components/shell/OutputLine.tsx` | 117 | PI-13 | LOW |
+| 239 | `src/components/shell/ShellProgressMessage.tsx` | 149 | PI-13 | LOW |
+| 240 | `src/components/shell/ShellTimeDisplay.tsx` | 73 | PI-13 | LOW |
+| 241 | `src/components/skills/SkillsMenu.tsx` | 236 | PI-13 | MEDIUM |
+| 242 | `src/components/tasks/AsyncAgentDetailDialog.tsx` | 228 | PI-13 | MEDIUM |
+| 243 | `src/components/tasks/BackgroundTask.tsx` | 344 | PI-13 | MEDIUM |
+| 244 | `src/components/tasks/BackgroundTaskStatus.tsx` | 428 | PI-13 | MEDIUM |
+| 245 | `src/components/tasks/BackgroundTasksDialog.tsx` | 651 | PI-13 | MEDIUM |
+| 246 | `src/components/tasks/DreamDetailDialog.tsx` | 250 | PI-13 | MEDIUM |
+| 247 | `src/components/tasks/InProcessTeammateDetailDialog.tsx` | 265 | PI-13 | MEDIUM |
+| 248 | `src/components/tasks/MonitorMcpDetailDialog.tsx` | 3 | PI-13 | LOW |
+| 249 | `src/components/tasks/RemoteSessionDetailDialog.tsx` | 903 | PI-13 | MEDIUM |
+| 250 | `src/components/tasks/RemoteSessionProgress.tsx` | 242 | PI-13 | MEDIUM |
+| 251 | `src/components/tasks/ShellDetailDialog.tsx` | 403 | PI-13 | MEDIUM |
+| 252 | `src/components/tasks/ShellProgress.tsx` | 86 | PI-13 | LOW |
+| 253 | `src/components/tasks/WorkflowDetailDialog.tsx` | 3 | PI-13 | LOW |
+| 254 | `src/components/tasks/renderToolActivity.tsx` | 32 | PI-13 | LOW |
+| 255 | `src/components/tasks/taskStatusUtils.tsx` | 106 | PI-13 | LOW |
+| 256 | `src/components/teams/TeamStatus.tsx` | 79 | PI-13 | LOW |
+| 257 | `src/components/teams/TeamsDialog.tsx` | 714 |  | MEDIUM |
+| 258 | `src/components/ui/OrderedList.tsx` | 70 | PI-13 | LOW |
+| 259 | `src/components/ui/OrderedListItem.tsx` | 44 | PI-13 | LOW |
+| 260 | `src/components/ui/TreeSelect.tsx` | 396 | PI-13 | MEDIUM |
+| 261 | `src/components/wizard/WizardDialogLayout.tsx` | 64 | PI-13 | LOW |
+| 262 | `src/components/wizard/WizardNavigationFooter.tsx` | 23 | PI-13 | LOW |
+| 263 | `src/components/wizard/WizardProvider.tsx` | 212 | PI-13 | MEDIUM |
+| 264 | `src/hooks/fileSuggestions.ts` | 811 |  | MEDIUM |
+| 265 | `src/hooks/notifs/useAntOrgWarningNotification.ts` | 1 | PI-16 | LOW |
+| 266 | `src/hooks/notifs/useAutoModeUnavailableNotification.ts` | 56 |  | LOW |
+| 267 | `src/hooks/notifs/useCanSwitchToExistingSubscription.tsx` | 59 |  | LOW |
+| 268 | `src/hooks/notifs/useDeprecationWarningNotification.tsx` | 43 | PI-16 | LOW |
+| 269 | `src/hooks/notifs/useFastModeNotification.tsx` | 161 |  | LOW |
+| 270 | `src/hooks/notifs/useIDEStatusIndicator.tsx` | 185 |  | LOW |
+| 271 | `src/hooks/notifs/useInstallMessages.tsx` | 25 | PI-16 | LOW |
+| 272 | `src/hooks/notifs/useLspInitializationNotification.tsx` | 142 |  | LOW |
+| 273 | `src/hooks/notifs/useMcpConnectivityStatus.tsx` | 87 |  | LOW |
+| 274 | `src/hooks/notifs/useModelMigrationNotifications.tsx` | 51 |  | LOW |
+| 275 | `src/hooks/notifs/useNpmDeprecationNotification.tsx` | 24 | PI-16 | LOW |
+| 276 | `src/hooks/notifs/usePluginAutoupdateNotification.tsx` | 82 |  | LOW |
+| 277 | `src/hooks/notifs/usePluginInstallationStatus.tsx` | 127 |  | LOW |
+| 278 | `src/hooks/notifs/useRateLimitWarningNotification.tsx` | 113 |  | LOW |
+| 279 | `src/hooks/notifs/useSettingsErrors.tsx` | 68 |  | LOW |
+| 280 | `src/hooks/notifs/useStartupNotification.ts` | 41 | PI-16 | LOW |
+| 281 | `src/hooks/notifs/useTeammateShutdownNotification.ts` | 78 |  | LOW |
+| 282 | `src/native-ts/color-diff/index.ts` | 999 |  | MEDIUM |
+| 283 | `src/native-ts/yoga-layout/index.ts` | 2578 |  | HIGH |
+| 284 | `src/screens/Doctor.tsx` | 574 |  | MEDIUM |
+| 285 | `src/vim/operators.ts` | 556 |  | MEDIUM |
+
+## ML-07-1 (104 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/context/fpsMetrics.tsx` | 30 |  | LOW |
+| 2 | `src/context/notifications.tsx` | 240 |  | MEDIUM |
+| 3 | `src/ink/Ansi.tsx` | 291 |  | MEDIUM |
+| 4 | `src/ink/bidi.ts` | 139 |  | LOW |
+| 5 | `src/ink/clearTerminal.ts` | 74 |  | LOW |
+| 6 | `src/ink/colorize.ts` | 231 |  | MEDIUM |
+| 7 | `src/ink/components/AlternateScreen.tsx` | 80 |  | LOW |
+| 8 | `src/ink/components/App.tsx` | 685 |  | MEDIUM |
+| 9 | `src/ink/components/AppContext.ts` | 21 | PI-07 | LOW |
+| 10 | `src/ink/components/Box.tsx` | 213 |  | MEDIUM |
+| 11 | `src/ink/components/Button.tsx` | 191 |  | LOW |
+| 12 | `src/ink/components/ClockContext.tsx` | 111 |  | LOW |
+| 13 | `src/ink/components/CursorDeclarationContext.ts` | 32 | PI-07 | LOW |
+| 14 | `src/ink/components/ErrorOverview.tsx` | 108 |  | LOW |
+| 15 | `src/ink/components/Link.tsx` | 41 | PI-07 | LOW |
+| 16 | `src/ink/components/Newline.tsx` | 38 | PI-07 | LOW |
+| 17 | `src/ink/components/NoSelect.tsx` | 67 |  | LOW |
+| 18 | `src/ink/components/RawAnsi.tsx` | 56 |  | LOW |
+| 19 | `src/ink/components/ScrollBox.tsx` | 237 |  | MEDIUM |
+| 20 | `src/ink/components/Spacer.tsx` | 19 | PI-07 | LOW |
+| 21 | `src/ink/components/StdinContext.ts` | 49 | PI-07 | LOW |
+| 22 | `src/ink/components/TerminalFocusContext.tsx` | 51 |  | LOW |
+| 23 | `src/ink/components/TerminalSizeContext.tsx` | 6 | PI-07 | LOW |
+| 24 | `src/ink/components/Text.tsx` | 253 |  | MEDIUM |
+| 25 | `src/ink/constants.ts` | 2 | PI-07 | LOW |
+| 26 | `src/ink/cursor.ts` | 7 | PI-07 | LOW |
+| 27 | `src/ink/dom.ts` | 484 |  | MEDIUM |
+| 28 | `src/ink/events/click-event.ts` | 38 | PI-07 | LOW |
+| 29 | `src/ink/events/dispatcher.ts` | 233 |  | MEDIUM |
+| 30 | `src/ink/events/emitter.ts` | 39 | PI-07 | LOW |
+| 31 | `src/ink/events/event-handlers.ts` | 73 |  | LOW |
+| 32 | `src/ink/events/event.ts` | 11 | PI-07 | LOW |
+| 33 | `src/ink/events/focus-event.ts` | 21 | PI-07 | LOW |
+| 34 | `src/ink/events/input-event.ts` | 205 |  | MEDIUM |
+| 35 | `src/ink/events/keyboard-event.ts` | 51 |  | LOW |
+| 36 | `src/ink/events/paste-event.ts` | 1 | PI-07 | LOW |
+| 37 | `src/ink/events/resize-event.ts` | 1 | PI-07 | LOW |
+| 38 | `src/ink/events/terminal-event.ts` | 107 |  | LOW |
+| 39 | `src/ink/events/terminal-focus-event.ts` | 19 | PI-07 | LOW |
+| 40 | `src/ink/focus.ts` | 181 |  | LOW |
+| 41 | `src/ink/frame.ts` | 124 |  | LOW |
+| 42 | `src/ink/get-max-width.ts` | 27 | PI-07 | LOW |
+| 43 | `src/ink/global.d.ts` | 1 | PI-07 | LOW |
+| 44 | `src/ink/hit-test.ts` | 130 |  | LOW |
+| 45 | `src/ink/hooks/use-animation-frame.ts` | 57 |  | LOW |
+| 46 | `src/ink/hooks/use-app.ts` | 8 | PI-07 | LOW |
+| 47 | `src/ink/hooks/use-declared-cursor.ts` | 73 |  | LOW |
+| 48 | `src/ink/hooks/use-input.ts` | 92 |  | LOW |
+| 49 | `src/ink/hooks/use-interval.ts` | 67 |  | LOW |
+| 50 | `src/ink/hooks/use-search-highlight.ts` | 53 |  | LOW |
+| 51 | `src/ink/hooks/use-selection.ts` | 104 |  | LOW |
+| 52 | `src/ink/hooks/use-stdin.ts` | 8 | PI-07 | LOW |
+| 53 | `src/ink/hooks/use-tab-status.ts` | 72 |  | LOW |
+| 54 | `src/ink/hooks/use-terminal-focus.ts` | 16 | PI-07 | LOW |
+| 55 | `src/ink/hooks/use-terminal-title.ts` | 31 | PI-07 | LOW |
+| 56 | `src/ink/hooks/use-terminal-viewport.ts` | 96 |  | LOW |
+| 57 | `src/ink/instances.ts` | 10 | PI-07 | LOW |
+| 58 | `src/ink/layout/engine.ts` | 6 | PI-07 | LOW |
+| 59 | `src/ink/layout/geometry.ts` | 97 |  | LOW |
+| 60 | `src/ink/layout/node.ts` | 152 |  | LOW |
+| 61 | `src/ink/layout/yoga.ts` | 308 |  | MEDIUM |
+| 62 | `src/ink/line-width-cache.ts` | 24 | PI-07 | LOW |
+| 63 | `src/ink/log-update.ts` | 773 |  | MEDIUM |
+| 64 | `src/ink/measure-element.ts` | 23 | PI-07 | LOW |
+| 65 | `src/ink/measure-text.ts` | 47 | PI-07 | LOW |
+| 66 | `src/ink/node-cache.ts` | 54 |  | LOW |
+| 67 | `src/ink/optimizer.ts` | 93 |  | LOW |
+| 68 | `src/ink/output.ts` | 797 |  | MEDIUM |
+| 69 | `src/ink/parse-keypress.ts` | 801 |  | MEDIUM |
+| 70 | `src/ink/reconciler.ts` | 512 |  | MEDIUM |
+| 71 | `src/ink/render-border.ts` | 231 |  | MEDIUM |
+| 72 | `src/ink/render-to-screen.ts` | 231 |  | MEDIUM |
+| 73 | `src/ink/renderer.ts` | 178 |  | LOW |
+| 74 | `src/ink/root.ts` | 184 |  | LOW |
+| 75 | `src/ink/searchHighlight.ts` | 93 |  | LOW |
+| 76 | `src/ink/selection.ts` | 917 |  | MEDIUM |
+| 77 | `src/ink/squash-text-nodes.ts` | 92 |  | LOW |
+| 78 | `src/ink/stringWidth.ts` | 222 |  | MEDIUM |
+| 79 | `src/ink/styles.ts` | 771 |  | MEDIUM |
+| 80 | `src/ink/supports-hyperlinks.ts` | 57 |  | LOW |
+| 81 | `src/ink/tabstops.ts` | 46 | PI-07 | LOW |
+| 82 | `src/ink/terminal-focus-state.ts` | 47 | PI-07 | LOW |
+| 83 | `src/ink/terminal-querier.ts` | 212 |  | MEDIUM |
+| 84 | `src/ink/terminal.ts` | 248 |  | MEDIUM |
+| 85 | `src/ink/termio.ts` | 42 | PI-07 | LOW |
+| 86 | `src/ink/termio/ansi.ts` | 75 |  | LOW |
+| 87 | `src/ink/termio/csi.ts` | 319 |  | MEDIUM |
+| 88 | `src/ink/termio/dec.ts` | 60 |  | LOW |
+| 89 | `src/ink/termio/esc.ts` | 67 |  | LOW |
+| 90 | `src/ink/termio/osc.ts` | 493 |  | MEDIUM |
+| 91 | `src/ink/termio/parser.ts` | 394 |  | MEDIUM |
+| 92 | `src/ink/termio/sgr.ts` | 308 |  | MEDIUM |
+| 93 | `src/ink/termio/tokenize.ts` | 319 |  | MEDIUM |
+| 94 | `src/ink/termio/types.ts` | 236 |  | MEDIUM |
+| 95 | `src/ink/useTerminalNotification.ts` | 126 |  | LOW |
+| 96 | `src/ink/warn.ts` | 9 | PI-07 | LOW |
+| 97 | `src/ink/widest-line.ts` | 19 | PI-07 | LOW |
+| 98 | `src/ink/wrap-text.ts` | 74 |  | LOW |
+| 99 | `src/ink/wrapAnsi.ts` | 20 | PI-07 | LOW |
+| 100 | `src/keybindings/KeybindingProviderSetup.tsx` | 308 |  | MEDIUM |
+| 101 | `src/keybindings/shortcutFormat.ts` | 63 |  | LOW |
+| 102 | `src/keybindings/useShortcutDisplay.ts` | 59 |  | LOW |
+| 103 | `src/screens/REPL.tsx` | 5061 |  | HIGH |
+| 104 | `src/state/AppState.tsx` | 200 |  | LOW |
+
+## ML-07-2 (7 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/components/FullscreenLayout.tsx` | 637 |  | MEDIUM |
+| 2 | `src/components/Messages.tsx` | 834 |  | MEDIUM |
+| 3 | `src/components/PromptInput/PromptInput.tsx` | 2339 |  | HIGH |
+| 4 | `src/components/ScrollKeybindingHandler.tsx` | 1012 |  | HIGH |
+| 5 | `src/components/Spinner.tsx` | 562 |  | MEDIUM |
+| 6 | `src/components/VirtualMessageList.tsx` | 1082 |  | HIGH |
+| 7 | `src/components/mcp/ElicitationDialog.tsx` | 1169 |  | HIGH |
+
+## ML-07-3 (61 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/components/AwsAuthStatusBox.tsx` | 82 |  | LOW |
+| 2 | `src/components/CostThresholdDialog.tsx` | 50 |  | LOW |
+| 3 | `src/components/DevBar.tsx` | 49 |  | LOW |
+| 4 | `src/components/EffortCallout.tsx` | 265 |  | MEDIUM |
+| 5 | `src/components/ExitFlow.tsx` | 48 |  | LOW |
+| 6 | `src/components/FeedbackSurvey/FeedbackSurvey.tsx` | 174 |  | LOW |
+| 7 | `src/components/IdeOnboardingDialog.tsx` | 167 |  | LOW |
+| 8 | `src/components/IdleReturnDialog.tsx` | 118 |  | LOW |
+| 9 | `src/components/MessageSelector.tsx` | 831 |  | MEDIUM |
+| 10 | `src/components/RemoteCallout.tsx` | 76 |  | LOW |
+| 11 | `src/components/SessionBackgroundHint.tsx` | 108 |  | LOW |
+| 12 | `src/components/SkillImprovementSurvey.tsx` | 152 |  | LOW |
+| 13 | `src/components/TaskListV2.tsx` | 378 |  | MEDIUM |
+| 14 | `src/components/TeammateViewHeader.tsx` | 82 |  | LOW |
+| 15 | `src/components/hooks/PromptDialog.tsx` | 90 |  | LOW |
+| 16 | `src/components/messageActions.tsx` | 450 |  | MEDIUM |
+| 17 | `src/components/messages/AdvisorMessage.tsx` | 157 |  | LOW |
+| 18 | `src/components/messages/AssistantRedactedThinkingMessage.tsx` | 30 | PI-08 | LOW |
+| 19 | `src/components/messages/AssistantTextMessage.tsx` | 269 |  | MEDIUM |
+| 20 | `src/components/messages/AssistantThinkingMessage.tsx` | 85 |  | LOW |
+| 21 | `src/components/messages/AssistantToolUseMessage.tsx` | 367 |  | MEDIUM |
+| 22 | `src/components/messages/AttachmentMessage.tsx` | 535 |  | MEDIUM |
+| 23 | `src/components/messages/CollapsedReadSearchContent.tsx` | 483 |  | MEDIUM |
+| 24 | `src/components/messages/CompactBoundaryMessage.tsx` | 17 | PI-08 | LOW |
+| 25 | `src/components/messages/GroupedToolUseContent.tsx` | 57 |  | LOW |
+| 26 | `src/components/messages/HighlightedThinkingText.tsx` | 161 |  | LOW |
+| 27 | `src/components/messages/HookProgressMessage.tsx` | 115 |  | LOW |
+| 28 | `src/components/messages/PlanApprovalMessage.tsx` | 221 |  | MEDIUM |
+| 29 | `src/components/messages/RateLimitMessage.tsx` | 160 |  | LOW |
+| 30 | `src/components/messages/ShutdownMessage.tsx` | 131 |  | LOW |
+| 31 | `src/components/messages/SnipBoundaryMessage.tsx` | 3 | PI-08 | LOW |
+| 32 | `src/components/messages/SystemAPIErrorMessage.tsx` | 140 |  | LOW |
+| 33 | `src/components/messages/SystemTextMessage.tsx` | 826 |  | MEDIUM |
+| 34 | `src/components/messages/TaskAssignmentMessage.tsx` | 75 |  | LOW |
+| 35 | `src/components/messages/UserAgentNotificationMessage.tsx` | 82 |  | LOW |
+| 36 | `src/components/messages/UserBashInputMessage.tsx` | 57 |  | LOW |
+| 37 | `src/components/messages/UserBashOutputMessage.tsx` | 53 |  | LOW |
+| 38 | `src/components/messages/UserChannelMessage.tsx` | 136 |  | LOW |
+| 39 | `src/components/messages/UserCommandMessage.tsx` | 107 |  | LOW |
+| 40 | `src/components/messages/UserCrossSessionMessage.tsx` | 3 | PI-08 | LOW |
+| 41 | `src/components/messages/UserForkBoilerplateMessage.tsx` | 3 | PI-08 | LOW |
+| 42 | `src/components/messages/UserGitHubWebhookMessage.tsx` | 3 | PI-08 | LOW |
+| 43 | `src/components/messages/UserImageMessage.tsx` | 58 |  | LOW |
+| 44 | `src/components/messages/UserLocalCommandOutputMessage.tsx` | 166 |  | LOW |
+| 45 | `src/components/messages/UserMemoryInputMessage.tsx` | 74 |  | LOW |
+| 46 | `src/components/messages/UserPlanMessage.tsx` | 41 | PI-08 | LOW |
+| 47 | `src/components/messages/UserPromptMessage.tsx` | 79 |  | LOW |
+| 48 | `src/components/messages/UserResourceUpdateMessage.tsx` | 120 |  | LOW |
+| 49 | `src/components/messages/UserTeammateMessage.tsx` | 205 |  | MEDIUM |
+| 50 | `src/components/messages/UserTextMessage.tsx` | 275 |  | MEDIUM |
+| 51 | `src/components/messages/UserToolResultMessage/RejectedPlanMessage.tsx` | 30 | PI-08 | LOW |
+| 52 | `src/components/messages/UserToolResultMessage/RejectedToolUseMessage.tsx` | 15 | PI-08 | LOW |
+| 53 | `src/components/messages/UserToolResultMessage/UserToolCanceledMessage.tsx` | 15 | PI-08 | LOW |
+| 54 | `src/components/messages/UserToolResultMessage/UserToolErrorMessage.tsx` | 102 |  | LOW |
+| 55 | `src/components/messages/UserToolResultMessage/UserToolRejectMessage.tsx` | 94 |  | LOW |
+| 56 | `src/components/messages/UserToolResultMessage/UserToolResultMessage.tsx` | 105 |  | LOW |
+| 57 | `src/components/messages/UserToolResultMessage/UserToolSuccessMessage.tsx` | 103 |  | LOW |
+| 58 | `src/components/messages/UserToolResultMessage/utils.tsx` | 43 | PI-08 | LOW |
+| 59 | `src/components/messages/nullRenderingAttachments.ts` | 70 |  | LOW |
+| 60 | `src/components/messages/teamMemCollapsed.tsx` | 139 |  | LOW |
+| 61 | `src/components/messages/teamMemSaved.ts` | 19 | PI-08 | LOW |
+
+## ML-07-4 (77 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/hooks/useAfterFirstRender.ts` | 17 |  | LOW |
+| 2 | `src/hooks/useApiKeyVerification.ts` | 84 |  | LOW |
+| 3 | `src/hooks/useArrowKeyHistory.tsx` | 228 |  | MEDIUM |
+| 4 | `src/hooks/useAssistantHistory.ts` | 250 |  | MEDIUM |
+| 5 | `src/hooks/useAwaySummary.ts` | 125 |  | LOW |
+| 6 | `src/hooks/useBackgroundTaskNavigation.ts` | 251 |  | MEDIUM |
+| 7 | `src/hooks/useBlink.ts` | 34 | PI-03 | LOW |
+| 8 | `src/hooks/useCancelRequest.ts` | 276 |  | MEDIUM |
+| 9 | `src/hooks/useChromeExtensionNotification.tsx` | 49 | PI-03 | LOW |
+| 10 | `src/hooks/useClaudeCodeHintRecommendation.tsx` | 128 |  | LOW |
+| 11 | `src/hooks/useClipboardImageHint.ts` | 77 |  | LOW |
+| 12 | `src/hooks/useCommandKeybindings.tsx` | 107 |  | LOW |
+| 13 | `src/hooks/useCommandQueue.ts` | 15 |  | LOW |
+| 14 | `src/hooks/useCopyOnSelect.ts` | 98 |  | LOW |
+| 15 | `src/hooks/useDeferredHookMessages.ts` | 46 |  | LOW |
+| 16 | `src/hooks/useDiffData.ts` | 110 |  | LOW |
+| 17 | `src/hooks/useDiffInIDE.ts` | 379 |  | MEDIUM |
+| 18 | `src/hooks/useDirectConnect.ts` | 229 |  | MEDIUM |
+| 19 | `src/hooks/useDoublePress.ts` | 62 |  | LOW |
+| 20 | `src/hooks/useDynamicConfig.ts` | 22 | PI-03 | LOW |
+| 21 | `src/hooks/useElapsedTime.ts` | 37 | PI-03 | LOW |
+| 22 | `src/hooks/useExitOnCtrlCD.ts` | 95 |  | LOW |
+| 23 | `src/hooks/useExitOnCtrlCDWithKeybindings.ts` | 24 | PI-03 | LOW |
+| 24 | `src/hooks/useFileHistorySnapshotInit.ts` | 25 |  | LOW |
+| 25 | `src/hooks/useGlobalKeybindings.tsx` | 248 |  | MEDIUM |
+| 26 | `src/hooks/useHistorySearch.ts` | 303 |  | MEDIUM |
+| 27 | `src/hooks/useIDEIntegration.tsx` | 69 |  | LOW |
+| 28 | `src/hooks/useIdeAtMentioned.ts` | 76 |  | LOW |
+| 29 | `src/hooks/useIdeConnectionStatus.ts` | 33 | PI-03 | LOW |
+| 30 | `src/hooks/useIdeLogging.ts` | 41 |  | LOW |
+| 31 | `src/hooks/useIdeSelection.ts` | 150 |  | LOW |
+| 32 | `src/hooks/useInboxPoller.ts` | 969 |  | MEDIUM |
+| 33 | `src/hooks/useInputBuffer.ts` | 132 |  | LOW |
+| 34 | `src/hooks/useIssueFlagBanner.ts` | 133 |  | LOW |
+| 35 | `src/hooks/useLogMessages.ts` | 119 |  | LOW |
+| 36 | `src/hooks/useLspPluginRecommendation.tsx` | 193 |  | LOW |
+| 37 | `src/hooks/useMailboxBridge.ts` | 21 |  | LOW |
+| 38 | `src/hooks/useMainLoopModel.ts` | 34 |  | LOW |
+| 39 | `src/hooks/useManagePlugins.ts` | 304 |  | MEDIUM |
+| 40 | `src/hooks/useMemoryUsage.ts` | 39 | PI-03 | LOW |
+| 41 | `src/hooks/useMergedClients.ts` | 23 |  | LOW |
+| 42 | `src/hooks/useMergedCommands.ts` | 15 |  | LOW |
+| 43 | `src/hooks/useMergedTools.ts` | 44 |  | LOW |
+| 44 | `src/hooks/useMinDisplayTime.ts` | 35 | PI-03 | LOW |
+| 45 | `src/hooks/useNotifyAfterTimeout.ts` | 65 |  | LOW |
+| 46 | `src/hooks/useOfficialMarketplaceNotification.tsx` | 47 | PI-03 | LOW |
+| 47 | `src/hooks/usePasteHandler.ts` | 285 |  | MEDIUM |
+| 48 | `src/hooks/usePluginRecommendationBase.tsx` | 104 |  | LOW |
+| 49 | `src/hooks/usePrStatus.ts` | 106 |  | LOW |
+| 50 | `src/hooks/usePromptSuggestion.ts` | 177 |  | LOW |
+| 51 | `src/hooks/usePromptsFromClaudeInChrome.tsx` | 70 |  | LOW |
+| 52 | `src/hooks/useQueueProcessor.ts` | 68 |  | LOW |
+| 53 | `src/hooks/useRemoteSession.ts` | 605 |  | MEDIUM |
+| 54 | `src/hooks/useReplBridge.tsx` | 723 |  | MEDIUM |
+| 55 | `src/hooks/useSSHSession.ts` | 241 |  | MEDIUM |
+| 56 | `src/hooks/useScheduledTasks.ts` | 139 |  | LOW |
+| 57 | `src/hooks/useSearchInput.ts` | 364 |  | MEDIUM |
+| 58 | `src/hooks/useSessionBackgrounding.ts` | 158 |  | LOW |
+| 59 | `src/hooks/useSettings.ts` | 17 | PI-03 | LOW |
+| 60 | `src/hooks/useSettingsChange.ts` | 25 | PI-03 | LOW |
+| 61 | `src/hooks/useSkillImprovementSurvey.ts` | 105 |  | LOW |
+| 62 | `src/hooks/useSkillsChange.ts` | 62 |  | LOW |
+| 63 | `src/hooks/useSwarmInitialization.ts` | 81 |  | LOW |
+| 64 | `src/hooks/useSwarmPermissionPoller.ts` | 330 |  | MEDIUM |
+| 65 | `src/hooks/useTaskListWatcher.ts` | 221 |  | MEDIUM |
+| 66 | `src/hooks/useTasksV2.ts` | 250 |  | MEDIUM |
+| 67 | `src/hooks/useTeammateViewAutoExit.ts` | 63 |  | LOW |
+| 68 | `src/hooks/useTeleportResume.tsx` | 84 |  | LOW |
+| 69 | `src/hooks/useTerminalSize.ts` | 15 |  | LOW |
+| 70 | `src/hooks/useTextInput.ts` | 529 |  | MEDIUM |
+| 71 | `src/hooks/useTimeout.ts` | 14 | PI-03 | LOW |
+| 72 | `src/hooks/useTurnDiffs.ts` | 213 |  | MEDIUM |
+| 73 | `src/hooks/useUpdateNotification.ts` | 34 | PI-03 | LOW |
+| 74 | `src/hooks/useVimInput.ts` | 316 |  | MEDIUM |
+| 75 | `src/hooks/useVirtualScroll.ts` | 721 |  | MEDIUM |
+| 76 | `src/hooks/useVoiceEnabled.ts` | 25 | PI-03 | LOW |
+| 77 | `src/hooks/useVoiceIntegration.tsx` | 676 |  | MEDIUM |
+
+## ML-07-5 (5 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/hooks/useTypeahead.tsx` | 1385 |  | HIGH |
+| 2 | `src/hooks/useVoice.ts` | 1144 |  | HIGH |
+| 3 | `src/ink/ink.tsx` | 1723 |  | HIGH |
+| 4 | `src/ink/render-node-to-output.ts` | 1462 |  | HIGH |
+| 5 | `src/ink/screen.ts` | 1486 |  | HIGH |
+
+## ML-08 (21 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/Task.ts` | 125 |  | LOW |
+| 2 | `src/tasks.ts` | 39 |  | LOW |
+| 3 | `src/tasks/DreamTask/DreamTask.ts` | 157 |  | LOW |
+| 4 | `src/tasks/InProcessTeammateTask/InProcessTeammateTask.tsx` | 125 |  | LOW |
+| 5 | `src/tasks/InProcessTeammateTask/types.ts` | 121 |  | LOW |
+| 6 | `src/tasks/LocalAgentTask/LocalAgentTask.tsx` | 682 |  | MEDIUM |
+| 7 | `src/tasks/LocalMainSessionTask.ts` | 479 |  | MEDIUM |
+| 8 | `src/tasks/LocalShellTask/LocalShellTask.tsx` | 522 |  | MEDIUM |
+| 9 | `src/tasks/LocalShellTask/guards.ts` | 41 |  | LOW |
+| 10 | `src/tasks/LocalShellTask/killShellTasks.ts` | 76 |  | LOW |
+| 11 | `src/tasks/LocalWorkflowTask/LocalWorkflowTask.ts` | 5 |  | LOW |
+| 12 | `src/tasks/MonitorMcpTask/MonitorMcpTask.ts` | 5 |  | LOW |
+| 13 | `src/tasks/RemoteAgentTask/RemoteAgentTask.tsx` | 855 |  | MEDIUM |
+| 14 | `src/tasks/pillLabel.ts` | 82 |  | LOW |
+| 15 | `src/tasks/stopTask.ts` | 100 |  | LOW |
+| 16 | `src/tasks/types.ts` | 46 |  | LOW |
+| 17 | `src/utils/task/TaskOutput.ts` | 390 |  | MEDIUM |
+| 18 | `src/utils/task/diskOutput.ts` | 451 |  | MEDIUM |
+| 19 | `src/utils/task/framework.ts` | 308 |  | MEDIUM |
+| 20 | `src/utils/task/outputFormatting.ts` | 38 |  | LOW |
+| 21 | `src/utils/task/sdkProgress.ts` | 36 |  | LOW |
+
+## ML-09 (17 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/cli/exit.ts` | 31 | PI-23 | LOW |
+| 2 | `src/cli/handlers/agents.ts` | 70 |  | LOW |
+| 3 | `src/cli/handlers/autoMode.ts` | 170 |  | LOW |
+| 4 | `src/cli/handlers/mcp.tsx` | 361 |  | MEDIUM |
+| 5 | `src/cli/handlers/plugins.ts` | 878 |  | MEDIUM |
+| 6 | `src/cli/handlers/util.tsx` | 109 |  | LOW |
+| 7 | `src/cli/ndjsonSafeStringify.ts` | 32 | PI-23 | LOW |
+| 8 | `src/cli/remoteIO.ts` | 255 |  | MEDIUM |
+| 9 | `src/cli/transports/HybridTransport.ts` | 282 |  | MEDIUM |
+| 10 | `src/cli/transports/SSETransport.ts` | 711 |  | MEDIUM |
+| 11 | `src/cli/transports/SerialBatchEventUploader.ts` | 275 |  | MEDIUM |
+| 12 | `src/cli/transports/Transport.ts` | 7 | PI-23 | LOW |
+| 13 | `src/cli/transports/WebSocketTransport.ts` | 800 |  | MEDIUM |
+| 14 | `src/cli/transports/WorkerStateUploader.ts` | 131 |  | LOW |
+| 15 | `src/cli/transports/ccrClient.ts` | 998 |  | MEDIUM |
+| 16 | `src/cli/transports/transportUtils.ts` | 45 | PI-23 | LOW |
+| 17 | `src/cli/update.ts` | 422 |  | MEDIUM |
+
+## ML-09-1 (18 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/bridge/bridgeApi.ts` | 539 |  | MEDIUM |
+| 2 | `src/bridge/bridgeConfig.ts` | 48 |  | LOW |
+| 3 | `src/bridge/bridgeDebug.ts` | 135 |  | LOW |
+| 4 | `src/bridge/bridgeEnabled.ts` | 202 |  | MEDIUM |
+| 5 | `src/bridge/capacityWake.ts` | 56 |  | LOW |
+| 6 | `src/bridge/debugUtils.ts` | 141 |  | LOW |
+| 7 | `src/bridge/envLessBridgeConfig.ts` | 165 |  | LOW |
+| 8 | `src/bridge/flushGate.ts` | 71 |  | LOW |
+| 9 | `src/bridge/initReplBridge.ts` | 569 |  | MEDIUM |
+| 10 | `src/bridge/jwtUtils.ts` | 256 |  | MEDIUM |
+| 11 | `src/bridge/pollConfig.ts` | 110 |  | LOW |
+| 12 | `src/bridge/pollConfigDefaults.ts` | 82 |  | LOW |
+| 13 | `src/bridge/replBridge.ts` | 2406 |  | HIGH |
+| 14 | `src/bridge/replBridgeHandle.ts` | 36 |  | LOW |
+| 15 | `src/bridge/sessionIdCompat.ts` | 57 |  | LOW |
+| 16 | `src/bridge/trustedDevice.ts` | 210 |  | MEDIUM |
+| 17 | `src/bridge/types.ts` | 262 |  | MEDIUM |
+| 18 | `src/bridge/workSecret.ts` | 127 |  | LOW |
+
+## ML-09-2 (15 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/bridge/bridgeMain.ts` | 2999 |  | HIGH |
+| 2 | `src/bridge/bridgeMessaging.ts` | 461 |  | MEDIUM |
+| 3 | `src/bridge/bridgePermissionCallbacks.ts` | 43 |  | LOW |
+| 4 | `src/bridge/bridgePointer.ts` | 210 |  | MEDIUM |
+| 5 | `src/bridge/bridgeStatusUtil.ts` | 163 |  | LOW |
+| 6 | `src/bridge/bridgeUI.ts` | 530 |  | MEDIUM |
+| 7 | `src/bridge/codeSessionApi.ts` | 168 |  | LOW |
+| 8 | `src/bridge/createSession.ts` | 384 |  | MEDIUM |
+| 9 | `src/bridge/inboundAttachments.ts` | 175 |  | LOW |
+| 10 | `src/bridge/inboundMessages.ts` | 80 |  | LOW |
+| 11 | `src/bridge/peerSessions.ts` | 3 |  | LOW |
+| 12 | `src/bridge/remoteBridgeCore.ts` | 1008 |  | HIGH |
+| 13 | `src/bridge/replBridgeTransport.ts` | 370 |  | MEDIUM |
+| 14 | `src/bridge/sessionRunner.ts` | 550 |  | MEDIUM |
+| 15 | `src/bridge/webhookSanitizer.ts` | 3 |  | LOW |
+
+## ML-10 (1 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/services/claudeAiLimits.ts` | 515 |  | MEDIUM |
+
+## ML-10-1 (14 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/services/api/adminRequests.ts` | 119 |  | LOW |
+| 2 | `src/services/api/dumpPrompts.ts` | 226 |  | MEDIUM |
+| 3 | `src/services/api/emptyUsage.ts` | 22 |  | LOW |
+| 4 | `src/services/api/errorUtils.ts` | 260 |  | MEDIUM |
+| 5 | `src/services/api/filesApi.ts` | 748 |  | MEDIUM |
+| 6 | `src/services/api/firstTokenDate.ts` | 60 |  | LOW |
+| 7 | `src/services/api/grove.ts` | 357 |  | MEDIUM |
+| 8 | `src/services/api/metricsOptOut.ts` | 159 |  | LOW |
+| 9 | `src/services/api/overageCreditGrant.ts` | 137 |  | LOW |
+| 10 | `src/services/api/promptCacheBreakDetection.ts` | 727 |  | MEDIUM |
+| 11 | `src/services/api/referral.ts` | 281 |  | MEDIUM |
+| 12 | `src/services/api/sessionIngress.ts` | 514 |  | MEDIUM |
+| 13 | `src/services/api/ultrareviewQuota.ts` | 38 |  | LOW |
+| 14 | `src/services/api/usage.ts` | 63 |  | LOW |
+
+## ML-11 (3 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/utils/sessionRestore.ts` | 551 |  | MEDIUM |
+| 2 | `src/utils/sessionStorage.ts` | 5105 |  | HIGH |
+| 3 | `src/utils/sessionStoragePortable.ts` | 793 |  | MEDIUM |
+
+## ML-11-1 (31 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/memdir/findRelevantMemories.ts` | 141 |  | LOW |
+| 2 | `src/memdir/memdir.ts` | 507 |  | MEDIUM |
+| 3 | `src/memdir/memoryAge.ts` | 53 |  | LOW |
+| 4 | `src/memdir/memoryScan.ts` | 94 |  | LOW |
+| 5 | `src/memdir/memoryShapeTelemetry.ts` | 1 |  | LOW |
+| 6 | `src/memdir/memoryTypes.ts` | 271 |  | MEDIUM |
+| 7 | `src/memdir/paths.ts` | 278 |  | MEDIUM |
+| 8 | `src/memdir/teamMemPaths.ts` | 292 |  | MEDIUM |
+| 9 | `src/memdir/teamMemPrompts.ts` | 100 |  | LOW |
+| 10 | `src/services/SessionMemory/prompts.ts` | 324 |  | MEDIUM |
+| 11 | `src/services/SessionMemory/sessionMemory.ts` | 495 |  | MEDIUM |
+| 12 | `src/services/SessionMemory/sessionMemoryUtils.ts` | 207 |  | MEDIUM |
+| 13 | `src/services/compact/apiMicrocompact.ts` | 153 |  | LOW |
+| 14 | `src/services/compact/cachedMCConfig.ts` | 3 |  | LOW |
+| 15 | `src/services/compact/compactWarningHook.ts` | 16 |  | LOW |
+| 16 | `src/services/compact/compactWarningState.ts` | 18 |  | LOW |
+| 17 | `src/services/compact/grouping.ts` | 63 |  | LOW |
+| 18 | `src/services/compact/microCompact.ts` | 530 |  | MEDIUM |
+| 19 | `src/services/compact/postCompactCleanup.ts` | 77 |  | LOW |
+| 20 | `src/services/compact/prompt.ts` | 374 |  | MEDIUM |
+| 21 | `src/services/compact/reactiveCompact.ts` | 3 |  | LOW |
+| 22 | `src/services/compact/sessionMemoryCompact.ts` | 630 |  | MEDIUM |
+| 23 | `src/services/compact/snipCompact.ts` | 10 |  | LOW |
+| 24 | `src/services/compact/snipProjection.ts` | 7 |  | LOW |
+| 25 | `src/services/compact/timeBasedMCConfig.ts` | 43 |  | LOW |
+| 26 | `src/services/contextCollapse/index.ts` | 51 |  | LOW |
+| 27 | `src/services/contextCollapse/operations.ts` | 7 |  | LOW |
+| 28 | `src/services/contextCollapse/persist.ts` | 1 |  | LOW |
+| 29 | `src/services/tokenEstimation.ts` | 495 |  | MEDIUM |
+| 30 | `src/utils/contextAnalysis.ts` | 272 |  | MEDIUM |
+| 31 | `src/utils/forkedAgent.ts` | 689 |  | MEDIUM |
+
+## ML-12 (72 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/commands/plugin/ManagePlugins.tsx` | 2214 |  | HIGH |
+| 2 | `src/commands/plugin/PluginSettings.tsx` | 1071 |  | HIGH |
+| 3 | `src/services/plugins/PluginInstallationManager.ts` | 184 |  | LOW |
+| 4 | `src/services/plugins/pluginCliCommands.ts` | 344 |  | MEDIUM |
+| 5 | `src/services/plugins/pluginOperations.ts` | 1088 |  | HIGH |
+| 6 | `src/skills/bundled/batch.ts` | 124 |  | LOW |
+| 7 | `src/skills/bundled/claudeApi.ts` | 196 |  | LOW |
+| 8 | `src/skills/bundled/claudeApiContent.ts` | 75 |  | LOW |
+| 9 | `src/skills/bundled/claudeInChrome.ts` | 34 | PI-10 | LOW |
+| 10 | `src/skills/bundled/debug.ts` | 103 |  | LOW |
+| 11 | `src/skills/bundled/dream.ts` | 1 | PI-10 | LOW |
+| 12 | `src/skills/bundled/hunter.ts` | 1 | PI-10 | LOW |
+| 13 | `src/skills/bundled/index.ts` | 79 |  | LOW |
+| 14 | `src/skills/bundled/keybindings.ts` | 339 |  | MEDIUM |
+| 15 | `src/skills/bundled/loop.ts` | 92 |  | LOW |
+| 16 | `src/skills/bundled/loremIpsum.ts` | 282 |  | MEDIUM |
+| 17 | `src/skills/bundled/remember.ts` | 82 |  | LOW |
+| 18 | `src/skills/bundled/runSkillGenerator.ts` | 1 | PI-10 | LOW |
+| 19 | `src/skills/bundled/scheduleRemoteAgents.ts` | 447 |  | MEDIUM |
+| 20 | `src/skills/bundled/simplify.ts` | 69 |  | LOW |
+| 21 | `src/skills/bundled/skillify.ts` | 197 |  | LOW |
+| 22 | `src/skills/bundled/stuck.ts` | 79 |  | LOW |
+| 23 | `src/skills/bundled/updateConfig.ts` | 475 |  | MEDIUM |
+| 24 | `src/skills/bundled/verify.ts` | 30 | PI-10 | LOW |
+| 25 | `src/skills/bundled/verifyContent.ts` | 13 | PI-10 | LOW |
+| 26 | `src/skills/bundledSkills.ts` | 220 |  | MEDIUM |
+| 27 | `src/skills/loadSkillsDir.ts` | 1086 |  | HIGH |
+| 28 | `src/skills/mcpSkillBuilders.ts` | 44 | PI-10 | LOW |
+| 29 | `src/utils/plugins/addDirPluginSettings.ts` | 71 |  | LOW |
+| 30 | `src/utils/plugins/cacheUtils.ts` | 196 |  | LOW |
+| 31 | `src/utils/plugins/dependencyResolver.ts` | 305 |  | MEDIUM |
+| 32 | `src/utils/plugins/fetchTelemetry.ts` | 135 |  | LOW |
+| 33 | `src/utils/plugins/gitAvailability.ts` | 69 |  | LOW |
+| 34 | `src/utils/plugins/headlessPluginInstall.ts` | 174 |  | LOW |
+| 35 | `src/utils/plugins/hintRecommendation.ts` | 164 |  | LOW |
+| 36 | `src/utils/plugins/installCounts.ts` | 292 |  | MEDIUM |
+| 37 | `src/utils/plugins/installedPluginsManager.ts` | 1268 |  | HIGH |
+| 38 | `src/utils/plugins/loadPluginAgents.ts` | 348 |  | MEDIUM |
+| 39 | `src/utils/plugins/loadPluginCommands.ts` | 946 |  | MEDIUM |
+| 40 | `src/utils/plugins/loadPluginHooks.ts` | 287 |  | MEDIUM |
+| 41 | `src/utils/plugins/loadPluginOutputStyles.ts` | 178 |  | LOW |
+| 42 | `src/utils/plugins/lspPluginIntegration.ts` | 387 |  | MEDIUM |
+| 43 | `src/utils/plugins/lspRecommendation.ts` | 374 |  | MEDIUM |
+| 44 | `src/utils/plugins/managedPlugins.ts` | 27 |  | LOW |
+| 45 | `src/utils/plugins/marketplaceHelpers.ts` | 592 |  | MEDIUM |
+| 46 | `src/utils/plugins/marketplaceManager.ts` | 2643 |  | HIGH |
+| 47 | `src/utils/plugins/mcpPluginIntegration.ts` | 634 |  | MEDIUM |
+| 48 | `src/utils/plugins/mcpbHandler.ts` | 968 |  | MEDIUM |
+| 49 | `src/utils/plugins/officialMarketplace.ts` | 25 |  | LOW |
+| 50 | `src/utils/plugins/officialMarketplaceGcs.ts` | 216 |  | MEDIUM |
+| 51 | `src/utils/plugins/officialMarketplaceStartupCheck.ts` | 439 |  | MEDIUM |
+| 52 | `src/utils/plugins/orphanedPluginFilter.ts` | 114 |  | LOW |
+| 53 | `src/utils/plugins/parseMarketplaceInput.ts` | 162 |  | LOW |
+| 54 | `src/utils/plugins/performStartupChecks.tsx` | 69 |  | LOW |
+| 55 | `src/utils/plugins/pluginAutoupdate.ts` | 284 |  | MEDIUM |
+| 56 | `src/utils/plugins/pluginBlocklist.ts` | 127 |  | LOW |
+| 57 | `src/utils/plugins/pluginDirectories.ts` | 178 |  | LOW |
+| 58 | `src/utils/plugins/pluginFlagging.ts` | 208 |  | MEDIUM |
+| 59 | `src/utils/plugins/pluginIdentifier.ts` | 123 |  | LOW |
+| 60 | `src/utils/plugins/pluginInstallationHelpers.ts` | 595 |  | MEDIUM |
+| 61 | `src/utils/plugins/pluginLoader.ts` | 3302 |  | HIGH |
+| 62 | `src/utils/plugins/pluginOptionsStorage.ts` | 400 |  | MEDIUM |
+| 63 | `src/utils/plugins/pluginPolicy.ts` | 20 |  | LOW |
+| 64 | `src/utils/plugins/pluginStartupCheck.ts` | 341 |  | MEDIUM |
+| 65 | `src/utils/plugins/pluginVersioning.ts` | 157 |  | LOW |
+| 66 | `src/utils/plugins/reconciler.ts` | 265 |  | MEDIUM |
+| 67 | `src/utils/plugins/refresh.ts` | 215 |  | MEDIUM |
+| 68 | `src/utils/plugins/schemas.ts` | 1681 |  | HIGH |
+| 69 | `src/utils/plugins/validatePlugin.ts` | 903 |  | MEDIUM |
+| 70 | `src/utils/plugins/walkPluginMarkdown.ts` | 69 |  | LOW |
+| 71 | `src/utils/plugins/zipCache.ts` | 406 |  | MEDIUM |
+| 72 | `src/utils/plugins/zipCacheAdapters.ts` | 164 |  | LOW |
+
+## ML-13 (37 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/utils/bash/ParsedCommand.ts` | 318 |  | MEDIUM |
+| 2 | `src/utils/bash/ShellSnapshot.ts` | 582 |  | MEDIUM |
+| 3 | `src/utils/bash/ast.ts` | 2679 |  | HIGH |
+| 4 | `src/utils/bash/bashParser.ts` | 4436 |  | HIGH |
+| 5 | `src/utils/bash/bashPipeCommand.ts` | 294 |  | MEDIUM |
+| 6 | `src/utils/bash/commands.ts` | 1339 |  | HIGH |
+| 7 | `src/utils/bash/heredoc.ts` | 733 |  | MEDIUM |
+| 8 | `src/utils/bash/parser.ts` | 230 |  | MEDIUM |
+| 9 | `src/utils/bash/prefix.ts` | 204 |  | MEDIUM |
+| 10 | `src/utils/bash/registry.ts` | 53 |  | LOW |
+| 11 | `src/utils/bash/shellCompletion.ts` | 259 |  | MEDIUM |
+| 12 | `src/utils/bash/shellPrefix.ts` | 28 |  | LOW |
+| 13 | `src/utils/bash/shellQuote.ts` | 304 |  | MEDIUM |
+| 14 | `src/utils/bash/shellQuoting.ts` | 128 |  | LOW |
+| 15 | `src/utils/bash/specs/alias.ts` | 14 |  | LOW |
+| 16 | `src/utils/bash/specs/index.ts` | 18 |  | LOW |
+| 17 | `src/utils/bash/specs/nohup.ts` | 13 |  | LOW |
+| 18 | `src/utils/bash/specs/pyright.ts` | 91 |  | LOW |
+| 19 | `src/utils/bash/specs/sleep.ts` | 13 |  | LOW |
+| 20 | `src/utils/bash/specs/srun.ts` | 31 |  | LOW |
+| 21 | `src/utils/bash/specs/time.ts` | 13 |  | LOW |
+| 22 | `src/utils/bash/specs/timeout.ts` | 20 |  | LOW |
+| 23 | `src/utils/bash/treeSitterAnalysis.ts` | 506 |  | MEDIUM |
+| 24 | `src/utils/powershell/dangerousCmdlets.ts` | 185 |  | LOW |
+| 25 | `src/utils/powershell/parser.ts` | 1804 |  | HIGH |
+| 26 | `src/utils/powershell/staticPrefix.ts` | 316 |  | MEDIUM |
+| 27 | `src/utils/sandbox/sandbox-adapter.ts` | 985 |  | MEDIUM |
+| 28 | `src/utils/shell/bashProvider.ts` | 255 |  | MEDIUM |
+| 29 | `src/utils/shell/outputLimits.ts` | 14 |  | LOW |
+| 30 | `src/utils/shell/powershellDetection.ts` | 107 |  | LOW |
+| 31 | `src/utils/shell/powershellProvider.ts` | 123 |  | LOW |
+| 32 | `src/utils/shell/prefix.ts` | 367 |  | MEDIUM |
+| 33 | `src/utils/shell/readOnlyCommandValidation.ts` | 1893 |  | HIGH |
+| 34 | `src/utils/shell/resolveDefaultShell.ts` | 14 |  | LOW |
+| 35 | `src/utils/shell/shellProvider.ts` | 33 |  | LOW |
+| 36 | `src/utils/shell/shellToolUtils.ts` | 22 |  | LOW |
+| 37 | `src/utils/shell/specPrefix.ts` | 241 |  | MEDIUM |
+
+## ML-14 (22 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/utils/swarm/It2SetupPrompt.tsx` | 379 |  | MEDIUM |
+| 2 | `src/utils/swarm/backends/ITermBackend.ts` | 370 |  | MEDIUM |
+| 3 | `src/utils/swarm/backends/InProcessBackend.ts` | 339 |  | MEDIUM |
+| 4 | `src/utils/swarm/backends/PaneBackendExecutor.ts` | 354 |  | MEDIUM |
+| 5 | `src/utils/swarm/backends/TmuxBackend.ts` | 764 |  | MEDIUM |
+| 6 | `src/utils/swarm/backends/detection.ts` | 128 |  | LOW |
+| 7 | `src/utils/swarm/backends/it2Setup.ts` | 245 |  | MEDIUM |
+| 8 | `src/utils/swarm/backends/registry.ts` | 464 |  | MEDIUM |
+| 9 | `src/utils/swarm/backends/teammateModeSnapshot.ts` | 87 |  | LOW |
+| 10 | `src/utils/swarm/backends/types.ts` | 311 |  | MEDIUM |
+| 11 | `src/utils/swarm/constants.ts` | 33 |  | LOW |
+| 12 | `src/utils/swarm/inProcessRunner.ts` | 1552 |  | HIGH |
+| 13 | `src/utils/swarm/leaderPermissionBridge.ts` | 54 |  | LOW |
+| 14 | `src/utils/swarm/permissionSync.ts` | 928 |  | MEDIUM |
+| 15 | `src/utils/swarm/reconnection.ts` | 119 |  | LOW |
+| 16 | `src/utils/swarm/spawnInProcess.ts` | 328 |  | MEDIUM |
+| 17 | `src/utils/swarm/spawnUtils.ts` | 146 |  | LOW |
+| 18 | `src/utils/swarm/teamHelpers.ts` | 683 |  | MEDIUM |
+| 19 | `src/utils/swarm/teammateInit.ts` | 129 |  | LOW |
+| 20 | `src/utils/swarm/teammateLayoutManager.ts` | 107 |  | LOW |
+| 21 | `src/utils/swarm/teammateModel.ts` | 10 |  | LOW |
+| 22 | `src/utils/swarm/teammatePromptAddendum.ts` | 18 |  | LOW |
+
+## ML-15 (9 files)
+
+| # | File | Lines | Pattern | Risk |
+|---|------|-------|---------|------|
+| 1 | `src/entrypoints/sdk/controlSchemas.ts` | 663 |  | MEDIUM |
+| 2 | `src/entrypoints/sdk/controlTypes.ts` | 62 |  | LOW |
+| 3 | `src/entrypoints/sdk/coreSchemas.ts` | 1889 |  | HIGH |
+| 4 | `src/entrypoints/sdk/coreTypes.generated.ts` | 10 |  | LOW |
+| 5 | `src/entrypoints/sdk/coreTypes.ts` | 62 |  | LOW |
+| 6 | `src/entrypoints/sdk/runtimeTypes.ts` | 22 |  | LOW |
+| 7 | `src/entrypoints/sdk/sdkUtilityTypes.ts` | 6 |  | LOW |
+| 8 | `src/entrypoints/sdk/settingsTypes.generated.ts` | 1 |  | LOW |
+| 9 | `src/entrypoints/sdk/toolTypes.ts` | 1 |  | LOW |

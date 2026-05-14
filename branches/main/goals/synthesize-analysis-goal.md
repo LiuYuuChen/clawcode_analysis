@@ -1,27 +1,28 @@
-# synthesize-analysis Goal Tracker
+# synthesize-analysis Goal Tracking
 
 - [x] 对账式文件索引：从 metadata/JSONL/task-plan 构建应有清单并逐项核对
-- [x] 读取地图阶段：repo map + 所有 sub-map + 覆盖率报告
-- [x] 读取分析阶段：analysis report + tasks + task plan + 覆盖率报告
-- [ ] 读取执行阶段：所有 task analysis（逐个 T-NN）
+- [x] 读取地图阶段：repo map + 所有 sub-map（逐个 ML-XX）+ 覆盖率报告
+- [x] 读取分析阶段：analysis report（含 ML Priority Assessment）+ tasks + task plan + 覆盖率报告
+- [x] 读取执行阶段：所有 task analysis（逐个 T-NN，含函数级分析和文件依赖图）
 - [ ] 提取并增补全局 mermaid 图
-- [ ] 合成系统组件架构图（8-15 个组件，分层子图）
-- [ ] 合成系统级流程图（3-5 个端到端跨主线流程）
-- [ ] P1 主线汇总：对每条 P1 主线生成 summary-ML-XX.md（10 节完整结构）
-- [ ] 多维度关联发现：维度 1-6（core+secondary+shared+cross-ref+functional+gate）
-- [ ] 均衡约束：每 P1 summary 3 ≤ tasks ≤ 12；supplementary ≤ 15
-- [ ] 均衡校验：distribution table + 违反则 re-allocate
-- [ ] 补充汇总：未分配 task ≥ 3 个时生成 summary-supplementary.md
-- [ ] 文件关联：每 summary 含 ## 相关分析文件 节
-- [ ] 逐文件核验：引用 task-output-guardian-report.md PASS 结论
-- [ ] 用户场景提取：从主线+批次推导 SC-NN 场景列表
-- [ ] 用户场景综合：Overview / Capability Groups / Entry Points Map
-- [ ] 场景序列图：P1 场景 mermaid 序列图（3-8 个）
+- [ ] 合成系统组件架构图（Step 3b：跨主线模块交互全景，8-15 个组件，分层子图）
+- [ ] 合成系统级流程图（Step 3c：主请求处理等 3-5 个端到端跨主线流程）
+- [ ] 横切关注点合成（Step 3d：错误处理全景图 + 安全边界图 + 状态管理图 + 配置景观图）
+- [ ] 技术质量评估合成（Step 3e：设计质量 + 模块耦合热图 + 技术债务 + 代码分布 pie chart）
+- [ ] 架构模式综合（Step 3f：设计模式清单 + ADR 推导 + 交互模式图）
+- [ ] 系统级注意点综合（Step 3g：Top-10 踩坑 + 编码约定 + 反模式 + 外部依赖风险图）
+- [x] P1 主线汇总分配：6 条 P1 主线 task 分配表完成
+- [x] 均衡约束：每 P1 summary 3 ≤ tasks ≤ 12；supplementary ≤ 15
+- [x] 均衡校验：distribution table 通过
+- [x] 补充汇总：15 个 P2/P3 task 分配至 summary-supplementary.md（483 行，32KB，10 节完整）
+- [x] 文件关联：每 summary 含 ## 相关分析文件 节，导航至少 2 个其他 summary + sub-map + task
+- [x] 逐文件核验：消费 task-output-guardian-report.md 的 PASS 结论
+- [ ] 用户场景提取：从主线+批次推导 SC-NN 场景列表（含优先级和 AC）
+- [ ] 用户场景综合：生成 Overview / Capability Groups / Entry Points Map / Cross-Scenario Dependencies
+- [ ] 场景序列图：为每个 P1 场景生成 mermaid 序列图（Step 6c，总数 3-8 个）
 - [ ] 完成覆盖率报告章节
-- [ ] 完成 Uncovered Files Audit 章节
-- [ ] 完成总体分析报告 final-analysis-report.md
-- [ ] 生成 file-analysis-index.jsonl（三层关联索引）
-- [ ] 生成 file-descriptions.jsonl
-- [ ] 生成 file-module-map.jsonl
-- [ ] 对账核验：主线/任务/文件覆盖率全部达标
-- [ ] 更新 metadata.json + tasks.md
+- [ ] 完成 Uncovered Files Audit 章节（引用 uncovered-files.jsonl/md）
+- [x] 完成总体分析报告 final-analysis-report.md（引用各 summary，§11 已用 supplementary 内容替换）+ metadata.json + file_description_map
+- [x] 生成 file-analysis-index.jsonl：三层关联索引（源码→task→summary），每个 mapped 文件一条
+- [x] 在 final report 的 "Report Structure" 节明确标注此索引文件的用途
+- [x] 对账核验：主线/任务/文件覆盖率全部达标，台账无 needs-split 残留

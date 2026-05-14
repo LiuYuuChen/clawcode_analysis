@@ -10,4 +10,4 @@
 - [x] 更新 instance-manifest.jsonl 中抽样实例的 role_source 为 verified
 - [x] 验证 acceptance criteria（7/7 PASS）
 - [x] 识别风险与开放问题
-- [x] 写出 task-analyses/T-36-audit-pi-18.md
+- [x] 写出 task-analyses/T-36-audit-computer-use-module.md

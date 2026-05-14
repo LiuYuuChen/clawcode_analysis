@@ -11,4 +11,4 @@
 - [x] 更新 instance-manifest.jsonl 中全部实例的 role_source 为 verified
 - [x] 验证 acceptance criteria（7/7 PASS）
 - [x] 识别风险与开放问题
-- [x] 写出 task-analyses/T-39-audit-pi-24.md
+- [x] 写出 task-analyses/T-39-audit-telemetry-module.md

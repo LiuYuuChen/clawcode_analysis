@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-23 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-23 -->
 # T-23 Analysis: Pattern Audit — react-hook (PI-03)
 
 ## Scope Confirmation
@@ -8,9 +8,9 @@
 - Analysis Depth: OVERVIEW
 - Pattern Coverage: PI-03 (react-hook)
 - Scope Files (confirmed):
-  - [`src/hooks/useBlink.ts`](/src/src/hooks/useBlink.ts.md) (34 lines) ✅
-  - [`src/hooks/useChromeExtensionNotification.tsx`](/src/src/hooks/useChromeExtensionNotification.tsx.md) (49 lines) ✅
-  - [`src/hooks/useDynamicConfig.ts`](/src/src/hooks/useDynamicConfig.ts.md) (22 lines) ✅
+  - [`src/hooks/useBlink.ts`](/src/src/hooks/useBlink.ts) (34 lines) ✅
+  - [`src/hooks/useChromeExtensionNotification.tsx`](/src/src/hooks/useChromeExtensionNotification.tsx) (49 lines) ✅
+  - [`src/hooks/useDynamicConfig.ts`](/src/src/hooks/useDynamicConfig.ts) (22 lines) ✅
 - Scope adjustments: None. PI-03 has 14 catalog instances. All will be fully verified (14 ≤ 20 threshold for full verification).
 - Rationale: PI-03 audit task, verifying all catalog instances conform to the react-hook pattern.
 - Dependencies: T-10 (TUI main interface — already completed)

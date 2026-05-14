@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2025-07-14 | mode: full | task: T-20 --&gt;
+<!-- analysis-version: 0 | commit: 365f23f | updated: 2025-07-27 | mode: full | task: T-20 -->
 # T-20 Analysis: SDK入口点
 
 ## Scope Confirmation
@@ -9,15 +9,15 @@
 - Secondary Mainlines: none
 - Pattern Coverage: none
 - Scope Files (confirmed): 9 files, 2,716 lines total
-  - [`src/entrypoints/sdk/coreSchemas.ts`](/src/src/entrypoints/sdk/coreSchemas.ts.md) (1889L) ✅
-  - [`src/entrypoints/sdk/controlSchemas.ts`](/src/src/entrypoints/sdk/controlSchemas.ts.md) (663L) ✅
-  - [`src/entrypoints/sdk/coreTypes.ts`](/src/src/entrypoints/sdk/coreTypes.ts.md) (62L) ✅
-  - [`src/entrypoints/sdk/controlTypes.ts`](/src/src/entrypoints/sdk/controlTypes.ts.md) (62L) ✅
-  - [`src/entrypoints/sdk/runtimeTypes.ts`](/src/src/entrypoints/sdk/runtimeTypes.ts.md) (22L) ✅
-  - [`src/entrypoints/sdk/coreTypes.generated.ts`](/src/src/entrypoints/sdk/coreTypes.generated.ts.md) (10L) ✅
-  - [`src/entrypoints/sdk/sdkUtilityTypes.ts`](/src/src/entrypoints/sdk/sdkUtilityTypes.ts.md) (6L) ✅
-  - [`src/entrypoints/sdk/settingsTypes.generated.ts`](/src/src/entrypoints/sdk/settingsTypes.generated.ts.md) (1L) ✅
-  - [`src/entrypoints/sdk/toolTypes.ts`](/src/src/entrypoints/sdk/toolTypes.ts.md) (1L) ✅
+  - [`src/entrypoints/sdk/coreSchemas.ts`](/src/src/entrypoints/sdk/coreSchemas.ts) (1889L) ✅
+  - [`src/entrypoints/sdk/controlSchemas.ts`](/src/src/entrypoints/sdk/controlSchemas.ts) (663L) ✅
+  - [`src/entrypoints/sdk/coreTypes.ts`](/src/src/entrypoints/sdk/coreTypes.ts) (62L) ✅
+  - [`src/entrypoints/sdk/controlTypes.ts`](/src/src/entrypoints/sdk/controlTypes.ts) (62L) ✅
+  - [`src/entrypoints/sdk/runtimeTypes.ts`](/src/src/entrypoints/sdk/runtimeTypes.ts) (22L) ✅
+  - [`src/entrypoints/sdk/coreTypes.generated.ts`](/src/src/entrypoints/sdk/coreTypes.generated.ts) (10L) ✅
+  - [`src/entrypoints/sdk/sdkUtilityTypes.ts`](/src/src/entrypoints/sdk/sdkUtilityTypes.ts) (6L) ✅
+  - [`src/entrypoints/sdk/settingsTypes.generated.ts`](/src/src/entrypoints/sdk/settingsTypes.generated.ts) (1L) ✅
+  - [`src/entrypoints/sdk/toolTypes.ts`](/src/src/entrypoints/sdk/toolTypes.ts) (1L) ✅
 - Scope adjustments: none
 
 ## File Roles
@@ -207,8 +207,8 @@ flowchart LR
 | coreTypes.ts -> SDK Consumers | export | Public API types consumed by Python SDK users |
 | controlSchemas.ts -> SDK Builders | export | Control protocol schemas for SDK implementers |
 | generate-sdk-types.ts -> .generated.ts | write | Code generator produces loose types from Zod schemas |
-| coreTypes.ts &lt;- sandboxTypes.ts | import | Re-exports 4 sandbox config types from T-01 scope |
-| coreSchemas.ts &lt;- lazySchema.ts | import | Performance wrapper for deferred Zod schema construction |
+| coreTypes.ts <- sandboxTypes.ts | import | Re-exports 4 sandbox config types from T-01 scope |
+| coreSchemas.ts <- lazySchema.ts | import | Performance wrapper for deferred Zod schema construction |
 
 ## Acceptance Criteria Status
 
@@ -227,7 +227,7 @@ flowchart LR
 | ID | Severity | File | Description |
 |----|----------|------|-------------|
 | P4-01 | P4 | coreSchemas.ts | **1889-line single file**: ~80 schemas in one flat structure. Could benefit from splitting into per-domain files (hooks, permissions, messages) for maintainability. |
-| P4-02 | P4 | runtimeTypes.ts | **17 Record&lt;string, unknown&gt; stubs**: No actual type safety for runtime objects (SDKSession, Query, Options). Intentional for loose coupling but zero IDE autocompletion. |
+| P4-02 | P4 | runtimeTypes.ts | **17 Record\<string, unknown\> stubs**: No actual type safety for runtime objects (SDKSession, Query, Options). Intentional for loose coupling but zero IDE autocompletion. |
 | P4-03 | P4 | coreTypes.generated.ts | **Intentionally loose types**: SDKMessage has `type: string` instead of union of known message types. Almost no type safety. |
 | P4-04 | P4 | settingsTypes.generated.ts / toolTypes.ts | **Empty placeholder files**: No actual type exports, suggesting incomplete type generation pipeline. |
 

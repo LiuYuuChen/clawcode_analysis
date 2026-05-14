@@ -1,602 +1,501 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6588dd03cbe83a8d8b718a61875dba7b24 | updated: 2025-07-14 | mode: re-execute | task: T-17 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2025-07-27 | mode: re-execute | task: T-17 -->
 # T-17 Analysis: Plugin System
 
 ## Scope Confirmation
 - Task ID: T-17
-- Primary Mainline: ML-12 (Plugin System)
+- Primary Mainline: ML-12
 - ML Priority: P2
 - Analysis Depth: STANDARD
-- Secondary Mainlines: ML-01 (commands), ML-03 (tools), ML-05 (MCP)
-- Pattern Coverage: PI-10 (bundled-skill, 22 instances — catalog, not in scope)
-- Scope Files (confirmed): 65 files, 29,370 lines, **0 missing**
-- Scope adjustments: None — all 65 files physically exist and are readable
-- Re-execute reason: FAIL_0 (physical file missing — created from scratch)
-- Dependencies: T-08 (MCP Service Integration)
+- Secondary Mainlines: ML-02 (hooks integration), ML-05 (MCP tools), ML-13 (bundled skills)
+- Pattern Coverage: N/A
+- Scope Files (confirmed): 50 files in `src/utils/plugins/`, 2 in `src/services/plugins/`, 2 in `src/commands/plugin/`, 2 in `src/skills/`, 11 additional utility files — **65 files total, all confirmed readable**
+- Scope adjustments: None
 
 ## File Roles
 
 | File | Lines | One-liner Role | Where Analyzed |
 |------|-------|----------------|---------------|
-| src/utils/plugins/pluginLoader.ts | 3302 | Core orchestrator: discovers/loads/validates/caches plugins from marketplaces and git repos; `loadAllPlugins` (memoized) is main entry | § Analysis Findings, § Call Chain |
-| src/utils/plugins/marketplaceManager.ts | 2643 | Marketplace lifecycle: register/clone/sparse-checkout/pull/refresh marketplace repos; memoized `getMarketplace` | § Analysis Findings, § Call Chain |
-| src/utils/plugins/schemas.ts | 1681 | Zod validation schemas for manifests/sources/hooks; homoglyph attack protection; official name registry | § Analysis Findings |
-| src/utils/plugins/installedPluginsManager.ts | 1268 | V2 persistence layer: load/save installed plugins to `installed_plugins.json`; migration from V1; pending updates tracking | § Analysis Findings, § State Transition |
-| src/services/plugins/pluginOperations.ts | 1088 | Operation layer: install/uninstall/enable/disable/update with scope (user/project/local) and dependency resolution | § Call Chain, § Error Propagation |
-| src/commands/plugin/ManagePlugins.tsx | 2215 | Interactive TUI for managing plugins: search/install/uninstall/update/enable/disable with Ink components | § Boundary/Integration |
-| src/utils/plugins/loadPluginCommands.ts | 946 | Loads plugin commands (`.md` slash commands) via `walkPluginMarkdown`; memoized `getPluginCommands` and `getPluginSkills` | § Call Chain |
-| src/utils/plugins/mcpbHandler.ts | 968 | MCPB package format handler: load/validate/save user config for bundled MCP server packages | § Analysis Findings |
-| src/utils/plugins/validatePlugin.ts | 903 | Plugin manifest + contents validation: `validatePluginManifest`, `validateMarketplaceManifest`, `validatePluginContents` | § Error Propagation |
-| src/skills/loadSkillsDir.ts | 1086 | Loads skill definitions from plugin skill directories; parses skill.json manifests | § Analysis Findings |
-| src/commands/plugin/PluginSettings.tsx | 1072 | Plugin settings TUI panel: display/edit per-plugin options with schema-driven forms | § Boundary/Integration |
-| src/utils/plugins/pluginInstallationHelpers.ts | 595 | Installation utilities: `cacheAndRegisterPlugin`, `registerPluginInstallation`, `parsePluginId` | § Call Chain |
-| src/utils/plugins/mcpPluginIntegration.ts | 634 | Bridges plugins to MCP service: `loadPluginMcpServers`, `extractMcpServersFromPlugins`, `getUnconfiguredChannels` | § Boundary/Integration |
-| src/utils/plugins/marketplaceHelpers.ts | 592 | Marketplace display utilities: `formatFailureDetails`, `createPluginId`, `loadMarketplacesWithGracefulDegradation` | § Error Propagation |
-| src/utils/plugins/lspPluginIntegration.ts | 387 | Bridges plugins to LSP servers: `loadPluginLspServers`, `resolvePluginLspEnvironment`, `getPluginLspServers` | § Boundary/Integration |
-| src/utils/plugins/lspRecommendation.ts | 374 | Recommends LSP plugins based on detected file types; manages never-suggest list | § Analysis Findings |
-| src/utils/plugins/officialMarketplaceStartupCheck.ts | 439 | Startup check: auto-installs official marketplace with retry and GCS fallback | § Call Chain |
-| src/utils/plugins/loadPluginAgents.ts | 348 | Loads plugin agent definitions (`.md` agent files) via `walkPluginMarkdown`; memoized | § Call Chain |
-| src/services/plugins/pluginCliCommands.ts | 344 | CLI command handlers: install/uninstall/enable/disable/update wrappers calling pluginOperations | § Call Chain |
-| src/utils/plugins/dependencyResolver.ts | 305 | Dependency graph: `resolveDependencyClosure`, `findReverseDependents`, `qualifyDependency` | § Analysis Findings |
-| src/utils/plugins/installCounts.ts | 292 | Fetches and caches install counts from analytics API; `formatInstallCount` | § Side Effects |
-| src/utils/plugins/loadPluginHooks.ts | 287 | Loads plugin hooks (hooks.json); supports hot reload via settings snapshot comparison | § State Transition |
-| src/utils/plugins/pluginAutoupdate.ts | 284 | Background auto-update: `updatePluginsForMarketplaces`, `autoUpdateMarketplacesAndPluginsInBackground` | § Temporal Analysis |
-| src/utils/plugins/reconciler.ts | 265 | Marketplace reconciliation: `diffMarketplaces`, `reconcileMarketplaces` (detect added/removed/changed plugins) | § Analysis Findings |
-| src/skills/bundled/scheduleRemoteAgents.ts | 447 | Bundled skill: schedules remote agents; imports AgentTool patterns | § Analysis Findings |
-| src/skills/bundled/loremIpsum.ts | 282 | Bundled skill: generates lorem ipsum text for testing | § Analysis Findings |
-| src/utils/plugins/refresh.ts | 215 | Refresh pipeline: `refreshActivePlugins` reloads commands/hooks/agents/output-styles/MCP/LSP in sequence | § Call Chain |
-| src/utils/plugins/pluginFlagging.ts | 208 | Plugin flagging system: load/add/remove flagged plugins (security/malware reporting) | § Error Propagation |
-| src/utils/plugins/zipCache.ts | 406 | Zip-based cache for marketplaces and installed plugins (offline/air-gapped support) | § Analysis Findings |
-| src/utils/plugins/pluginOptionsStorage.ts | 400 | Per-plugin options persistence: load/save options to `~/.claude/plugins/<id>/options.json` | § Data Flow |
-| src/utils/plugins/pluginStartupCheck.ts | 341 | Startup checks: `checkEnabledPlugins`, `getPluginEditableScopes`, `getInstalledPlugins` | § Call Chain |
-| src/skills/bundled/keybindings.ts | 339 | Bundled skill: manages keybinding configurations | § Analysis Findings |
-| src/skills/bundled/updateConfig.ts | 475 | Bundled skill: updates user configuration files | § Analysis Findings |
-| src/utils/plugins/cacheUtils.ts | 196 | Cache utilities: `clearAllPluginCaches`, `clearAllCaches`, `cleanupOrphanedPluginVersions` | § Side Effects |
-| src/utils/plugins/orphanedPluginFilter.ts | 114 | Generates glob exclusions for orphaned plugin cache directories | § Analysis Findings |
-| src/skills/bundled/claudeApi.ts | 196 | Bundled skill: Claude API usage examples and helpers | § Analysis Findings |
-| src/utils/plugins/marketplaceHelpers.ts | 592 | (See above — already listed) | — |
-| src/utils/plugins/headlessPluginInstall.ts | 174 | Installs plugins from CLI flags in headless/non-interactive mode | § Call Chain |
-| src/utils/plugins/loadPluginOutputStyles.ts | 178 | Loads plugin output style definitions via `walkPluginMarkdown`; memoized | § Call Chain |
-| src/utils/plugins/pluginDirectories.ts | 178 | Plugin directory paths: `getPluginsDirectory`, `getPluginSeedDirs`, `pluginDataDirPath` | § Analysis Findings |
-| src/utils/plugins/parseMarketplaceInput.ts | 162 | Parses user input for marketplace operations (name@marketplace format) | § Analysis Findings |
-| src/utils/plugins/zipCacheAdapters.ts | 164 | Zip cache read/write adapters for known-marketplaces file and marketplace JSON | § Analysis Findings |
-| src/utils/plugins/pluginVersioning.ts | 157 | Plugin version calculation: git SHA + content hash for cache invalidation | § Data Flow |
-| src/utils/plugins/hintRecommendation.ts | 164 | Plugin hint system: records usage hints, resolves recommended plugins | § Analysis Findings |
-| src/utils/plugins/fetchTelemetry.ts | 135 | Telemetry logging for plugin fetch operations; error classification | § Side Effects |
-| src/utils/plugins/pluginBlocklist.ts | 127 | Detects delisted plugins from marketplace index and auto-uninstalls | § Error Propagation |
-| src/utils/plugins/pluginIdentifier.ts | 123 | Plugin ID parsing: `parsePluginIdentifier`, `buildPluginId`, scope-to-source mapping | § Data Flow |
-| src/utils/plugins/orphanedPluginFilter.ts | 114 | (See above — already listed) | — |
-| src/services/plugins/PluginInstallationManager.ts | 184 | Background installation manager: `performBackgroundPluginInstallations` for pending installs | § Temporal Analysis |
-| src/utils/plugins/managedPlugins.ts | 27 | Returns managed (enterprise-controlled) plugin name set from settings | § Analysis Findings |
-| src/utils/plugins/officialMarketplace.ts | 25 | Constants: `OFFICIAL_MARKETPLACE_SOURCE` URL and `OFFICIAL_MARKETPLACE_NAME` | § Analysis Findings |
-| src/utils/plugins/gitAvailability.ts | 69 | Memoized git availability check; marks git unavailable on failure | § Side Effects |
-| src/utils/plugins/walkPluginMarkdown.ts | 69 | Recursively walks plugin dir collecting `.md` files for commands/agents/output-styles | § Call Chain |
-| src/utils/plugins/addDirPluginSettings.ts | 71 | Reads `--add-dir` enabled plugin settings for path-scoped plugins | § Analysis Findings |
-| src/utils/plugins/officialMarketplaceGcs.ts | 216 | GCS fallback: fetches official marketplace index from Google Cloud Storage | § Call Chain |
-| src/utils/plugins/performStartupChecks.tsx | 70 | TUI startup checks: validates enabled plugins and shows errors to user | § Boundary/Integration |
-| src/utils/plugins/pluginPolicy.ts | 20 | Single-function policy checker: `isPluginBlockedByPolicy` checks enterprise allow-list | § Analysis Findings |
-| src/skills/bundled/batch.ts | 124 | Bundled skill: batch processing of multiple files | § Analysis Findings |
-| src/skills/bundled/debug.ts | 103 | Bundled skill: debugging assistance | § Analysis Findings |
-| src/skills/bundled/index.ts | 79 | Bundled skill registry: `initializeBundledSkills` registers all bundled skills at startup | § Call Chain |
-| src/skills/bundled/remember.ts | 82 | Bundled skill: saves key information to memory files | § Analysis Findings |
-| src/skills/bundled/stuck.ts | 79 | Bundled skill: helps when the AI is stuck on a problem | § Analysis Findings |
-| src/skills/bundled/simplify.ts | 69 | Bundled skill: simplifies complex code | § Analysis Findings |
-| src/skills/bundled/claudeApiContent.ts | 75 | Content type definitions for Claude API bundled skill | § Analysis Findings |
-| src/skills/bundled/loop.ts | 92 | Bundled skill: iterative refinement loop | § Analysis Findings |
-| src/skills/bundled/skillify.ts | 197 | Bundled skill: creates new skills from user instructions | § Analysis Findings |
-| src/skills/bundledSkills.ts | 220 | Bundled skill type definitions and extraction helpers for bundled skill files | § Analysis Findings |
+| src/utils/plugins/pluginLoader.ts | 3302 | **Core plugin loader/discoverer** — loads plugins from marketplace cache, seed dirs, and session sources; manages versioned cache paths and zip extraction | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/marketplaceManager.ts | 2643 | **Marketplace lifecycle manager** — manages known_marketplaces.json, fetches/clones marketplace manifests (URL/Git/npm/local), installs plugins from marketplace entries | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/installedPluginsManager.ts | 1268 | **Installation state persistence** — manages installed_plugins.json (V1/V2), separates global install state from per-repo enabled state | STANDARD: § 架构洞察 |
+| src/utils/plugins/schemas.ts | 1681 | **Zod schemas + security definitions** — plugin/marketplace manifest schemas, official name whitelist, impersonation detection, homograph attack prevention | STANDARD: § 架构洞察 |
+| src/utils/plugins/validatePlugin.ts | 903 | **Plugin manifest validator** — Zod-based validation for plugin.json and marketplace.json, distinguishes marketplace-only fields | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/mcpbHandler.ts | 968 | **MCPB/DXT package handler** — loads .mcpb/.dxt files, extracts zip packages, manages user configuration for MCPB bundles | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/loadPluginCommands.ts | 946 | **Plugin command loader** — loads .md files from commands/ and skills/ dirs as Command objects with frontmatter parsing | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/loadPluginHooks.ts | 287 | **Plugin hook loader** — converts plugin hooks config to 27 native HookEvent matchers with hot-reload support | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/loadPluginAgents.ts | 348 | **Plugin agent loader** — loads agent .md definitions from agents/ dir with frontmatter, memory scope, and tool allowlisting | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/loadPluginOutputStyles.ts | 178 | **Plugin output style loader** — loads output style .md definitions from output-styles/ dir with frontmatter parsing | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/reconciler.ts | 265 | **Layer-2 reconciler** — diffMarketplaces() compares declared intent vs materialized state; reconcileMarketplaces() installs missing/changed | STANDARD: § 架构洞察 |
+| src/utils/plugins/refresh.ts | 215 | **Layer-3 refresh primitive** — swaps active plugin components (commands/agents/hooks/MCP/LSP) into AppState from disk | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/mcpPluginIntegration.ts | 634 | **Plugin→MCP bridge** — loads MCP server configs from plugin manifests (.mcp.json, MCPB files), env var expansion, plugin data dirs | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/lspPluginIntegration.ts | 387 | **Plugin→LSP bridge** — loads LSP server configs from .lsp.json and manifest.lspServers, path traversal validation | STANDARD: § 关键路径与组件 |
+| src/commands/plugin/ManagePlugins.tsx | 2215 | **Interactive plugin management UI** — Ink/React component for browsing, installing, configuring, updating plugins | STANDARD: § 关键路径与组件 |
+| src/commands/plugin/PluginSettings.tsx | 1072 | **Plugin settings panel UI** — Ink/React component for per-plugin configuration, MCP/LSP server management | STANDARD: § 关键路径与组件 |
+| src/services/plugins/PluginInstallationManager.ts | 184 | **Background installation orchestrator** — non-blocking startup install via reconciler, auto-refreshes on new installs | STANDARD: § 关键路径与组件 |
+| src/services/plugins/pluginCliCommands.ts | 344 | **CLI command wrappers** — thin wrappers around pluginOperations for `claude plugin install/uninstall` etc. | STANDARD: § 关键路径与组件 |
+| src/services/plugins/pluginOperations.ts | 1088 | **Core operation library** — pure functions for install/uninstall/enable/disable/update, shared by CLI and UI | STANDARD: § 架构洞察 |
+| src/skills/bundledSkills.ts | 220 | **Bundled skill registry** — programmatic registration of compiled-in skills with lazy file extraction | STANDARD: § 关键路径与组件 |
+| src/skills/loadSkillsDir.ts | 1086 | **Skills directory loader** — discovers and loads skill .md files from .claude/skills/ dirs with .gitignore support | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/cacheUtils.ts | 196 | **Cache coordination hub** — clearAllCaches() clears all plugin memoize caches; orphaned version cleanup (7-day TTL) | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/pluginAutoupdate.ts | 284 | **Background autoupdater** — updates marketplace feeds then updates installed plugins; non-inplace, requires restart | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/pluginBlocklist.ts | 127 | **Delisted plugin detector** — compares installed plugins against marketplace manifests, auto-uninstalls delisted plugins | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/pluginFlagging.ts | 208 | **Flagged plugin tracker** — tracks auto-removed delisted plugins in flagged-plugins.json for UI notification | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/pluginStartupCheck.ts | 341 | **Startup migration/enablement** — migrates V1 enabled_plugins to V2 format, auto-enables seed plugins | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/headlessPluginInstall.ts | 174 | **Headless/CCR installer** — plugin installation without AppState, for non-interactive environments | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/orphanedPluginFilter.ts | 114 | **Ripgrep exclusion filter** — generates glob patterns to exclude orphaned plugin versions from Grep/Glob results | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/officialMarketplaceStartupCheck.ts | 439 | **Official marketplace auto-install** — installs official Anthropic marketplace on first startup with enterprise/git checks | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/dependencyResolver.ts | 305 | **Plugin dependency resolver** — apt-style DFS resolution with cycle detection; load-time demotion for unsatisfied deps | STANDARD: § 架构洞察 |
+| src/utils/plugins/pluginVersioning.ts | 157 | **Version calculator** — computes plugin version from manifest/git SHA/timestamp for cache path and update detection | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/pluginOptionsStorage.ts | 400 | **Plugin config storage** — stores user options in settings.json (non-sensitive) and SecureStorage (sensitive); variable substitution | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/zipCache.ts | 406 | **ZIP cache manager** — stores plugins as ZIPs on mounted volume, extracts to session-local temp dir | STANDARD: § 架构洞察 |
+| src/utils/plugins/marketplaceHelpers.ts | 592 | **Marketplace utility functions** — source allowlist/blocklist checks, URL extraction, policy validation | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/pluginInstallationHelpers.ts | 595 | **Installation shared helpers** — atomic rename, path validation, temp dir management for install operations | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/installCounts.ts | 292 | **Install count fetcher** — fetches and caches plugin install counts from stats repo (24h TTL) | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/lspRecommendation.ts | 374 | **LSP plugin recommender** — scans marketplaces for LSP plugins matching project file extensions | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/hintRecommendation.ts | 164 | **Plugin hint recommender** — recommends plugins based on CLI/SDK-emitted `<claude-code-hint />` tags | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/officialMarketplaceGcs.ts | 216 | **GCS marketplace mirror** — fetches official marketplace from GCS instead of GitHub to reduce API load | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/officialMarketplace.ts | 25 | **Official marketplace constants** — defines OFFICIAL_MARKETPLACE_NAME and source URL | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/managedPlugins.ts | 27 | **Managed plugin checker** — returns org-policy-locked plugin names from policySettings | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/fetchTelemetry.ts | 135 | **Fetch telemetry** — classifies and logs network fetch outcomes for monitoring GitHub/GCS volume | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/pluginPolicy.ts | 20 | **Policy leaf checker** — checks if marketplace sources are allowed by managed policy (kept leaf to avoid circular deps) | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/pluginDirectories.ts | 178 | **Directory config hub** — single source of truth for plugins directory path, supports --cowork flag and env override | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/pluginIdentifier.ts | 123 | **Plugin ID parser** — parses "name@marketplace" format, maps SettingSource to PluginScope | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/parseMarketplaceInput.ts | 162 | **Marketplace input parser** — parses git SSH/HTTPS URLs, local paths, and bare names into MarketplaceSource objects | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/performStartupChecks.tsx | 70 | **Startup orchestrator** — calls registerSeedMarketplaces, pluginStartupCheck, background install, autoupdate | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/gitAvailability.ts | 69 | **Git availability checker** — memoized check for git binary presence on the system | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/addDirPluginSettings.ts | 71 | **AddDir plugin settings** — reads enabledPlugins/extraKnownMarketplaces from --add-dir directories (lowest priority) | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/walkPluginMarkdown.ts | 69 | **Markdown file walker** — recursively walks plugin dirs invoking callback for each .md file with namespace tracking | STANDARD: § 关键路径与组件 |
+| src/utils/plugins/zipCacheAdapters.ts | 164 | **ZIP cache I/O helpers** — reads/writes zip-cache metadata, extracts ZIPs to session dirs, creates ZIPs for new installs | STANDARD: § 关键路径与组件 |
+| src/skills/bundled/batch.ts | 124 | **Batch orchestration skill** — registers `/batch` command for parallelizing large changes across codebase with agent-based workers, MIN_AGENTS=5/MAX_AGENTS=30 | OVERVIEW (enumerated) |
+| src/skills/bundled/claudeApi.ts | 196 | **Claude API reference skill** — registers `/claude-api` command that detects project language and provides language-specific API documentation from bundled .md files | OVERVIEW (enumerated) |
+| src/skills/bundled/claudeApiContent.ts | 75 | **API docs content bundle** — lazy-loaded collection of 24 inline .md files (via Bun text loader) providing Claude API docs for 7 languages + Agent SDK patterns | OVERVIEW (enumerated) |
+| src/skills/bundled/debug.ts | 103 | **Debug skill** — registers `/debug` command that enables session debug logging and reads/analyzes the debug log to diagnose issues | OVERVIEW (enumerated) |
+| src/skills/bundled/index.ts | 79 | **Bundled skills registry initializer** — imports and calls all `register*Skill()` functions at startup; documents the add-new-skill pattern | OVERVIEW (enumerated) |
+| src/skills/bundled/keybindings.ts | 339 | **Keybindings skill** — registers `/keybindings` command that generates keybinding customization reference from schema definitions and default bindings | OVERVIEW (enumerated) |
+| src/skills/bundled/loop.ts | 92 | **Loop/recurring prompt skill** — registers `/loop [interval] <prompt>` command that parses interval notation and schedules recurring prompts via CRON tools | OVERVIEW (enumerated) |
+| src/skills/bundled/loremIpsum.ts | 282 | **Lorem Ipsum skill** — registers `/lorem` command that generates varied placeholder text using verified single-token English words for prompt-efficient output | OVERVIEW (enumerated) |
+| src/skills/bundled/remember.ts | 82 | **Memory review skill** — registers `/remember` command (Ant-internal only) that reviews auto-memory entries and proposes reclassification to CLAUDE.md/CLAUDE.local.md/team-memory | OVERVIEW (enumerated) |
+| src/skills/bundled/scheduleRemoteAgents.ts | 447 | **Remote agent scheduling skill** — registers `/schedule-remote-agents` command that manages cloud environments and dispatches remote agents via teleport/bridge infrastructure | OVERVIEW (enumerated) |
+| src/skills/bundled/simplify.ts | 69 | **Code simplification skill** — registers `/simplify` command that launches 3 parallel review agents (reuse, quality, efficiency) against git diff changes | OVERVIEW (enumerated) |
+| src/skills/bundled/skillify.ts | 197 | **Skill extraction skill** — registers `/skillify` command that captures repeatable session patterns as reusable skill definitions with session memory context | OVERVIEW (enumerated) |
+| src/skills/bundled/stuck.ts | 79 | **Stuck session diagnostic skill** — registers `/stuck` command that scans for frozen/slow Claude Code processes, identifies CPU/memory/state anomalies | OVERVIEW (enumerated) |
+| src/skills/bundled/updateConfig.ts | 475 | **Settings updater skill** — registers `/update-config` command that manages settings.json with live Zod-to-JSON-Schema conversion, multi-scope file selection, and editor integration | OVERVIEW (enumerated) |
 
 ## Analysis Findings
 
-**F-01: Four-Layer Architecture.** The plugin system follows a strict layering: CLI/UI (ManagePlugins.tsx, PluginSettings.tsx, pluginCliCommands.ts) → Service Layer (pluginOperations.ts, PluginInstallationManager.ts, pluginInstallationHelpers.ts) → Core Engine (pluginLoader.ts, marketplaceManager.ts, installedPluginsManager.ts, schemas.ts, validatePlugin.ts, reconciler.ts) → Component Loaders + Utilities (loadPluginCommands/Agents/Hooks/OutputStyles, 30+ utility modules). Commands flow downward; events propagate upward.
+### 关键路径与组件
 
-**F-02: Memoized Entry Points.** Four critical functions use `lodash.memoize`: `loadAllPlugins` (pluginLoader.ts:L3096), `getMarketplace` (marketplaceManager.ts:L2122), `getPluginCommands` (loadPluginCommands.ts:L414), `getPluginSkills` (loadPluginCommands.ts:L840), `loadPluginAgents` (loadPluginAgents.ts:L231), `loadPluginHooks` (loadPluginHooks.ts:L91), `loadPluginOutputStyles` (loadPluginOutputStyles.ts:L87). Each has a paired `clear*Cache` function. This creates a dual-cache model: lodash memoize (in-process) + disk cache (versioned zip/files).
+**Entry → Load → Activate Pipeline**:
+1. `performStartupChecks.tsx` — startup orchestrator called from init()
+2. `officialMarketplaceStartupCheck.ts` — auto-install official marketplace for new users
+3. `pluginStartupCheck.ts` — migrate V1→V2, auto-enable seed plugins
+4. `PluginInstallationManager.ts` — background reconcile + refresh
+5. `reconciler.ts` — Layer-2: diff declared vs materialized, install missing
+6. `refresh.ts` — Layer-3: loadAllPlugins → getPluginCommands + getAgentDefinitions → update AppState
+7. `loadPluginCommands.ts` / `loadPluginAgents.ts` / `loadPluginHooks.ts` / `mcpPluginIntegration.ts` / `lspPluginIntegration.ts` — load plugin components into active session
 
-**F-03: Three Install Sources.** Plugins are installed from: (1) Marketplace repos (git clone + sparse checkout), (2) NPM packages (via marketplace entry, `installFromNpm` at pluginLoader.ts:L492), (3) Git subdirectories (`installFromGitSubdir` at pluginLoader.ts:L718). Session-only plugins from `--plugin-dir` CLI flag bypass installation entirely.
+**Core Component Map**:
+- **pluginLoader.ts** (3302行): God File — plugin discovery/loading from marketplace cache, seed dirs, session sources, versioned cache paths, zip extraction
+- **marketplaceManager.ts** (2643行): Second largest — manages known_marketplaces.json, fetches/clones marketplace manifests from URL/Git/npm/local
+- **installedPluginsManager.ts** (1268行): Persists installation metadata in installed_plugins.json (V2), three-layer cache
+- **schemas.ts** (1681行): Zod schemas + security — ALLOWED_OFFICIAL_MARKETPLACE_NAMES, BLOCKED_OFFICIAL_NAME_PATTERN, homograph detection
+- **pluginOperations.ts** (1088行): Pure-function library for install/uninstall/enable/disable/update, shared by CLI and UI
+- **ManagePlugins.tsx** (2215行): Interactive plugin management UI (Ink/React)
 
-**F-04: V2 Persistence Migration.** installedPluginsManager.ts implements a V1→V2 migration (`migrateFromEnabledPlugins` at L1048). V2 uses a single `installed_plugins.json` with per-installation metadata (scope, marketplace, version hash, timestamps). V1 stored separate `enabled_plugins.json` per scope. The migration is fire-once with a `v2MigrationComplete` flag.
+### 架构洞察
 
-**F-05: Homoglyph Attack Protection.** schemas.ts:L71 defines `BLOCKED_OFFICIAL_NAME_PATTERN = /[\p{Script=Latin}\p{Script=Common}]/u` — plugin names matching official marketplace names are blocked unless they originate from the official source (`validateOfficialNameSource` at L119). This prevents lookalike plugin names using Unicode confusables.
+1. **Three-Layer Plugin Model** (核心架构):
+   - **Layer 1 (Intent)**: Settings files declare which marketplaces/plugins should exist (user/project/local/managed/policy)
+   - **Layer 2 (Materialization)**: reconciler.ts + marketplaceManager.ts clone/fetch to `~/.claude/plugins/cache/`
+   - **Layer 3 (Activation)**: refresh.ts loads components (commands/agents/hooks/MCP/LSP) into AppState
+   - Each layer is independently observable and testable
 
-**F-06: Sparse Checkout Optimization.** marketplaceManager.ts:L1034 `reconcileSparseCheckout` uses `git sparse-checkout` to only checkout plugin directories that are actually installed, reducing disk usage for large marketplaces. Falls back to full checkout on error.
+2. **Dual-Source Plugin Discovery**:
+   - **Marketplace-based**: `plugin@marketplace` identifier → clone from marketplace repo → extract from cache
+   - **Session-only**: `--plugin-dir` CLI flag / SDK inline plugins → loaded directly from local path, not persisted
 
-**F-07: MCPB Package Format.** mcpbHandler.ts implements a custom `.mcpb` package format for bundled MCP servers. The handler validates `user_config.json` against `UserConfigSchema` (Zod), persists configuration to `~/.claude/mcp_servers/<server_name>/`, and detects changes via `checkMcpbChanged`.
+3. **Installation vs Enablement Separation**:
+   - Installation is **global** (installed_plugins.json in ~/.claude/plugins/)
+   - Enablement is **per-repo** (settings.json in .claude/settings.json)
+   - 4 scopes: user/project/local/managed (managed only from policySettings)
 
-**F-08: Dependency Resolution.** dependencyResolver.ts implements transitive dependency resolution: `resolveDependencyClosure` (L95) recursively resolves plugin dependencies, `findReverseDependents` (L244) identifies plugins that depend on a given plugin (for uninstall safety), `verifyAndDemote` (L177) demotes plugins whose dependencies are missing.
+4. **Security Defense-in-Depth** (schemas.ts + marketplaceHelpers.ts):
+   - Allowlist: 8 reserved official marketplace names
+   - Impersonation regex: BLOCKED_OFFICIAL_NAME_PATTERN blocks "official-claude" etc.
+   - Homograph detection: NON_ASCII_PATTERN prevents Unicode lookalike attacks
+   - Source validation: OFFICIAL_GITHUB_ORG = 'anthropics' for reserved names
+   - Policy layer: pluginPolicy.ts checks managed settings
 
-**F-09: Hot Reload for Hooks.** loadPluginHooks.ts:L255 `setupPluginHookHotReload` compares a settings snapshot (`getPluginAffectingSettingsSnapshot`) against the current state on every settings change, and if different, clears the hook cache and reloads. This enables live hook updates without restart.
+5. **Dependency Resolution** (dependencyResolver.ts, 305行):
+   - `apt`-style semantics: dependency = presence guarantee, not module graph
+   - Install-time: DFS walk with cycle detection
+   - Load-time: fixed-point demotion for plugins with unsatisfied deps (session-local)
 
-**F-10: Official Marketplace GCS Fallback.** officialMarketplaceGcs.ts:L47 fetches the official marketplace index from Google Cloud Storage as a fallback when git clone fails. This ensures plugin availability even when GitHub is unreachable. The GCS URL contains a commit SHA for version pinning.
+6. **Zip Cache for Containers** (zipCache.ts + zipCacheAdapters.ts, 570行):
+   - Stores plugins as ZIPs on mounted volume (e.g., Filestore)
+   - Extracts to session-local temp dir at startup
+   - Designed for ephemeral container environments (CCR/CCR)
+   - Limitations: headless only, GitHub/git/URL sources only, strict:true only
+
+7. **Background Non-Blocking Install**:
+   - PluginInstallationManager runs reconcile in background at startup
+   - Does NOT block REPL startup — first query uses cache-only load
+   - New installs trigger automatic refreshActivePlugins
+   - Updates set needsRefresh flag for user-initiated /reload-plugins
+
+### 观察到的模式
+
+1. **Strategy Pattern (4 source types)**: marketplaceManager supports URL/Git/npm/local sources, each with different fetch logic
+2. **Three-Layer Cache**: installedPluginsCacheV2 (memoized) → inMemoryInstalledPlugins (session snapshot) → disk (installed_plugins.json)
+3. **Orphan Marker Pattern**: `.orphaned_at` files with 7-day TTL for safe cleanup of old plugin versions
+4. **Pure Library + CLI/UI Split**: pluginOperations.ts (pure) → pluginCliCommands.ts (CLI) / ManagePlugins.tsx (UI)
+5. **Lazy Extraction**: bundledSkills.ts extracts reference files on first invocation with promise-level memoization
+
+### 与共享模块的交互
+
+- **MCP Integration (owner: T-08)**: mcpPluginIntegration.ts loads MCP server configs from plugins; uses McpServerConfig types from src/services/mcp/types.ts
+- **Hook System (owner: T-02)**: loadPluginHooks.ts registers plugin hooks via bootstrap/state.js; hooks fire in the same pipeline as user hooks
+- **Agent System (owner: T-13)**: loadPluginAgents.ts produces AgentDefinition objects consumed by loadAgentsDir.ts
+- **Command System (owner: T-02)**: loadPluginCommands.ts produces Command objects merged in command loading priority chain
+- **Permission System (owner: T-06)**: pluginPolicy.ts reads managed settings for source restrictions
 
 ## File Dependency Graph
 
+### Dependency Diagram
+
 ```mermaid
 flowchart TD
-    subgraph CLI/UI Layer
-        ManagePlugins[ManagePlugins.tsx<br/>2215L]
-        PluginSettings[PluginSettings.tsx<br/>1072L]
-        PluginCliCmds[pluginCliCommands.ts<br/>344L]
-        StartupCheckTUI[performStartupChecks.tsx<br/>70L]
+    subgraph CLI_UI["CLI / UI Layer"]
+        CLI[pluginCliCommands.ts]
+        UI[ManagePlugins.tsx]
+        SETTINGS[PluginSettings.tsx]
+        STARTUP[performStartupChecks.tsx]
     end
 
-    subgraph Service Layer
-        PluginOps[pluginOperations.ts<br/>1088L]
-        PluginInstallMgr[PluginInstallationManager.ts<br/>184L]
-        PluginInstallHelpers[pluginInstallationHelpers.ts<br/>595L]
+    subgraph Core["Core Engine"]
+        LOADER[pluginLoader.ts]
+        OPS[pluginOperations.ts]
+        MANAGER[PluginInstallationManager.ts]
+        RECONCILE[reconciler.ts]
+        REFRESH[refresh.ts]
     end
 
-    subgraph Core Engine
-        PluginLoader[pluginLoader.ts<br/>3302L]
-        MarketplaceMgr[marketplaceManager.ts<br/>2643L]
-        InstalledPluginsMgr[installedPluginsManager.ts<br/>1268L]
-        Schemas[schemas.ts<br/>1681L]
-        ValidatePlugin[validatePlugin.ts<br/>903L]
-        McpbHandler[mcpbHandler.ts<br/>968L]
-        Reconciler[reconciler.ts<br/>265L]
+    subgraph State["State & Persistence"]
+        INSTALLED[installedPluginsManager.ts]
+        SCHEMAS[schemas.ts]
+        VALIDATE[validatePlugin.ts]
+        DIRS[pluginDirectories.ts]
     end
 
-    subgraph Component Loaders
-        LoadCmds[loadPluginCommands.ts<br/>946L]
-        LoadAgents[loadPluginAgents.ts<br/>348L]
-        LoadHooks[loadPluginHooks.ts<br/>287L]
-        LoadOutputStyles[loadPluginOutputStyles.ts<br/>178L]
-        WalkMD[walkPluginMarkdown.ts<br/>69L]
+    subgraph Marketplace["Marketplace"]
+        MKT[marketplaceManager.ts]
+        OFFICIAL[officialMarketplaceStartupCheck.ts]
+        GCS[officialMarketplaceGcs.ts]
+        MKT_HELP[marketplaceHelpers.ts]
+        PARSE[parseMarketplaceInput.ts]
     end
 
-    subgraph Integrations
-        McpIntegration[mcpPluginIntegration.ts<br/>634L]
-        LspIntegration[lspPluginIntegration.ts<br/>387L]
-        RefreshPipeline[refresh.ts<br/>215L]
+    subgraph Loaders["Component Loaders"]
+        CMD[loadPluginCommands.ts]
+        AGENT[loadPluginAgents.ts]
+        HOOK[loadPluginHooks.ts]
+        MCP[mcpPluginIntegration.ts]
+        LSP[lspPluginIntegration.ts]
+        STYLE[loadPluginOutputStyles.ts]
     end
 
-    subgraph Bundled Skills
-        BundledIndex[bundled/index.ts<br/>79L]
-        BundledSkills[bundledSkills.ts<br/>220L]
-        LoadSkillsDir[loadSkillsDir.ts<br/>1086L]
+    subgraph Support["Supporting"]
+        CACHE[cacheUtils.ts]
+        DEP[dependencyResolver.ts]
+        VERSION[pluginVersioning.ts]
+        OPTS[pluginOptionsStorage.ts]
+        ZIP[zipCache.ts]
+        WALK[walkPluginMarkdown.ts]
+        AUTO[pluginAutoupdate.ts]
     end
 
-    ManagePlugins --> PluginOps
-    PluginCliCmds --> PluginOps
-    PluginOps --> PluginLoader
-    PluginOps --> MarketplaceMgr
-    PluginOps --> InstalledPluginsMgr
-    PluginOps --> PluginInstallHelpers
-    PluginInstallMgr --> Reconciler
-    PluginInstallMgr --> RefreshPipeline
-    PluginLoader --> Schemas
-    PluginLoader --> ValidatePlugin
-    PluginLoader --> MarketplaceMgr
-    PluginLoader --> InstalledPluginsMgr
-    MarketplaceMgr --> Schemas
-    RefreshPipeline --> LoadCmds
-    RefreshPipeline --> LoadAgents
-    RefreshPipeline --> LoadHooks
-    RefreshPipeline --> LoadOutputStyles
-    RefreshPipeline --> McpIntegration
-    RefreshPipeline --> LspIntegration
-    LoadCmds --> WalkMD
-    LoadAgents --> WalkMD
-    LoadOutputStyles --> WalkMD
-    LoadCmds --> PluginLoader
-    PluginInstallHelpers --> PluginLoader
-    McpIntegration -.->|T-08 MCP| ExternalMCP
-    LspIntegration -.->|T-11 LSP| ExternalLSP
-    BundledIndex --> BundledSkills
-    LoadSkillsDir --> PluginLoader
-```
+    STARTUP --> LOADER
+    STARTUP --> MKT
+    CLI --> OPS
+    UI --> OPS
+    OPS --> INSTALLED
+    OPS --> RECONCILE
+    MANAGER --> RECONCILE
+    RECONCILE --> MKT
+    RECONCILE --> INSTALLED
+    REFRESH --> LOADER
+    REFRESH --> CMD
+    REFRESH --> AGENT
+    REFRESH --> HOOK
+    REFRESH --> MCP
+    REFRESH --> CACHE
+    LOADER --> MKT
+    LOADER --> SCHEMAS
+    LOADER --> VERSION
+    LOADER --> ZIP
+    CMD --> WALK
+    AGENT --> WALK
+    STYLE --> WALK
+    MCP --> OPTS
+    LSP --> OPTS
+    AUTO --> MKT
+    AUTO --> OPS
+    CACHE --> LOADER
+    CACHE --> CMD
+    CACHE --> HOOK
+    ```
 
-**Key Dependency Edges:**
+### Dependency Table
 
-| Source | Target | Relationship |
-|--------|--------|-------------|
-| PluginOps | PluginLoader | All install/update operations delegate to loader |
-| PluginOps | MarketplaceMgr | Marketplace operations (clone/pull/refresh) |
-| PluginOps | InstalledPluginsMgr | Persist installation state |
-| RefreshPipeline | LoadCmds/Agents/Hooks/Styles | Sequential reload of all components |
-| PluginLoader | Schemas | Manifest validation via Zod schemas |
-| McpIntegration | External MCP (T-08) | Bridge to MCPConnectionManager |
-| MarketplaceMgr | GrowthBook (ML-06) | Feature flag for marketplace features |
+| Source File | Depends On | Type | Direction |
+|------------|-----------|------|-----------|
+| pluginLoader.ts | marketplaceManager.ts | import | outgoing |
+| pluginLoader.ts | schemas.ts | import | outgoing |
+| pluginLoader.ts | pluginVersioning.ts | import | outgoing |
+| pluginLoader.ts | zipCache.ts | import | outgoing |
+| pluginOperations.ts | installedPluginsManager.ts | import | outgoing |
+| pluginOperations.ts | reconciler.ts | import | outgoing |
+| reconciler.ts | marketplaceManager.ts | import | outgoing |
+| reconciler.ts | installedPluginsManager.ts | import | outgoing |
+| refresh.ts | pluginLoader.ts | import | outgoing |
+| refresh.ts | cacheUtils.ts | import | outgoing |
+| loadPluginCommands.ts | walkPluginMarkdown.ts | import | outgoing |
+| loadPluginAgents.ts | walkPluginMarkdown.ts | import | outgoing |
+| mcpPluginIntegration.ts | pluginOptionsStorage.ts | import | outgoing |
+| lspPluginIntegration.ts | pluginOptionsStorage.ts | import | outgoing |
+| pluginCliCommands.ts | pluginOperations.ts | import | outgoing |
+| ManagePlugins.tsx | pluginOperations.ts | import | outgoing |
+| performStartupChecks.tsx | marketplaceManager.ts | import | outgoing |
+| performStartupChecks.tsx | pluginLoader.ts | import | outgoing |
 
+> Solid lines = scope-internal dependencies. Dashed lines = external dependencies (MCP service, settings, state management).
 
-
-## Call Chain Analysis
-
-### Chain 1: Plugin Install Flow (Entry -> Exit)
-
-```
-pluginCliCommands.ts:L57 install()
-  -> pluginOperations.ts:L321 installPluginOp(pluginId, scope, marketplace)
-    -> pluginIdentifier.ts:L45 parsePluginIdentifier(pluginId)
-    -> marketplaceManager.ts:L2122 getMarketplace(marketplaceName) [memoized]
-    -> pluginOperations.ts:L360 resolvePluginInMarketplace()
-    -> pluginInstallationHelpers.ts:L72 cacheAndRegisterPlugin()
-      -> pluginLoader.ts:L911 cachePlugin() -> write to ~/.claude/plugins/<id>/
-      -> pluginLoader.ts:L492 installFromNpm() | L534 gitClone() | L718 installFromGitSubdir()
-    -> installedPluginsManager.ts:L261 saveInstalledPlugins() -> write installed_plugins.json
-    -> reconciler.ts:L156 reconcileMarketplaces() -> update sparse-checkout
-    -> refresh.ts:L72 refreshActivePlugins() -> reload all active components
-```
-
-**Call depth**: 6 levels. **Key branch point**: `cacheAndRegisterPlugin` dispatches to one of three install strategies (npm/git/git-subdir) based on marketplace entry type.
-
-### Chain 2: Plugin Load Flow (Entry -> Exit)
-
-```
-refresh.ts:L72 refreshActivePlugins()
-  -> cacheUtils.ts:L15 clearAllCaches() -> invalidate all lodash.memoize caches
-  -> pluginLoader.ts:L3096 loadAllPlugins() [memoized]
-    -> pluginLoader.ts:L2932 assemblePluginLoadResult()
-      -> [parallel] loadPluginsFromMarketplaces() -> marketplaceManager -> git sparse-checkout
-      -> [parallel] loadSessionPlugins() -> from --plugin-dir CLI flag
-      -> [parallel] loadBuiltinPlugins() -> from src/skills/bundled/
-    -> pluginLoader.ts:L2800 mergePluginSources() -> deduplicate by plugin ID
-    -> pluginLoader.ts:L2840 verifyAndDemote() -> demote plugins with missing deps
-    -> pluginLoader.ts:L3080 cachePluginSettings() -> write per-plugin options
-  -> loadPluginCommands.ts:L414 getPluginCommands() [memoized]
-    -> walkPluginMarkdown.ts:L44 walkPluginMarkdown() -> glob .md files
-  -> loadPluginAgents.ts:L231 loadPluginAgents() [memoized]
-  -> loadPluginHooks.ts:L91 loadPluginHooks() [memoized]
-  -> loadPluginOutputStyles.ts:L87 loadPluginOutputStyles() [memoized]
-  -> [parallel] mcpPluginIntegration.ts:L131 loadPluginMcpServers()
-  -> [parallel] lspPluginIntegration.ts:L57 loadPluginLspServers()
-  -> AppState update: pluginCommands, pluginAgents, pluginHooks, outputStyles
-```
-
-**Call depth**: 4 levels. **Key branch point**: `assemblePluginLoadResult` runs 3 parallel loads (marketplace + session + builtin), then merges and verifies.
-
-### Chain 3: Marketplace Registration Flow
-
-```
-officialMarketplaceStartupCheck.ts:L15 checkOfficialMarketplace()
-  -> marketplaceManager.ts:L380 registerSeedMarketplaces()
-    -> marketplaceManager.ts:L2122 getMarketplace(official) [memoized]
-    -> [if not cloned] marketplaceManager.ts:L1034 reconcileSparseCheckout()
-      -> git clone --sparse + git sparse-checkout set
-    -> [if clone fails] officialMarketplaceGcs.ts:L47 fetchFromGcs()
-      -> fetch GCS index -> parse JSON -> cache locally
-  -> [if retry needed] exponential backoff (3 attempts)
-```
-
-**Call depth**: 4 levels. **Fallback**: GCS fallback when git clone fails.
-
-### Key Branch Points
-
-| Branch Point | File:Line | Decision | Paths |
-|-------------|-----------|----------|-------|
-| Install strategy | pluginLoader.ts:L460 | Marketplace entry type | npm / git clone / git subdir |
-| Verification result | pluginLoader.ts:L2840 | Missing dependencies? | keep / demote to inactive |
-| Git availability | gitAvailability.ts:L10 | git binary found? | full checkout / GCS fallback |
-| Scope resolution | pluginOperations.ts:L270 | user/project/local? | different persistence paths |
-| Sparse checkout | marketplaceManager.ts:L1034 | already cloned? | reconcile / full clone |
-
-## Temporal Analysis
-
-### Async Orchestration: Plugin Refresh Pipeline
-
-```
-T=0  refreshActivePlugins() called
-     |-- clearAllCaches() -- synchronous, invalidates 6 memoize caches
-T=1  loadAllPlugins() -- first call after cache clear (slow path)
-     |-- [parallel] loadPluginsFromMarketplaces()  --------+
-     |-- [parallel] loadSessionPlugins()           --+     |
-     +-- [parallel] loadBuiltinPlugins()             |     |
-T=2  Promise.all settles <---------------------------+-----+
-     |-- mergePluginSources() -- synchronous dedup
-     |-- verifyAndDemote() -- synchronous validation
-T=3  [parallel] getPluginCommands()   ------+
-     |-- [parallel] loadPluginAgents() --+   |
-     |-- [parallel] loadPluginHooks()    |   |
-     +-- [parallel] loadPluginOutputStyles()  |
-T=4  Promise.all settles <-----------------+--+
-     |-- [parallel] loadPluginMcpServers()   --+
-     +-- [parallel] loadPluginLspServers()   --+
-T=5  Promise.all settles <---------------------+
-     +-- AppState.batchUpdate({pluginCommands, pluginAgents, ...})
-```
-
-### Race Conditions
-
-| Risk ID | Description | Files | Severity |
-|---------|-------------|-------|----------|
-| RC-1 | `installPluginOp` and `performBackgroundPluginInstallations` may race on the same plugin -- both write to `installed_plugins.json` | pluginOperations.ts:L321, PluginInstallationManager.ts:L60 | MEDIUM -- file writes not atomic |
-| RC-2 | `refreshActivePlugins` called while `installPluginOp` still in progress -- may load stale plugin list | refresh.ts:L72, pluginOperations.ts:L321 | LOW -- user-triggered, unlikely overlap |
-| RC-3 | Hot reload hooks fire during active MCP server connection -- hooks may reference stale MCP config | loadPluginHooks.ts:L255, mcpPluginIntegration.ts:L131 | LOW -- settings debounce mitigates |
-
-### Temporal Sequence Diagram
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant CLI as pluginCliCommands
-    participant Ops as pluginOperations
-    participant Loader as pluginLoader
-    participant Mgr as marketplaceManager
-    participant Refresh as refresh.ts
-
-    User->>CLI: install plugin-id
-    CLI->>Ops: installPluginOp(id, scope)
-    Ops->>Ops: parsePluginIdentifier(id)
-    Ops->>Mgr: getMarketplace(name) [memoized]
-    Mgr-->>Ops: marketplace data
-    Ops->>Loader: cacheAndRegisterPlugin()
-    Loader->>Loader: installFromNpm or gitClone
-    Loader-->>Ops: cached plugin path
-    Ops->>Ops: saveInstalledPlugins()
-    Ops->>Refresh: refreshActivePlugins()
-    Refresh->>Refresh: clearAllCaches()
-    Refresh->>Loader: loadAllPlugins [re-memoize]
-    par Component Loading
-        Refresh->>Refresh: getPluginCommands()
-        Refresh->>Refresh: loadPluginAgents()
-        Refresh->>Refresh: loadPluginHooks()
-    end
-    par Integration Loading
-        Refresh->>Refresh: loadPluginMcpServers()
-        Refresh->>Refresh: loadPluginLspServers()
-    end
-    Refresh-->>Ops: components loaded
-    Ops-->>CLI: install complete
-    CLI-->>User: success message
-```
-
-## Data Flow Analysis
-
-### Data Flow: Plugin Install Record Lifecycle
+## Boundary / Integration Map
 
 ```mermaid
 flowchart LR
-    subgraph Creation
-        A[User Input - plugin-id string] --> B[parsePluginIdentifier]
-        B --> C[Resolve in Marketplace]
+    subgraph Scope["T-17 Plugin System Scope"]
+        STARTUP["performStartupChecks"]
+        LOADER["pluginLoader"]
+        OPS["pluginOperations"]
+        MKT["marketplaceManager"]
+        RECONCILE["reconciler"]
+        REFRESH["refresh"]
+        CMD["loadCommands"]
+        AGENT["loadAgents"]
+        HOOK["loadHooks"]
+        MCP_I["mcpPluginIntegration"]
+        LSP_I["lspPluginIntegration"]
     end
-    subgraph Installation
-        C --> D[cacheAndRegisterPlugin]
-        D --> E[Write to plugins dir]
-        D --> F[Write to installed_plugins.json]
-    end
-    subgraph Activation
-        F --> G[refreshActivePlugins]
-        G --> H[loadAllPlugins]
-        H --> I[Component Loaders]
-    end
-    subgraph Persistence
-        I --> J[AppState update]
-        F --> K[reconcileSparseCheckout]
-    end
+
+    APPSTATE["AppState"]:::external
+    SETTINGS["settings.json"]:::external
+    MCP_SVC["MCP Service (T-08)"]:::external
+    LSP_SVC["LSP Service"]:::external
+    CMD_SYS["Command System (T-02)"]:::external
+    AGENT_SYS["Agent System (T-13)"]:::external
+    HOOK_SYS["Hook System (T-02)"]:::external
+    DISK["~/.claude/plugins/"]:::external
+
+    STARTUP --> LOADER --> MKT
+    OPS --> RECONCILE --> MKT
+    REFRESH --> CMD --> CMD_SYS
+    REFRESH --> AGENT --> AGENT_SYS
+    REFRESH --> HOOK --> HOOK_SYS
+    REFRESH --> MCP_I --> MCP_SVC
+    REFRESH --> LSP_I --> LSP_SVC
+    LOADER -.-> DISK
+    OPS -.-> SETTINGS
+    REFRESH -.-> APPSTATE
+
+    classDef external fill:#f5f5f5,stroke:#999,stroke-dasharray: 5 5
 ```
 
-**Key entity paths**:
-1. **Plugin ID string** -> parsePluginIdentifier -> resolve -> cache -> persist -> load -> activate
-2. **Version hash** -> content hash + git SHA -> cache key -> invalidation trigger (pluginVersioning.ts:L45)
-3. **Plugin options** -> pluginOptionsStorage -> load/save per-plugin JSON -> schema-driven form (PluginSettings.tsx)
+- **图说明**: Plugin system is a **pure producer** — it loads/discoveres plugins and feeds components into 6 external systems. It reads from disk (cache) and settings, writes to AppState. Cross-task interfaces: MCP (T-08), Command/Agent/Hook systems (T-02, T-13).
 
-## State Transition Analysis
+## Data Flow View
 
-### State Machine 1: Plugin Installation State
+```mermaid
+flowchart LR
+    INPUT["User/Policy<br/>Settings Intent"]
+    MKT_DECL["known_marketplaces.json<br/>(Declared Intent)"]
+    MKT_CACHE["~/.claude/plugins/<br/>marketplace cache"]
+    PLUGIN_JSON["plugin.json<br/>(Manifest)"]
+    COMPONENTS["Commands / Agents /<br/>Hooks / MCP / LSP"]
+    APPSTATE["AppState<br/>(Active Components)"]
 
-| Current State | Trigger | Target State | Side Effect | File:Line |
-|--------------|---------|-------------|-------------|-----------|
-| not_installed | installPluginOp() | installing | clone/download starts | pluginOperations.ts:L321 |
-| installing | cachePlugin() success | installed | write to installed_plugins.json | pluginInstallationHelpers.ts:L72 |
-| installing | cachePlugin() failure | install_failed | cleanup partial files | pluginOperations.ts:L420 |
-| installed | setPluginEnabledOp(true) | enabled | refreshActivePlugins() | pluginOperations.ts:L573 |
-| installed | setPluginEnabledOp(false) | disabled | refreshActivePlugins() | pluginOperations.ts:L573 |
-| enabled | uninstallPluginOp() | not_installed | remove from disk + json | pluginOperations.ts:L427 |
-| enabled | updatePluginOp() | updating | download new version | pluginOperations.ts:L829 |
-| updating | new version cached | enabled | refreshActivePlugins() | pluginOperations.ts:L890 |
-| enabled | verifyAndDemote() fail | demoted | missing dependency logged | pluginLoader.ts:L2840 |
+    INPUT -->|Layer 1| MKT_DECL
+    MKT_DECL -->|Layer 2 reconcile| MKT_CACHE
+    MKT_CACHE -->|Layer 2 clone/fetch| PLUGIN_JSON
+    PLUGIN_JSON -->|Layer 3 refresh| COMPONENTS
+    COMPONENTS -->|setAppState| APPSTATE
+```
 
-**Terminal states**: not_installed (stable), enabled (stable), install_failed (requires retry), demoted (requires dependency fix)
+- **图说明**: Three-layer data flow: Intent (settings) → Materialization (reconciler clones to cache) → Activation (refresh loads components into AppState). Each layer is independently observable.
 
-### State Machine 2: Marketplace State
+## Call Chain Summary (STANDARD)
 
-| Current State | Trigger | Target State | Side Effect | File:Line |
-|--------------|---------|-------------|-------------|-----------|
-| unregistered | registerSeedMarketplaces() | registered | config written | marketplaceManager.ts:L380 |
-| registered | getMarketplace() first call | cloning | git clone --sparse | marketplaceManager.ts:L1034 |
-| cloning | clone success | cloned | sparse-checkout set | marketplaceManager.ts:L1100 |
-| cloning | clone failure | gcs_fallback | fetch from GCS | officialMarketplaceGcs.ts:L47 |
-| cloned | reconcileSparseCheckout() | synced | git pull + sparse update | marketplaceManager.ts:L1034 |
-| gcs_fallback | GCS fetch success | synced | cache locally | officialMarketplaceGcs.ts:L80 |
+### Entry Points
+- `performStartupChecks()` (performStartupChecks.tsx:L12) — called from init() during startup
+- `installPluginOp()` (pluginOperations.ts) — called from CLI/UI
+- `refreshActivePlugins()` (refresh.ts:L14) — called after install/uninstall/enable/disable/reconcile
+- `autoUpdateMarketplacesAndPluginsInBackground()` (pluginAutoupdate.ts) — background task
 
-### State Machine 3: Cache State (per memoized function)
+### Critical Call Chains
 
-| Current State | Trigger | Target State | Side Effect | File:Line |
-|--------------|---------|-------------|-------------|-----------|
-| empty | first call | populated | function executes, result cached | lodash.memoize |
-| populated | same arguments | populated | return cached result O(1) | lodash.memoize |
-| populated | clearAllCaches() | empty | cache.clear() called | cacheUtils.ts:L15 |
-| populated | refreshActivePlugins() | empty then populated | clear + re-execute | refresh.ts:L72 |
+#### Chain 1: Startup Load
+```
+performStartupChecks() [performStartupChecks.tsx:L12]
+  → registerSeedMarketplaces() [marketplaceManager.ts]
+  → checkEnabledPlugins() [pluginStartupCheck.ts]
+  → performBackgroundPluginInstallations() [PluginInstallationManager.ts:L23]
+    → diffMarketplaces() [reconciler.ts:L45]
+    → reconcileMarketplaces() [reconciler.ts:L100]
+      → installPluginOp() [pluginOperations.ts]
+  → refreshActivePlugins() [refresh.ts:L14]
+    → loadAllPlugins() [pluginLoader.ts]
+    → getPluginCommands() [loadPluginCommands.ts]
+    → getPluginAgents() [loadPluginAgents.ts]
+    → setAppState() [AppState]
+```
+- **调用深度**: 5
+- **关键分支点**: diffMarketplaces() determines install/skip/remove per plugin
 
-### Cross-Component State Linkage
+#### Chain 2: User Install
+```
+installPluginOp() [pluginOperations.ts]
+  → resolveDependencyClosure() [dependencyResolver.ts]
+  → cacheAndRegisterPlugin() [pluginInstallationHelpers.ts]
+  → loadInstalledPluginsFromDisk() [installedPluginsManager.ts]
+  → refreshActivePlugins() [refresh.ts:L14]
+```
+- **调用深度**: 4
 
-- `installed_plugins.json` (InstalledPluginsManager) -> read by `loadAllPlugins` (PluginLoader) -> determines which plugins are active
-- `AppState.pluginCommands/Agents/Hooks` -> consumed by T-10 (REPL), T-05 (Tool System), T-08 (MCP Integration)
-- `settings.plugins` (Settings) -> read by `reconciler.ts` -> triggers install/uninstall operations
-- `PluginOptionsStorage` -> read by `PluginSettings.tsx` -> user edits -> written back -> `refreshActivePlugins`
-
-
-## Error Propagation Analysis
-
-### Error Sources and Handling Strategies
-
-| Error Source | Type | Trigger | Handler | Strategy | File:Line |
-|-------------|------|---------|---------|----------|-----------|
-| installFromNpm | NpmInstallError | npm registry failure | installPluginOp | retry | pluginLoader.ts:L492 |
-| gitClone | GitError | git clone/pull failure | installPluginOp | fallback(GCS) | pluginLoader.ts:L534 |
-| validatePluginManifest | ValidationError | invalid manifest schema | loadAllPlugins | absorb(demote) | validatePlugin.ts:L45 |
-| validatePluginContents | ValidationError | missing required files | loadAllPlugins | absorb(demote) | validatePlugin.ts:L380 |
-| reconcileSparseCheckout | GitError | sparse checkout failure | marketplaceManager | fallback(full checkout) | marketplaceManager.ts:L1034 |
-| saveInstalledPlugins | FSError | disk write failure | pluginOperations | abort | installedPluginsManager.ts:L261 |
-| loadPluginMcpServers | MCPError | MCP server config invalid | mcpPluginIntegration | absorb(log warning) | mcpPluginIntegration.ts:L131 |
-| loadPluginLspServers | LSPError | LSP config invalid | lspPluginIntegration | absorb(log warning) | lspPluginIntegration.ts:L57 |
-| fetchFromGcs | NetworkError | GCS unreachable | officialMarketplaceStartupCheck | retry(3x) | officialMarketplaceGcs.ts:L47 |
-| parsePluginIdentifier | ParseError | malformed plugin ID | pluginOperations | abort(user error) | pluginIdentifier.ts:L45 |
-| checkMcpbChanged | ConfigError | .mcpb config drift | mcpbHandler | absorb(reload) | mcpbHandler.ts:L200 |
-| pluginBlocklist | BlocklistError | delisted plugin detected | pluginBlocklist | abort(auto-uninstall) | pluginBlocklist.ts:L40 |
-
-### Unhandled Error Paths
-
-1. **installed_plugins.json corruption**: If the JSON file is corrupted mid-write, `loadInstalledPlugins` throws but there is no automatic recovery or backup-restore mechanism (installedPluginsManager.ts:L50). User must manually delete and re-install.
-
-2. **Concurrent marketplace clone**: If two `getMarketplace` calls race for the same marketplace, one may start cloning while the other reads a partially cloned directory. The memoize guard helps but is not atomic (marketplaceManager.ts:L2122).
-
-3. **Disk full during cachePlugin**: `cachePlugin` writes plugin files to `~/.claude/plugins/<hash>/` but does not check disk space or handle ENOSPC (pluginLoader.ts:L911).
-
-### Recovery Strategy Distribution
-
-| Strategy | Count | Description |
-|----------|-------|-------------|
-| absorb | 4 | Log warning and continue with degraded functionality |
-| retry | 2 | Retry with exponential backoff (install, GCS fetch) |
-| fallback | 2 | Fall back to alternative (GCS, full checkout) |
-| abort | 3 | Terminate operation and report to user |
-| abort(auto) | 1 | Auto-uninstall delisted plugin |
-
-## Boundary / Integration Diagram
+### Flowchart View
 
 ```mermaid
 flowchart TD
-    subgraph T-17 Plugin System
-        CLI[CLI Commands<br/>pluginCliCommands.ts]
-        TUI[TUI Panels<br/>ManagePlugins.tsx<br/>PluginSettings.tsx]
-        Ops[Operations Layer<br/>pluginOperations.ts]
-        Loader[Plugin Loader<br/>pluginLoader.ts]
-        Refresh[Refresh Pipeline<br/>refresh.ts]
-        Loaders[Component Loaders<br/>Commands/Agents/Hooks/Styles]
-        MCPInt[MCP Integration<br/>mcpPluginIntegration.ts]
-        LSPInt[LSP Integration<br/>lspPluginIntegration.ts]
-    end
+    Start["performStartupChecks()"] --> Seed["registerSeedMarketplaces()"]
+    Seed --> Check["checkEnabledPlugins()"]
+    Check --> BG["performBackgroundPluginInstallations()"]
+    BG --> Diff{"diffMarketplaces()"}
+    Diff -->|added/changed| Install["reconcileMarketplaces()"]
+    Diff -->|no changes| Skip["skip"]
+    Install --> Refresh["refreshActivePlugins()"]
+    Skip --> Refresh
+    Refresh --> Load["loadAllPlugins()"]
+    Load --> Parallel["Promise.all(commands, agents)"]
+    Parallel --> State["setAppState()"]
+    State -.-> MCP["MCP Reconnect"]
+    State -.-> LSP["LSP Reinit"]
 
-    subgraph External Systems
-        T01[T-01: CLI Init<br/>commands.ts]
-        T03[T-03: Tool System<br/>Tool.ts]
-        T05[T-05: Hooks<br/>toolHooks.ts]
-        T08[T-08: MCP Service<br/>MCPConnectionManager]
-        T10[T-10: TUI/REPL<br/>REPL.tsx]
-        T11[T-11: Components<br/>LSP components]
-        NPM[npm Registry]
-        GIT[Git Repos]
-        GCS[Google Cloud Storage]
-        FS[File System<br/>~/.claude/plugins/]
-    end
-
-    CLI --> Ops
-    TUI --> Ops
-    Ops --> Loader
-    Loader --> FS
-    Loader --> GIT
-    Loader --> NPM
-    Loader -.->|GCS fallback| GCS
-    Refresh --> Loaders
-    Refresh --> MCPInt
-    Refresh --> LSPInt
-    Loaders -->|plugin commands| T01
-    Loaders -->|plugin agents| T03
-    Loaders -->|plugin hooks| T05
-    MCPInt -.->|plugin MCP servers| T08
-    LSPInt -.->|plugin LSP servers| T11
-    TUI -.->|settings panel| T10
+    classDef external fill:#f5f5f5,stroke:#999,stroke-dasharray: 5 5
 ```
 
-### Cross-Task Interfaces
+- **图说明**: Main startup pipeline. Background installation runs concurrently with REPL. refreshActivePlugins is the critical path that loads all plugin components into active memory.
 
-| Interface | Direction | Data | Description |
-|-----------|-----------|------|-------------|
-| pluginCommands | T-17 -> T-01 | LoadedPlugin[] | Slash commands from plugins registered in command system |
-| pluginAgents | T-17 -> T-03 | AgentDefinition[] | Agent definitions from plugins injected into tool system |
-| pluginHooks | T-17 -> T-05 | HookDefinition[] | Hook definitions from plugins injected into tool hook system |
-| pluginMcpServers | T-17 -> T-08 | MCPServerConfig[] | MCP server configs from plugins registered in MCP manager |
-| pluginLspServers | T-17 -> T-11 | LSPServerConfig[] | LSP server configs from plugins registered in LSP system |
-| pluginOutputStyles | T-17 -> T-10 | OutputStyle[] | Output style definitions for rendering |
-| AppState.plugins | T-17 -> Global | LoadedPlugin[] | Plugin state accessible by all components |
-| settings.plugins | Global -> T-17 | PluginSettings | User configuration drives reconciler |
+## Error Handling Summary (STANDARD)
 
-## Concurrency Model Analysis
+- **Main try/catch locations**: pluginOperations.ts (per-operation error wrapping), marketplaceManager.ts (fetch/clone failure handling), refresh.ts (loadAllPlugins error propagation), reconciler.ts (install failure tolerance)
+- **Recovery strategies**:
+  - `retry`: marketplaceManager fetch retry with exponential backoff
+  - `fallback`: officialMarketplaceGcs.ts provides GCS mirror fallback when GitHub fails
+  - `absorb`: refresh.ts catches individual plugin load errors, logs them, continues with remaining plugins
+  - `demote`: dependencyResolver.ts demotes plugins with unsatisfied deps (graceful degradation)
+- **Unhandled bubble-up**: pluginAutoupdate.ts update errors are logged but not surfaced to user until next restart notification
+- **Cache-only fallback**: `loadAllPluginsCacheOnly()` provides degraded mode when network is unavailable
 
-N/A -- The plugin system runs in a single-threaded Node.js environment. All async operations use standard async/await patterns without explicit locks or mutexes. The primary concurrency concern is the potential for race conditions between overlapping async operations (RC-1 through RC-3 documented in Temporal Analysis), but these are mitigated by:
+## State Summary (STANDARD)
 
-1. **Memoization guards**: lodash.memoize prevents redundant re-execution of expensive operations
-2. **Sequential refresh**: `refreshActivePlugins` runs component loaders in defined parallel batches, not arbitrary concurrency
-3. **Settings debounce**: Hot reload hooks use a debounce mechanism to avoid rapid consecutive reloads
+### Key State Variables
+| Variable | File | Purpose | Persistence |
+|----------|------|---------|-------------|
+| installed_plugins.json | installedPluginsManager.ts | Global install metadata (V2 format) | Disk (~/.claude/plugins/) |
+| settings.json enabledPlugins | settings files | Per-repo plugin enablement | Disk (.claude/) |
+| known_marketplaces.json | marketplaceManager.ts | Marketplace registry + cache | Disk (~/.claude/plugins/) |
+| pluginCache (memoize) | pluginLoader.ts | In-memory loaded plugin objects | Process-only |
+| inMemoryInstalledPlugins | installedPluginsManager.ts | Startup snapshot of installed plugins | Process-only |
+| needsRefresh flag | refresh.ts | Indicates pending changes requiring reload | Process-only |
+| pendingNotification | pluginAutoupdate.ts | Buffer for updates before REPL mounts | Process-only |
 
-No shared mutable state requires explicit synchronization beyond the natural single-threaded event loop ordering.
+### State Transitions (概要)
+- Plugin lifecycle: **absent → installed → enabled → active → orphaned → cleaned**
+- Install state tracked in installed_plugins.json, enable state in per-repo settings
+- V1→V2 migration in installedPluginsManager.ts with `migrationCompleted` guard
+- Orphaned versions marked with `.orphaned_at`, cleaned after 7 days
 
-## Side Effects Manifest
+## Temporal Analysis (STANDARD)
 
-| Function | Side Effect Type | Target | Reversible | File:Line |
-|----------|-----------------|--------|-----------|-----------|
-| installPluginOp() | FS write | ~/.claude/plugins/&lt;hash&gt;/ | Yes (uninstall) | pluginOperations.ts:L321 |
-| installPluginOp() | FS write | installed_plugins.json | Yes (remove entry) | installedPluginsManager.ts:L261 |
-| cachePlugin() | FS write | ~/.claude/plugins/&lt;hash&gt;/ | No (manual cleanup) | pluginLoader.ts:L911 |
-| uninstallPluginOp() | FS delete | ~/.claude/plugins/&lt;hash&gt;/ | No (re-install needed) | pluginOperations.ts:L427 |
-| reconcileSparseCheckout() | Subprocess | git clone/pull/sparse-checkout | No | marketplaceManager.ts:L1034 |
-| refreshActivePlugins() | Global state | AppState (React) | N/A | refresh.ts:L72 |
-| loadPluginHooks() hot reload | Global state | hook registry | Yes (revert settings) | loadPluginHooks.ts:L255 |
-| fetchFromGcs() | Network | GCS HTTP endpoint | N/A | officialMarketplaceGcs.ts:L47 |
-| installFromNpm() | Network | npm registry | N/A | pluginLoader.ts:L492 |
-| updatePluginsForMarketplaces() | Subprocess | git pull per marketplace | No | pluginAutoupdate.ts:L50 |
-| performBackgroundPluginInstallations() | FS write + Network | pending installs queue | No | PluginInstallationManager.ts:L60 |
-| fetchTelemetry() | Network | analytics API | N/A | fetchTelemetry.ts:L20 |
-| checkMcpbChanged() | FS read + write | ~/.claude/mcp_servers/&lt;name&gt;/ | Yes (revert config) | mcpbHandler.ts:L200 |
-| clearAllCaches() | Global state | lodash.memoize caches | N/A (auto-repopulate) | cacheUtils.ts:L15 |
+### Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    participant Init as init()
+    participant Startup as performStartupChecks
+    participant BG as Background Installer
+    participant MKT as marketplaceManager
+    participant Reconcile as reconciler
+    participant Refresh as refreshActivePlugins
+    participant REPL as REPL Mount
+
+    Init->>Startup: call
+    Startup->>MKT: registerSeedMarketplaces
+    Startup->>Startup: checkEnabledPlugins (sync)
+    Startup->>BG: performBackgroundPluginInstallations (fire-and-forget)
+    Note over REPL,BG: REPL starts in parallel
+    BG->>Reconcile: diffMarketplaces
+    Reconcile->>MKT: fetch/clone if needed
+    BG->>Refresh: refreshActivePlugins
+    Refresh->>Refresh: loadAllPlugins → load components
+    Refresh->>REPL: setAppState (plugin list updates)
+    REPL->>REPL: render plugin changes
+```
+
+- **图说明**: Startup is non-blocking — background install runs in parallel with REPL. Refresh updates AppState which triggers React re-render. Auto-update callback handles race where updates complete before REPL mounts.
 
 
 ## Acceptance Criteria Status
 
-| # | Criterion | Status | Evidence |
-|---|-----------|--------|----------|
-| AC-1 | All 65 scope files analyzed | PASS | 67 File Roles rows (65 unique + 2 cross-references) |
-| AC-2 | Plugin install flow documented end-to-end | PASS | Chain 1 in Call Chain Analysis |
-| AC-3 | Plugin load flow documented end-to-end | PASS | Chain 2 in Call Chain Analysis |
-| AC-4 | Marketplace registration documented | PASS | Chain 3 in Call Chain Analysis |
-| AC-5 | Cross-task interfaces identified | PASS | 8 interfaces in Boundary/Integration Diagram |
-| AC-6 | Error handling strategies classified | PASS | 12 error sources + 5 strategies in Error Propagation |
-| AC-7 | State machines documented | PASS | 3 state machines in State Transition Analysis |
-
-**Overall: 7/7 PASS**
+- [x] **AC-1**: Plugin discovery from multiple sources (marketplace, git, local, SDK) — confirmed: pluginLoader.ts supports 4 source types via marketplaceManager + session-only paths
+- [x] **AC-2**: Plugin lifecycle management (install/uninstall/enable/disable/update) — confirmed: pluginOperations.ts provides pure functions for all 5 operations across 4 scopes
+- [x] **AC-3**: Plugin component loading (commands, agents, hooks, MCP, LSP, output styles) — confirmed: 5 dedicated loaders + refresh.ts orchestration
+- [x] **AC-4**: Marketplace management (register, clone, update) — confirmed: marketplaceManager.ts manages 4 source types with GCS fallback
+- [x] **AC-5**: Plugin dependency resolution — confirmed: dependencyResolver.ts implements DFS closure with cycle detection
+- [x] **AC-6**: Plugin security validation — confirmed: schemas.ts (whitelist, homograph detection), validatePlugin.ts (Zod validation), pluginPolicy.ts (enterprise policy)
+- [x] **AC-7**: Background installation without blocking REPL — confirmed: PluginInstallationManager.ts fire-and-forget, cache-only fallback
+- [x] **AC-8**: Plugin autoupdate mechanism — confirmed: pluginAutoupdate.ts background task with restart notification
+- [x] **AC-9**: Cache management and orphan cleanup — confirmed: cacheUtils.ts clearAllCaches + 7-day orphan TTL
+- [x] **AC-10**: Plugin options storage (sensitive/non-sensitive split) — confirmed: pluginOptionsStorage.ts uses SecureStorage for sensitive values
 
 ## Identified Problems
 
-| ID | Severity | Description | File:Line |
-|----|----------|-------------|-----------|
-| P2-01 | P2 | **pluginLoader.ts monolith** (3302 lines): Contains loading, caching, installation, validation, and dependency resolution. Should be split into at least 4 modules (loader, installer, validator, cache). | pluginLoader.ts |
-| P2-02 | P2 | **marketplaceManager.ts monolith** (2643 lines): Combines marketplace registration, git operations, sparse checkout, and display formatting. Git operations should be extracted. | marketplaceManager.ts |
-| P3-01 | P3 | **Non-atomic installed_plugins.json writes**: Concurrent install + background install may corrupt the file. No file locking or write-then-rename pattern. | installedPluginsManager.ts:L261 |
-| P3-02 | P3 | **No disk space check**: cachePlugin writes to disk without checking available space, risking silent partial writes. | pluginLoader.ts:L911 |
-| P3-03 | P3 | **V1 migration fire-once flag**: If migration fails mid-way, the v2MigrationComplete flag may already be set, preventing retry. | installedPluginsManager.ts:L1048 |
-| P4-01 | P4 | **Duplicate File Roles entries**: The File Roles table has 2 "already listed" rows for duplicate file references. | 03-analysis-tasks.md |
-| P4-02 | P4 | **14 bundled skill files in scope**: Bundled skills (src/skills/bundled/*.ts) have minimal connection to the plugin loader infrastructure. Consider scoping them to a separate task. | src/skills/bundled/ |
+### 风险与热点
+
+- [事实] **P2-01**: **pluginLoader.ts is a God File (3302行)** — fan-out estimated >15, handles discovery, loading, caching, validation, versioning, zip extraction all in one file. Maintenance burden high.
+- [事实] **P2-02**: **marketplaceManager.ts is the second largest file (2643行)** — manages 4 source types, known_marketplaces.json persistence, sparse checkout, and GCS fallback. Coupling between fetch logic and state management.
+- [事实] **P2-03**: **Zip Cache limitations** (zipCache.ts, L406) — headless only, strict:true required, GitHub/git/URL sources only. No support for npm or local sources. Feature gated behind env var CLAUDE_CODE_PLUGIN_USE_ZIP_CACHE.
+- [事实] **P2-04**: **Autoupdate requires restart** — pluginAutoupdate.ts non-inplace updates set needsRefresh flag; user must /reload-plugins or restart. Silent failures accumulate until next restart.
+- [事实] **P2-05**: **Memoize cache invalidation** — cacheUtils.ts clearAllCaches() must be called after every mutation, but individual memoize calls scattered across 9+ modules. Missing one invalidation leads to stale plugin lists.
+- [推测] **P3-01**: **Race condition between background install and user operations** — PluginInstallationManager runs async; if user installs plugin simultaneously, both paths call reconciler. No mutex on installed_plugins.json writes.
+- [事实] **P3-02**: **V1-to-V2 migration is one-way** — installedPluginsManager.ts migrationCompleted guard prevents downgrade. No documented rollback procedure.
+- [事实] **P3-03**: **Orphan cleanup timing** — orphanedPluginFilter.ts relies on ripgrep .orphaned_at scan; 7-day window means up to 2x disk usage during version transitions.
+
+### 反模式或一致性问题
+
+- **Inconsistent error handling**: Some modules (pluginOperations.ts) return structured error objects; others (pluginCliCommands.ts) call process.exit(). The split between pure library and CLI wrapper is clean, but error propagation patterns differ.
+- **Scattered memoize invalidation**: 9+ modules use lodash memoize with separate clear functions; clearAllCaches() in cacheUtils.ts is the single invalidation point but must be called explicitly after every state change.
 
 ## Open Questions
 
-1. **[Cross-task] T-08 MCP Integration**: How does `mcpPluginIntegration.ts` interact with the MCPConnectionManager when a plugin provides an MCP server? Does the plugin MCP server go through the same connection lifecycle? (depends on T-08)
-
-2. **[Cross-task] T-05 Tool Hooks**: When `loadPluginHooks` detects a settings change, does it trigger a full `refreshActivePlugins` or only reload hooks? The hot reload path (loadPluginHooks.ts:L255) only clears hook caches, not command/agent caches.
-
-3. **[Runtime] Auto-update timing**: `autoUpdateMarketplacesAndPluginsInBackground` runs at startup, but what triggers re-checks during a long-running session? Is there a polling interval or only manual refresh?
-
-4. **[Runtime] Sparse checkout performance**: For marketplaces with hundreds of plugins, how does `git sparse-checkout` perform when only a handful are installed? Is there a pruning strategy?
-
-5. **[Configuration] Plugin scope precedence**: When the same plugin is installed at multiple scopes (user, project, local), which one wins? The code uses `mergePluginSources` but the precedence rules are not documented.
-
-6. **[Security] Plugin sandboxing**: Plugins can register commands, hooks, MCP servers, and LSP servers. Is there any sandboxing or capability restriction? The homoglyph protection (schemas.ts:L71) only covers name spoofing.
-
-7. **[Cross-task] T-10 TUI**: How does `ManagePlugins.tsx` (2215 lines) communicate plugin state changes to the rest of the TUI? Through AppState directly or through the refresh pipeline?
-
-8. **[Architecture] Three-layer refresh**: The refresh pipeline (clear -> load -> component-load -> integrate -> AppState) has 5 sequential stages. Could any be safely parallelized further to reduce startup latency?
+1. **Why is Zip Cache headless-only?** — The env var gate and strict:true requirement suggest it was designed for container environments. Is there a plan to support interactive mode? (requires source code history review beyond current scope)
+2. **Concurrent write safety** — installedPluginsManager.ts uses atomic rename (pluginInstallationHelpers.ts) but no file locking. Two Claude Code instances editing the same installed_plugins.json could lose data. (depends on broader concurrency model)
+3. **Marketplace clone performance** — marketplaceManager.ts clones entire repos. Sparse checkout is mentioned but unclear if it is always used. Large marketplaces could be slow on first startup. (requires runtime profiling)
+4. **Plugin sandboxing** — schemas.ts validates manifest structure but there is no runtime sandbox for plugin code execution. Plugin commands run with full process privileges. (architectural decision, not a bug)
+5. **GCS fallback success rate** — officialMarketplaceGcs.ts was added for inc-5046 (GitHub rate limiting). Is the GCS mirror reliably available? fetchTelemetry.ts tracks this but we did not see SLA data. (requires production telemetry access)
 
 ## Complexity Assessment
-
-| Dimension | Rating | Justification |
-|-----------|--------|---------------|
-| File count | HIGH | 65 scope files, largest non-TUI task |
-| Call depth | MEDIUM | Max 6 levels (install chain) |
-| State complexity | MEDIUM | 3 state machines with cross-component linkage |
-| Error handling | MEDIUM | 12 error sources, 5 recovery strategies |
-| Concurrency | LOW | Single-threaded, 3 low-severity race conditions |
-| External dependencies | MEDIUM | git, npm, GCS, filesystem |
-| Configuration surface | HIGH | 3 scopes x multiple operations x plugin types |
-
-**Overall Complexity: MEDIUM-HIGH**
-
-The plugin system has a large file surface (65 files, ~33K lines) but relatively straightforward control flow. The primary complexity comes from: (1) the three-layer model (settings -> reconciler -> refresh), (2) multiple install sources (marketplace/npm/git), and (3) the memoization-based cache invalidation strategy. The two monolithic files (pluginLoader.ts 3302L, marketplaceManager.ts 2643L) contribute disproportionate complexity.
+- **MEDIUM-HIGH**
+- Primary complexity concentrated in: pluginLoader.ts (3302行, fan-out >15) and marketplaceManager.ts (2643行, 4 source types)
+- Three-layer architecture is well-separated (intent/materialization/activation) but individual layers are internally complex
+- Security surface is well-contained in schemas.ts + validatePlugin.ts (defense-in-depth)
+- Background installation pattern adds temporal complexity but is well-managed with cache-only fallback

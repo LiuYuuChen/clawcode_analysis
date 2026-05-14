@@ -10,5 +10,5 @@
 - [x] Identify problems (P3×1, P4×2)
 - [x] Identify open questions (3)
 - [x] Verify acceptance criteria (7/7 PASS)
-- [x] Write task-analyses/T-35-audit-pi-16.md
+- [x] Write task-analyses/T-35-audit-notification-hook.md
 - [x] Write goals/T-35-goal.md

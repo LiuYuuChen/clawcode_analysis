@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-25 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-25 -->
 # T-25 Analysis: Pattern Audit — permission-component (PI-06)
 
 ## Scope Confirmation
@@ -8,12 +8,12 @@
 - Analysis Depth: OVERVIEW
 - Pattern Coverage: PI-06 (permission-component)
 - Scope Files (confirmed):
-  - [`src/components/permissions/FilePermissionDialog/ideDiffConfig.ts`](/src/src/components/permissions/FilePermissionDialog/ideDiffConfig.ts.md) (42 lines) ✅
-  - [`src/components/permissions/MonitorPermissionRequest/MonitorPermissionRequest.tsx`](/src/src/components/permissions/MonitorPermissionRequest/MonitorPermissionRequest.tsx.md) (3 lines) ✅
-  - [`src/components/permissions/ReviewArtifactPermissionRequest/ReviewArtifactPermissionRequest.tsx`](/src/src/components/permissions/ReviewArtifactPermissionRequest/ReviewArtifactPermissionRequest.tsx.md) (3 lines) ✅
+  - [`src/components/permissions/FilePermissionDialog/ideDiffConfig.ts`](/src/src/components/permissions/FilePermissionDialog/ideDiffConfig.ts) (42 lines) ✅
+  - [`src/components/permissions/MonitorPermissionRequest/MonitorPermissionRequest.tsx`](/src/src/components/permissions/MonitorPermissionRequest/MonitorPermissionRequest.tsx) (3 lines) ✅
+  - [`src/components/permissions/ReviewArtifactPermissionRequest/ReviewArtifactPermissionRequest.tsx`](/src/src/components/permissions/ReviewArtifactPermissionRequest/ReviewArtifactPermissionRequest.tsx) (3 lines) ✅
 - Additional catalog instances verified (not in scope_files):
-  - [`src/components/permissions/WorkerBadge.tsx`](/src/src/components/permissions/WorkerBadge.tsx.md) (48 lines) ✅
-  - [`src/components/permissions/utils.ts`](/src/src/components/permissions/utils.ts.md) (25 lines) ✅
+  - [`src/components/permissions/WorkerBadge.tsx`](/src/src/components/permissions/WorkerBadge.tsx) (48 lines) ✅
+  - [`src/components/permissions/utils.ts`](/src/src/components/permissions/utils.ts) (25 lines) ✅
 - Scope adjustments: None. PI-06 has 5 catalog instances total, all verified. Note: `PermissionRuleList.tsx` (1178L) belongs to PI-06 but was upgraded to deep trace mode and analyzed in T-06 — not a catalog instance.
 
 ## File Roles

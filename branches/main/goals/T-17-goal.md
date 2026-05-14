@@ -1,17 +1,15 @@
-- [x] Confirm task scope (verify scope files, read definition)
-- [x] Determine analysis depth (STANDARD for P2)
-- [x] Execute deep analysis (trace code, identify components)
-- [x] Generate task-level flowchart (mermaid flowchart in Data Flow)
-- [x] Generate task-level sequence diagram (mermaid sequenceDiagram in Temporal)
-- [x] Generate boundary/integration diagram (mermaid in Boundary/Integration)
-- [x] Generate data flow diagram (2 mermaid flowcharts in Data Flow)
-- [x] Generate error propagation analysis (12 sources + 3 unhandled + strategies)
-- [x] STANDARD mode: Call chain summary (3 entry-exit chains + branch points)
-- [x] STANDARD mode: Error handling summary (12 sources, 5 strategies)
-- [x] STANDARD mode: State summary (3 state machines + cross-component linkage)
-- [x] Generate file dependency graph (from call-graph.jsonl + mermaid)
-- [x] Write ## File Roles mandatory section (67 rows, 65 unique scope files)
-- [x] Verify acceptance criteria (7/7 PASS)
-- [x] Identify risks and open questions (P2x2, P3x3, P4x2, 8 open questions)
-- [x] Update task status
-- [x] Write task-analyses/T-17-plugin-system.md (602 lines, 16 H2 sections)
+- [x] 确认 task 范围（验证 scope files、读取定义）
+- [x] 确定分析深度（STANDARD）
+- [x] 执行深度分析（追踪代码、识别组件）
+- [x] 生成任务级流程图（mermaid flowchart — startup pipeline + user install）
+- [x] 生成任务级时序图（mermaid sequenceDiagram — startup non-blocking）
+- [x] 生成边界/集成图（boundary map — plugin vs MCP/Hook/Agent/Command）
+- [x] 生成数据流图（intent→materialization→activation three-layer）
+- [x] 生成文件依赖关系图（6-subgraph dependency diagram）
+- [x] STANDARD 模式：调用链概要 + 错误处理概要 + 状态概要
+- [x] 写出 ## File Roles（50 行表格，覆盖所有 scope files）
+- [x] 验证 acceptance criteria（10/10 通过）
+- [x] 识别风险与开放问题（5 风险 + 2 反模式 + 5 开放问题）
+- [x] 更新 task 状态
+- [x] 写出 task-analyses/T-17-plugin-system.md（487 行）
+- [x] 更新 assumptions.md（8 条假设）

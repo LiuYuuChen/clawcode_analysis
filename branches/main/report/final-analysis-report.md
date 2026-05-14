@@ -915,21 +915,32 @@ flowchart TB
 
 ## 11. Supplementary Analysis
 
-No supplementary summary file was generated for this analysis cycle. All analysis content is contained within the 6 P1 mainline summaries and the 42 individual task analyses.
+15 tasks not assigned to P1 mainlines are covered in the supplementary summary.
 
-### 11.1 Task Analysis Inventory
+### 11.1 Supplementary Summary
 
-42 task analysis files in `.code_analysis/branches/main/task-analyses/`:
+📄 **[summary-supplementary.md](summary-supplementary)** — 15 tasks grouped into 5 functional domains:
 
-| Category | Tasks | Files |
-|----------|-------|-------|
-| Core P1 Tasks | T-01 through T-09 | 9 files |
-| TUI Tasks | T-10, T-11, T-12 | 4 files (T-12 has 2 variants) |
-| System Tasks | T-13 through T-20 | 8 files |
-| Pattern Audits | T-21 through T-40 | 20 files |
-| Shim/Vendor | T-41 | 1 file |
+| Group | Tasks | Mainline | Depth | Key Finding |
+|-------|-------|----------|-------|-------------|
+| TUI Core & Rendering | T-10, T-11, T-12 | ML-07 | STANDARD | Ink 6-layer rendering pipeline (React→reconciler→Yoga→Frame→diff→stdout); REPL.tsx 5061L God File; React Compiler 全面采用; 双缓冲帧交换; 流式渲染性能瓶颈 |
+| TUI Pattern Audits | T-23, T-26, T-27, T-28, T-32, T-34, T-35 | ML-07 | OVERVIEW | 10 pattern audits, 134 verified catalog instances, 1 documented deviation (PI-10 mcpSkillBuilders.ts); Null Stub 占比 33-43% |
+| Task System | T-13, T-24 | ML-08 | STANDARD+OVERVIEW | Strategy Pattern (`Task {name,type,kill()}`) with 7 implementations; 双模式输出(file/pipe+8MB spill); Stall Watchdog 45s; RemoteAgentTask 855L |
+| Swarm Orchestration | T-19 | ML-14 | OVERVIEW | Three-backend architecture (tmux/iTerm2/in-process) unified under TeammateExecutor; inProcessRunner 1552L uses AsyncLocalStorage; file-system mailbox communication; fire-and-forget execution |
+| Plugin/Skill | T-29 | ML-12 | OVERVIEW | 7 bundled skills (43% empty stubs); 1 deviation: mcpSkillBuilders.ts breaks naming convention to resolve circular dependency; verify.ts has USER_TYPE gate |
+| Cross-cutting | T-41 | CROSS | OVERVIEW | Shim+Vendor dual-layer: 5 Null-Object shims (728L) for native MCP servers + 4 lazy-load vendor bridges (438L) for .node binaries; graceful degradation; 3 different loading strategies (anti-pattern) |
 
-[来源: task-analyses/ directory listing, 03-analysis-tasks.md]
+### 11.2 Cross-Group Risk Hotspots (Supplementary)
+
+| ID | Severity | Issue | Source |
+|----|----------|-------|--------|
+| SUP-01 | P2 | REPL.tsx 5061L + ink.tsx 1723L 双 God File | T-10, T-11 |
+| SUP-02 | P2 | 流式渲染每个 SSE chunk 触发完整 Ink render cycle | T-10, T-11 |
+| SUP-03 | P2 | inProcessRunner.ts 1552L AsyncLocalStorage 异常边界泄漏 | T-19 |
+| SUP-04 | P2 | Vendor 层 4 文件 3 种加载策略不一致 | T-41 |
+| SUP-05 | P3 | useDeprecationWarning 未迁移到共享基础设施 | T-35 |
+
+[来源: summary-supplementary.md §2 概要, §10 补充级跨 Task 综合, p1_allocation.json]
 
 
 ---

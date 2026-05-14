@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6588dd03cbe83a8d8b718a61875dba7b24 | updated: 2025-07-15 | mode: full | task: T-13 --&gt;
+<!-- analysis-version: 0 | commit: 365f23f | updated: 2025-07-25 | mode: full | task: T-13 -->
 # T-13 Analysis: 任务系统 (Task System)
 
 ## Scope Confirmation

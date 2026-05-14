@@ -9,5 +9,5 @@
 - [x] 修订不准确的 role_one_liner（5 条全部修订）
 - [x] 写出 ## File Roles 强制节（5 个 scope files）
 - [x] 生成文件依赖关系图
-- [x] 写出 task-analyses/T-30-audit-pi-11.md
+- [x] 写出 task-analyses/T-30-audit-settings-module.md
 - [x] 更新 task 状态

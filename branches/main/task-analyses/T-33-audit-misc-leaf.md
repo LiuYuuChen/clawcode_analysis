@@ -1,4 +1,5 @@
 &lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2025-07-27 | mode: full | task: T-33 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2025-07-14 | mode: full | task: T-33 -->
 # T-33 Analysis: Pattern Audit — misc-leaf (PI-14)
 
 ## Scope Confirmation
@@ -8,8 +9,8 @@
 - Analysis Depth: OVERVIEW
 - Pattern Coverage: **PI-14** (misc-leaf)
 - Scope Files (confirmed):
-  1. [`src/constants/errorIds.ts`](/src/src/constants/errorIds.ts.md) (15L) — exists ✅
-  2. [`src/keybindings/types.ts`](/src/src/keybindings/types.ts.md) (17L) — exists ✅
+  1. [`src/constants/errorIds.ts`](/src/src/constants/errorIds.ts) (15L) — exists ✅
+  2. [`src/keybindings/types.ts`](/src/src/keybindings/types.ts) (17L) — exists ✅
 - Scope adjustments: None. Both PI-14 instances are in scope (pattern audit covers all catalog instances).
 - Total PI-14 instances: **2** (from instance-manifest.jsonl)
 - Pattern owner_ml: ML-01 (CLI Startup & Command Routing)

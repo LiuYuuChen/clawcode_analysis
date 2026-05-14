@@ -1,0 +1,25 @@
+# T-01 Goal Tracking
+
+- [x] 确认 task 范围（验证 scope files、读取定义）
+- [x] 确定分析深度（DEEP）
+- [x] 执行深度分析（追踪代码、识别组件）
+- [x] 生成任务级流程图（DEEP 必须）— Call Chain Analysis § Flowchart View
+- [x] 生成任务级时序图（DEEP 必须）— Temporal Analysis § Sequence Diagram
+- [x] 生成边界/集成图（DEEP 必须）— Boundary / Integration Map
+- [x] 生成数据流图（DEEP 必须）— Data Flow View
+- [x] 生成错误传播图（DEEP 必须）— Error Propagation Analysis § View
+- [x] 生成并发时间线（有并发代码时）— Concurrency Analysis § Timeline (gantt)
+- [x] DEEP 模式：完成函数级详细代码解读 — Function-Level Analysis 全部10个文件
+- [x] DEEP 模式：完成调用链路分析 — Call Chain Analysis 3条链路 + Fan-in/Fan-out Top-10
+- [x] DEEP 模式：完成时序分析 — Temporal Analysis (异步编排 T=0~9 + 事件时序 + 3竞态风险 + 7隐式约束)
+- [x] DEEP 模式：完成状态流转分析 — State Transition Analysis (18变量 + stateDiagram + 15行转换表)
+- [x] DEEP 模式：完成错误传播分析 — Error Propagation Analysis (10源 + 5路径 + View)
+- [x] DEEP 条件：并发模型分析 — Concurrency Analysis (5共享状态 + 4协调模式 + gantt时间线)
+- [x] DEEP 条件：副作用清单 — Side Effect Inventory (18条副作用)
+- [x] 生成文件依赖关系图 — File Dependency Graph (mermaid + table)
+- [x] 写出 ## File Roles（10/10 effective scope files）
+- [x] Pattern Audit task: 不适用（pattern_coverage=null）
+- [x] 验证 acceptance criteria（5/5 通过）
+- [x] 识别风险与开放问题（5风险 + 3反模式 + 5开放问题）
+- [x] 写出 task-analyses/T-01-cli-entry-init.md（1214行，完整DEEP模板）
+- [x] 更新 assumptions.md

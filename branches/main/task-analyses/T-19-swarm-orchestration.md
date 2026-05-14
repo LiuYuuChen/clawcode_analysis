@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2025-07-27 | mode: full | task: T-19 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2025-07-27 | mode: full | task: T-19 -->
 # T-19 Analysis: Swarm Orchestration
 
 ## Scope Confirmation

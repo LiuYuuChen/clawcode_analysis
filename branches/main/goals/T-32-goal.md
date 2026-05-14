@@ -10,4 +10,4 @@
 - [x] 更新 instance-manifest.jsonl（10 条 role_source→verified, verified_by→T-32）
 - [x] 验证 acceptance criteria（7/7 PASS）
 - [x] 识别风险与开放问题（P3×1, P4×3, OQ×3）
-- [x] 写出 task-analyses/T-32-audit-pi-13.md
+- [x] 写出 task-analyses/T-32-audit-component-leaf.md

@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2025-07-27 | mode: full | task: T-18 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2025-07-14 | mode: full | task: T-18 -->
 # T-18 Analysis: Bash/Shell引擎
 
 ## Scope Confirmation

@@ -9,5 +9,5 @@
 - [x] 写出 ## File Roles 强制节（4 行，含 catalog 扩展）
 - [x] 验证 acceptance criteria
 - [x] 识别风险与开放问题
-- [x] 写出 task-analyses/T-38-audit-pi-23.md
+- [x] 写出 task-analyses/T-38-audit-cli-transport.md
 - [x] 更新 task 状态

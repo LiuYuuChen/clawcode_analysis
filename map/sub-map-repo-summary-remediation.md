@@ -9,10 +9,10 @@ Remediation: add 4 new main lines (ML-12~ML-15) from ml-supplement classificatio
 
 | ML | Name | Priority | Entry File | Files | Lines | Scope Dirs |
 |----|------|----------|-----------|-------|-------|------------|
-| ML-12 | Plugin System | P2 | [`src/utils/plugins/pluginLoader.ts`](/src/src/utils/plugins/pluginLoader.ts.md) | 49 | 25,422 | src/utils/plugins/, src/services/plugins/, src/commands/plugin/ |
-| ML-13 | Bash/Shell Engine | P2 | [`src/utils/bash/bashParser.ts`](/src/src/utils/bash/bashParser.ts.md) | 36 | 17,680 | src/utils/bash/, src/utils/shell/, src/utils/powershell/ |
-| ML-14 | Swarm Orchestration | P2 | [`src/utils/swarm/inProcessRunner.ts`](/src/src/utils/swarm/inProcessRunner.ts.md) | 22 | 7,548 | src/utils/swarm/, src/utils/swarm/backends/ |
-| ML-15 | SDK Entry Points | P2 | [`src/entrypoints/sdk/coreSchemas.ts`](/src/src/entrypoints/sdk/coreSchemas.ts.md) | 9 | 2,716 | src/entrypoints/sdk/ |
+| ML-12 | Plugin System | P2 | [`src/utils/plugins/pluginLoader.ts`](/src/src/utils/plugins/pluginLoader.ts) | 49 | 25,422 | src/utils/plugins/, src/services/plugins/, src/commands/plugin/ |
+| ML-13 | Bash/Shell Engine | P2 | [`src/utils/bash/bashParser.ts`](/src/src/utils/bash/bashParser.ts) | 36 | 17,680 | src/utils/bash/, src/utils/shell/, src/utils/powershell/ |
+| ML-14 | Swarm Orchestration | P2 | [`src/utils/swarm/inProcessRunner.ts`](/src/src/utils/swarm/inProcessRunner.ts) | 22 | 7,548 | src/utils/swarm/, src/utils/swarm/backends/ |
+| ML-15 | SDK Entry Points | P2 | [`src/entrypoints/sdk/coreSchemas.ts`](/src/src/entrypoints/sdk/coreSchemas.ts) | 9 | 2,716 | src/entrypoints/sdk/ |
 
 **Total**: 116 files, 53,366 lines
 

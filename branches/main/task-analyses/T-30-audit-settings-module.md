@@ -8,9 +8,9 @@
 - Analysis Depth: OVERVIEW
 - Pattern Coverage: **PI-11** (settings-module)
 - Scope Files (confirmed):
-  1. [`src/utils/settings/allErrors.ts`](/src/src/utils/settings/allErrors.ts.md) (32L) — exists ✅
-  2. [`src/utils/settings/internalWrites.ts`](/src/src/utils/settings/internalWrites.ts.md) (37L) — exists ✅
-  3. [`src/utils/settings/managedPath.ts`](/src/src/utils/settings/managedPath.ts.md) (34L) — exists ✅
+  1. [`src/utils/settings/allErrors.ts`](/src/src/utils/settings/allErrors.ts) (32L) — exists ✅
+  2. [`src/utils/settings/internalWrites.ts`](/src/src/utils/settings/internalWrites.ts) (37L) — exists ✅
+  3. [`src/utils/settings/managedPath.ts`](/src/src/utils/settings/managedPath.ts) (34L) — exists ✅
 - Scope adjustments: None. All 5 PI-11 instances are in scope (pattern audit covers all catalog instances).
 - Total PI-11 instances: **5** (from instance-manifest.jsonl)
 - Pattern owner_ml: ML-01 (CLI Startup & Command Routing)

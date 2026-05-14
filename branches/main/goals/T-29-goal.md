@@ -12,4 +12,4 @@
 - [x] Document open questions (3)
 - [x] Complexity assessment (TRIVIAL)
 - [x] Update instance-manifest.jsonl (7 entries: role_source=verified, verified_by=T-29)
-- [x] Write T-29-audit-pi-10.md
+- [x] Write T-29-audit-bundled-skill.md

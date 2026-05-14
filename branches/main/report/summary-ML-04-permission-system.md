@@ -8,8 +8,8 @@
 | Sub-Map | [ML-04-1](/map/sub-maps/ML-04-1) | Stage 1: 核心权限引擎（规则匹配+决策+更新+Hook） |
 | Sub-Map | [ML-04-2](/map/sub-maps/ML-04-2) | Stage 2: AI 分类器+初始化+文件系统权限 |
 | Coverage Map | [coverage-map-report](/map/coverage-map-report) | 全局覆盖率报告 |
-| Mainline File Map | [mainline-file-map.jsonl](/map/mainline-file-map) | ML-04 文件-行数映射（2 条记录） |
-| Call Graph | [call-graph.jsonl](/map/call-graph) | 模块间调用关系 |
+| Mainline File Map | [mainline-file-map.jsonl](/map/coverage-map-report) | ML-04 文件-行数映射（2 条记录） |
+| Call Graph | [call-graph.jsonl](/map/coverage-map-report) | 模块间调用关系 |
 
 ### 相关 P1 主线汇总
 | 主线 | 优先级 | Summary 链接 | 共享关系 |
@@ -24,7 +24,7 @@
 |---------|------|------|---------|
 | T-06 | permission-rules | Core (DEEP, 742L) | [T-06-permission-rules](/branches/main/task-analyses/T-06-permission-rules) |
 | T-07 | permission-classifier | Core (DEEP, 78L) | [T-07-permission-classifier](/branches/main/task-analyses/T-07-permission-classifier) |
-| T-25 | audit-pi-06 | Core (OVERVIEW, 177L) | [T-25-audit-pi-06](/branches/main/task-analyses/T-25-audit-pi-06) |
+| T-25 | audit-permission-component | Core (OVERVIEW, 177L) | [T-25-audit-permission-component](/branches/main/task-analyses/T-25-audit-permission-component) |
 | T-05 | tool-system-core | Related (DEEP, 1223L) | [T-05-tool-system-core](/branches/main/task-analyses/T-05-tool-system-core) |
 | T-18 | bash-engine | Related (DEEP, 516L) | [T-18-bash-engine](/branches/main/task-analyses/T-18-bash-engine) |
 | T-09 | auth-session | Related (DEEP, 906L) | [T-09-auth-session](/branches/main/task-analyses/T-09-auth-session) |
@@ -366,7 +366,7 @@ graph TB
 
 **Top Risk**：P4-01 两个 null-stub 组件可能是死代码，缺乏注释说明其意图。
 
-**链接**：[T-25-audit-pi-06](/branches/main/task-analyses/T-25-audit-pi-06)
+**链接**：[T-25-audit-permission-component](/branches/main/task-analyses/T-25-audit-permission-component)
 
 ---
 

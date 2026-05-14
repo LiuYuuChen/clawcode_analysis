@@ -4,17 +4,17 @@
 
 | ML ID | Name | Priority | Entry File | Key Modules | Est. Files | Validation |
 |-------|------|----------|-----------|-------------|-----------|------------|
-| ML-01 | CLI 启动与命令路由 | P1 | [`src/bootstrap-entry.ts`](/src/src/bootstrap-entry.ts.md) | entrypoints/cli.tsx, entrypoints/init.ts, main.tsx, commands.ts | ~25 | PASS ✅ |
-| ML-02 | 查询引擎主循环 | P1 | [`src/QueryEngine.ts`](/src/src/QueryEngine.ts.md) | query.ts, services/api/claude.ts, services/compact/ | ~30 | PASS ✅ |
-| ML-03 | 工具系统注册与调度 | P1 | [`src/Tool.ts`](/src/src/Tool.ts.md) | tools.ts, tools/BashTool/, tools/AgentTool/, tools/FileEditTool/ | ~15+189 cat | PASS ✅ |
-| ML-04 | 权限系统 | P1 | [`src/utils/permissions/permissions.ts`](/src/src/utils/permissions/permissions.ts.md) | autoModeState, bashClassifier, yoloClassifier, permissionRuleParser, useCanUseTool | ~40 | PASS ✅ |
-| ML-05 | MCP 服务集成 | P1 | [`src/services/mcp/MCPConnectionManager.tsx`](/src/src/services/mcp/MCPConnectionManager.tsx.md) | mcp/client.ts, mcp/config.ts, tools/MCPTool/ | ~25 | PASS ✅ |
-| ML-06 | 认证与会话管理 | P1 | [`src/services/oauth/client.ts`](/src/src/services/oauth/client.ts.md) | api/bootstrap.ts, bootstrap/state.ts, config.js | ~20 | PASS ✅ |
-| ML-07 | TUI 渲染与交互 | P2 | [`src/screens/REPL.tsx`](/src/src/screens/REPL.tsx.md) | ink/, components/, hooks/, state/ | ~600 | PASS ✅ |
-| ML-08 | 任务系统 | P2 | [`src/Task.ts`](/src/src/Task.ts.md) | tasks/ 7 subdirs | ~15 | PASS ✅ |
-| ML-09 | Bridge 远程模式 | P2 | [`src/bridge/initReplBridge.ts`](/src/src/bridge/initReplBridge.ts.md) | replBridge.ts, remoteBridgeCore.ts | ~33 | PASS ✅ |
-| ML-10 | API 客户端与重试层 | P2 | [`src/services/api/client.ts`](/src/src/services/api/client.ts.md) | claude.ts, withRetry.ts, errors.ts | ~21 | PASS ✅ |
-| ML-11 | 上下文与记忆管理 | P2 | [`src/services/compact/autoCompact.ts`](/src/src/services/compact/autoCompact.ts.md) | compact.ts, memdir/, contextCollapse/ | ~15 | PASS ✅ |
+| ML-01 | CLI 启动与命令路由 | P1 | [`src/bootstrap-entry.ts`](/src/src/bootstrap-entry.ts) | entrypoints/cli.tsx, entrypoints/init.ts, main.tsx, commands.ts | ~25 | PASS ✅ |
+| ML-02 | 查询引擎主循环 | P1 | [`src/QueryEngine.ts`](/src/src/QueryEngine.ts) | query.ts, services/api/claude.ts, services/compact/ | ~30 | PASS ✅ |
+| ML-03 | 工具系统注册与调度 | P1 | [`src/Tool.ts`](/src/src/Tool.ts) | tools.ts, tools/BashTool/, tools/AgentTool/, tools/FileEditTool/ | ~15+189 cat | PASS ✅ |
+| ML-04 | 权限系统 | P1 | [`src/utils/permissions/permissions.ts`](/src/src/utils/permissions/permissions.ts) | autoModeState, bashClassifier, yoloClassifier, permissionRuleParser, useCanUseTool | ~40 | PASS ✅ |
+| ML-05 | MCP 服务集成 | P1 | [`src/services/mcp/MCPConnectionManager.tsx`](/src/src/services/mcp/MCPConnectionManager.tsx) | mcp/client.ts, mcp/config.ts, tools/MCPTool/ | ~25 | PASS ✅ |
+| ML-06 | 认证与会话管理 | P1 | [`src/services/oauth/client.ts`](/src/src/services/oauth/client.ts) | api/bootstrap.ts, bootstrap/state.ts, config.js | ~20 | PASS ✅ |
+| ML-07 | TUI 渲染与交互 | P2 | [`src/screens/REPL.tsx`](/src/src/screens/REPL.tsx) | ink/, components/, hooks/, state/ | ~600 | PASS ✅ |
+| ML-08 | 任务系统 | P2 | [`src/Task.ts`](/src/src/Task.ts) | tasks/ 7 subdirs | ~15 | PASS ✅ |
+| ML-09 | Bridge 远程模式 | P2 | [`src/bridge/initReplBridge.ts`](/src/src/bridge/initReplBridge.ts) | replBridge.ts, remoteBridgeCore.ts | ~33 | PASS ✅ |
+| ML-10 | API 客户端与重试层 | P2 | [`src/services/api/client.ts`](/src/src/services/api/client.ts) | claude.ts, withRetry.ts, errors.ts | ~21 | PASS ✅ |
+| ML-11 | 上下文与记忆管理 | P2 | [`src/services/compact/autoCompact.ts`](/src/src/services/compact/autoCompact.ts) | compact.ts, memdir/, contextCollapse/ | ~15 | PASS ✅ |
 
 ## Validation Results
 

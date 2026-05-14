@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2025-07-27 | mode: full | task: T-31 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2025-07-14 | mode: full | task: T-31 -->
 # T-31 Analysis: Pattern Audit — utility-leaf (PI-12)
 
 ## Scope Confirmation
@@ -8,29 +8,29 @@
 - Analysis Depth: OVERVIEW
 - Pattern Coverage: **PI-12** (utility-leaf)
 - Scope Files (confirmed):
-  1. [`src/utils/nativeInstaller/index.ts`](/src/src/utils/nativeInstaller/index.ts.md) (18L) — exists ✅
-  2. [`src/utils/authPortable.ts`](/src/src/utils/authPortable.ts.md) (19L) — exists ✅
-  3. [`src/utils/classifierApprovalsHook.ts`](/src/src/utils/classifierApprovalsHook.ts.md) (17L) — exists ✅
+  1. [`src/utils/nativeInstaller/index.ts`](/src/src/utils/nativeInstaller/index.ts) (18L) — exists ✅
+  2. [`src/utils/authPortable.ts`](/src/src/utils/authPortable.ts) (19L) — exists ✅
+  3. [`src/utils/classifierApprovalsHook.ts`](/src/src/utils/classifierApprovalsHook.ts) (17L) — exists ✅
 - Scope adjustments: None. All 12 PI-12 instances verified (100% full verification).
 - Total PI-12 instances: **12** (from instance-manifest.jsonl)
 - Pattern owner_ml: ML-02 (Query Engine Main Loop)
 
-## File Roles （强制节）
-| src/utils/findExecutable.ts | 17 | PATH lookup wrapper (whichSync) returning {cmd, args} shape; replaces spawn-rx to avoid rxjs ~313KB dependency | OVERVIEW (enumerated only) |
-| src/utils/gitSettings.ts | 18 | Cycle-breaking proxy for git.ts ↔ settings.ts: env var CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS → settings.includeGitInstructions fallback | OVERVIEW (enumerated only) |
-| src/utils/immediateCommand.ts | 15 | GrowthBook feature flag gate (tengu_immediate_model_command) + ant-user bypass for /model, /fast, /effort immediate command execution | OVERVIEW (enumerated only) |
-| src/utils/jsonRead.ts | 16 | UTF-8 BOM stripping (stripBOM) for PowerShell 5.x compatibility; extracted from json.ts to break settings→json→log cycle | OVERVIEW (enumerated only) |
-| src/utils/objectGroupBy.ts | 18 | TC39 Object.groupBy polyfill: groups iterable items by key selector into Partial&lt;Record&lt;K, T[]&gt;>; zero dependencies | OVERVIEW (enumerated only) |
-| src/utils/statusNoticeHelpers.ts | 20 | Agent description cumulative token estimator (getAgentDescriptionsTotalTokens) + AGENT_DESCRIPTIONS_THRESHOLD (15K) constant | OVERVIEW (enumerated only) |
-| src/utils/todo/types.ts | 18 | Zod schemas (TodoItemSchema, TodoListSchema) with lazySchema wrapper for lazy cycle-breaking; defines pending/in_progress/completed status enum | OVERVIEW (enumerated only) |
-| src/utils/xml.ts | 16 | XML/HTML special character escaping: escapeXml (&, &lt;, &gt;) for text content + escapeXmlAttr (also ", ') for attribute values | OVERVIEW (enumerated only) |
-| src/utils/yaml.ts | 15 | YAML parser platform adapter: Bun.YAML (built-in, zero-cost) when under Bun, lazy-require yaml npm package (~270KB) otherwise | OVERVIEW (enumerated only) |
+## File Roles
 
 | File | Lines | One-liner Role | Where Analyzed |
 |------|-------|----------------|---------------|
-| src/utils/nativeInstaller/index.ts | 18 | Barrel re-export file for nativeInstaller module: exposes checkInstall, installLatest, lockCurrentVersion, cleanup* APIs from internal installer.ts | OVERVIEW: § Pattern Audit |
 | src/utils/authPortable.ts | 19 | macOS Keychain API key cleanup (maybeRemoveApiKeyFromMacOSKeychainThrows) + API key last-20-chars normalization for config display | OVERVIEW: § Pattern Audit |
-| src/utils/classifierApprovalsHook.ts | 17 | React hook adapter (useSyncExternalStore) for classifierApprovals store; extracted to avoid pulling React into non-React consumers like print.ts | OVERVIEW: § Pattern Audit |
+| src/utils/classifierApprovalsHook.ts | 17 | React hook adapter (useSyncExternalStore) for classifierApprovals store; extracted to avoid pulling React into non-React consumers | OVERVIEW: § Pattern Audit |
+| src/utils/findExecutable.ts | 17 | PATH lookup wrapper (whichSync) returning {cmd, args} shape; replaces spawn-rx to avoid rxjs dependency | OVERVIEW: § Pattern Audit |
+| src/utils/gitSettings.ts | 18 | Cycle-breaking proxy for git.ts and settings.ts: env var to settings fallback | OVERVIEW: § Pattern Audit |
+| src/utils/immediateCommand.ts | 15 | GrowthBook feature flag gate for /model, /fast, /effort immediate command execution | OVERVIEW: § Pattern Audit |
+| src/utils/jsonRead.ts | 16 | UTF-8 BOM stripping (stripBOM) for PowerShell compatibility; extracted from json.ts to break import cycle | OVERVIEW: § Pattern Audit |
+| src/utils/nativeInstaller/index.ts | 18 | Barrel re-export for nativeInstaller module: exposes checkInstall, installLatest, lockCurrentVersion APIs | OVERVIEW: § Pattern Audit |
+| src/utils/objectGroupBy.ts | 18 | TC39 Object.groupBy polyfill: groups items by key selector; zero dependencies | OVERVIEW: § Pattern Audit |
+| src/utils/statusNoticeHelpers.ts | 20 | Agent description token budget calculator + 15K threshold constant | OVERVIEW: § Pattern Audit |
+| src/utils/todo/types.ts | 18 | Zod schemas (TodoItemSchema, TodoListSchema) via lazySchema for lazy cycle-breaking | OVERVIEW: § Pattern Audit |
+| src/utils/xml.ts | 16 | XML/HTML special character escaping: escapeXml + escapeXmlAttr for safe output | OVERVIEW: § Pattern Audit |
+| src/utils/yaml.ts | 15 | YAML parser platform adapter: Bun.YAML when under Bun, lazy-require yaml npm package otherwise | OVERVIEW: § Pattern Audit |
 
 ## Pattern Contract (PI-12: utility-leaf)
 

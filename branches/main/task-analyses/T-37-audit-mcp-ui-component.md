@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-37 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-37 -->
 # T-37 Analysis: Pattern Audit — mcp-ui-component (PI-20)
 
 ## Scope Confirmation
@@ -8,9 +8,9 @@
 - Analysis Depth: OVERVIEW
 - Pattern Coverage: PI-20 (mcp-ui-component)
 - Scope Files (confirmed):
-  - [`src/components/mcp/index.ts`](/src/src/components/mcp/index.ts.md) (9 lines) ✅
-  - [`src/components/mcp/types.ts`](/src/src/components/mcp/types.ts.md) (7 lines) ✅
-  - [`src/components/mcp/utils/reconnectHelpers.tsx`](/src/src/components/mcp/utils/reconnectHelpers.tsx.md) (48 lines) ✅
+  - [`src/components/mcp/index.ts`](/src/src/components/mcp/index.ts) (9 lines) ✅
+  - [`src/components/mcp/types.ts`](/src/src/components/mcp/types.ts) (7 lines) ✅
+  - [`src/components/mcp/utils/reconnectHelpers.tsx`](/src/src/components/mcp/utils/reconnectHelpers.tsx) (48 lines) ✅
 - Scope adjustments: None. PI-20 has exactly 3 catalog instances, all matching scope_files.
 
 ## File Roles
@@ -18,7 +18,7 @@
 | File | Lines | One-liner Role | Where Analyzed |
 |------|-------|----------------|---------------|
 | src/components/mcp/index.ts | 9 | Barrel re-export file aggregating 8 MCP UI component exports + 3 type exports | OVERVIEW: § Analysis Findings, § Pattern Contract |
-| src/components/mcp/types.ts | 7 | Type aliases for MCP server info shapes and view state (all Record&lt;string, unknown&gt;) | OVERVIEW: § Analysis Findings, § Pattern Contract |
+| src/components/mcp/types.ts | 7 | Type aliases for MCP server info shapes and view state (all Record<string, unknown>) | OVERVIEW: § Analysis Findings, § Pattern Contract |
 | src/components/mcp/utils/reconnectHelpers.tsx | 48 | Two utility functions for formatting MCP server reconnect results and errors into user-facing messages | OVERVIEW: § Analysis Findings, § Pattern Contract |
 
 ## Analysis Findings
@@ -27,7 +27,7 @@
 
 **F-02** — **Barrel file (index.ts)**: Re-exports 8 MCP UI components (`MCPAgentServerMenu`, `MCPListPanel`, `MCPReconnect`, `MCPRemoteServerMenu`, `MCPSettings`, `MCPStdioServerMenu`, `MCPToolDetailView`, `MCPToolListView`) and 3 types (`AgentMcpServerInfo`, `MCPViewState`, `ServerInfo`). Pure re-export surface with zero logic.
 
-**F-03** — **Placeholder types (types.ts)**: All 7 type exports are `Record<string, unknown>` (6 server info types) or `string` (`MCPViewState`). These are intentional loose placeholders — the actual server info shapes are defined in [`src/services/mcp/types.ts`](/src/src/services/mcp/types.ts.md) (deep-traced in T-08). These UI-side types appear to be decoupled stubs that defer to runtime typing.
+**F-03** — **Placeholder types (types.ts)**: All 7 type exports are `Record<string, unknown>` (6 server info types) or `string` (`MCPViewState`). These are intentional loose placeholders — the actual server info shapes are defined in [`src/services/mcp/types.ts`](/src/src/services/mcp/types.ts) (deep-traced in T-08). These UI-side types appear to be decoupled stubs that defer to runtime typing.
 
 **F-04** — **Reconnect helper (reconnectHelpers.tsx)**: Two pure functions — `handleReconnectResult()` switches on `client.type` (connected/needs-auth/failed/default) and returns structured `ReconnectResult`, while `handleReconnectError()` formats error messages. Both are stateless and side-effect-free.
 

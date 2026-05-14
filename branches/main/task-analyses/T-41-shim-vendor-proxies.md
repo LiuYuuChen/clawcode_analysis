@@ -1,166 +1,164 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6588dd03cbe83a8d8b718a61875dba7b24 | updated: 2025-07-14 | mode: full | task: T-41 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2025-07-14 | mode: full | task: T-41 -->
 # T-41 Analysis: Shim & Vendor Proxy Layers
 
 ## Scope Confirmation
 - Task ID: T-41
-- Primary Mainline: (none — cross-cutting infrastructure)
+- Primary Mainline: ML-01 (CLI Startup & Command Routing)
 - ML Priority: P3
 - Analysis Depth: OVERVIEW
-- Secondary Mainlines: ML-03 (Computer Use tools), ML-07 (TUI audio/image)
-- Pattern Coverage: (none)
-- Scope Files (confirmed): 9 files, 1,167 lines
-- Scope adjustments: None — all 9 files physically present and readable
-- Rationale: FAIL_4 orphan files from task-output-guardian — pure proxy/stub layers for external native packages that were not covered by any ML trace
+- Scope: Shim 代理层、Vendor 适配器、原生模块桥接
+- Boundaries: 不涉及业务逻辑，纯粹是代理/重导出层
+- Scope Files (confirmed, 9 files, 1,166 lines total):
 
-## File Roles
+| # | File | Lines | Exists |
+|---|------|-------|--------|
+| 1 | shims/ant-claude-for-chrome-mcp/index.ts | 113 | ✅ |
+| 2 | shims/ant-computer-use-input/index.ts | 93 | ✅ |
+| 3 | shims/ant-computer-use-mcp/index.ts | 195 | ✅ |
+| 4 | shims/ant-computer-use-mcp/types.ts | 30 | ✅ |
+| 5 | shims/ant-computer-use-swift/index.ts | 297 | ✅ |
+| 6 | vendor/audio-capture-src/index.ts | 151 | ✅ |
+| 7 | vendor/image-processor-src/index.ts | 162 | ✅ |
+| 8 | vendor/modifiers-napi-src/index.ts | 67 | ✅ |
+| 9 | vendor/url-handler-src/index.ts | 58 | ✅ |
+
+- Scope adjustments: None. All files present and readable.
+- Dependencies: none
+
+## File Roles （强制节）
 
 | File | Lines | One-liner Role | Where Analyzed |
 |------|-------|----------------|---------------|
-| shims/ant-claude-for-chrome-mcp/index.ts | 113 | Browser MCP shim — stub server with 16 no-op browser tool definitions (navigate/read_page/computer etc.), warns on connect | OVERVIEW: § Analysis Findings F-01 |
-| shims/ant-computer-use-input/index.ts | 93 | Computer Use Input shim — stub ComputerUseInput API with all methods as noOp; tracks cursor position in-memory only | OVERVIEW: § Analysis Findings F-02 |
-| shims/ant-computer-use-mcp/index.ts | 195 | Computer Use MCP shim — stub MCP server with 21 tool defs; only request_access/list_granted_applications function via session context | OVERVIEW: § Analysis Findings F-03 |
-| shims/ant-computer-use-mcp/types.ts | 30 | Type definitions for CU MCP shim — CoordinateMode, Logger, ComputerUseHostAdapter, permission request/response types | OVERVIEW: § Analysis Findings F-04 |
-| shims/ant-computer-use-swift/index.ts | 297 | Computer Use Swift shim — largest shim; full ComputerUseAPI stub with minimal real impl (osascript for running apps, open -b for bundles) | OVERVIEW: § Analysis Findings F-05 |
-| vendor/audio-capture-src/index.ts | 151 | Audio capture native addon loader — three-tier dlopen (env var → vendor dir → relative) wrapping recording/playback/mic auth | OVERVIEW: § Analysis Findings F-06 |
-| vendor/image-processor-src/index.ts | 163 | Image processor native addon loader — lazy dlopen + sharp()-compatible factory wrapping processImage/clipboard ops | OVERVIEW: § Analysis Findings F-07 |
-| vendor/modifiers-napi-src/index.ts | 67 | Keyboard modifier native addon loader — macOS-only, lazy dlopen wrapping getModifiers/isModifierPressed with prewarm() | OVERVIEW: § Analysis Findings F-08 |
-| vendor/url-handler-src/index.ts | 58 | URL handler native addon loader — macOS-only, lazy dlopen wrapping waitForUrlEvent (Apple Event kAEGetURL) | OVERVIEW: § Analysis Findings F-09 |
+| shims/ant-claude-for-chrome-mcp/index.ts | 113 | No-op MCP server shim for Claude-in-Chrome browser extension: declares 17 browser tool schemas but logs warning on connect(), all handlers are fire-and-forget | OVERVIEW: § Analysis Findings |
+| shims/ant-computer-use-input/index.ts | 93 | Null-object shim for macOS computer-use HID input (mouse/keyboard): exports typed no-op implementations with only cursor position tracking | OVERVIEW: § Analysis Findings |
+| shims/ant-computer-use-mcp/index.ts | 195 | Compatibility shim for Computer Use MCP server: declares 22 tool definitions, provides partial request_access/list_granted_applications handler, all other tools return error | OVERVIEW: § Analysis Findings |
+| shims/ant-computer-use-mcp/types.ts | 30 | Shared type declarations for Computer Use MCP: permission request/response, coordinate modes, host adapter, logger interfaces | OVERVIEW: § Analysis Findings |
+| shims/ant-computer-use-swift/index.ts | 297 | Stub implementation of ComputerUseAPI for non-Swift environments: returns blank JPEG screenshots, uses osascript to list running apps, no native HID access | OVERVIEW: § Analysis Findings |
+| vendor/audio-capture-src/index.ts | 151 | Lazy-loading native audio capture N-API bridge: 3-tier module resolution (native-embed env var → npm-install → dev source), exports recording/playback/mic-permission wrappers | OVERVIEW: § Analysis Findings |
+| vendor/image-processor-src/index.ts | 162 | Sharp-compatible image processing wrapper over native .node module: lazy dlopen, deferred operation chaining (resize/jpeg/png/webp → toBuffer), plus optional clipboard image read | OVERVIEW: § Analysis Findings |
+| vendor/modifiers-napi-src/index.ts | 67 | Lazy-loading macOS keyboard modifier key detector N-API bridge: exports getModifiers(), isModifierPressed(), prewarm() with env-var/dev-mode dual resolution | OVERVIEW: § Analysis Findings |
+| vendor/url-handler-src/index.ts | 58 | Lazy-loading macOS URL event handler N-API bridge (Apple Event kAEGetURL): exports waitForUrlEvent(timeoutMs) with env-var/dev-mode dual resolution | OVERVIEW: § Analysis Findings |
 
 ## Analysis Findings
 
-### F-01: Chrome MCP Shim (shims/ant-claude-for-chrome-mcp/index.ts, 113L)
-**Pattern**: Stub MCP server replacement. When the real `@anthropic-ai/claude-for-chrome-mcp` native package is unavailable, this shim provides the same `createClaudeForChromeMcpServer()` interface but all 16 browser tools (navigate, read_page, computer, javascript_tool, etc.) are no-op. The `connect()` method logs a warning: "browser actions are not available in this workspace." The shim maintains a closed state flag and a handlers Map but never dispatches any actual browser commands.
+### 关键路径与组件
 
-### F-02: Computer Use Input Shim (shims/ant-computer-use-input/index.ts, 93L)
-**Pattern**: Stub native input API. Exports a `ComputerUseInput` object with `isSupported: true` only on macOS. All 13 methods (moveMouse, key, leftClick, dragMouse, scroll, type, etc.) are async noOp. Only `moveMouse` and `dragMouse` track the cursor position in-memory (`cursor = {x, y}`), and `mouseLocation()` returns the tracked position. This is the thinnest shim — purely type-compatible with no runtime behavior.
+The scope divides cleanly into **two layers** with distinct architectural patterns:
 
-### F-03: Computer Use MCP Shim (shims/ant-computer-use-mcp/index.ts, 195L)
-**Pattern**: Partially-functional MCP server replacement. Defines 21 tool names (request_access, screenshot, mouse_move, left_click, type, etc.) but only 3 tools work: `request_access` delegates to `ctx.onPermissionRequest()`, `list_granted_applications` reads `ctx.getAllowedApps()`, and `read_clipboard` returns an error. All other tools return `errorText("not available in this restored workspace")`. The `createComputerUseMcpServer()` provides the same connect/close/isClosed interface as the real MCP server.
+**Layer 1 — Shims (5 files, 728 lines)**: Drop-in replacements for native/platform-specific MCP servers. They implement the same interface but produce no-op or stub behavior. Used when the real native module is unavailable (e.g., non-macOS, missing binary, open-source build).
 
-### F-04: CU MCP Types (shims/ant-computer-use-mcp/types.ts, 30L)
-**Pattern**: Pure type re-exports for the CU MCP shim. Defines `CoordinateMode`, `CuSubGates`, `Logger` (5-level), `ComputerUseHostAdapter`, `CuPermissionRequest`, `CuPermissionResponse`. All types are duplicated from the real package to avoid importing it (which would fail if the native binary is absent). `API_INIT_STATUS` defaults to `{accessibility: false, screenRecording: false}`.
+- **ant-claude-for-chrome-mcp**: Browser MCP server stub. Declares 17 tool schemas (navigate, read_page, form_input, computer, etc.) but `connect()` only logs a warning. `setRequestHandler()` stores handlers in a Map that are never invoked. No actual browser interaction.
+- **ant-computer-use-input**: HID input null-object. Exports a typed singleton `ComputerUseInput` with `isSupported: process.platform === 'darwin'` but all methods are `async noOp()`. Only tracks cursor position in-memory (`{x, y}`) via `moveMouse`/`dragMouse` — no actual mouse movement.
+- **ant-computer-use-mcp**: Partial MCP server. 22 tool defs (request_access, screenshot, mouse_move, etc.). `bindSessionContext()` handles `request_access` and `list_granted_applications` via session context callbacks, but all other tools return `errorText(...)`.
+- **ant-computer-use-mcp/types.ts**: Pure type declarations shared across Computer Use modules — no runtime code.
+- **ant-computer-use-swift**: The largest shim (297 lines). Implements full `ComputerUseAPI` interface: returns blank JPEG screenshots (embedded base64), queries running apps via `osascript -e "System Events"`, opens apps via `open -b <bundleId>`. No real HID, screenshots, or display management.
 
-### F-05: Computer Use Swift Shim (shims/ant-computer-use-swift/index.ts, 297L)
-**Pattern**: Largest and most sophisticated shim. Provides a complete `ComputerUseAPI` interface (tcc, hotkey, display, apps, screenshot, resolvePrepareCapture). Key design choices:
-- **Minimal real behavior**: `getRunningApps()` actually calls `osascript -e 'tell application "System Events"...'` to list running apps; `openBundle()` calls `open -b <bundleId>`.
-- **Blank screenshots**: All screenshot methods return a hardcoded `BLANK_JPEG_BASE64` (a tiny 1x1 white JPEG).
-- **Default display**: Returns a hardcoded 1440×900 display geometry.
-- **Safe subprocess execution**: `safeExec()` wraps `execFileSync` in try/catch, returning `{ok: false}` on any error.
-- This is the only shim that provides *partial* real functionality rather than pure no-ops.
+**Layer 2 — Vendor N-API Bridges (4 files, 438 lines)**: Lazy-loading wrappers around platform-specific `.node` native binaries. All share the same pattern: `cachedModule` singleton + `loadModule()` with graceful null fallback.
 
-### F-06: Audio Capture Loader (vendor/audio-capture-src/index.ts, 151L)
-**Pattern**: Lazy-loading native addon proxy with three-tier dlopen strategy:
-1. `AUDIO_CAPTURE_NODE_PATH` env var — for bun compile (native-embed mode)
-2. `./vendor/audio-capture/{arch}-{platform}/audio-capture.node` — for npm-install layout
-3. `../audio-capture/{arch}-{platform}/audio-capture.node` — for dev/source layout
+- **audio-capture-src**: Most complex loader — 3 resolution tiers: (1) `AUDIO_CAPTURE_NODE_PATH` env var for bun-compile embedded builds, (2) `./vendor/audio-capture/<arch>-<platform>/audio-capture.node` for npm installs, (3) `../audio-capture/...` for dev mode. Wraps recording, playback, and TCC microphone permission check. Supports macOS, Linux, Windows.
+- **image-processor-src**: Sharp API-compatible wrapper. Lazy `require('../../image-processor.node')`. Implements deferred operation chaining: `resize().jpeg().toBuffer()` accumulates ops, applies on `toBuffer()`. Optional clipboard functions (`readClipboardImage`, `hasClipboardImage`) for macOS.
+- **modifiers-napi-src**: macOS-only keyboard modifier detection. Dual resolution: `MODIFIERS_NODE_PATH` env var (bundled) vs `createRequire(import.meta.url)` (dev). Exports `prewarm()` for startup pre-loading.
+- **url-handler-src**: macOS-only URL event listener. `waitForUrlEvent(timeoutMs)` pumps NSApplication event loop. Same dual resolution pattern as modifiers.
 
-Exports 8 wrapper functions (startNativeRecording, stopNativeRecording, isNativeRecordingActive, startNativePlayback, writeNativePlaybackData, stopNativePlayback, isNativePlaying, microphoneAuthorizationStatus) that all guard with `loadModule()` returning false/null on failure. Supports macOS, Linux, and Windows. The `loadAttempted` flag ensures dlopen only runs once.
+### 架构洞察
 
-### F-07: Image Processor Loader (vendor/image-processor-src/index.ts, 163L)
-**Pattern**: Lazy-loading native addon proxy with a `sharp()`-compatible factory. Loads `../../image-processor.node` via `getNativeModule()` (deferred dlopen). The `sharp(input: Buffer)` factory returns a `SharpInstance` with a chained-operations pattern: operations are queued in an array and applied lazily on `toBuffer()`. Supports resize/jpeg/png/webp/metadata. Also exposes optional clipboard image reading (`readClipboardImage`/`hasClipboardImage`, macOS-only). The lazy loading avoids blocking startup with CoreGraphics/ImageIO linking.
+1. **Two-layer isolation**: Shims replace entire server behavior (zero native dependency); vendor bridges load native binaries on-demand. Shims are for "feature completely absent", vendors for "feature present but optional".
+2. **Consistent vendor pattern**: All 4 vendor modules follow identical lazy-load pattern: `cachedModule + loadAttempted + loadModule() → null | module`. This is a deliberate convention — the same code structure is copy-pasted with type and path variations.
+3. **Graceful degradation**: Every module returns `null`/`false`/empty values when native code is unavailable. No exceptions thrown on missing binaries. This is critical for cross-platform distribution of a single npm package.
+4. **Bun compile awareness**: audio-capture-src has special handling for `bun compile` — `AUDIO_CAPTURE_NODE_PATH` resolves to `../../audio-capture.node` at build time, which bun rewrites to `/$bunfs/root/audio-capture.node`.
+5. **Shims are "restored compatibility" stubs**: The log messages consistently say "restored compatibility shim" / "restored workspace" — these shims exist because the open-source build doesn't include proprietary native binaries (Chrome extension, Swift framework, etc.).
 
-### F-08: Modifiers NAPI Loader (vendor/modifiers-napi-src/index.ts, 67L)
-**Pattern**: Lazy-loading native addon proxy, macOS-only. Two-tier dlopen: `MODIFIERS_NODE_PATH` env var (bundled mode) or `vendor/modifiers-napi/{arch}-darwin/modifiers.node` (dev mode). Uses `createRequire(import.meta.url)` for ESM compatibility. Exports `getModifiers()`, `isModifierPressed()`, and `prewarm()`. Returns empty array/false on non-macOS or load failure.
+### 观察到的模式
 
-### F-09: URL Handler Loader (vendor/url-handler-src/index.ts, 58L)
-**Pattern**: Lazy-loading native addon proxy, macOS-only. Same two-tier dlopen pattern as modifiers-napi (env var or vendor dir). Wraps a single function: `waitForUrlEvent(timeoutMs)` which listens for macOS Apple Event `kAEGetURL`. Returns null on non-macOS or load failure. Simplest vendor proxy.
+1. **Null Object Pattern**: All shims implement the full expected interface but with no-op behavior — callers never need null checks.
+2. **Lazy Singleton with Fallback**: Vendor modules use `cachedModule + loadAttempted` pattern — attempt load once, cache result (even if null), never retry. Prevents repeated `dlopen` failures.
+3. **Dual Resolution (env-var / dev-path)**: modifiers-napi-src and url-handler-src share identical resolution logic: env var for bundled builds, `createRequire(import.meta.url)` + relative path for dev.
+4. **Triple Resolution**: audio-capture-src adds a third tier (npm-install relative path), making it the most robust loader.
 
-### F-10: Cross-cutting Architecture Pattern
-All 9 files share a common purpose: **decouple the application from native binary dependencies**. The `shims/` directory provides type-compatible stubs that gracefully degrade when native packages are absent. The `vendor/` directory provides lazy-loading proxies that defer dlopen until first use and return safe defaults on failure. Together they ensure the CLI can run on any platform without crashing due to missing native addons.
+### 与共享模块的交互
+
+- These files are **leaf dependencies** — they import nothing from `src/`. They are consumed by:
+  - `src/` code imports these modules to access native capabilities (audio, image, keyboard, URL handling)
+  - MCP server setup code imports shims as fallback when native servers are unavailable
+- No shared modules are owned by this task. All interactions are incoming (consumers in T-01, T-05, T-08 etc.)
 
 ## File Dependency Graph
 
+### Dependency Diagram
+
 ```mermaid
 flowchart TB
-    subgraph shims["shims/ (type-compatible stubs)"]
-        chrome["ant-claude-for-chrome-mcp/index.ts<br/>16 no-op browser tools"]
-        cu_input["ant-computer-use-input/index.ts<br/>13 no-op input methods"]
-        cu_mcp["ant-computer-use-mcp/index.ts<br/>21 tool defs, 3 partial"]
-        cu_types["ant-computer-use-mcp/types.ts<br/>type definitions"]
-        cu_swift["ant-computer-use-swift/index.ts<br/>osascript + blank JPEG"]
+    subgraph Shims["Shim Layer (5 files)"]
+        Chrome["ant-claude-for-chrome-mcp<br/>113L — Browser MCP no-op"]
+        CUInput["ant-computer-use-input<br/>93L — HID input null-object"]
+        CUMcp["ant-computer-use-mcp<br/>195L — CU MCP partial server"]
+        CUTypes["ant-computer-use-mcp/types<br/>30L — Type declarations"]
+        CUSwift["ant-computer-use-swift<br/>297L — Swift API stub"]
     end
 
-    subgraph vendor["vendor/ (lazy native addon loaders)"]
-        audio["audio-capture-src/index.ts<br/>3-tier dlopen"]
-        image["image-processor-src/index.ts<br/>sharp()-compatible factory"]
-        modifiers["modifiers-napi-src/index.ts<br/>macOS keyboard modifiers"]
-        url["url-handler-src/index.ts<br/>macOS Apple Events"]
+    subgraph Vendors["Vendor Layer (4 files)"]
+        Audio["audio-capture-src<br/>151L — Audio N-API bridge"]
+        Image["image-processor-src<br/>162L — Sharp wrapper"]
+        Modifiers["modifiers-napi-src<br/>67L — Key modifier N-API"]
+        UrlHandler["url-handler-src<br/>58L — URL event N-API"]
     end
 
-    cu_mcp --> cu_types
-    cu_swift -.->|osascript| EXT_MACOS["macOS System Events"]
-    audio -.->|dlopen| EXT_NATIVE1["audio-capture.node"]
-    image -.->|dlopen| EXT_NATIVE2["image-processor.node"]
-    modifiers -.->|dlopen| EXT_NATIVE3["modifiers.node"]
-    url -.->|dlopen| EXT_NATIVE4["url-handler.node"]
+    CUMcp -.-> CUTypes
 
-    chrome -.->|replaces| EXT_CHROME["@anthropic-ai/claude-for-chrome-mcp"]
-    cu_input -.->|replaces| EXT_CU_INPUT["@anthropic-ai/computer-use-input"]
-    cu_mcp -.->|replaces| EXT_CU_MCP["@anthropic-ai/computer-use-mcp"]
-    cu_swift -.->|replaces| EXT_CU_SWIFT["@anthropic-ai/computer-use-swift"]
+    Audio -.->|"dlopen"| AudioNode["audio-capture.node<br/>(external .node binary)"]:::external
+    Image -.->|"dlopen"| ImageNode["image-processor.node<br/>(external .node binary)"]:::external
+    Modifiers -.->|"dlopen"| ModNode["modifiers.node<br/>(external .node binary)"]:::external
+    UrlHandler -.->|"dlopen"| UrlNode["url-handler.node<br/>(external .node binary)"]:::external
 
-    style shims fill:#fff3e0,stroke:#ff9800
-    style vendor fill:#e8f5e9,stroke:#4caf50
-    style EXT_MACOS fill:#f3e5f5,stroke:#9c27b0,stroke-dasharray:5
-    style EXT_NATIVE1 fill:#f3e5f5,stroke:#9c27b0,stroke-dasharray:5
-    style EXT_NATIVE2 fill:#f3e5f5,stroke:#9c27b0,stroke-dasharray:5
-    style EXT_NATIVE3 fill:#f3e5f5,stroke:#9c27b0,stroke-dasharray:5
-    style EXT_NATIVE4 fill:#f3e5f5,stroke:#9c27b0,stroke-dasharray:5
-    style EXT_CHROME fill:#fce4ec,stroke:#e91e63,stroke-dasharray:3
-    style EXT_CU_INPUT fill:#fce4ec,stroke:#e91e63,stroke-dasharray:3
-    style EXT_CU_MCP fill:#fce4ec,stroke:#e91e63,stroke-dasharray:3
-    style EXT_CU_SWIFT fill:#fce4ec,stroke:#e91e63,stroke-dasharray:3
+    CUSwift -.->|"execFileSync"| Osascript["osascript / open<br/>(system commands)"]:::external
+
+    classDef external fill:#f5f5f5,stroke:#999,stroke-dasharray: 5 5
 ```
 
-| From | To | Type | Notes |
-|------|----|------|-------|
-| cu_mcp/index.ts | cu_mcp/types.ts | direct import | imports CoordinateMode, Logger, ComputerUseHostAdapter |
-| cu_swift/index.ts | macOS System Events | subprocess | osascript/execFileSync for getRunningApps, openBundle |
-| audio-capture-src/index.ts | audio-capture.node | dlopen | 3-tier: env var → vendor dir → relative |
-| image-processor-src/index.ts | image-processor.node | dlopen | deferred via getNativeModule() |
-| modifiers-napi-src/index.ts | modifiers.node | dlopen | 2-tier: env var → vendor dir |
-| url-handler-src/index.ts | url-handler.node | dlopen | 2-tier: env var → vendor dir |
+### Dependency Table
 
-All 9 files are **leaf modules** — zero imports from src/ application code. They are consumed by the application via dynamic import/require resolution (package.json "browser"/"exports" fields or bundler aliases).
+| Source File | Depends On | Type | Direction |
+|------------|-----------|------|-----------|
+| ant-computer-use-mcp/index.ts | ant-computer-use-mcp/types.ts | re-exports types (co-located) | internal |
+| ant-computer-use-swift/index.ts | child_process (execFileSync) | system command | external |
+| audio-capture-src/index.ts | audio-capture.node | native binary dlopen | external |
+| image-processor-src/index.ts | image-processor.node | native binary dlopen | external |
+| modifiers-napi-src/index.ts | modifiers.node | native binary dlopen | external |
+| url-handler-src/index.ts | url-handler.node | native binary dlopen | external |
+
+> Shim files (chrome-mcp, cu-input) have **zero imports** — fully self-contained stubs.
 
 ## Acceptance Criteria Status
 
-| # | Criterion | Status | Evidence |
-|---|-----------|--------|----------|
-| 1 | Every scope file physically exists and is readable | ✅ PASS | All 9 files confirmed on disk |
-| 2 | Every scope file has a one-liner role in File Roles table | ✅ PASS | 9/9 rows present |
-| 3 | Every scope file is referenced in at least one Finding | ✅ PASS | F-01~F-09 cover each file; F-10 covers cross-cutting |
-| 4 | OVERVIEW depth: file-level analysis without function-level detail | ✅ PASS | Each finding describes purpose + pattern, not internal logic |
-| 5 | No cross-scope dependencies left unexplained | ✅ PASS | Only cu_mcp → cu_types internal dep; all others are external |
-| 6 | External packages clearly identified for each shim/vendor | ✅ PASS | F-01~F-09 each name the target native package or addon |
-| 7 | No TODO/TBD/placeholder in any section | ✅ PASS | All sections contain concrete analysis content |
+(No explicit acceptance criteria in task definition for T-41. Applying general OVERVIEW criteria.)
+
+- [x] All 9 scope files confirmed to exist and be readable
+- [x] Each file's one-liner role described based on actual source reading (not filename inference)
+- [x] Exported interfaces identified for each file
+- [x] Inter-module dependencies mapped
+- [x] Scope boundary confirmed: no business logic, purely proxy/re-export layers
+- [x] No cross-scope analysis needed — these are leaf modules with no incoming dependencies from other scope files
 
 ## Identified Problems
 
-| ID | Severity | File | Description |
-|----|----------|------|-------------|
-| P4-01 | P4 | all 9 files | **Proxy layers add maintenance burden** — shims and vendor loaders duplicate type definitions from native packages. When upstream packages change their interfaces (add/remove methods, change signatures), these proxy layers must be manually updated to stay type-compatible. There is no automated test or CI check verifying shim↔native interface parity. Risk is low because these packages change infrequently, but a mismatch would cause silent no-op behavior at runtime rather than a clear error. |
+### 风险与热点
+- [事实/推测] **P3-01**: ant-computer-use-swift/index.ts calls `execFileSync('osascript', ...)` synchronously (L95-98, L91) — blocks event loop during running-app enumeration. Low severity (rarely called, fast command).
+- [事实/推测] **P4-01**: All shim modules contain "restored compatibility" log messages — these are clearly placeholders for the proprietary Anthropic internal build. If upstream APIs change, shims may silently become out-of-sync.
+- [事实/推测] **P4-02**: audio-capture-src has 3 different resolution paths, each with different `require()` semantics. `require(variable)` from env var bypasses bundler analysis — by design for bun compile, but fragile for other bundlers.
+
+### 反模式或一致性问题
+- **Dual resolution inconsistency**: modifiers-napi-src and url-handler-src use `createRequire(import.meta.url)` for dev mode, while audio-capture-src uses plain `require(p)` with relative paths. The image-processor uses `require('../../image-processor.node')` hardcoded. Four files, three different loading strategies.
 
 ## Open Questions
-
-| # | Question | Type | Resolution Path |
-|---|----------|------|----------------|
-| 1 | Are shims used in production or only for development/bundled builds? | config | Check package.json exports/browser field and build config |
-| 2 | Do any shims have corresponding tests verifying type compatibility? | testing | Search for test files matching shim/vendor patterns |
-| 3 | What triggers dlopen failure in vendor loaders at runtime? — missing binary, architecture mismatch, or permission denied? | runtime | Would require platform-specific testing |
-| 4 | Is the blank JPEG in cu_swift ever surfaced to the LLM? — Could a blank screenshot cause unexpected model behavior? | cross-task | Depends on T-05 (Tool system) tool result handling |
+1. **(build-system)**: How are the `.node` binaries distributed? The vendor bridges expect them at specific paths but the resolution logic varies — does the build system (esbuild/bun) handle this uniformly?
+2. **(runtime)**: When do shims get activated vs real implementations? Presumably a build-time or runtime feature flag controls which module `src/` code imports — depends on T-01/T-05 for import resolution.
+3. **(security)**: `execFileSync('open', ['-b', bundleId])` in ant-computer-use-swift (L91) can open arbitrary apps by bundle ID — is the input sanitized upstream?
 
 ## Complexity Assessment
 
 | Dimension | Rating | Justification |
 |-----------|--------|---------------|
-| Code Complexity | **TRIVIAL** | All 9 files are simple proxy/stub layers with minimal logic |
-| Dependency Complexity | **LOW** | Only 1 internal edge (cu_mcp → cu_types); all others are external |
-| State Complexity | **TRIVIAL** | No mutable state (shims) or one-time lazy load flag (vendors) |
-| Error Handling | **TRIVIAL** | Universal try/catch returning safe defaults |
-| Risk Level | **TRIVIAL** | Zero runtime risk if native packages are present; graceful degradation if absent |
-| **Overall** | **TRIVIAL** | Lowest-complexity task in the entire analysis — pure infrastructure adapters |
-
----
-
-*Analysis complete. 9/9 scope files covered. 0 files skipped. 0 TODOs.*
+| Code complexity | LOW | No business logic; shims are no-op stubs, vendors are thin wrappers |
+| Integration complexity | LOW-MEDIUM | 3 different native loading strategies; platform-gated behavior |
+| Maintenance burden | LOW | Rarely changes; shims track upstream API surface only |
+| Overall | **LOW** | Pure infrastructure layer with graceful degradation pattern |

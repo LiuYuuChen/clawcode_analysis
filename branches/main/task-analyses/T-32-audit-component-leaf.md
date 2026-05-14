@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-32 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-32 -->
 # T-32 Analysis: Pattern Audit — component-leaf (PI-13)
 
 ## Scope Confirmation
@@ -8,9 +8,9 @@
 - Analysis Depth: OVERVIEW
 - Pattern Coverage: PI-13 (component-leaf)
 - Scope Files (confirmed):
-  - [`src/components/PromptInput/IssueFlagBanner.tsx`](/src/src/components/PromptInput/IssueFlagBanner.tsx.md) (11 lines) ✅
-  - [`src/components/tasks/MonitorMcpDetailDialog.tsx`](/src/src/components/tasks/MonitorMcpDetailDialog.tsx.md) (3 lines) ✅
-  - [`src/components/tasks/WorkflowDetailDialog.tsx`](/src/src/components/tasks/WorkflowDetailDialog.tsx.md) (3 lines) ✅
+  - [`src/components/PromptInput/IssueFlagBanner.tsx`](/src/src/components/PromptInput/IssueFlagBanner.tsx) (11 lines) ✅
+  - [`src/components/tasks/MonitorMcpDetailDialog.tsx`](/src/src/components/tasks/MonitorMcpDetailDialog.tsx) (3 lines) ✅
+  - [`src/components/tasks/WorkflowDetailDialog.tsx`](/src/src/components/tasks/WorkflowDetailDialog.tsx) (3 lines) ✅
 - Scope adjustments: PI-13 has 10 catalog instances totaling 63 lines. All 10 will be verified (100% coverage, no sampling needed — total is trivially small).
 - Rationale: PI-13 audit task, verifying all catalog instances conform to component-leaf pattern.
 - Dependencies: T-10 (TUI main interface — already completed)

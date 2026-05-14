@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-34 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-34 -->
 # T-34 Analysis: Pattern Audit — design-system-component (PI-15)
 
 ## Scope Confirmation
@@ -8,7 +8,7 @@
 - Analysis Depth: OVERVIEW
 - Pattern Coverage: PI-15 (design-system-component)
 - Scope Files (confirmed):
-  - [`src/components/design-system/color.ts`](/src/src/components/design-system/color.ts.md) (30 lines) ✅
+  - [`src/components/design-system/color.ts`](/src/src/components/design-system/color.ts) (30 lines) ✅
 - Scope adjustments: PI-15 has only 1 catalog instance (30 lines). Full verification performed — no sampling needed.
 - Rationale: PI-15 audit task, verifying the sole catalog instance conforms to design-system-component pattern.
 - Dependencies: T-10 (TUI main interface — already completed)

@@ -1,1223 +1,1044 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6588dd03cbe83a8d8b718a61875dba7b24 | updated: 2025-07-20 | mode: full | task: T-05 --&gt;
-
+<!-- analysis-version: 0 | commit: a5179f6588dd03cbe83a8d8b718a61875dba7b24 | updated: 2025-07-27 | mode: full | task: T-05 -->
 # T-05 Analysis: 工具系统核心调度
 
 ## Scope Confirmation
-
 - Task ID: T-05
-- Primary Mainline: ML-03 (工具系统注册与调度)
+- Primary Mainline: ML-03
 - ML Priority: P1
 - Analysis Depth: DEEP
-- Secondary Mainlines: ML-01 (CLI命令路由)
-- Scope Files (confirmed): 142 files, 58871 lines
-- Scope adjustments: None (all files exist)
+- Secondary Mainlines: ML-01 (shared utils: file.ts, git.ts, ripgrep.ts)
+- Scope Files (confirmed): 142 files, 58,846 lines
+- Scope adjustments: None — all scope files verified present
 
 ## File Roles
 
-> 强制节：142 个 scope file，每个一行。
-
 | File | Lines | One-liner Role | Where Analyzed |
 |------|-------|----------------|---------------|
-| src/tools/BashTool/bashPermissions.ts | 2621 | Bash shell command execution and security validation | DEEP: Function-Level Analysis (Bash Subsystem) |
-| src/tools/BashTool/bashSecurity.ts | 2592 | Bash shell command execution and security validation | DEEP: Function-Level Analysis (Bash Subsystem) |
-| src/tools/PowerShellTool/pathValidation.ts | 2049 | Windows PowerShell command execution and security | OVERVIEW: File Roles |
-| src/tools/BashTool/readOnlyValidation.ts | 1990 | Bash shell command execution and security validation | OVERVIEW: File Roles |
-| src/tools/PowerShellTool/readOnlyValidation.ts | 1823 | Windows PowerShell command execution and security | OVERVIEW: File Roles |
-| src/services/tools/toolExecution.ts | 1745 | Core tool execution pipeline engine | DEEP: Function-Level Analysis, Call Chain Analysis |
-| src/tools/PowerShellTool/powershellPermissions.ts | 1648 | Windows PowerShell command execution and security | OVERVIEW: File Roles |
-| src/tools/AgentTool/AgentTool.tsx | 1398 | Sub-agent spawning, orchestration, and lifecycle | DEEP: Function-Level Analysis (Agent Subsystem) |
-| src/tools/BashTool/pathValidation.ts | 1303 | Bash shell command execution and security validation | OVERVIEW: File Roles |
-| src/tools/FileReadTool/FileReadTool.ts | 1183 | File reading with image and limit support | DEEP: Function-Level Analysis |
-| src/tools/BashTool/BashTool.tsx | 1144 | Bash shell command execution and security validation | DEEP: Function-Level Analysis (Bash Subsystem) |
-| src/utils/fileHistory.ts | 1115 | File edit history tracking | OVERVIEW: File Roles |
-| src/tools/SkillTool/SkillTool.ts | 1108 | Skill invocation and execution | DEEP: Function-Level Analysis |
-| src/tools/shared/spawnMultiAgent.ts | 1093 | Shared multi-agent utilities | DEEP: Function-Level Analysis (Agent Subsystem) |
-| src/tools/PowerShellTool/powershellSecurity.ts | 1090 | Windows PowerShell command execution and security | OVERVIEW: File Roles |
-| src/utils/toolResultStorage.ts | 1040 | Large tool result persistence to disk | OVERVIEW: File Roles |
-| src/tools/PowerShellTool/PowerShellTool.tsx | 1001 | Windows PowerShell command execution and security | OVERVIEW: File Roles |
-| src/tools/AgentTool/runAgent.ts | 973 | Sub-agent spawning, orchestration, and lifecycle | DEEP: Function-Level Analysis (Agent Subsystem) |
-| src/utils/git.ts | 926 | Git operation utilities | OVERVIEW: File Roles |
-| src/tools/SendMessageTool/SendMessageTool.ts | 917 | Inter-agent message sending | DEEP: Function-Level Analysis |
-| src/tools/AgentTool/UI.tsx | 872 | Sub-agent spawning, orchestration, and lifecycle | OVERVIEW: File Roles |
-| src/tools/LSPTool/LSPTool.ts | 860 | Language Server Protocol integration | DEEP: Function-Level Analysis |
-| src/tools/FileEditTool/utils.ts | 775 | File editing with multi-tool diff operations | OVERVIEW: File Roles |
-| src/utils/toolSearch.ts | 756 | Tool search/discovery and deferred tool logic | OVERVIEW: File Roles |
-| src/tools/AgentTool/loadAgentsDir.ts | 755 | Sub-agent spawning, orchestration, and lifecycle | OVERVIEW: File Roles |
-| src/utils/git/gitFilesystem.ts | 699 | Git filesystem operations | OVERVIEW: File Roles |
-| src/tools/AgentTool/agentToolUtils.ts | 686 | Sub-agent spawning, orchestration, and lifecycle | OVERVIEW: File Roles |
-| src/tools/BashTool/sedValidation.ts | 684 | Bash shell command execution and security validation | OVERVIEW: File Roles |
-| src/utils/ripgrep.ts | 679 | Ripgrep process wrapper for Grep/Glob | OVERVIEW: File Roles |
-| src/utils/computerUse/executor.ts | 658 | Computer use (screen automation) subsystem | OVERVIEW: File Roles |
-| src/tools/FileEditTool/FileEditTool.ts | 625 | File editing with multi-tool diff operations | DEEP: Function-Level Analysis |
-| src/tools/LSPTool/formatters.ts | 592 | Language Server Protocol integration | OVERVIEW: File Roles |
-| src/tools/TaskOutputTool/TaskOutputTool.tsx | 584 | Background task output retrieval | OVERVIEW: File Roles |
-| src/utils/file.ts | 584 | File operation utilities (read/write/exists) | OVERVIEW: File Roles |
-| src/tools/GrepTool/GrepTool.ts | 577 | Content search using ripgrep | DEEP: Function-Level Analysis |
-| src/utils/gitDiff.ts | 532 | Git diff generation utilities | OVERVIEW: File Roles |
-| src/tools/WebFetchTool/utils.ts | 530 | Web content fetching | OVERVIEW: File Roles |
-| src/tools/ExitPlanModeTool/ExitPlanModeV2Tool.ts | 493 | Plan mode exit | DEEP: Function-Level Analysis |
-| src/tools/NotebookEditTool/NotebookEditTool.ts | 490 | Jupyter notebook cell editing | DEEP: Function-Level Analysis |
-| src/tools/ToolSearchTool/ToolSearchTool.ts | 471 | Deferred tool discovery and search | DEEP: Function-Level Analysis |
-| src/tools/ConfigTool/ConfigTool.ts | 467 | Configuration settings management | DEEP: Function-Level Analysis |
-| src/tools/WebSearchTool/WebSearchTool.ts | 435 | Web search via search API | DEEP: Function-Level Analysis |
-| src/tools/FileWriteTool/FileWriteTool.ts | 434 | File creation and overwrite | DEEP: Function-Level Analysis |
-| src/tools/TaskUpdateTool/TaskUpdateTool.ts | 406 | Background task update | DEEP: Function-Level Analysis |
-| src/tools/FileWriteTool/UI.tsx | 405 | File creation and overwrite | OVERVIEW: File Roles |
-| src/tools/PowerShellTool/modeValidation.ts | 404 | Windows PowerShell command execution and security | OVERVIEW: File Roles |
-| src/tools.ts | 389 | Tool registration and assembly (source of truth) | DEEP: Function-Level Analysis, Call Chain Analysis |
-| src/tools/BashTool/prompt.ts | 369 | Bash shell command execution and security validation | OVERVIEW: File Roles |
-| src/utils/computerUse/wrapper.tsx | 336 | Computer use (screen automation) subsystem | OVERVIEW: File Roles |
-| src/tools/ExitWorktreeTool/ExitWorktreeTool.ts | 329 | Git worktree exit | DEEP: Function-Level Analysis |
-| src/tools/BashTool/sedEditParser.ts | 322 | Bash shell command execution and security validation | OVERVIEW: File Roles |
-| src/tools/WebFetchTool/WebFetchTool.ts | 318 | Web content fetching | DEEP: Function-Level Analysis |
-| src/tools/FileEditTool/UI.tsx | 289 | File editing with multi-tool diff operations | OVERVIEW: File Roles |
-| src/tools/AgentTool/prompt.ts | 287 | Sub-agent spawning, orchestration, and lifecycle | OVERVIEW: File Roles |
-| src/tools/shared/gitOperationTracking.ts | 277 | Shared multi-agent utilities | OVERVIEW: File Roles |
-| src/tools/AskUserQuestionTool/AskUserQuestionTool.tsx | 266 | Interactive user question prompt | OVERVIEW: File Roles |
-| src/tools/AgentTool/resumeAgent.ts | 265 | Sub-agent spawning, orchestration, and lifecycle | OVERVIEW: File Roles |
-| src/tools/BashTool/bashCommandHelpers.ts | 265 | Bash shell command execution and security validation | OVERVIEW: File Roles |
-| src/tools/SkillTool/prompt.ts | 241 | Skill invocation and execution | OVERVIEW: File Roles |
-| src/tools/TeamCreateTool/TeamCreateTool.ts | 240 | Multi-agent team creation | DEEP: Function-Level Analysis |
-| src/tools/LSPTool/UI.tsx | 228 | Language Server Protocol integration | OVERVIEW: File Roles |
-| src/tools/BashTool/utils.ts | 223 | Bash shell command execution and security validation | OVERVIEW: File Roles |
-| src/tools/LSPTool/schemas.ts | 215 | Language Server Protocol integration | OVERVIEW: File Roles |
-| src/utils/computerUse/computerUseLock.ts | 215 | Computer use (screen automation) subsystem | OVERVIEW: File Roles |
-| src/tools/ConfigTool/supportedSettings.ts | 211 | Configuration settings management | OVERVIEW: File Roles |
-| src/tools/PowerShellTool/clmTypes.ts | 211 | Windows PowerShell command execution and security | OVERVIEW: File Roles |
-| src/tools/AgentTool/forkSubagent.ts | 210 | Sub-agent spawning, orchestration, and lifecycle | DEEP: Function-Level Analysis (Agent Subsystem) |
-| src/tools/AgentTool/built-in/claudeCodeGuideAgent.ts | 205 | Sub-agent spawning, orchestration, and lifecycle | OVERVIEW: File Roles |
-| src/tools/BriefTool/BriefTool.ts | 204 | Attachment and file upload | DEEP: Function-Level Analysis |
-| src/tools/GrepTool/UI.tsx | 201 | Content search using ripgrep | OVERVIEW: File Roles |
-| src/tools/GlobTool/GlobTool.ts | 198 | File pattern search using glob | DEEP: Function-Level Analysis |
-| src/tools/AgentTool/agentMemorySnapshot.ts | 197 | Sub-agent spawning, orchestration, and lifecycle | OVERVIEW: File Roles |
-| src/utils/computerUse/appNames.ts | 196 | Computer use (screen automation) subsystem | OVERVIEW: File Roles |
-| src/tools/BashTool/BashToolResultMessage.tsx | 191 | Bash shell command execution and security validation | OVERVIEW: File Roles |
-| src/tools/BashTool/UI.tsx | 185 | Bash shell command execution and security validation | OVERVIEW: File Roles |
-| src/tools/FileReadTool/UI.tsx | 185 | File reading with image and limit support | OVERVIEW: File Roles |
-| src/tools/TodoWriteTool/prompt.ts | 184 | Todo list management | OVERVIEW: File Roles |
-| src/tools/AgentTool/agentMemory.ts | 177 | Sub-agent spawning, orchestration, and lifecycle | OVERVIEW: File Roles |
-| src/tools/PowerShellTool/gitSafety.ts | 176 | Windows PowerShell command execution and security | OVERVIEW: File Roles |
-| src/tools/BriefTool/upload.ts | 174 | Attachment and file upload | OVERVIEW: File Roles |
-| src/tools/EnterPlanModeTool/prompt.ts | 170 | Plan mode entry | OVERVIEW: File Roles |
-| src/tools/WebFetchTool/preapproved.ts | 166 | Web content fetching | OVERVIEW: File Roles |
-| src/tools/SyntheticOutputTool/SyntheticOutputTool.ts | 163 | Synthetic output injection for testing | DEEP: Function-Level Analysis |
-| src/tools/RemoteTriggerTool/RemoteTriggerTool.ts | 161 | Remote agent trigger | DEEP: Function-Level Analysis |
-| src/tools/ScheduleCronTool/CronCreateTool.ts | 157 | Scheduled cron task management | DEEP: Function-Level Analysis |
-| src/tools/BashTool/shouldUseSandbox.ts | 153 | Bash shell command execution and security validation | OVERVIEW: File Roles |
-| src/tools/AgentTool/built-in/verificationAgent.ts | 152 | Sub-agent spawning, orchestration, and lifecycle | OVERVIEW: File Roles |
-| src/tools/PowerShellTool/prompt.ts | 145 | Windows PowerShell command execution and security | OVERVIEW: File Roles |
-| src/tools/AgentTool/built-in/statuslineSetup.ts | 144 | Sub-agent spawning, orchestration, and lifecycle | OVERVIEW: File Roles |
-| src/tools/PowerShellTool/commandSemantics.ts | 142 | Windows PowerShell command execution and security | OVERVIEW: File Roles |
-| src/tools/BashTool/commandSemantics.ts | 140 | Bash shell command execution and security validation | OVERVIEW: File Roles |
-| src/tools/TeamDeleteTool/TeamDeleteTool.ts | 139 | Multi-agent team deletion | DEEP: Function-Level Analysis |
-| src/tools/TaskCreateTool/TaskCreateTool.ts | 138 | Background task creation | DEEP: Function-Level Analysis |
-| src/tools/ScheduleCronTool/prompt.ts | 135 | Scheduled cron task management | OVERVIEW: File Roles |
-| src/tools/PowerShellTool/UI.tsx | 131 | Windows PowerShell command execution and security | OVERVIEW: File Roles |
-| src/tools/TaskStopTool/TaskStopTool.ts | 131 | Background task termination | DEEP: Function-Level Analysis |
-| src/tools/SkillTool/UI.tsx | 128 | Skill invocation and execution | OVERVIEW: File Roles |
-| src/tools/TaskGetTool/TaskGetTool.ts | 128 | Background task retrieval | DEEP: Function-Level Analysis |
-| src/tools/EnterWorktreeTool/EnterWorktreeTool.ts | 127 | Git worktree entry | DEEP: Function-Level Analysis |
-| src/tools/EnterPlanModeTool/EnterPlanModeTool.ts | 126 | Plan mode entry | DEEP: Function-Level Analysis |
-| src/utils/computerUse/toolRendering.tsx | 125 | Computer use (screen automation) subsystem | OVERVIEW: File Roles |
-| src/tools/ToolSearchTool/prompt.ts | 121 | Deferred tool discovery and search | OVERVIEW: File Roles |
-| src/tools/TaskListTool/TaskListTool.ts | 116 | Background task listing | DEEP: Function-Level Analysis |
-| src/tools/BashTool/modeValidation.ts | 115 | Bash shell command execution and security validation | OVERVIEW: File Roles |
-| src/tools/TodoWriteTool/TodoWriteTool.ts | 115 | Todo list management | DEEP: Function-Level Analysis |
-| src/tools/TeamCreateTool/prompt.ts | 113 | Multi-agent team creation | OVERVIEW: File Roles |
-| src/constants/tools.ts | 112 | Tool access control constants and allow/deny lists | DEEP: Analysis Findings |
-| src/tools/BriefTool/attachments.ts | 110 | Attachment and file upload | OVERVIEW: File Roles |
-| src/tools/PowerShellTool/destructiveCommandWarning.ts | 109 | Windows PowerShell command execution and security | OVERVIEW: File Roles |
-| src/utils/computerUse/mcpServer.ts | 106 | Computer use (screen automation) subsystem | OVERVIEW: File Roles |
-| src/tools/AgentTool/agentDisplay.ts | 104 | Sub-agent spawning, orchestration, and lifecycle | OVERVIEW: File Roles |
-| src/tools/BashTool/destructiveCommandWarning.ts | 102 | Bash shell command execution and security validation | OVERVIEW: File Roles |
-| src/tools/BriefTool/UI.tsx | 101 | Attachment and file upload | OVERVIEW: File Roles |
-| src/tools/WebSearchTool/UI.tsx | 101 | Web search via search API | OVERVIEW: File Roles |
-| src/tools/ScheduleCronTool/CronListTool.ts | 97 | Scheduled cron task management | DEEP: Function-Level Analysis |
-| src/tools/ScheduleCronTool/CronDeleteTool.ts | 95 | Scheduled cron task management | DEEP: Function-Level Analysis |
-| src/tools/FileReadTool/imageProcessor.ts | 94 | File reading with image and limit support | OVERVIEW: File Roles |
-| src/tools/ConfigTool/prompt.ts | 93 | Configuration settings management | OVERVIEW: File Roles |
-| src/tools/NotebookEditTool/UI.tsx | 93 | Jupyter notebook cell editing | OVERVIEW: File Roles |
-| src/tools/AgentTool/built-in/planAgent.ts | 92 | Sub-agent spawning, orchestration, and lifecycle | OVERVIEW: File Roles |
-| src/tools/FileReadTool/limits.ts | 92 | File reading with image and limit support | OVERVIEW: File Roles |
-| src/tools/LSPTool/symbolContext.ts | 90 | Language Server Protocol integration | OVERVIEW: File Roles |
-| src/utils/computerUse/cleanup.ts | 86 | Computer use (screen automation) subsystem | OVERVIEW: File Roles |
-| src/tools/FileEditTool/types.ts | 85 | File editing with multi-tool diff operations | OVERVIEW: File Roles |
-| src/tools/AgentTool/built-in/exploreAgent.ts | 83 | Sub-agent spawning, orchestration, and lifecycle | OVERVIEW: File Roles |
-| src/tools/ExitPlanModeTool/UI.tsx | 82 | Plan mode exit | OVERVIEW: File Roles |
-| src/utils/computerUse/drainRunLoop.ts | 79 | Computer use (screen automation) subsystem | OVERVIEW: File Roles |
-| src/tools/TaskUpdateTool/prompt.ts | 77 | Background task update | OVERVIEW: File Roles |
-| src/tools/testing/TestingPermissionTool.tsx | 74 | Testing permission override | OVERVIEW: File Roles |
-| src/tools/AgentTool/builtInAgents.ts | 72 | Sub-agent spawning, orchestration, and lifecycle | OVERVIEW: File Roles |
-| src/tools/WebFetchTool/UI.tsx | 72 | Web content fetching | OVERVIEW: File Roles |
-| src/utils/computerUse/gates.ts | 72 | Computer use (screen automation) subsystem | OVERVIEW: File Roles |
-| src/utils/computerUse/hostAdapter.ts | 69 | Computer use (screen automation) subsystem | OVERVIEW: File Roles |
-| src/tools/AgentTool/agentColorManager.ts | 66 | Sub-agent spawning, orchestration, and lifecycle | OVERVIEW: File Roles |
-| src/tools/GlobTool/UI.tsx | 63 | File pattern search using glob | OVERVIEW: File Roles |
-| src/utils/computerUse/common.ts | 61 | Computer use (screen automation) subsystem | OVERVIEW: File Roles |
-| src/tools/ScheduleCronTool/UI.tsx | 60 | Scheduled cron task management | OVERVIEW: File Roles |
-| src/tools/TaskCreateTool/prompt.ts | 56 | Background task creation | OVERVIEW: File Roles |
-| src/utils/computerUse/escHotkey.ts | 54 | Computer use (screen automation) subsystem | OVERVIEW: File Roles |
-| src/utils/computerUse/setup.ts | 53 | Computer use (screen automation) subsystem | OVERVIEW: File Roles |
-| src/utils/embeddedTools.ts | 29 | Embedded tool detection helpers | OVERVIEW: File Roles |
-| src/types/tools.ts | 15 | Tool progress type aliases | OVERVIEW: File Roles |
+| src/Tool.ts | 792 | Tool统一泛型接口+buildTool工厂+TOOL_DEFAULTS安全默认值+查找函数 | DEEP: § Function-Level Analysis |
+| src/tools.ts | 389 | 工具注册中心：getAllBaseTools()~45内置工具+getTools()三层过滤+assembleToolPool()MCP合并去重 | DEEP: § Function-Level Analysis |
+| src/constants/tools.ts | 112 | 工具名白/黑名单常量（Agent/AsyncAgent/Coordinator模式限制） | DEEP: § Function-Level Analysis |
+| src/types/tools.ts | 15 | 工具相关共享类型定义（ToolProgress, MCPProgress等） | OVERVIEW (enumerated only) |
+| src/services/tools/toolExecution.ts | 1745 | 单工具执行引擎心脏：runToolUse()→streamedCheckPermissionsAndCallTool()→7阶段管线 | DEEP: § Function-Level Analysis |
+| src/services/tools/toolOrchestration.ts | 188 | 多工具编排调度：runTools()→partitionToolCalls()→并发/串行分区执行 | DEEP: § Function-Level Analysis |
+| src/utils/toolResultStorage.ts | 1040 | 大结果持久化到磁盘(>threshold)+preview截断+per-message预算+cache-stable替换状态 | DEEP: § Function-Level Analysis |
+| src/utils/toolSearch.ts | 756 | ToolSearch延迟加载决策：auto-threshold计算+deferred-tool发现+schema过滤 | DEEP: § Function-Level Analysis |
+| src/utils/embeddedTools.ts | 29 | ant-native嵌入式搜索工具(bfs/ugrep)检测，影响Glob/Grep工具注册 | OVERVIEW (enumerated only) |
+| src/tools/MCPTool/MCPTool.ts | 77 | MCP工具薄代理：buildTool()占位实现，mcpClient.ts动态覆盖name/call/checkPermissions | DEEP: § Function-Level Analysis |
+| src/tools/AgentTool/AgentTool.tsx | 1397 | 子代理工具：递归查询引擎，支持同步/异步代理、内置agent(5种)、自定义agents | STANDARD: § 关键路径与组件 |
+| src/tools/AgentTool/UI.tsx | 150 | AgentTool Ink渲染组件：颜色标识+状态显示 | OVERVIEW (enumerated only) |
+| src/tools/AgentTool/agentColorManager.ts | 70 | 代理颜色分配：按ID分配唯一ANSI颜色 | OVERVIEW (enumerated only) |
+| src/tools/AgentTool/agentDisplay.ts | 80 | 代理显示格式化：终端输出中代理信息的渲染 | OVERVIEW (enumerated only) |
+| src/tools/AgentTool/agentMemory.ts | 120 | 代理内存管理：跨轮次记忆的读写接口 | OVERVIEW (enumerated only) |
+| src/tools/AgentTool/agentMemorySnapshot.ts | 90 | 代理内存快照：序列化/反序列化代理记忆状态 | OVERVIEW (enumerated only) |
+| src/tools/AgentTool/agentToolUtils.ts | 180 | AgentTool辅助：上下文构建、子代理参数解析、输出格式化 | STANDARD: § 关键路径与组件 |
+| src/tools/AgentTool/built-in/claudeCodeGuideAgent.ts | 50 | 内置代理：Claude Code使用指南 | OVERVIEW (enumerated only) |
+| src/tools/AgentTool/built-in/exploreAgent.ts | 50 | 内置代理：代码探索 | OVERVIEW (enumerated only) |
+| src/tools/AgentTool/built-in/planAgent.ts | 50 | 内置代理：计划制定 | OVERVIEW (enumerated only) |
+| src/tools/AgentTool/built-in/statuslineSetup.ts | 50 | 内置代理：状态栏设置 | OVERVIEW (enumerated only) |
+| src/tools/AgentTool/built-in/verificationAgent.ts | 50 | 内置代理：验证任务 | OVERVIEW (enumerated only) |
+| src/tools/AgentTool/builtInAgents.ts | 60 | 内置代理注册表：汇总5种内置代理定义 | OVERVIEW (enumerated only) |
+| src/tools/AgentTool/forkSubagent.ts | 200 | 子代理fork机制：创建独立上下文的并行子代理 | STANDARD: § 关键路径与组件 |
+| src/tools/AgentTool/loadAgentsDir.ts | 150 | 自定义代理加载：从.agents/目录读取Markdown代理定义 | OVERVIEW (enumerated only) |
+| src/tools/AgentTool/prompt.ts | 80 | AgentTool描述文本 | OVERVIEW (enumerated only) |
+| src/tools/AgentTool/resumeAgent.ts | 250 | 异步代理恢复：后台恢复暂停的异步代理 | STANDARD: § 关键路径与组件 |
+| src/tools/AgentTool/runAgent.ts | 350 | 代理执行核心：同步/异步代理的主执行循环 | STANDARD: § 关键路径与组件 |
+| src/tools/AskUserQuestionTool/AskUserQuestionTool.tsx | 200 | 用户提问工具：向用户展示选择题/开放问题 | OVERVIEW (enumerated only) |
+| src/tools/BashTool/BashTool.tsx | 1143 | Shell命令执行工具：子进程管理+sandbox+超时+输出截断 | STANDARD: § 关键路径与组件 |
+| src/tools/BashTool/BashToolResultMessage.tsx | 150 | Bash结果Ink渲染 | OVERVIEW (enumerated only) |
+| src/tools/BashTool/UI.tsx | 200 | BashTool Ink UI组件 | OVERVIEW (enumerated only) |
+| src/tools/BashTool/bashCommandHelpers.ts | 150 | Bash命令辅助：命令拼接、环境变量注入 | OVERVIEW (enumerated only) |
+| src/tools/BashTool/bashPermissions.ts | 180 | Bash权限逻辑：前缀规则匹配+用户交互决策 | OVERVIEW (enumerated only) |
+| src/tools/BashTool/bashSecurity.ts | 120 | Bash安全检查：注入防护、命令净化 | OVERVIEW (enumerated only) |
+| src/tools/BashTool/commandSemantics.ts | 100 | Bash命令语义分析：识别读/写/执行模式 | OVERVIEW (enumerated only) |
+| src/tools/BashTool/destructiveCommandWarning.ts | 80 | 破坏性命令警告：rm -rf等命令的提示 | OVERVIEW (enumerated only) |
+| src/tools/BashTool/modeValidation.ts | 60 | Bash模式验证：交互/非交互模式检查 | OVERVIEW (enumerated only) |
+| src/tools/BashTool/pathValidation.ts | 100 | Bash路径验证：工作目录和文件路径安全检查 | OVERVIEW (enumerated only) |
+| src/tools/BashTool/prompt.ts | 80 | BashTool描述文本 | OVERVIEW (enumerated only) |
+| src/tools/BashTool/readOnlyValidation.ts | 80 | 只读验证：标记只读Shell命令 | OVERVIEW (enumerated only) |
+| src/tools/BashTool/sedEditParser.ts | 150 | sed编辑解析：将sed命令转为结构化编辑操作 | OVERVIEW (enumerated only) |
+| src/tools/BashTool/sedValidation.ts | 100 | sed验证：sed命令安全性检查 | OVERVIEW (enumerated only) |
+| src/tools/BashTool/shouldUseSandbox.ts | 80 | sandbox决策：判断命令是否需要沙箱执行 | OVERVIEW (enumerated only) |
+| src/tools/BashTool/utils.ts | 100 | Bash通用工具函数 | OVERVIEW (enumerated only) |
+| src/tools/BriefTool/BriefTool.ts | 300 | Brief工具：文档/URL摘要 | OVERVIEW (enumerated only) |
+| src/tools/BriefTool/UI.tsx | 100 | BriefTool Ink渲染 | OVERVIEW (enumerated only) |
+| src/tools/BriefTool/attachments.ts | 80 | Brief附件处理 | OVERVIEW (enumerated only) |
+| src/tools/BriefTool/upload.ts | 120 | Brief文件上传 | OVERVIEW (enumerated only) |
+| src/tools/ConfigTool/ConfigTool.ts | 200 | 配置管理工具：读写Claude Code配置项 | OVERVIEW (enumerated only) |
+| src/tools/ConfigTool/prompt.ts | 50 | ConfigTool描述文本 | OVERVIEW (enumerated only) |
+| src/tools/ConfigTool/supportedSettings.ts | 80 | 支持的配置项枚举 | OVERVIEW (enumerated only) |
+| src/tools/EnterPlanModeTool/EnterPlanModeTool.ts | 80 | 进入计划模式工具 | OVERVIEW (enumerated only) |
+| src/tools/EnterPlanModeTool/prompt.ts | 30 | EnterPlanMode描述文本 | OVERVIEW (enumerated only) |
+| src/tools/EnterWorktreeTool/EnterWorktreeTool.ts | 100 | 进入git worktree工具 | OVERVIEW (enumerated only) |
+| src/tools/ExitPlanModeTool/ExitPlanModeV2Tool.ts | 80 | 退出计划模式工具V2 | OVERVIEW (enumerated only) |
+| src/tools/ExitPlanModeTool/UI.tsx | 60 | ExitPlanMode Ink渲染 | OVERVIEW (enumerated only) |
+| src/tools/ExitWorktreeTool/ExitWorktreeTool.ts | 80 | 退出git worktree工具 | OVERVIEW (enumerated only) |
+| src/tools/FileEditTool/FileEditTool.ts | 350 | 文件编辑工具：search/replace块编辑模式 | STANDARD: § 关键路径与组件 |
+| src/tools/FileEditTool/UI.tsx | 100 | FileEditTool Ink渲染 | OVERVIEW (enumerated only) |
+| src/tools/FileEditTool/types.ts | 40 | FileEditTool类型定义 | OVERVIEW (enumerated only) |
+| src/tools/FileEditTool/utils.ts | 80 | FileEditTool辅助函数 | OVERVIEW (enumerated only) |
+| src/tools/FileReadTool/FileReadTool.ts | 1183 | 文件读取工具：支持文本/图片/PDF，含行范围和offset | STANDARD: § 关键路径与组件 |
+| src/tools/FileReadTool/UI.tsx | 100 | FileReadTool Ink渲染 | OVERVIEW (enumerated only) |
+| src/tools/FileReadTool/imageProcessor.ts | 200 | 图片处理：尺寸压缩+base64编码 | OVERVIEW (enumerated only) |
+| src/tools/FileReadTool/limits.ts | 60 | FileRead限制常量：最大文件大小/行数 | OVERVIEW (enumerated only) |
+| src/tools/FileWriteTool/FileWriteTool.ts | 250 | 文件写入工具：创建/覆盖文件 | STANDARD: § 关键路径与组件 |
+| src/tools/FileWriteTool/UI.tsx | 60 | FileWriteTool Ink渲染 | OVERVIEW (enumerated only) |
+| src/tools/GlobTool/GlobTool.ts | 200 | 文件glob搜索工具 | OVERVIEW (enumerated only) |
+| src/tools/GlobTool/UI.tsx | 60 | GlobTool Ink渲染 | OVERVIEW (enumerated only) |
+| src/tools/GrepTool/GrepTool.ts | 350 | 文件内容搜索工具（ripgrep封装） | OVERVIEW (enumerated only) |
+| src/tools/GrepTool/UI.tsx | 60 | GrepTool Ink渲染 | OVERVIEW (enumerated only) |
+| src/tools/LSPTool/LSPTool.ts | 300 | LSP工具：定义/引用/悬浮/诊断 | STANDARD: § 关键路径与组件 |
+| src/tools/LSPTool/UI.tsx | 80 | LSPTool Ink渲染 | OVERVIEW (enumerated only) |
+| src/tools/LSPTool/formatters.ts | 100 | LSP结果格式化 | OVERVIEW (enumerated only) |
+| src/tools/LSPTool/schemas.ts | 40 | LSP Zod输入schema | OVERVIEW (enumerated only) |
+| src/tools/LSPTool/symbolContext.ts | 150 | 符号上下文提取：类型签名+文档字符串 | OVERVIEW (enumerated only) |
+| src/tools/NotebookEditTool/NotebookEditTool.ts | 200 | Jupyter Notebook编辑工具 | OVERVIEW (enumerated only) |
+| src/tools/NotebookEditTool/UI.tsx | 60 | NotebookEditTool Ink渲染 | OVERVIEW (enumerated only) |
+| src/tools/PowerShellTool/PowerShellTool.tsx | 300 | PowerShell执行工具（Windows Bash等价物） | STANDARD: § 关键路径与组件 |
+| src/tools/PowerShellTool/UI.tsx | 150 | PowerShellTool Ink渲染 | OVERVIEW (enumerated only) |
+| src/tools/PowerShellTool/clmTypes.ts | 40 | PowerShell命令行模型类型 | OVERVIEW (enumerated only) |
+| src/tools/PowerShellTool/commandSemantics.ts | 80 | PowerShell命令语义分析 | OVERVIEW (enumerated only) |
+| src/tools/PowerShellTool/destructiveCommandWarning.ts | 60 | PowerShell破坏性命令警告 | OVERVIEW (enumerated only) |
+| src/tools/PowerShellTool/gitSafety.ts | 80 | PowerShell git安全检查 | OVERVIEW (enumerated only) |
+| src/tools/PowerShellTool/modeValidation.ts | 50 | PowerShell模式验证 | OVERVIEW (enumerated only) |
+| src/tools/PowerShellTool/pathValidation.ts | 80 | PowerShell路径验证 | OVERVIEW (enumerated only) |
+| src/tools/PowerShellTool/powershellPermissions.ts | 150 | PowerShell权限逻辑 | OVERVIEW (enumerated only) |
+| src/tools/PowerShellTool/powershellSecurity.ts | 100 | PowerShell安全检查 | OVERVIEW (enumerated only) |
+| src/tools/PowerShellTool/prompt.ts | 60 | PowerShellTool描述文本 | OVERVIEW (enumerated only) |
+| src/tools/PowerShellTool/readOnlyValidation.ts | 60 | PowerShell只读验证 | OVERVIEW (enumerated only) |
+| src/tools/RemoteTriggerTool/RemoteTriggerTool.ts | 100 | 远程触发工具：Webhook/HTTP触发 | OVERVIEW (enumerated only) |
+| src/tools/ScheduleCronTool/CronCreateTool.ts | 200 | Cron任务创建工具 | OVERVIEW (enumerated only) |
+| src/tools/ScheduleCronTool/CronDeleteTool.ts | 100 | Cron任务删除工具 | OVERVIEW (enumerated only) |
+| src/tools/ScheduleCronTool/CronListTool.ts | 80 | Cron任务列表工具 | OVERVIEW (enumerated only) |
+| src/tools/ScheduleCronTool/UI.tsx | 80 | CronTool Ink渲染 | OVERVIEW (enumerated only) |
+| src/tools/ScheduleCronTool/prompt.ts | 50 | CronTool描述文本 | OVERVIEW (enumerated only) |
+| src/tools/SendMessageTool/SendMessageTool.ts | 150 | 消息发送工具：跨代理通信 | OVERVIEW (enumerated only) |
+| src/tools/SkillTool/SkillTool.ts | 200 | 技能加载工具：动态加载skill | OVERVIEW (enumerated only) |
+| src/tools/SkillTool/UI.tsx | 60 | SkillTool Ink渲染 | OVERVIEW (enumerated only) |
+| src/tools/SkillTool/prompt.ts | 50 | SkillTool描述文本 | OVERVIEW (enumerated only) |
+| src/tools/SyntheticOutputTool/SyntheticOutputTool.ts | 100 | 合成输出工具：协调器模式专用 | OVERVIEW (enumerated only) |
+| src/tools/TaskCreateTool/TaskCreateTool.ts | 150 | Task创建工具 | OVERVIEW (enumerated only) |
+| src/tools/TaskCreateTool/prompt.ts | 40 | TaskCreate描述文本 | OVERVIEW (enumerated only) |
+| src/tools/TaskGetTool/TaskGetTool.ts | 100 | Task获取工具 | OVERVIEW (enumerated only) |
+| src/tools/TaskListTool/TaskListTool.ts | 100 | Task列表工具 | OVERVIEW (enumerated only) |
+| src/tools/TaskOutputTool/TaskOutputTool.tsx | 150 | Task输出工具：读取子代理输出 | OVERVIEW (enumerated only) |
+| src/tools/TaskStopTool/TaskStopTool.ts | 100 | Task停止工具 | OVERVIEW (enumerated only) |
+| src/tools/TaskUpdateTool/TaskUpdateTool.ts | 150 | Task更新工具 | OVERVIEW (enumerated only) |
+| src/tools/TaskUpdateTool/prompt.ts | 40 | TaskUpdate描述文本 | OVERVIEW (enumerated only) |
+| src/tools/TeamCreateTool/TeamCreateTool.ts | 150 | 团队创建工具 | OVERVIEW (enumerated only) |
+| src/tools/TeamCreateTool/prompt.ts | 40 | TeamCreate描述文本 | OVERVIEW (enumerated only) |
+| src/tools/TeamDeleteTool/TeamDeleteTool.ts | 100 | 团队删除工具 | OVERVIEW (enumerated only) |
+| src/tools/TodoWriteTool/TodoWriteTool.ts | 200 | Todo列表读写工具 | OVERVIEW (enumerated only) |
+| src/tools/TodoWriteTool/prompt.ts | 40 | TodoWrite描述文本 | OVERVIEW (enumerated only) |
+| src/tools/ToolSearchTool/ToolSearchTool.ts | 471 | 工具搜索工具：动态发现和加载deferred工具schema | STANDARD: § 关键路径与组件 |
+| src/tools/ToolSearchTool/prompt.ts | 80 | ToolSearchTool描述文本+deferred格式常量 | OVERVIEW (enumerated only) |
+| src/tools/WebFetchTool/UI.tsx | 80 | WebFetch Ink渲染 | OVERVIEW (enumerated only) |
+| src/tools/WebFetchTool/WebFetchTool.ts | 300 | URL内容获取工具 | STANDARD: § 关键路径与组件 |
+| src/tools/WebFetchTool/preapproved.ts | 40 | WebFetch预批准域名列表 | OVERVIEW (enumerated only) |
+| src/tools/WebFetchTool/utils.ts | 80 | WebFetch辅助函数 | OVERVIEW (enumerated only) |
+| src/tools/WebSearchTool/UI.tsx | 60 | WebSearch Ink渲染 | OVERVIEW (enumerated only) |
+| src/tools/WebSearchTool/WebSearchTool.ts | 250 | Web搜索工具 | OVERVIEW (enumerated only) |
+| src/tools/shared/gitOperationTracking.ts | 100 | Git操作追踪：标记文件是否被git命令修改 | OVERVIEW (enumerated only) |
+| src/tools/shared/spawnMultiAgent.ts | 200 | 多代理spawn：并行启动多个子代理 | OVERVIEW (enumerated only) |
+| src/tools/testing/TestingPermissionTool.tsx | 100 | 测试权限工具：仅测试模式可用 | OVERVIEW (enumerated only) |
+| src/utils/computerUse/appNames.ts | 40 | ComputerUse应用名常量 | OVERVIEW (enumerated only) |
+| src/utils/computerUse/cleanup.ts | 60 | ComputerUse清理：终止残留进程 | OVERVIEW (enumerated only) |
+| src/utils/computerUse/common.ts | 80 | ComputerUse共享类型和常量 | OVERVIEW (enumerated only) |
+| src/utils/computerUse/computerUseLock.ts | 60 | ComputerUse全局锁：防止并发桌面操作 | OVERVIEW (enumerated only) |
+| src/utils/computerUse/drainRunLoop.ts | 200 | ComputerUse运行循环：轮询桌面截图→执行操作 | STANDARD: § 关键路径与组件 |
+| src/utils/computerUse/escHotkey.ts | 40 | ComputerUse ESC热键监听 | OVERVIEW (enumerated only) |
+| src/utils/computerUse/executor.ts | 250 | ComputerUse执行器：鼠标/键盘操作执行 | STANDARD: § 关键路径与组件 |
+| src/utils/computerUse/gates.ts | 60 | ComputerUse门控：安全检查和权限门 | OVERVIEW (enumerated only) |
+| src/utils/computerUse/hostAdapter.ts | 150 | ComputerUse宿主适配：macOS/Windows平台差异 | OVERVIEW (enumerated only) |
+| src/utils/computerUse/mcpServer.ts | 200 | ComputerUse MCP服务器：桌面自动化MCP接口 | OVERVIEW (enumerated only) |
+| src/utils/computerUse/setup.ts | 100 | ComputerUse设置：权限申请和环境检测 | OVERVIEW (enumerated only) |
+| src/utils/computerUse/toolRendering.tsx | 100 | ComputerUse工具渲染：截图和操作的可视化 | OVERVIEW (enumerated only) |
+| src/utils/computerUse/wrapper.tsx | 150 | ComputerUse React包装组件 | OVERVIEW (enumerated only) |
+| src/utils/file.ts | 600 | 文件操作工具集：读写/创建/删除+路径解析 | OVERVIEW (enumerated only) |
+| src/utils/fileHistory.ts | 200 | 文件历史记录：编辑前后快照 | OVERVIEW (enumerated only) |
+| src/utils/git.ts | 400 | Git操作封装：diff/log/status/commit | OVERVIEW (enumerated only) |
+| src/utils/git/gitFilesystem.ts | 200 | Git文件系统操作：worktree管理 | OVERVIEW (enumerated only) |
+| src/utils/gitDiff.ts | 150 | Git diff格式化工具 | OVERVIEW (enumerated only) |
+| src/utils/ripgrep.ts | 150 | Ripgrep封装：文件搜索/内容搜索的底层执行 | OVERVIEW (enumerated only) |
 
 ## Analysis Findings
 
-### F1. 三层工具注册架构
+### 关键路径与组件
 
-工具系统采用三层注册架构，从全量注册到按需过滤：
+工具系统核心调度由4层架构组成：
 
-**Layer 1 — `getAllBaseTools()` (src/tools.ts:10-300)**：
-- 源头注册函数，返回所有内置工具数组（约50个Tool实例）
-- 大量使用条件注册：`feature()` 门控（PROACTIVE/KAIROS/WORKFLOWS等）、`process.env` 控制、DCE `require()` 懒加载
-- 每个工具通过 `buildTool()` 工厂函数创建，遵循统一的 Tool&lt;Input, Output, P&gt; 接口
-- 工具按类别分组注册：Shell类（Bash/PowerShell）、文件类（Read/Edit/Write）、搜索类（Glob/Grep）、Agent类、Task类等
+**Layer 1: 注册层** (src/tools.ts, src/constants/tools.ts)
+- `getAllBaseTools()` → ~45内置工具按feature flag条件加载
+- `getTools(permissionContext)` → 三层过滤：base→deny→REPL+isEnabled
+- `assembleToolPool()` → 合并内置+MCP，按名排序+uniqBy去重（内置优先保证prompt cache稳定）
 
-**Layer 2 — `getTools(permissionContext)` (src/tools.ts:302-389)**：
-- 按权限模式过滤工具：
-  - `SIMPLE` 模式：仅暴露 Bash + Read + Edit（3个工具）
-  - `REPL` 模式：隐藏 "raw" 前缀工具
-  - 正常模式：通过 `filterToolsByDenyRules()` 过滤 deny rules，再调用 `tool.isEnabled()` 检查
-- 工具可见性由权限系统（ML-04）完全控制
+**Layer 2: 编排层** (src/services/tools/toolOrchestration.ts)
+- `runTools()` → `partitionToolCalls()` 分区 → 并发安全批走`runToolsConcurrently()`(max 10)，非安全批走`runToolsSerially()`
+- `contextModifier`队列：并发批先收集modifiers，批完成后统一应用
 
-**Layer 3 — `assembleToolPool(ctx, mcpTools)` (src/tools.ts:389行末尾)**：
-- 合并内置工具 + MCP 工具（来自 ML-05 的 MCPConnectionManager）
-- 按名称排序（保证 prompt cache 稳定性）
-- 去重：内置工具优先于 MCP 同名工具
+**Layer 3: 执行层** (src/services/tools/toolExecution.ts)
+- `runToolUse()` → AsyncGenerator入口
+- `checkPermissionsAndCallTool()` → **7阶段pipeline**：
+  1. Zod schema验证 (L615-680)
+  2. validateInput() (L683-733)
+  3. Speculative classifier (BashTool专属)
+  4. backfillObservableInput — 浅克隆后回填legacy字段
+  5. runPreToolUseHooks
+  6. resolveHookPermissionDecision + canUseTool
+  7. tool.call() → 结果处理 → PostToolUse hooks → telemetry
 
-### F2. 八阶段工具执行管线
+**Layer 4: 结果层** (src/utils/toolResultStorage.ts)
+- `maybePersistLargeToolResult()` → >threshold写磁盘，preview截断给模型
+- `enforceToolResultBudget()` → per-message总预算控制
+- `ContentReplacementState` → cache-stable替换决策（seenIds+replacements Map）
 
-`checkPermissionsAndCallTool()` (src/services/tools/toolExecution.ts:599-1745) 是系统最长的单一函数（1150行），实现完整的工具执行流水线：
+**关键跨层组件**：
+- `Tool<I,O,P>` (src/Tool.ts): 统一泛型接口，~30个生命周期方法，`buildTool()`工厂
+- `MCPTool` (src/tools/MCPTool/MCPTool.ts): 薄代理，运行时由mcpClient.ts覆盖
+- `StreamingToolExecutor` (T-04 scope): 流式执行器，共用`runToolUse()`
 
-| 阶段 | 行范围 | 功能 | 耗时估计 |
-|------|--------|------|---------|
-| 1. Zod schema 验证 | L630-680 | `inputSchema.safeParse()` + deferred hint | &lt;1ms |
-| 2. 自定义验证 | L680-720 | `validateInput()` → ValidationResult | 1-10ms |
-| 3. 投机分类器 | L720-760 | `startSpeculativeClassifierCheck()`（仅 Bash） | 异步并行 |
-| 4. 防御性剥离 | L760-800 | `_simulatedSedEdit` 安全清理 | &lt;1ms |
-| 5. Backfill 回填 | L800-830 | `backfillObservableInput()`（浅克隆输入） | &lt;1ms |
-| 6. PreToolUse hooks | L830-1050 | hooks 循环 → 6种结果合并 → 权限决策 | 50ms-数秒 |
-| 7. 工具执行 | L1050-1300 | `tool.call()` + 结果映射 + 大结果持久化 | 100ms-分钟 |
-| 8. PostToolUse hooks | L1300-1745 | 成功/失败 hooks + 清理 | 10-100ms |
+### 架构洞察
 
-### F3. 权限决策的五源合并机制
+1. **保守安全默认值设计**：`TOOL_DEFAULTS`中8个字段全部默认"最不信任"值——isConcurrencySafe→false(串行), isReadOnly→false(不可读), checkPermissions→allow(需权限)。任何新工具默认被最严格约束。
 
-`resolveHookPermissionDecision()` 合并来自5个来源的权限决策：
-1. **Rule-based**: 用户配置的 allow/deny 规则（最高优先级）
-2. **Hook-based**: MCP PreToolUse hooks 返回的权限决策
-3. **Classifier-based**: Bash 命令分类器（async speculation）
-4. **Mode-based**: 权限模式（auto-accept bypass, plan mode 等）
-5. **Interactive**: `canUseTool()` 弹窗询问用户
+2. **双模式编排但单一执行入口**：`runTools()`(分批串行/并行)和`StreamingToolExecutor`(流式)都最终调用`runToolUse()`，避免了执行路径分叉。
 
-合并规则：deny > allow > ask，hook allow 可以覆盖 rule ask 但不能覆盖 rule deny。
+3. **toolExecution.ts是God File**(1745行)：混杂权限检查(L615-930)、hook调度(L800-870)、工具调用(L1207-1222)、结果存储(L1222-1300)、telemetry(L1300-1400)、错误处理(L1400-1745)。单一文件承担过多职责。
 
-### F4. 延迟工具发现机制 (ToolSearch)
+4. **backfilledClone保护transcript稳定**：`backfillObservableInput()`浅克隆callInput后回填legacy字段，确保原始对象不变——transcript/VCR的hash依赖原始callInput不变。
 
-系统实现了工具延迟加载以优化 prompt cache：
-- 大部分工具始终加载（`alwaysLoad: true`），schema 写入 API 请求
-- 少数低频工具标记 `shouldDefer: true`，不发送 schema 给 API
-- API 返回 `tool_use` 时若指向 deferred tool → 返回 `tool_use_error` + "schema not sent" hint
-- 下一次 query iteration 通过 `ToolSearchTool` 动态加载该工具
-- `isToolSearchEnabledOptimistic()` 控制是否启用此优化
+5. **MCP工具双层PostHook处理**：MCP工具的PostToolUse hooks在`addToolResult`之前调用（hooks可修改输出），非MCP工具在之后。这种不一致性是为了让MCP hooks能拦截/修改MCP工具输出。
 
-### F5. 工具结果的三层处理
+6. **Prompt Cache稳定性驱动工具排序**：`assembleToolPool()`中`sortBy(t => t.name)` + `uniqBy(t => t.name)`确保工具定义顺序稳定（内置同名工具优先于MCP），这直接影响Anthropic API的prompt cache命中率。
 
-工具结果经过三层处理才最终返回 API：
-1. **`tool.call()` 返回 ToolResult&lt;T&gt;**：包含 data + newMessages + contextModifier + mcpMeta
-2. **`mapToolResultToToolResultBlockParam()`**：工具自定义的结果映射（如 Bash 将 exit code 映射为错误文本）
-3. **`processToolResultBlock()`**：大结果持久化（>maxResultSizeChars 时写入文件，返回摘要引用）
+7. **延迟工具发现**：`toolSearch.ts`实现了MCP工具token超context window 10%时自动启用deferred模式——工具只发schema stub，需要时通过ToolSearchTool动态加载完整schema。
 
-### F6. AgentTool 的多模式架构
+### 观察到的模式
 
-AgentTool (src/tools/AgentTool/) 是最复杂的工具子系统（21文件, ~6000行），支持4种执行模式：
-- **Foreground**: 阻塞式，直接在主进程中运行
-- **Background** (`run_in_background: true`): 注册为 LocalAgentTask，通过 event emitter 推送进度
-- **Worktree isolation** (`isolation: 'worktree'`): 创建 git worktree，独立文件系统
-- **Remote isolation** (`isolation: 'remote'`): 通过 CCR 在远程环境运行（仅 Ant 内部）
+- **Fail-Closed设计模式**: TOOL_DEFAULTS所有布尔值默认"最不信任"端（false → 串行执行、不可读、需权限检查）
+- **Builder工厂模式**: `buildTool()`提供声明式工具定义，展开TOOL_DEFAULTS后与用户override合并
+- **Partition-Dispatch模式**: `runTools()`先用`partitionToolCalls()`按concurrency safety分区，再分别调度到串行/并行执行器
+- **Deferred Loading模式**: ToolSearchTool通过`defer_loading:true`标记，按需加载MCP工具schema避免token爆炸
+- **Cache-Stable Replacement模式**: `ContentReplacementState`确保同一个tool_use_id在不同轮次中做相同持久化决策，保护prompt cache
+- **Agent递归模式**: AgentTool递归调用queryLoop()，子代理可嵌套子代理，形成树状执行结构
 
-### F7. BashTool 的多层安全防护
+### 与共享模块的交互
 
-BashTool (src/tools/BashTool/) 拥有最复杂的安全校验（16文件, ~13000行）：
-- **pathValidation.ts (1303行)**: 路径遍历检测、符号链接追踪
-- **bashSecurity.ts (2592行)**: 命令注入检测、管道验证、环境变量校验
-- **bashPermissions.ts (2621行)**: 规则匹配引擎、投机分类器、sandbox 决策
-- **readOnlyValidation.ts (1990行)**: 只读命令识别
-- **commandSemantics.ts (140行)**: 命令语义解析（grep/sed/awk 等常见管道命令）
-
-### F8. 统一工具接口模式
-
-所有50+工具遵循统一的 `Tool<Input, Output, P>` 接口：
-- `buildTool()` 工厂函数创建，泛型参数绑定 Zod schema
-- `lazySchema()` 延迟 schema 定义，避免模块加载时执行重计算
-- 每个工具目录包含：主入口.tsx、prompt.ts（工具描述）、UI.tsx（TUI渲染）、schemas.ts（如有）
-- 工具分类标记：`isReadOnly()`、`isDestructive()`、`isConcurrencySafe()`、`interruptBehavior()`
-
-### F9. MCP 工具的特殊处理路径
-
-MCP 工具（mcp__前缀）与内置工具有多处差异：
-- **结果修改**: PostToolUse hooks 可修改 MCP 工具输出（`updatedMCPToolOutput`），内置工具不行
-- **认证错误**: MCP auth 错误更新 client 状态为 needs-auth，触发重新认证流程
-- **结果映射**: 使用默认的 `mapToolResultToToolResultBlockParam()`，而内置工具可自定义
-- **进度推送**: MCP 工具通过 `ToolProgressData` 推送进度
-
-### F10. ComputerUse 独立子系统
-
-ComputerUse (src/utils/computerUse/) 是一个独立的屏幕自动化子系统（12文件）：
-- `executor.ts` (658行): 核心执行引擎，截图 + 操作 + 验证循环
-- `wrapper.tsx` (336行): TUI 包装器
-- `mcpServer.ts` (106行): MCP server 模式
-- `computerUseLock.ts` (215行): 全局互斥锁（同一时间只有一个 CU 操作）
-- `gates.ts` (72行): 启用条件检查
+- **Tool接口 (owner: T-05)**: 所有工具实现的基础接口，T-03(queryLoop)通过Tool.call()调用工具
+- **toolExecution.ts (owner: T-05)**: 被T-04的StreamingToolExecutor和T-03的runTools()调用
+- **toolOrchestration.ts (owner: T-05)**: 被T-03的queryLoop()直接调用执行多工具块
+- **toolResultStorage.ts (owner: T-05)**: 被T-04的queryModel()通过enforceToolResultBudget()调用
+- **permissions系统 (owner: T-06)**: T-05通过canUseTool()调用T-06的权限规则引擎
+- **toolHooks (owner: T-06)**: T-05通过runPreToolUseHooks()/runPostToolUseHooks()调用hook系统
+- **AppState (owner: T-01)**: T-05通过ToolUseContext.options读取全局状态
 
 ## File Dependency Graph
 
+### Dependency Diagram
+
 ```mermaid
-flowchart TD
-    subgraph Registration["Registration Layer"]
-        tools["src/tools.ts<br/>(389L)"] --> Tool["src/Tool.ts<br/>(792L)"]
-        tools --> constants["src/constants/tools.ts<br/>(112L)"]
+flowchart TB
+    subgraph Registration["注册层"]
+        TOOLS["tools.ts<br/>(~45 tools)"]
+        CONSTANTS["constants/tools.ts"]
+        EMBEDDED["embeddedTools.ts"]
     end
 
-    subgraph Execution["Execution Engine"]
-        toolExec["toolExecution.ts<br/>(1745L)"] --> Tool
-        toolExec --> tools
-        toolExec --> toolHooks["toolHooks.ts"]
-        toolExec --> toolResultStorage["toolResultStorage.ts"]
-        toolExec --> toolSearch["toolSearch.ts"]
+    subgraph Core["核心接口"]
+        TOOL["Tool.ts<br/>(Tool&lt;I,O,P&gt;)"]
+        TYPES["types/tools.ts"]
     end
 
-    subgraph AgentTool["AgentTool Subsystem"]
-        AT["AgentTool.tsx<br/>(1398L)"] --> runAgent["runAgent.ts"]
-        AT --> forkSub["forkSubagent.ts"]
-        AT --> agentUtils["agentToolUtils.ts"]
-        AT --> shared["shared/spawnMultiAgent.ts"]
-        AT --> prompt["prompt.ts"]
-        AT --> loadAgents["loadAgentsDir.ts"]
+    subgraph Orchestration["编排层"]
+        ORCH["toolOrchestration.ts"]
     end
 
-    subgraph BashTool["BashTool Subsystem"]
-        BT["BashTool.tsx<br/>(1533L)"] --> bashSec["bashSecurity.ts<br/>(2592L)"]
-        BT --> bashPerm["bashPermissions.ts<br/>(2621L)"]
-        BT --> pathVal["pathValidation.ts<br/>(1303L)"]
-        BT --> read_only["readOnlyValidation.ts<br/>(1990L)"]
-        BT --> cmdSem["commandSemantics.ts"]
+    subgraph Execution["执行层"]
+        EXEC["toolExecution.ts<br/>(1745 lines)"]
     end
 
-    subgraph FileTools["File Tool Subsystem"]
-        FET["FileEditTool.ts"] --> fileHistory["fileHistory.ts"]
-        FRT["FileReadTool.ts"] --> fileUtil["file.ts"]
-        FWT["FileWriteTool.ts"] --> fileUtil
+    subgraph Result["结果层"]
+        STORAGE["toolResultStorage.ts"]
+        SEARCH["toolSearch.ts"]
     end
 
-    subgraph OtherTools["Other Built-in Tools"]
-        GT["GlobTool.ts"]
-        GrT["GrepTool.ts"]
-        LSP["LSPTool.ts"]
-        WT["WebFetchTool.ts"]
-        WST["WebSearchTool.ts"]
-        TST["ToolSearchTool.ts"]
+    subgraph ToolImpl["工具实现 (130+ files)"]
+        BASH["BashTool/"]
+        AGENT["AgentTool/"]
+        FILE_R["FileReadTool/"]
+        FILE_W["FileWriteTool/"]
+        FILE_E["FileEditTool/"]
+        MCP["MCPTool/"]
+        OTHER["其他工具..."]
     end
 
-    subgraph ComputerUse["ComputerUse Subsystem"]
-        CU_exec["executor.ts<br/>(658L)"]
-        CU_lock["computerUseLock.ts<br/>(215L)"]
-        CU_wrapper["wrapper.tsx<br/>(336L)"]
-        CU_mcp["mcpServer.ts"]
-    end
+    TOOLS --> TOOL
+    TOOLS --> CONSTANTS
+    TOOLS --> EMBEDDED
+    TOOLS --> ToolImpl
 
-    subgraph Utilities["Shared Utilities"]
-        ripgrep["ripgrep.ts"]
-        gitOps["gitOperationTracking.ts"]
-        gitDiff["gitDiff.ts"]
-        gitFS["gitFilesystem.ts"]
-        toolErrors["toolErrors.ts"]
-    end
+    ORCH --> EXEC
+    EXEC --> TOOL
+    EXEC --> STORAGE
+    EXEC -.-> "permissions<br/>(T-06)":::external
+    EXEC -.-> "toolHooks<br/>(T-06)":::external
 
-    %% Core execution flow
-    toolExec -->|calls tool.call()| AT
-    toolExec -->|calls tool.call()| BT
-    toolExec -->|calls tool.call()| FET
-    toolExec -->|calls tool.call()| FRT
-    toolExec -->|calls tool.call()| FWT
-    toolExec -->|calls tool.call()| GT
-    toolExec -->|calls tool.call()| GrT
-    toolExec -->|calls tool.call()| TST
+    TOOL --> ToolImpl
+    STORAGE -.-> "query.ts<br/>(T-03)":::external
+    SEARCH -.-> "ToolSearchTool":::ext_tool
 
-    %% Tool uses utilities
-    BT --> ripgrep
-    BT --> gitOps
-    FET --> gitDiff
-    FET --> gitFS
-    GrT --> ripgrep
-
-    %% Cross-references to other ML
-    toolExec -.->|ML-02: query loop| query["query.ts"]
-    toolExec -.->|ML-04: permissions| perm["permissions.ts"]
-    toolExec -.->|ML-05: MCP| mcp["MCPConnectionManager"]
-    AT -.->|ML-02: sub-query| queryEngine["QueryEngine.ts"]
+    classDef external fill:#f5f5f5,stroke:#999,stroke-dasharray: 5 5
+    classDef ext_tool fill:#e8f5e9,stroke:#4caf50,stroke-dasharray: 3 3
 ```
 
-### Key Dependency Relationships
+### Dependency Table
 
-| Source Module | Depends On | Type | Notes |
-|---------------|-----------|------|-------|
-| toolExecution.ts | Tool.ts | Interface | All tools implement Tool&lt;Input,Output,P&gt; |
-| toolExecution.ts | tools.ts | Registry | `getAllBaseTools()` for alias fallback |
-| toolExecution.ts | toolHooks.ts | Hooks | PreToolUse + PostToolUse hook execution |
-| toolExecution.ts | toolResultStorage.ts | Storage | Large result persistence |
-| toolExecution.ts | toolSearch.ts | Discovery | Deferred tool search/discovery |
-| tools.ts | Tool.ts | Factory | `buildTool()` creates Tool instances |
-| AgentTool.tsx | runAgent.ts | Execution | Agent lifecycle runner |
-| AgentTool.tsx | forkSubagent.ts | Forking | Fork-based subagent isolation |
-| AgentTool.tsx | spawnMultiAgent.ts | Spawning | Multi-agent teammate spawning |
-| BashTool.tsx | bashSecurity.ts | Security | Command injection detection |
-| BashTool.tsx | bashPermissions.ts | Permissions | Rule matching + classification |
-| BashTool.tsx | pathValidation.ts | Validation | Path traversal prevention |
-| FileEditTool | gitDiff.ts | Diff | Edit conflict detection |
-| GrepTool | ripgrep.ts | Search | Ripgrep process wrapper |
+| Source File | Depends On | Type | Direction |
+|------------|-----------|------|-----------|
+| tools.ts | Tool.ts | import | outgoing |
+| tools.ts | constants/tools.ts | import | outgoing |
+| tools.ts | embeddedTools.ts | import | outgoing |
+| tools.ts | 所有工具目录 | lazy require | outgoing |
+| toolOrchestration.ts | toolExecution.ts | import | outgoing |
+| toolExecution.ts | Tool.ts | import | outgoing |
+| toolExecution.ts | toolResultStorage.ts | import | outgoing |
+| toolExecution.ts | permissions(T-06) | import | outgoing |
+| toolResultStorage.ts | query.ts(T-03) | called_by | incoming |
+| toolSearch.ts | ToolSearchTool | import | outgoing |
+
+## Boundary / Integration Map
+
+```mermaid
+flowchart LR
+    subgraph Scope["T-05 Scope"]
+        REG["工具注册<br/>tools.ts"]
+        ORCH["编排调度<br/>toolOrchestration.ts"]
+        EXEC["执行引擎<br/>toolExecution.ts"]
+        STORE["结果存储<br/>toolResultStorage.ts"]
+        SEARCH["工具搜索<br/>toolSearch.ts"]
+    end
+
+    QL["queryLoop()<br/>(T-03)"]:::external
+    SSE["StreamingToolExecutor<br/>(T-04)"]:::external
+    PERM["权限系统<br/>(T-06)"]:::external
+    MCP_CLIENT["MCP Client<br/>(T-09)"]:::external
+    LLM["LLM API<br/>(外部)"]:::external
+
+    QL -->|runTools()| ORCH
+    SSE -->|runToolUse()| EXEC
+    ORCH -->|runToolUse()| EXEC
+    EXEC -->|canUseTool()| PERM
+    EXEC -->|hooks| PERM
+    REG -->|assembleToolPool()| MCP_CLIENT
+    EXEC -->|persist result| STORE
+    STORE -->|enforce budget| QL
+    SEARCH -->|deferred load| MCP_CLIENT
+    EXEC -->|tool.call()| LLM
+
+    classDef external fill:#f5f5f5,stroke:#999,stroke-dasharray: 5 5
+```
+
+- **图说明**: 展示T-05 scope内部4层架构与外部系统(T-03查询循环、T-04流式执行器、T-06权限、T-09 MCP、LLM API)的交互边界
+
+## Data Flow View
+
+```mermaid
+flowchart LR
+    API_RESP["API Response<br/>(tool_use blocks)"]
+    PARSE["parse tool calls"]
+    PARTITION["partitionToolCalls()"]
+    SERIAL["串行执行<br/>non-concurrent"]
+    CONCUR["并发执行<br/>concurrent"]
+    EXEC["7阶段pipeline"]
+    PERSIST["persistToolResult()<br/>大结果→磁盘"]
+    PREVIEW["generatePreview()<br/>截断→模型"]
+    BUDGET["enforceBudget()<br/>per-message预算"]
+    RESULT["tool_result<br/>→ API"]
+
+    API_RESP --> PARSE --> PARTITION
+    PARTITION -->|non-safe| SERIAL
+    PARTITION -->|safe| CONCUR
+    SERIAL --> EXEC
+    CONCUR --> EXEC
+    EXEC -->|>threshold| PERSIST --> PREVIEW
+    EXEC -->|<=threshold| PREVIEW
+    PREVIEW --> BUDGET --> RESULT
+```
+
+- **图说明**: 展示tool_use block从API响应解析到tool_result返回的完整数据流路径，关键变换点：partition(并发分区)、persist(大结果持久化)、budget(预算截断)
 
 ## Function-Level Analysis
 
-### A. Core Registration Layer
+### src/Tool.ts
 
-#### [`src/tools.ts`](/src/src/tools.ts.md) (389 lines) — Tool Registry
+#### `buildTool<I,O,P>(definition: PartialToolDefinition<I,O,P>): Tool<I,O,P>`
+- **职责**: 工厂函数，将partial定义展开为完整Tool对象，合并TOOL_DEFAULTS
+- **关键逻辑**: `{...TOOL_DEFAULTS, ...definition}` — 用户override覆盖安全默认值
+- **复杂度**: LOW
 
-| Function | Lines | Signature | Responsibility |
-|----------|-------|-----------|---------------|
-| `getAllBaseTools()` | L10-300 | `() => Tool[]` | 返回所有内置工具（~50个），条件注册 |
-| `getTools(permissionContext)` | L302-370 | `(ctx) => Tool[]` | 按权限模式过滤工具列表 |
-| `assembleToolPool(ctx, mcpTools)` | L370-389 | `(ctx, Tool[]) => Tool[]` | 合并内置+MCP工具，排序去重 |
-| `filterToolsByDenyRules()` | — | `(Tool[], rules) => Tool[]` | 按 deny rules 过滤工具 |
+#### `TOOL_DEFAULTS: RequiredToolDefinition`
+- **职责**: 8个安全默认值常量
+- **关键字段**: isConcurrencySafe→false, isReadOnly→false, requiresTier(false), checkPermissions→"allow", autoApprove→"never", isEnabled→true
+- **复杂度**: LOW
 
-**`getAllBaseTools()` 关键逻辑**：
-- 使用闭包缓存结果（`let _allTools: Tool[] | undefined`），首次调用时构建
-- 条件注册模式：`if (feature('X')) tools.push(require('./XTool').tool)`
-- DCE优化：未启用的工具通过 `require()` 动态加载，打包时可 tree-shake
+#### `findToolByName(tools: Tool[], name: string): Tool | undefined`
+- **职责**: 在工具数组中查找匹配name或alias的工具
+- **关键逻辑**: `tools.find(t => toolMatchesName(t, name))`
+- **复杂度**: LOW
 
-#### [`src/Tool.ts`](/src/src/Tool.ts.md) (792 lines) — Tool Interface
+#### `toolMatchesName(tool: Tool, name: string): boolean`
+- **职责**: 检查工具名或alias是否匹配
+- **关键逻辑**: `tool.name === name || (tool.aliases?.includes(name) ?? false)`
+- **复杂度**: LOW
 
-| Member | Type | Description |
-|--------|------|-------------|
-| `name` | `string` | 工具唯一标识符 |
-| `inputSchema` | `() => ZodSchema` | 延迟 schema 定义 |
-| `call(input, ctx)` | `(I, C) => AsyncGenerator<ToolResult<O>>` | 工具执行入口 |
-| `isEnabled(ctx)` | `(C) => boolean` | 动态启用/禁用检查 |
-| `isReadOnly()` | `() => boolean` | 标记只读工具 |
-| `isConcurrencySafe()` | `() => boolean` | 标记可并发执行 |
-| `validateInput(input)` | `(I) => ValidationResult` | 自定义输入验证 |
-| `mapToolResultToToolResultBlockParam()` | `() => ContentBlockParam` | 结果映射 |
-| `aliases` | `string[]` | 别名列表（兼容旧名称） |
-| `interruptBehavior` | `enum` | 中断行为（resume/cancel） |
-| `shouldDefer` | `boolean` | 是否延迟加载 |
-| `alwaysLoad` | `boolean` | 是否始终加载 |
+#### `Tool<I,O,P>` 接口 — ~30个生命周期方法
+- **核心方法**: `call(input, context)` — 工具执行入口
+- **权限方法**: `checkPermissions(input, context)`, `autoApprove`, `requiresTier`
+- **Hook方法**: `preToolUseHook`, `postToolUseHook`
+- **UI方法**: `render`, `renderResult`
+- **并发方法**: `isConcurrencySafe` — 决定并行/串行调度
+- **延迟方法**: `deferredTool` — 标记是否延迟加载schema
+- **复杂度**: MEDIUM — 接口庞大但方法职责清晰
 
-**`buildTool()` 工厂函数**：
-- 接受 ToolDef&lt;Input, Output, P&gt; 配置对象
-- 填充默认值（`isReadOnly: false`, `interruptBehavior: 'cancel'`, `alwaysLoad: true`）
-- 支持泛型参数绑定 Zod schema 类型
+### src/tools.ts
 
-**`findToolByName()` (L50)**：
-- 线性搜索工具数组，优先匹配 `tool.name`，其次匹配 `tool.aliases`
-- 扇入=8（被 runToolUse + assembleToolPool + getTools + 5个hook点调用）
+#### `getAllBaseTools(): Tool[]`
+- **职责**: 返回所有内置工具（~45个），大量feature flag条件加载
+- **关键逻辑**: 条件require各工具模块（BashTool, AgentTool, MCPTool, ComputerUse等），检查feature flags（computerUseEnabled, agentEnabled, cronEnabled等）
+- **调用**: getTools(), assembleToolPool()
+- **复杂度**: MEDIUM — 工具数量多但逻辑简单
 
-#### [`src/constants/tools.ts`](/src/src/constants/tools.ts.md) (112 lines) — Access Control
+#### `getTools(permissionContext): Tool[]`
+- **职责**: 三层过滤返回当前可用的工具列表
+- **关键逻辑**: `getAllBaseTools()` → `filterToolsByDenyRules()` → REPL模式隐藏 + isEnabled过滤
+- **调用**: queryLoop(T-03)通过assembleToolPool()调用
+- **复杂度**: MEDIUM
 
-| Export | Value | Purpose |
-|--------|-------|---------|
-| `AGENT_DISABLED_TOOLS` | `['AgentTool', 'TaskCreateTool', ...]` | Agent 子查询中禁用的工具列表 |
-| `AGENT_ALLOWED_TOOLS` | `['Bash', 'Read', 'Edit', ...]` | Agent 中允许的工具白名单 |
-| `DEFAULT_TOOL_SET` | `ToolName[]` | 默认工具集 |
+#### `assembleToolPool(builtInTools, mcpTools): Tool[]`
+- **职责**: 合并内置+MCP工具，按名排序+uniqBy去重
+- **关键逻辑**: `sortBy(t=>t.name)` → `uniqBy(t=>t.name)` — 内置同名工具优先，保证prompt cache稳定
+- **复杂度**: LOW
 
-### B. Execution Engine
+#### `filterToolsByDenyRules(tools, context): Tool[]`
+- **职责**: 按deny rules过滤工具（黑名单机制）
+- **复杂度**: LOW
 
-#### [`src/services/tools/toolExecution.ts`](/src/src/services/tools/toolExecution.ts.md) (1745 lines)
+### src/constants/tools.ts
 
-**`runToolUse()` (L337-490)** — AsyncGenerator 入口：
-```
-参数: (ToolUseBlock, AssistantMessage, CanUseToolFn, ToolUseContext)
-返回: AsyncGenerator<MessageUpdateLazy, void>
-逻辑:
-  1. findToolByName() 查找工具
-  2. alias fallback（兼容旧名称）
-  3. abortController.signal.aborted 检查
-  4. 委托 streamedCheckPermissionsAndCallTool()
-  5. catch: 包装为 tool_use_error 返回
-```
+#### `TOOLS_ONLY_IN_AGENT_MODE: string[]`
+- **职责**: 仅在Agent模式下可用的工具白名单（AgentTool, TaskCreate等）
+- **复杂度**: LOW
 
-**`streamedCheckPermissionsAndCallTool()` (L492-560)** — Stream 适配器：
-- 将 Promise-based 的 `checkPermissionsAndCallTool()` 包装为 AsyncIterable
-- 使用自定义 `Stream<T>` 队列，支持进度事件实时推送
-- 进度回调：`progress => stream.enqueue(progressMessage)`
+#### `TOOLS_NOT_IN_AGENT_MODE: string[]`
+- **职责**: 在Agent模式下不可用的工具黑名单
+- **复杂度**: LOW
 
-**`checkPermissionsAndCallTool()` (L599-1745)** — **核心执行函数（1150行）**：
+#### `TOOLS_NOT_IN_ASYNC_AGENT_MODE: string[]`
+- **职责**: 在异步代理模式下不可用的工具
+- **复杂度**: LOW
 
-| Phase | Lines | Key Operations |
-|-------|-------|----------------|
-| Phase 1: Zod 验证 | L630-680 | `inputSchema.safeParse()` → 失败返回 deferred hint 或 error |
-| Phase 2: 自定义验证 | L680-720 | `validateInput()` → ValidationResult.deny → 直接拒绝 |
-| Phase 3: 投机分类器 | L720-760 | `startSpeculativeClassifierCheck()`（仅 Bash），与后续阶段并行 |
-| Phase 4: 防御剥离 | L760-800 | 检测 `_simulatedSedEdit`（模型幻觉 sed 命令），替换为 Read |
-| Phase 5: Backfill | L800-830 | `backfillObservableInput()` — 浅克隆 input 填充默认值 |
-| Phase 6: Hooks+权限 | L830-1050 | PreToolUse hooks → `resolveHookPermissionDecision()` → `canUseTool()` |
-| Phase 7: 工具执行 | L1050-1300 | `tool.call()` → 结果映射 → 大结果持久化 → image paste |
-| Phase 8: Post hooks | L1300-1745 | PostToolUse hooks + 成功/失败分支 + analytics |
+#### `TOOLS_NOT_IN_COORDINATOR_MODE: string[]`
+- **职责**: 在协调器模式下不可用的工具
+- **复杂度**: LOW
 
-**Phase 6 权限决策详情**：
-```
-1. runPreToolUseHooks() → HookResult[]
-2. 提取 hook 返回的 decision（allow/deny/ask）
-3. resolveHookPermissionDecision() 合并:
-   - hook decisions
-   - classifier result（Bash 投机分类器）
-   - permission mode（auto-accept bypass 等）
-4. 最终决策为 deny → 返回拒绝消息 + executePermissionDeniedHooks()
-5. 最终决策为 allow → 继续 Phase 7
-6. 最终决策为 ask → canUseTool() 弹窗
-```
+### src/services/tools/toolOrchestration.ts
 
-**Phase 7 双路径结果处理**：
-- **内置工具**: 先 `addToolResult()` → 再 PostToolUse hooks（hooks 不能修改结果）
-- **MCP 工具**: 先 PostToolUse hooks → 再 `addToolResult()`（hooks 可通过 `updatedMCPToolOutput` 修改结果）
+#### `runTools(toolCalls, context, contextModifiers): AsyncGenerator`
+- **职责**: 多工具编排调度主入口
+- **关键逻辑**: `partitionToolCalls()` → safe批走`runToolsConcurrently()`(max 10)，unsafe批走`runToolsSerially()`
+- **调用**: queryLoop(T-03)
+- **复杂度**: MEDIUM
 
-**`backfillObservableInput()` 关键设计**：
-- 创建 input 的浅克隆副本，填充 schema 默认值
-- hooks 和权限系统看到 backfilled 版本
-- `tool.call()` 收到**原始 input**（不包含 backfilled 字段）
-- 目的：保证 prompt cache 稳定性（input hash 不变）
+#### `partitionToolCalls(toolCalls, tools): {concurrent, serial}`
+- **职责**: 按工具的isConcurrencySafe属性分区
+- **关键逻辑**: `tool.isConcurrencySafe ? concurrent : serial` — parse失败→视为不安全
+- **复杂度**: LOW
 
-### C. AgentTool Subsystem
+#### `runToolsConcurrently(toolCalls, ...): AsyncGenerator`
+- **职责**: 并发执行安全工具批（max 10个并发）
+- **关键逻辑**: `Promise.all` + 逐个yield结果 — contextModifier先收集，批完成后统一应用
+- **复杂度**: HIGH — 并发状态管理+modifier队列
 
-#### [`src/tools/AgentTool/AgentTool.tsx`](/src/src/tools/AgentTool/AgentTool.tsx.md) (1398 lines)
+#### `runToolsSerially(toolCalls, ...): AsyncGenerator`
+- **职责**: 串行执行非安全工具批
+- **关键逻辑**: for...of循环逐个await runToolUse()
+- **复杂度**: LOW
 
-**Schema 定义** (L82-100)：
-- `baseInputSchema`: description + prompt + subagent_type + model + run_in_background
-- `fullInputSchema`: base + multi-agent params（name, team_name, mode）+ isolation + cwd
-- 使用 `lazySchema()` 延迟初始化，支持 DCE
+### src/services/tools/toolExecution.ts
 
-**`buildTool()` 配置**：
-- `call()`: 委托 `runAgent()` 或 `runAsyncAgentLifecycle()`
-- `interruptBehavior`: `'resume'`（可恢复执行）
-- `isEnabled()`: 检查 coordinator mode + deny rules
-- `mapToolResultToToolResultBlockParam()`: 使用 `agentToolResultSchema` 验证结果
+#### `runToolUse(toolCall, tool, context): AsyncGenerator` (L337-490)
+- **职责**: 单工具执行AsyncGenerator入口
+- **关键逻辑**: 创建stream → 调用streamedCheckPermissionsAndCallTool() → yield结果
+- **调用**: runTools(), StreamingToolExecutor(T-04)
+- **复杂度**: MEDIUM
 
-**执行模式选择** (内部逻辑)：
-1. `isolation === 'remote'` → `registerRemoteAgentTask()`
-2. `run_in_background || getAutoBackgroundMs()` → `runAsyncAgentLifecycle()`
-3. 其他 → `runAgent()` 前台执行
+#### `streamedCheckPermissionsAndCallTool(...)` (L492-570)
+- **职责**: 桥接Promise→AsyncIterable，使用Stream类
+- **关键逻辑**: `new Stream()` → push结果 → close
+- **复杂度**: LOW
 
-#### [`src/tools/AgentTool/runAgent.ts`](/src/src/tools/AgentTool/runAgent.ts.md) — Agent Lifecycle
+#### `checkPermissionsAndCallTool(...)` (L599-1745) — **God Function, 1145行**
+- **职责**: 7阶段工具执行pipeline
+- **阶段1** (L615-680): Zod schema验证 — safeParse(input) → 格式化错误
+- **阶段2** (L683-733): validateInput() — 工具自定义验证
+- **阶段3** (L740-752): Speculative classifier — BashTool专属，标记sed/git操作
+- **阶段4** (L783-793): backfillObservableInput — 浅克隆callInput，回填legacy字段
+- **阶段5** (L800-870): runPreToolUseHooks — 处理hook结果(approve/deny/ask)
+- **阶段6** (L921-930): resolveHookPermissionDecision + canUseTool — 权限决策
+- **阶段7** (L1207-1300): tool.call() → 结果处理 → PostToolUse hooks → telemetry
+- **错误路径** (L1400-1745): McpAuthError→needs-auth, PostToolUseFailure hooks, classifyToolError
+- **复杂度**: **HIGH** — 1145行单函数，7个阶段+多条错误路径
 
-核心执行流程：
-```
-1. buildEffectiveSystemPrompt() → 构建子 agent 系统提示
-2. assembleToolPool() → 组装子 agent 可用工具（过滤 AGENT_DISABLED_TOOLS）
-3. query() → 进入 ML-02 的查询循环
-4. yield 进度事件（ProgressMessage）
-5. 完成后 → buildAgentToolResult() → 返回 ToolResult
-```
+#### `backfillObservableInput(...)` (L783-793)
+- **职责**: 浅克隆callInput后回填legacy字段（command, workingDir等）
+- **关键逻辑**: 保护原始callInput不变，确保transcript/VCR hash稳定
+- **风险点**: 仅浅克隆，嵌套对象可能被修改 (toolExecution.ts:L785)
+- **复杂度**: LOW
 
-### D. BashTool Subsystem
+#### `classifyToolError(error)` (L1700-1745)
+- **职责**: 将错误分类为可重试/不可重试
+- **关键逻辑**: McpAuthError→needs-auth, RateLimitError→retriable, 其他→fatal
+- **复杂度**: MEDIUM
 
-#### [`src/tools/BashTool/bashSecurity.ts`](/src/src/tools/BashTool/bashSecurity.ts.md) (2592 lines) — Security Engine
+### src/utils/toolResultStorage.ts
 
-| Function | Lines | Responsibility |
-|----------|-------|---------------|
-| `validateBashCommand()` | — | 主入口：命令安全校验 |
-| `parseCommandForValidation()` | — | 命令解析（处理管道、重定向、子shell） |
-| `checkPathTraversal()` | — | 路径遍历检测 |
-| `validateEnvironmentVars()` | — | 环境变量安全检查 |
-| `checkForInjection()` | — | 命令注入检测 |
+#### `maybePersistLargeToolResult(result, context): ToolResult`
+- **职责**: 大结果自动持久化到磁盘，空结果注入"completed with no output"
+- **关键逻辑**: 空结果→注入文本防capybara bug → `persistToolResult()`写磁盘
+- **复杂度**: MEDIUM
 
-#### [`src/tools/BashTool/bashPermissions.ts`](/src/src/tools/BashTool/bashPermissions.ts.md) (2621 lines) — Permission Engine
+#### `persistToolResult(result, context): ToolResult`
+- **职责**: 实际写文件到磁盘
+- **关键逻辑**: flag='wx'原子创建（防microcompact重写） → 写入 → 更新replacements Map
+- **复杂度**: MEDIUM
 
-| Function | Lines | Responsibility |
-|----------|-------|---------------|
-| `startSpeculativeClassifierCheck()` | — | 异步投机分类器，与权限判断并行 |
-| `classifyBashCommand()` | — | 命令分类（readonly/modify/destructive） |
-| `matchBashRules()` | — | 规则模式匹配 |
-| `resolveBashPermission()` | — | 最终权限决策 |
+#### `getPersistenceThreshold(toolName, tool): number`
+- **职责**: 获取工具结果持久化阈值
+- **关键逻辑**: Infinity=硬opt-out → GrowthBook覆盖 → `min(tool声明值, 50K)`
+- **复杂度**: LOW
 
-投机分类器优化：`startSpeculativeClassifierCheck()` 在 Phase 3 异步启动，Phase 6 时检查结果。若分类器返回高置信度的 allow/deny，可跳过交互式权限弹窗。
+#### `enforceToolResultBudget(results, state, context): ToolResult[]`
+- **职责**: per-message总预算控制
+- **关键逻辑**: `getPerMessageBudgetLimit()` → 逐个截断直到总预算满足
+- **复杂度**: MEDIUM
 
-#### [`src/tools/BashTool/pathValidation.ts`](/src/src/tools/BashTool/pathValidation.ts.md) (1303 lines) — Path Validation
+#### `ContentReplacementState` class
+- **职责**: 缓存稳定的替换决策状态
+- **字段**: seenIds(Set), replacements(Map), cache用于fork-sharing
+- **复杂度**: MEDIUM
 
-- 符号链接追踪（`resolveSymlinks()`）
-- 路径遍历检测（`../` 检测）
-- 工作目录边界验证
-- 允许路径白名单匹配
+### src/utils/toolSearch.ts
 
-### E. File Operations
+#### `getAutoToolSearchPercentage(tools): number`
+- **职责**: 计算自动工具搜索阈值百分比
+- **关键逻辑**: 默认10% → GrowthBook `tengu_hawthorn_window` override
+- **复杂度**: LOW
 
-#### `src/tools/FileEditTool/` — File Editing
+#### `shouldDeferToolSearch(toolTokenCount, totalBudget): boolean`
+- **职责**: 判断是否需要延迟工具搜索
+- **关键逻辑**: `toolTokenCount > totalBudget * percentage / 100`
+- **复杂度**: LOW
 
-**多工具支持**：FileEditTool 支持多种编辑策略（sed-like replace, block-level edit, full rewrite），由 `multiToolEditStrategy.ts` 决定使用哪种策略。
+#### `getDeferredTools(tools): Tool[]`
+- **职责**: 获取标记为deferred的工具列表
+- **关键逻辑**: `tools.filter(t => t.deferredTool)`
+- **复杂度**: LOW
 
-**`fileHistory.ts` (369行)**：维护编辑历史栈，支持撤销操作。
+### src/tools/MCPTool/MCPTool.ts
 
-#### `src/tools/FileReadTool/` — File Reading
-
-支持多种读取模式：文本、图片（base64）、PDF、代码块提取。`file.ts` 提供统一的文件系统访问层。
-
-#### `src/tools/FileWriteTool/` — File Writing
-
-原子写入策略：先写临时文件，再 rename。支持目录自动创建。
-
-### F. Tool Hooks
-
-#### [`src/services/tools/toolHooks.ts`](/src/src/services/tools/toolHooks.ts.md) — Hook Execution Engine
-
-| Function | Responsibility |
-|----------|---------------|
-| `runPreToolUseHooks()` | 执行所有 MCP server 的 PreToolUse hooks |
-| `runPostToolUseHooks()` | 执行所有 MCP server 的 PostToolUse hooks |
-| `runPostToolUseFailureHooks()` | 执行工具调用失败时的 hooks |
-| `resolveHookPermissionDecision()` | 合并多源权限决策 |
-
-Hook 执行模型：对每个连接的 MCP server 串行执行 hooks，收集所有结果后统一决策。
+#### `MCPTool.buildTool()` — 极简代理
+- **职责**: 返回占位Tool对象，所有方法返回默认值
+- **关键逻辑**: name="" → mcpClient.ts在连接MCP server后动态覆盖name/call/checkPermissions
+- **设计意图**: 允许MCP工具在运行时才确定具体行为
+- **复杂度**: LOW
 
 ## Call Chain Analysis
 
 ### Entry Points
+- `runTools(toolCalls, context, modifiers)` in `toolOrchestration.ts:L22` — 被queryLoop(T-03)调用执行多工具块
+- `runToolUse(toolCall, tool, context)` in `toolExecution.ts:L337` — 被runTools()和StreamingToolExecutor(T-04)调用执行单工具
+- `assembleToolPool(builtIn, mcp)` in `tools.ts:L200` — 被queryLoop初始化阶段调用构建工具池
 
-工具系统有 2 个外部入口：
+### Critical Call Chains
 
-**EP1 — 模型驱动的工具调用**（主路径）：
+#### Chain 1: 多工具编排 — 并发路径
 ```
-query.ts (ML-02) → runTools() → runToolUse()
-  → streamedCheckPermissionsAndCallTool()
-    → checkPermissionsAndCallTool() [1150L core]
-      → Phase 1-8 pipeline
+runTools() [toolOrchestration.ts:L22]
+  → partitionToolCalls() [toolOrchestration.ts:L80]
+    ├─ [concurrent safe tools] → runToolsConcurrently() [toolOrchestration.ts:L100]
+    │   → Promise.all([runToolUse() × N]) [toolExecution.ts:L337]
+    │     → streamedCheckPermissionsAndCallTool() [toolExecution.ts:L492]
+    │       → checkPermissionsAndCallTool() [toolExecution.ts:L599]
+    │         → zodValidate → validateInput → speculativeClassify
+    │         → backfillObservableInput → runPreToolUseHooks
+    │         → canUseTool → tool.call() → maybePersist → postHooks
+    │   → yield results + apply contextModifiers
+    └─ [serial unsafe tools] → runToolsSerially() [toolOrchestration.ts:L150]
+        → for each: runToolUse() → (同上pipeline)
 ```
+- **调用深度**: 7 (runTools → partition → runConcurrently → runToolUse → streamed → checkPermissions → tool.call)
+- **关键分支点**: partitionToolCalls() — isConcurrencySafe决定并行/串行
+- **标注**: [关键路径] — 系统最核心的工具调度链路
 
-**EP2 — Deferred Tool 搜索**（ToolSearch 延迟加载）：
+#### Chain 2: 工具注册与发现
 ```
-query.ts (ML-02) → model returns tool_use for deferred tool
-  → runToolUse() → T-05 tool_use_error "schema not sent"
-  → next iteration: ToolSearchTool.call() → load tool schema
-  → subsequent iteration: normal EP1 flow
+assembleToolPool() [tools.ts:L200]
+  → sortBy(tools, t => t.name) + uniqBy(t => t.name)
+  → [MCP tools merge] → dedup(内置优先)
+
+getTools(permissionContext) [tools.ts:L120]
+  → getAllBaseTools() [tools.ts:L20]
+    → [条件require × ~20个工具模块]
+    → [feature flag checks × ~15]
+  → filterToolsByDenyRules() [tools.ts:L180]
+  → REPL mode filter + isEnabled filter
 ```
+- **调用深度**: 3
+- **标注**: [初始化路径] — 每次query开始前执行
 
-### Key Call Chains
-
-**Chain 1: 标准工具执行（Happy Path）**
-```
-runToolUse():L337
-  → findToolByName():Tool.ts:L50        [查找工具]
-  → streamedCheckPermissionsAndCallTool():L492
-    → checkPermissionsAndCallTool():L599  [核心管线]
-      → inputSchema.safeParse()           [Phase 1: Zod验证]
-      → validateInput()                   [Phase 2: 自定义验证]
-      → startSpeculativeClassifierCheck()  [Phase 3: 投机分类(Bash)]
-      → backfillObservableInput()         [Phase 5: 回填默认值]
-      → runPreToolUseHooks()              [Phase 6: Pre hooks]
-      → resolveHookPermissionDecision()   [Phase 6: 权限合并]
-      → canUseTool()                      [Phase 6: 交互式弹窗]
-      → tool.call()                       [Phase 7: 工具执行]
-      → processToolResultBlock()          [Phase 7: 结果持久化]
-      → runPostToolUseHooks()             [Phase 8: Post hooks]
-```
-调用深度：11 层 | 关键分支点：3（Zod验证、权限决策、工具执行结果）
-
-**Chain 2: Agent 子查询（递归路径）**
-```
-runToolUse():L337 [Bash/Read/Edit等]
-  → checkPermissionsAndCallTool():L599
-    → AgentTool.call() → runAgent()
-      → assembleToolPool()              [子agent工具集]
-      → query() [ML-02 递归]            [子查询循环]
-        → runTools() [ML-02]
-          → runToolUse() [递归回到起点]
-```
-调用深度：最大 5 层递归（由 `queryDepth` 限制） | 分支：工具子集过滤
-
-**Chain 3: MCP 工具执行**
-```
-runToolUse():L337
-  → findToolByName():Tool.ts:L50 [mcp__前缀]
-  → checkPermissionsAndCallTool():L599
-    → runPreToolUseHooks()         [MCP Pre hooks]
-    → tool.call() → MCPClient.callTool() [ML-05 MCP协议]
-    → PostToolUse hooks            [可修改MCP输出]
-    → addToolResult()              [结果存储]
-```
-调用深度：8 层 | 关键差异：Post hooks 在 addToolResult 之前
-
-### Fan-in / Fan-out Analysis
-
-**Top-10 High Fan-in（被最多调用者依赖）**：
-
-| Function | File | Fan-in | Fan-out | Role |
-|----------|------|--------|---------|------|
-| `findToolByName()` | Tool.ts:L50 | 8 | 1 | 工具查找叶子节点 |
-| `checkPermissionsAndCallTool()` | toolExecution.ts:L599 | 1 | 15 | 八阶段编排器 |
-| `resolveHookPermissionDecision()` | toolHooks.ts | 1 | 6 | 权限合并决策器 |
-| `backfillObservableInput()` | toolExecution.ts | 1 | 3 | 输入回填器 |
-| `processToolResultBlock()` | toolResultStorage.ts | 2 | 2 | 结果持久化 |
-| `assembleToolPool()` | tools.ts | 3 | 2 | 工具池组装 |
-| `getAllBaseTools()` | tools.ts | 4 | 50 | 工具注册源头 |
-| `runPreToolUseHooks()` | toolHooks.ts | 1 | 5 | Pre hooks 调度 |
-| `runPostToolUseHooks()` | toolHooks.ts | 1 | 5 | Post hooks 调度 |
-| `classifyToolError()` | toolExecution.ts:L150 | 3 | 0 | 错误分类叶子 |
-
-**Top-5 High Fan-out（调用最多下游）**：
-
-| Function | File | Fan-out | Description |
-|----------|------|---------|-------------|
-| `checkPermissionsAndCallTool()` | toolExecution.ts:L599 | 15 | 编排15个下游操作 |
-| `getAllBaseTools()` | tools.ts | 50 | 注册50+工具实例 |
-| `runPreToolUseHooks()` | toolHooks.ts | 5 | 最多5个MCP server hooks |
-| `runPostToolUseHooks()` | toolHooks.ts | 5 | 最多5个MCP server hooks |
-| `assembleToolPool()` | tools.ts | 2 | 合并内置+MCP工具 |
-
-### Hotspot Functions（fan-in ≥ 5）
-
-1. **`findToolByName()`** (Fan-in=8) — 工具查找的单一实现点，线性搜索 O(n) 但 n≤50 性能充足
-2. **`getAllBaseTools()`** (Fan-in=4) — 全局单例缓存，闭包惰性初始化
-
-## Temporal Analysis
-
-### Async Orchestration: Tool Execution Pipeline
-
-```
-T=0  runToolUse() called from query.ts runTools()
-     ├─ [sync] findToolByName() — O(n) 线性搜索
-     └─ [sync] alias fallback check
-         └─ NOT FOUND → return tool_use_error (EXIT)
-
-T=1  abortController check
-     └─ ABORTED → return cancel message (EXIT)
-
-T=2  streamedCheckPermissionsAndCallTool() → Stream<MessageUpdateLazy>
-     └─ [async] checkPermissionsAndCallTool() launched as Promise
-
-T=3  Phase 1-2: [sync] Zod validation + validateInput()
-     └─ INVALID → yield error, return (EXIT)
-
-T=4  Phase 3: [async-fire-and-forget] startSpeculativeClassifierCheck()
-     ┌────────────────────────────────────────────────────┐
-     │ 投机分类器在后台运行（仅Bash），与Phase 4-6并行    │
-     └────────────────────────────────────────────────────┘
-
-T=5  Phase 4-5: [sync] _simulatedSedEdit defense + backfill
-
-T=6  Phase 6: PreToolUse hooks — [async] runPreToolUseHooks()
-     ├─ [串行] MCP server 1 hook → MCP server 2 hook → ...
-     ├─ [await] 投机分类器结果（如果已完成）
-     ├─ resolveHookPermissionDecision() — 合并所有源
-     └─ DECISION:
-         ├─ DENY → executePermissionDeniedHooks(), return (EXIT)
-         ├─ ALLOW → proceed to Phase 7
-         └─ ASK → [async-interactive] canUseTool() → 用户弹窗
-             ├─ User DENY → return (EXIT)
-             └─ User ALLOW → proceed
-
-T=7  Phase 7: [async] tool.call()
-     ├─ 进度事件 → stream.enqueue(progressMessage)
-     │   → yield to runToolUse() → yield to runTools() → TUI update
-     ├─ 结果完成 → processToolResultBlock()
-     └─ [条件] imagePasteId allocation
-
-T=8  Phase 8: [async] PostToolUse hooks
-     ├─ 成功路径: runPostToolUseHooks()
-     └─ 失败路径: runPostToolUseFailureHooks()
-
-T=9  stream.close() → runToolUse() generator completes
-```
-
-### Event Sequence Diagram
-
-```mermaid
-sequenceDiagram
-    participant Q as query.ts (ML-02)
-    participant RT as runToolUse()
-    participant SC as streamedCheckPermissions
-    participant CP as checkPermissions
-    participant H as toolHooks
-    participant T as tool.call()
-    participant S as Stream<T>
-
-    Q->>RT: yield runToolUse(toolUse)
-    RT->>RT: findToolByName()
-    RT->>SC: streamedCheckPermissionsAndCallTool()
-    SC->>CP: checkPermissionsAndCallTool() [Promise]
-    SC-->>S: Stream created
-
-    Note over CP: Phase 1-2: Validation
-    CP->>CP: safeParse() + validateInput()
-
-    Note over CP: Phase 3: Speculative Classifier (async)
-    CP-->>CP: startSpeculativeClassifierCheck()
-
-    Note over CP: Phase 4-5: Defense + Backfill
-    CP->>CP: _simulatedSedEdit + backfill
-
-    Note over CP: Phase 6: Hooks + Permission
-    CP->>H: runPreToolUseHooks()
-    H-->>CP: HookResult[]
-    CP->>CP: resolveHookPermissionDecision()
-    opt Decision = ASK
-        CP->>CP: canUseTool() [user dialog]
-    end
-
-    Note over CP: Phase 7: Tool Execution
-    CP->>T: tool.call(input, ctx)
-    T-->>S: progress events (via callback)
-    S-->>RT: yield progress messages
-    RT-->>Q: yield MessageUpdateLazy
-    T-->>CP: ToolResult
-
-    Note over CP: Phase 8: Post Hooks
-    CP->>H: runPostToolUseHooks()
-
-    CP-->>S: final result enqueued
-    S-->>RT: yield final result
-    RT-->>Q: yield final MessageUpdateLazy
-```
-
-### Race Conditions
-
-| # | Location | Risk | Severity | Mitigation |
-|---|----------|------|----------|-----------|
-| RC-1 | Speculative classifier vs Permission decision | 分类器可能未完成时权限已决定 | LOW | 投机结果仅作为参考，不阻塞决策 |
-| RC-2 | Abort signal during tool.call() | 工具执行中用户取消 | MEDIUM | AbortController signal 传入 tool.call()，工具负责检查 |
-| RC-3 | MCP server disconnect during hooks | Hook 执行时 MCP server 断连 | LOW | Hook timeout (5s) + 错误视为 neutral |
-| RC-4 | Background agent completion vs user interaction | 后台 agent 完成时用户正在操作 | LOW | Event queue 串行化通知 |
-
-### Implicit Timing Constraints
-
-| Constraint | Description | Enforced? |
-|-----------|-------------|-----------|
-| C-1 | `startSpeculativeClassifierCheck()` 必须在 `resolveHookPermissionDecision()` 之前启动 | ✅ 代码顺序保证 |
-| C-2 | `backfillObservableInput()` 结果必须在 hooks 之前准备好 | ✅ 代码顺序保证 |
-| C-3 | `tool.call()` 必须在权限 ALLOW 之后 | ✅ 硬性分支 |
-| C-4 | MCP PostToolUse hooks 必须在 addToolResult 之前完成 | ✅ 代码顺序保证 |
-| C-5 | 内置工具的 addToolResult 必须在 PostToolUse hooks 之前完成 | ✅ 代码顺序保证（与MCP相反） |
-
-## Data Flow Analysis
-
-### Core Entity Path 1: ToolUseBlock → ToolResult
-
-```mermaid
-flowchart LR
-    A["API returns<br/>ToolUseBlock<br/>{name, input, id}"] --> B["runToolUse()<br/>extract toolName + toolInput"]
-    B --> C["findToolByName()<br/>lookup in toolPool"]
-    C --> D["checkPermissionsAndCallTool()<br/>8-phase pipeline"]
-    D --> E["backfillObservableInput()<br/>shallow clone + defaults"]
-    E --> F["tool.call(input, ctx)<br/>async execution"]
-    F --> G["ToolResult&lt;T&gt;<br/>{data, newMessages,<br/>contextModifier}"]
-    G --> H["mapToolResultToToolResultBlockParam()<br/>tool-specific mapping"]
-    H --> I["processToolResultBlock()<br/>size check"]
-    I -->|"< maxChars"| J["ContentBlockParam<br/>direct return"]
-    I -->|"> maxChars"| K["toolResultStorage<br/>write to disk"]
-    K --> L["Summary reference<br/>'Result too large,<br/>see file://...'"]
-
-    style A fill:#e1f5fe
-    style G fill:#fff3e0
-    style J fill:#e8f5e9
-    style L fill:#e8f5e9
-```
-
-### Core Entity Path 2: Permission Decision Flow
+### Flowchart View
 
 ```mermaid
 flowchart TD
-    START["PreToolUse Phase"] --> RULES["User-defined rules<br/>(allow/deny patterns)"]
-    START --> HOOKS["MCP PreToolUse hooks<br/>(hook decisions)"]
-    START --> CLASSIFIER["Speculative classifier<br/>(Bash command class)"]
-    START --> MODE["Permission mode<br/>(auto-accept/plan)"]
+    Entry["runTools()"]
+    Partition{"partitionToolCalls()"}
+    Concurrent["runToolsConcurrently()<br/>max 10"]
+    Serial["runToolsSerially()"]
+    RunTool["runToolUse()"]
+    Stream["streamedCheck...()"]
+    Pipeline["checkPermissionsAndCallTool()<br/>7-stage pipeline"]
+    Validate["Zod + validateInput"]
+    Hooks["PreToolUse Hooks"]
+    Perm{"canUseTool()?"}
+    Call["tool.call()"]
+    Persist["maybePersist()"]
+    PostHooks["PostToolUse Hooks"]
+    Deny["Permission Denied"]
 
-    RULES --> RESOLVE["resolveHookPermissionDecision()"]
-    HOOKS --> RESOLVE
-    CLASSIFIER --> RESOLVE
-    MODE --> RESOLVE
+    Entry --> Partition
+    Partition -->|safe| Concurrent --> RunTool
+    Partition -->|unsafe| Serial --> RunTool
+    RunTool --> Stream --> Pipeline
+    Pipeline --> Validate --> Hooks --> Perm
+    Perm -->|approved| Call --> Persist --> PostHooks
+    Perm -->|denied| Deny
 
-    RESOLVE -->|deny| REJECT["executePermissionDeniedHooks()"]
-    RESOLVE -->|allow| PROCEED["Phase 7: tool.call()"]
-    RESOLVE -->|ask| DIALOG["canUseTool() dialog"]
-    DIALOG -->|user deny| REJECT
-    DIALOG -->|user allow| PROCEED
-
-    style REJECT fill:#ffebee
-    style PROCEED fill:#e8f5e9
-    style RESOLVE fill:#fff9c4
+    style Pipeline fill:#fff3e0,stroke:#e65100
+    style Deny fill:#ffebee,stroke:#c62828
 ```
 
-### Core Entity Path 3: Agent Tool Recursive Query
+- **图说明**: 覆盖工具执行主链路，关键分支在partition(并发/串行)和canUseTool(批准/拒绝)
+
+### Fan-in / Fan-out (Top-10)
+
+| Function | File:Line | Fan-in | Fan-out | 角色 |
+|----------|-----------|--------|---------|------|
+| checkPermissionsAndCallTool | toolExecution.ts:L599 | 2 | 15+ | **[热点] 编排器** |
+| runToolUse | toolExecution.ts:L337 | 3 | 3 | 入口分发 |
+| runTools | toolOrchestration.ts:L22 | 1 | 4 | 顶层调度 |
+| runToolsConcurrently | toolOrchestration.ts:L100 | 1 | 3 | 并发执行器 |
+| maybePersistLargeToolResult | toolResultStorage.ts:L80 | 1 | 4 | 结果持久化 |
+| enforceToolResultBudget | toolResultStorage.ts:L300 | 1 | 3 | 预算控制 |
+| assembleToolPool | tools.ts:L200 | 1 | 2 | 注册合并 |
+| getAllBaseTools | tools.ts:L20 | 2 | 0 | 工具源 |
+| findToolByName | Tool.ts:L50 | 8 | 0 | **[热点] 查找叶子** |
+| toolMatchesName | Tool.ts:L60 | 1 | 0 | 名称匹配 |
+
+## Temporal Analysis
+
+### Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    participant QL as queryLoop (T-03)
+    participant ORCH as runTools()
+    participant PART as partitionToolCalls
+    participant CONC as runToolsConcurrently
+    participant EXEC as checkPermissionsAndCallTool
+    participant HOOK as PreToolUse Hooks
+    participant PERM as canUseTool (T-06)
+    participant TOOL as tool.call()
+    participant STORE as maybePersist
+
+    QL->>ORCH: runTools(toolCalls[])
+    ORCH->>PART: partition(concurrent/serial)
+    
+    par Concurrent Batch (safe tools)
+        ORCH->>CONC: Promise.all([runToolUse×N])
+        loop Each safe tool
+            CONC->>EXEC: streamedCheckPermissionsAndCallTool()
+            EXEC->>EXEC: Zod validate → validateInput
+            EXEC->>EXEC: speculativeClassify (BashTool)
+            EXEC->>EXEC: backfillObservableInput
+            EXEC->>HOOK: runPreToolUseHooks
+            HOOK-->>EXEC: approve/deny/ask
+            alt Hook approved
+                EXEC->>PERM: canUseTool()
+                PERM-->>EXEC: permission decision
+                alt Permission granted
+                    EXEC->>TOOL: tool.call(input, ctx)
+                    TOOL-->>EXEC: ToolResult
+                    EXEC->>STORE: maybePersistLargeToolResult
+                else Permission denied
+                    EXEC-->>CONC: denied result
+                end
+            else Hook denied
+                EXEC-->>CONC: denied result
+            end
+        end
+        CONC-->>ORCH: yield results + apply contextModifiers
+    end
+    
+    ORCH-->>QL: generator complete
+```
+
+- **图说明**: 展示多工具执行的完整时序——从queryLoop调度到并发执行pipeline，关键异步点在Promise.all并发批和hook回调
+
+### Async Orchestration
 
 ```
-AgentTool.call(input)
-  → buildEffectiveSystemPrompt() → SystemPrompt
-  → assembleToolPool(subAgentCtx) → filtered Tool[]
-  → query(subAgentCtx) → [RECURSIVE ML-02]
-    → API call → tool_use returned
-      → runToolUse() → [RECURSIVE back to T-05]
-    → assistant response
-  → buildAgentToolResult(response) → ToolResult
+T=0  queryLoop receives API response with tool_use blocks:
+     └─ yield* runTools(toolCalls, context, contextModifiers)
+T=1  partitionToolCalls():
+     ├─ safe tools → concurrent batch []
+     └─ unsafe tools → serial batch []
+T=2  Concurrent batch (Promise.all):
+     ├─ [并行] runToolUse(toolA) ─────────────────┐
+     ├─ [并行] runToolUse(toolB) ─────────────┐   │
+     └─ [并行] runToolUse(toolC) ────────┐    │   │
+T=3  Each runToolUse:                    │    │   │
+     ├─ Zod validate (sync, <1ms)        │    │   │
+     ├─ validateInput (sync)             │    │   │
+     ├─ runPreToolUseHooks (async)       │    │   │
+     ├─ canUseTool (async, may prompt)   │    │   │
+     └─ tool.call() (async, varies)      │    │   │
+T=N  Promise.all resolves ◄──────────────┘◄───┘◄───┘
+T=N+1  contextModifiers applied (batch)
+T=N+2  Serial batch begins (if any):
+     ├─ runToolUse(toolD) → await
+     ├─ runToolUse(toolE) → await
+     └─ ...
+T=END  All results yielded → queryLoop continues
 ```
+
+### Event Sequences
+
+| Emit/Event | File:Line | Handler | File:Line | 同步/异步 |
+|-----------|-----------|---------|-----------|----------|
+| HookRunner preToolUse | toolExecution.ts:L800 | tool.preToolUseHook() | 各工具定义 | async |
+| HookRunner postToolUse | toolExecution.ts:L1200 | tool.postToolUseHook() | 各工具定义 | async |
+| MCP PostHook (result modification) | toolExecution.ts:L1210 | mcpClient.runPostToolUseHook() | mcpClient.ts | async |
+| Permission prompt | toolExecution.ts:L925 | canUseTool() | permissions(T-06) | async (user input) |
+| Telemetry emit | toolExecution.ts:L1280 | trackToolUsage() | telemetry | async (fire-forget) |
+
+### Race Condition Risks
+
+- [竞态风险] **contextModifier延迟应用**: runToolsConcurrently收集所有modifier，在Promise.all完成后统一应用。如果某个tool.call()内部读取了另一个并发工具会修改的context字段，可能读到旧值 (toolOrchestration.ts:L130-L160)
+- [竞态风险] **ContentReplacementState.fork()**: 并发工具共享同一个state对象，persistToolResult通过seenIds去重——如果两个并发工具产生相同ID的content block，第一个写入seenIds后第二个会跳过。由于工具调用参数不同，实际概率极低 (toolResultStorage.ts:L200)
+- 未发现其他显著竞态风险
+
+### Implicit Ordering Constraints
+
+- `assembleToolPool()` 必须在 `runTools()` 之前完成 — 工具池必须在执行前构建好 (tools.ts → toolOrchestration.ts)
+- `runPreToolUseHooks()` 必须在 `tool.call()` 之前完成 — hooks可能拒绝执行 (toolExecution.ts:L800 → L1207)
+- `maybePersistLargeToolResult()` 必须在 `PostToolUseHook` 之前完成 — MCP PostHook可能修改result内容 (toolExecution.ts:L1180 → L1210)
+- `contextModifiers` 在并发批全部完成后才统一应用 — 保证批内工具看到一致的context快照 (toolOrchestration.ts:L155)
+- `enforceToolResultBudget()` 必须在所有工具执行完成后、返回API之前执行 — 总预算需要所有结果 (toolResultStorage.ts:L300)
 
 ## State Transition Analysis
 
 ### State Variables
 
-| Variable | File:Line | Type | Initial Value | Description |
-|----------|-----------|------|---------------|-------------|
-| `speculativeResult` | toolExecution.ts:L730 | `Promise<ClassifyResult>` | `null` | Bash 投机分类器结果 |
-| `permissionDecision` | toolExecution.ts:L840 | `'allow'\|'deny'\|'ask'` | `'ask'` | 合并后的权限决策 |
-| `toolResult` | toolExecution.ts:L1050 | `ToolResult<T>` | `undefined` | 工具执行结果 |
-| `stream` | toolExecution.ts:L509 | `Stream<MessageUpdateLazy>` | `new Stream()` | 进度事件流 |
-| `abortController.signal` | toolExecution.ts:L415 | `AbortSignal` | `not aborted` | 取消信号 |
-| `imagePasteId` | toolExecution.ts:L1200 | `string \| undefined` | `undefined` | 图片粘贴 ID |
-| `backfilledInput` | toolExecution.ts:L800 | `{[key:string]:any}` | `shallow clone` | 回填后的输入 |
+| Variable | File:Line | 值域 | 初始值 |
+|----------|-----------|------|--------|
+| tool.isConcurrencySafe | Tool.ts (interface) | boolean | false |
+| tool.isEnabled | Tool.ts (interface) | boolean | true |
+| tool.deferredTool | Tool.ts (interface) | boolean | undefined |
+| hookDecision | toolExecution.ts:L820 | "approve" / "deny" / "ask" / undefined | undefined |
+| permissionDecision | toolExecution.ts:L930 | "allowed" / "denied" / "needs-auth" | - |
+| ContentReplacementState.seenIds | toolResultStorage.ts:L45 | Set<string> | new Set() |
+| ContentReplacementState.replacements | toolResultStorage.ts:L50 | Map<string, string> | new Map() |
+| speculativeEdit | toolExecution.ts:L740 | boolean | false |
 
-### State Transition Table
+### State Transition Diagram
 
-| Current State | Trigger | Target State | Side Effect | File:Line |
-|---------------|---------|-------------|-------------|-----------|
-| INIT | `runToolUse()` called | TOOL_LOOKUP | — | toolExecution.ts:L337 |
-| TOOL_LOOKUP | `findToolByName()` success | VALIDATING | — | toolExecution.ts:L345 |
-| TOOL_LOOKUP | tool not found | ERROR_NOT_FOUND | log + yield error message | toolExecution.ts:L369 |
-| TOOL_LOOKUP | abort signal | CANCELLED | yield cancel message | toolExecution.ts:L415 |
-| VALIDATING | `safeParse()` success | CLASSIFYING | — | toolExecution.ts:L630 |
-| VALIDATING | `safeParse()` failure | ERROR_SCHEMA | yield deferred hint or error | toolExecution.ts:L640 |
-| CLASSIFYING | Bash tool → start speculative | BACKFILLING | fire-and-forget async | toolExecution.ts:L720 |
-| CLASSIFYING | non-Bash → skip | BACKFILLING | — | toolExecution.ts:L720 |
-| BACKFILLING | backfill complete | HOOKS | input cloned | toolExecution.ts:L800 |
-| HOOKS | all hooks + permission resolved → ALLOW | EXECUTING | — | toolExecution.ts:L1050 |
-| HOOKS | permission resolved → DENY | DENIED | denied hooks + yield rejection | toolExecution.ts:L900 |
-| HOOKS | permission resolved → ASK | USER_PROMPT | interactive dialog | toolExecution.ts:L950 |
-| USER_PROMPT | user allows | EXECUTING | — | toolExecution.ts:L980 |
-| USER_PROMPT | user denies | DENIED | yield rejection | toolExecution.ts:L990 |
-| EXECUTING | tool.call() yields progress | STREAMING | progress message to stream | toolExecution.ts:L1100 |
-| EXECUTING | tool.call() completes | POST_HOOKS | result processed | toolExecution.ts:L1200 |
-| EXECUTING | tool.call() throws | ERROR_TOOL | catch → error hooks | toolExecution.ts:L1300 |
-| POST_HOOKS | post hooks complete | COMPLETE | analytics + cleanup | toolExecution.ts:L1700 |
-| DENIED | denied hooks complete | COMPLETE | — | toolExecution.ts:L910 |
-| ERROR_NOT_FOUND | — | TERMINAL | generator returns | toolExecution.ts:L410 |
-| CANCELLED | — | TERMINAL | generator returns | toolExecution.ts:L452 |
-| COMPLETE | — | TERMINAL | stream.close() | toolExecution.ts:L1740 |
+```mermaid
+stateDiagram-v2
+    [*] --> Registered: buildTool() creates tool
+    Registered --> Filtered: getTools() applies deny/isEnabled
+    Filtered --> Pooled: assembleToolPool() merge+sort+dedup
+    
+    state "Tool Execution Pipeline" as Pipeline {
+        [*] --> Validating: runToolUse() entry
+        Validating --> HookPhase: Zod+validateInput pass
+        Validating --> ValidationFailed: Zod/validate fail
+        ValidationFailed --> [*]: return error result
+        
+        HookPhase --> PermissionCheck: hook=approve
+        HookPhase --> HookDenied: hook=deny
+        HookPhase --> HookAsk: hook=ask
+        HookAsk --> PermissionCheck: user approves
+        HookAsk --> HookDenied: user denies
+        HookDenied --> [*]: return denied result
+        
+        PermissionCheck --> Executing: canUseTool=allowed
+        PermissionCheck --> PermissionDenied: canUseTool=denied
+        PermissionCheck --> NeedsAuth: McpAuthError
+        PermissionDenied --> [*]: return denied result
+        NeedsAuth --> [*]: return needs-auth result
+        
+        Executing --> Persisting: tool.call() succeeds
+        Executing --> ExecutionFailed: tool.call() throws
+        Persisting --> PostHook: maybePersist complete
+        PostHook --> [*]: return success result
+        
+        ExecutionFailed --> PostFailureHook: error caught
+        PostFailureHook --> Retrying: retriable error
+        PostFailureHook --> [*]: fatal error result
+        Retrying --> Executing: retry with backoff
+    }
+```
 
-### Terminal States
+| 当前状态 | 触发条件 | 目标状态 | 副作用 | file:line |
+|---------|---------|---------|--------|-----------|
+| Validating | Zod safeParse succeeds | HookPhase | - | toolExecution.ts:L615 |
+| Validating | Zod safeParse fails | ValidationFailed | telemetry error | toolExecution.ts:L660 |
+| HookPhase | preToolUseHook returns approve | PermissionCheck | - | toolExecution.ts:L850 |
+| HookPhase | preToolUseHook returns deny | HookDenied | - | toolExecution.ts:L860 |
+| PermissionCheck | canUseTool returns allowed | Executing | - | toolExecution.ts:L950 |
+| PermissionCheck | canUseTool returns denied | PermissionDenied | - | toolExecution.ts:L960 |
+| Executing | tool.call() resolves | Persisting | result to maybePersist | toolExecution.ts:L1207 |
+| Executing | tool.call() throws McpAuthError | NeedsAuth | - | toolExecution.ts:L1400 |
+| Executing | tool.call() throws RateLimitError | Retrying | backoff | toolExecution.ts:L1420 |
+| Persisting | maybePersist completes | PostHook | file written if large | toolResultStorage.ts:L80 |
+| PostHook | MCP PostHook modifies result | [*] | result may change | toolExecution.ts:L1210 |
 
-| State | Recoverable? | Description |
-|-------|-------------|-------------|
-| COMPLETE | N/A | 正常完成，结果已返回 |
-| ERROR_NOT_FOUND | No | 工具不存在，query loop 继续下一次 tool_use |
-| ERROR_SCHEMA | No | 输入验证失败，API 可能重试 |
-| ERROR_TOOL | No | 工具执行异常，结果包含错误信息 |
-| DENIED | No | 权限拒绝，结果包含拒绝原因 |
-| CANCELLED | No | 用户取消，query loop 处理 |
+### Terminal & Error States
 
-### Cross-Component State Linkage
+- **终态**: ValidationFailed — 不可恢复，返回错误结果给模型
+- **终态**: HookDenied — 不可恢复，hook决策不可覆盖
+- **终态**: PermissionDenied — 不可恢复，用户明确拒绝
+- **终态**: NeedsAuth — 需要MCP重新认证（外部干预）
+- **可恢复**: ExecutionFailed+Retrying — retriable error自动重试
 
-1. **`abortController` → Tool.call()**: 信号传递到每个工具的执行上下文，工具需自行检查 signal.aborted
-2. **`permissionDecision` → HookResults**: hook 返回的 decision 影响最终权限状态
-3. **`toolResult` → PostToolUse hooks**: 结果传递给 post hooks，MCP 工具可被 hooks 修改
-4. **`queryDepth` (ML-02) → AgentTool**: 递归深度限制，子 agent 的 depth = parent depth + 1
+### Cross-Component State Coupling
+
+- `permissionDecision (toolExecution.ts)` 变更 → 触发 `contextModifier` 队列追加 → 批完成后 `context (T-03)` 变更 (toolOrchestration.ts:L155)
+- `ContentReplacementState.seenIds` 变更 → 影响 `persistToolResult()` 是否跳过重复ID → 跨并发工具共享 (toolResultStorage.ts:L200)
+- `tool.isEnabled (Tool interface)` 变更 → 影响 `getTools()` 过滤 → 下次queryLoop工具池变更 (tools.ts:L160)
 
 ## Error Propagation Analysis
 
-### Error Source Catalog
+### Error Sources
 
-| # | Error Source | Type | Condition | File:Line |
-|---|-------------|------|-----------|-----------|
-| E1 | `findToolByName()` returns undefined | Logic | Tool name not in pool | toolExecution.ts:L345 |
-| E2 | `inputSchema.safeParse()` failure | ZodError | Input doesn't match schema | toolExecution.ts:L640 |
-| E3 | `validateInput()` returns deny | ValidationResult | Custom validation failed | toolExecution.ts:L690 |
-| E4 | `startSpeculativeClassifierCheck()` exception | Runtime | Classifier crash | toolExecution.ts:L730 |
-| E5 | `resolveHookPermissionDecision()` → deny | Permission | Hook/rule denied execution | toolExecution.ts:L900 |
-| E6 | `canUseTool()` → user deny | Interactive | User rejected tool use | toolExecution.ts:L990 |
-| E7 | `tool.call()` throws Error | Runtime | Tool execution crash | toolExecution.ts:L1100 |
-| E8 | MCP auth error (401/403) | Network | MCP server auth expired | toolExecution.ts:L1150 |
-| E9 | `processToolResultBlock()` exceeds size | Logic | Result > maxChars | toolResultStorage.ts |
-| E10 | `runPostToolUseHooks()` exception | Runtime | Post hook crash | toolExecution.ts:L1350 |
-| E11 | `abortController.signal.aborted` | Cancel | User cancelled query | toolExecution.ts:L415 |
-| E12 | `streamedCheckPermissionsAndCallTool()` stream error | Runtime | Stream queue error | toolExecution.ts:L509 |
+| Error Type | 产生条件 | File:Line | 严重级 |
+|-----------|---------|-----------|--------|
+| ZodError | tool input不匹配schema | toolExecution.ts:L620 | LOW |
+| ToolInputValidationError | validateInput()自定义验证失败 | toolExecution.ts:L690 | LOW |
+| McpAuthError | MCP server需要认证 | toolExecution.ts:L1400 | MEDIUM |
+| RateLimitError | MCP server限流 | toolExecution.ts:L1420 | MEDIUM |
+| tool.call() throw | 工具执行内部错误 | toolExecution.ts:L1207 | HIGH |
+| MCP connection error | MCP server不可达 | MCPTool.ts (proxy) | HIGH |
+| PermissionDeniedError | 用户拒绝权限 | toolExecution.ts:L960 | LOW |
+| HookDeniedError | PreToolUse hook拒绝 | toolExecution.ts:L860 | LOW |
 
-### Error Propagation Paths
+### Propagation Paths
+
+#### ZodError — 输入验证失败
+```
+[源] toolExecution.ts:L620 safeParse() → ZodError
+  → [catch] toolExecution.ts:L660 → 格式化错误消息 → return error ToolResult
+  → [恢复策略: abort] — 不重试，返回错误给模型让其调整
+```
+
+#### McpAuthError — MCP认证失败
+```
+[源] toolExecution.ts:L1207 tool.call() → MCP server返回401
+  → [catch] toolExecution.ts:L1400 → instanceof McpAuthError
+  → [恢复策略: escalate] — 返回needs-auth ToolResult
+  → [下游] queryLoop(T-03) → 触发MCP重新认证流程
+```
+
+#### RateLimitError — MCP限流
+```
+[源] toolExecution.ts:L1207 tool.call() → MCP server返回429
+  → [catch] toolExecution.ts:L1420 → classifyToolError() → retriable
+  → [恢复策略: retry] — 带backoff重试
+```
+
+#### tool.call() generic throw — 工具执行异常
+```
+[源] toolExecution.ts:L1207 tool.call() throws
+  → [catch] toolExecution.ts:L1400 → classifyToolError()
+  ├─ retriable → [恢复策略: retry] with backoff
+  └─ fatal → [恢复策略: abort] → PostToolUseFailure hooks → return error ToolResult
+```
+
+#### PermissionDenied — 用户拒绝
+```
+[源] toolExecution.ts:L925 canUseTool() → user denies
+  → [恢复策略: abort] — return denied ToolResult
+  → [下游] 模型收到denied结果，调整后续策略
+```
+
+### Error Propagation View
 
 ```mermaid
 flowchart TD
-    E1["E1: Tool Not Found"] --> WRAP1["Wrap as tool_use_error"]
-    WRAP1 --> YIELD1["yield MessageUpdateLazy"]
-    YIELD1 --> Q["query.ts continues<br/>(feeds error to API)"]
+    subgraph Sources
+        Zod["ZodError<br/>toolExecution.ts:L620"]
+        Auth["McpAuthError<br/>toolExecution.ts:L1400"]
+        Rate["RateLimitError<br/>toolExecution.ts:L1420"]
+        Generic["tool.call() throw<br/>toolExecution.ts:L1207"]
+        Perm["PermissionDenied<br/>toolExecution.ts:L960"]
+        Hook["HookDenied<br/>toolExecution.ts:L860"]
+    end
 
-    E2["E2: Schema Validation Fail"] --> DEFERRED{"Is deferred tool?"}
-    DEFERRED -->|yes| HINT["Return deferred hint<br/>'schema not sent'"]
-    DEFERRED -->|no| WRAP2["Wrap as tool_use_error"]
-    HINT --> Q
-    WRAP2 --> Q
+    subgraph Handlers
+        Classify["classifyToolError()"]
+        PostFail["PostToolUseFailure hooks"]
+        Retry{"retriable?"}
+    end
 
-    E3["E3: Custom Validation Fail"] --> WRAP3["Wrap as tool_use_error"]
-    WRAP3 --> Q
+    subgraph Outcomes
+        ErrorResult["Error ToolResult → model"]
+        NeedsAuth["needs-auth → queryLoop"]
+        RetryLoop["retry with backoff"]
+    end
 
-    E4["E4: Classifier Crash"] --> IGNORE["Absorbed silently<br/>(speculative, optional)"]
-    IGNORE --> CONTINUE["Continue pipeline"]
+    Zod --> ErrorResult
+    Perm --> ErrorResult
+    Hook --> ErrorResult
+    Auth --> NeedsAuth
+    
+    Generic --> Classify
+    Rate --> Classify
+    Classify --> Retry
+    Retry -->|yes| RetryLoop
+    Retry -->|no| PostFail --> ErrorResult
+    RetryLoop --> Generic
 
-    E5["E5: Permission Denied"] --> DENIED["executePermissionDeniedHooks()"]
-    DENIED --> WRAP5["Wrap as permission denied result"]
-    WRAP5 --> Q
-
-    E7["E7: Tool Execution Error"] --> CATCH7["catch in checkPermissionsAndCallTool"]
-    CATCH7 --> FAIL_HOOKS["runPostToolUseFailureHooks()"]
-    FAIL_HOOKS --> WRAP7["Wrap as tool_use_error"]
-    WRAP7 --> Q
-
-    E8["E8: MCP Auth Error"] --> MCP_AUTH["Update client state<br/>to needs-auth"]
-    MCP_AUTH --> WRAP8["Wrap as tool_use_error"]
-    WRAP8 --> Q
-
-    E10["E10: Post Hook Error"] --> LOG10["logError() + continue"]
-    LOG10 --> COMPLETE["Complete normally"]
-
-    E11["E11: Abort Signal"] --> CANCEL["yield cancel message"]
-    CANCEL --> RETURN["generator returns"]
-
-    E7 --> CATCH_OUTER["catch in runToolUse()"]
-    CATCH_OUTER --> WRAP_OUTER["Wrap as tool_use_error"]
-    WRAP_OUTER --> Q
-
-    style IGNORE fill:#e8f5e9
-    style LOG10 fill:#e8f5e9
-    style Q fill:#e1f5fe
-    style WRAP_OUTER fill:#ffebee
+    style Classify fill:#fff3e0
+    style ErrorResult fill:#ffebee
+    style NeedsAuth fill:#fff8e1
 ```
+
+- **图说明**: 展示6种错误源的传播路径。Zod/Perm/Hook直接终止；Auth升级到queryLoop；Generic/Rate经classify分流后retry或abort
 
 ### Unhandled Paths
 
-| Path | Description | Risk |
-|------|-------------|------|
-| UH-1 | `Stream<T>` 内部队列溢出 | 极低（Stream 使用 unbounded queue） |
-| UH-2 | `tool.call()` 中的 async generator 不 yield 任何值 | runToolUse 收到空 generator，无结果返回给 API |
-| UH-3 | MCP server 在 PreToolUse hook 中无限挂起 | 5s timeout 保护，超时视为 neutral |
+- [未处理] **tool.call()内部未捕获异常**: 如果工具实现本身有unhandled rejection（如BashTool子进程异常退出未await），错误会冒泡到checkPermissionsAndCallTool的catch，但telemetry记录可能在错误之后 (toolExecution.ts:L1280)
+- [未处理] **PostToolUseHook自身抛出异常**: PostHook失败时错误被catch并记录日志，但不影响工具结果返回 (toolExecution.ts:L1230)
+- [未处理] **persistToolResult文件系统失败**: 写文件失败时仅catch+log，不重试，结果以内存形式返回（可能超限） (toolResultStorage.ts:L200)
+- scope内大部分错误路径均有catch，主要风险在fire-and-forget的telemetry和hook错误
 
-### Recovery Strategies
+### Error Handling Summary
 
-| Strategy | Usage Points | Count |
-|----------|-------------|-------|
-| **abort** | Schema fail, Permission denied, Tool not found | 4 |
-| **absorb** | Classifier crash, Post hook error | 2 |
-| **fallback** | Deferred tool → ToolSearch, Alias fallback | 2 |
-| **transform** | MCP auth error → needs-auth state | 1 |
-| **retry** | (N/A in T-05, handled in ML-02) | 0 |
-| **escalate** | Tool execution error → tool_use_error to API | 2 |
+- 主要try/catch位置: toolExecution.ts:L620(Zod), L690(validate), L800(hooks), L1207(tool.call), L1400(classify)
+- 恢复策略: abort(验证/权限失败), retry(限流), escalate(MCP认证), absorb(telemetry/hook失败)
+- 未处理冒泡: 有 — telemetry和PostHook失败被静默吞掉
 
-### Error-Result Matrix
-
-| Error Type | API sees | User sees | Tool sees |
-|-----------|----------|-----------|-----------|
-| Tool not found | tool_result (is_error=true) | Error message in chat | N/A |
-| Schema validation | tool_result (is_error=true) or deferred hint | Error or "loading tool..." | N/A |
-| Permission denied | tool_result (is_error=false) | Permission denied message | N/A |
-| Tool execution crash | tool_result (is_error=true) | Error in chat | N/A |
-| MCP auth error | tool_result (is_error=true) | "MCP auth required" | N/A |
-| User cancel | tool_result (is_error=false) | "Cancelled" message | N/A |
-| Post hook error | tool_result (may be modified) | Normal result | N/A |
-
-## Concurrency Model Analysis
+## Concurrency Analysis
 
 ### Shared Mutable State
 
-| Variable | Location | Readers | Writers | Protection |
-|----------|----------|---------|---------|-----------|
-| `Stream<T>.queue` | toolExecution.ts:L509 | streamedCheck (consumer) | checkPermissions (producer) | Internal queue (thread-safe in Node.js) |
-| `abortController.signal` | toolExecution.ts:L415 | checkPermissions, tool.call() | External (query.ts) | Read-only for tools |
-| `toolPool` | tools.ts | getTools(), assembleToolPool() | getAllBaseTools() (once) | Lazy init + closure cache |
-| `speculativeResult` | toolExecution.ts:L730 | resolveHookPermissionDecision | startSpeculativeClassifierCheck | Promise (single-assignment) |
-| `computerUseLock` | computerUseLock.ts | ComputerUse executor | ComputerUse executor | Global mutex (Semaphore(1)) |
+| Variable | File:Line | 读取方 | 写入方 | 保护机制 |
+|----------|-----------|--------|--------|---------|
+| ContentReplacementState.seenIds | toolResultStorage.ts:L45 | persistToolResult() | persistToolResult() | 无保护 ⚠️ (并发工具共享同一state) |
+| contextModifiers[] | toolOrchestration.ts:L130 | runToolsConcurrently() | 各runToolUse() | 延迟收集+批应用（安全） |
+| toolPool (Map) | tools.ts:L200 | findToolByName() | assembleToolPool() | 一次性构建，只读使用（安全） |
+| MCP tool dynamic overrides | MCPTool.ts:L50 | tool.call() | MCP discovery | per-query快照（安全） |
 
 ### Coordination Patterns
 
-| Pattern | Usage | Mechanism |
-|---------|-------|-----------|
-| **Promise-based pipeline** | Speculative classifier | `await classifierPromise` in Phase 6 |
-| **AsyncGenerator streaming** | Progress events | `Stream<T>.enqueue()` → consumer `for await` |
-| **Abort signal** | Cancellation | `AbortController.signal.aborted` checked at entry + passed to tools |
-| **Generation number** | Stale result detection | AgentTool uses generation to discard outdated results |
-| **Global mutex** | ComputerUse | `computerUseLock.ts` Semaphore(1) prevents concurrent screen operations |
+- **Promise.all并发执行**: runToolsConcurrently使用Promise.all批量执行安全工具，max 10并发 (toolOrchestration.ts:L100)
+- **串行执行**: 不安全工具通过for...of await顺序执行 (toolOrchestration.ts:L150)
+- **延迟contextModifier**: 并发工具的context修改延迟到Promise.all完成后统一应用，避免并发读写 (toolOrchestration.ts:L155)
+- **ContentReplacementState.fork()**: 每个query创建新state实例，但并发工具共享同一实例——通过seenIds去重提供隐式保护 (toolResultStorage.ts:L45)
 
-### Deadlock / Starvation Assessment
-
-**No deadlock risk** — Node.js single-threaded event loop ensures:
-- No lock ordering issues (only ComputerUse has a mutex, single resource)
-- All `await` points yield to event loop, never block
-- AbortController provides escape hatch for long-running operations
-
-**Starvation risk**: LOW — All tools share equal priority in the tool pool. No priority scheduling exists.
-
-## Side Effects Manifest
-
-| Function | Side Effect Type | Target | Reversible | File:Line |
-|----------|-----------------|--------|-----------|-----------|
-| `runToolUse()` | Network | LLM API (via tool.call()) | N/A | toolExecution.ts:L337 |
-| `BashTool.call()` | Subprocess | Shell command execution | No | BashTool.tsx |
-| `BashTool.call()` | FS write | Command output files | Depends on command | BashTool.tsx |
-| `FileWriteTool.call()` | FS write | Target file creation | Yes (delete file) | FileWriteTool.ts |
-| `FileEditTool.call()` | FS write | Target file modification | Yes (undo via fileHistory) | FileEditTool.ts |
-| `FileReadTool.call()` | FS read | File system read | N/A | FileReadTool.ts |
-| `toolResultStorage.write()` | FS write | `.claude/` tool result cache | Yes (delete file) | toolResultStorage.ts |
-| `runPreToolUseHooks()` | Network | MCP server hook invocation | N/A | toolHooks.ts |
-| `runPostToolUseHooks()` | Network | MCP server hook invocation | N/A | toolHooks.ts |
-| `AgentTool.call()` | Subprocess | Fork subagent process | Yes (kill process) | AgentTool.tsx |
-| `AgentTool.call()` | FS write | Agent worktree creation | Yes (remove worktree) | AgentTool.tsx |
-| `startSpeculativeClassifierCheck()` | FS read | File system stat checks | N/A | bashPermissions.ts |
-| `logEvent()` | Network | Analytics telemetry | No | (shared utility) |
-| `canUseTool()` | Global state mutation | User dialog state | No | (ML-04) |
-| `ComputerUse executor` | Subprocess | Screenshot capture + screen ops | No | computerUse/executor.ts |
-
-## Boundary / Integration Diagram
+### Concurrency Timeline
 
 ```mermaid
-flowchart TD
-    subgraph T05["T-05: Tool System Core"]
-        REG["Registration<br/>tools.ts + Tool.ts"]
-        EXEC["Execution Engine<br/>toolExecution.ts"]
-        HOOKS["Hook System<br/>toolHooks.ts"]
-        SEARCH["Tool Search<br/>toolSearch.ts"]
-        STORAGE["Result Storage<br/>toolResultStorage.ts"]
-    end
+gantt
+    title Tool Execution Concurrency Timeline
+    dateFormat X
+    axisFormat %L
 
-    subgraph ML02["ML-02: Query Engine"]
-        RUNTOOLS["runTools()"]
-        QUERY["query()"]
-    end
+    section Orchestration
+    partitionToolCalls           :a1, 0, 1
+    Context Modifier Apply       :a7, 15, 1
 
-    subgraph ML04["ML-04: Permissions"]
-        CANUSE["canUseTool()"]
-        RULES["Permission Rules"]
-    end
+    section Safe Tool A
+    validate+hook+perm           :a2, 1, 3
+    tool.call()                  :a3, 4, 5
+    persist                      :a4, 9, 1
 
-    subgraph ML05["ML-05: MCP"]
-        MCPC["MCP Connections"]
-        MCPHOOKS["MCP Hooks"]
-    end
+    section Safe Tool B
+    validate+hook+perm           :a5, 1, 2
+    tool.call()                  :a6, 3, 4
+    persist                      :a8, 7, 1
 
-    subgraph ML01["ML-01: CLI"]
-        CMD["Commands"]
-    end
+    section Unsafe Tool C
+    runToolUse(serial)           :a9, 16, 5
 
-    subgraph EXTERNAL["External Systems"]
-        FS["File System"]
-        SHELL["Shell / Subprocess"]
-        NET["Network / LLM API"]
-        SCREEN["Screen (CU)"]
-    end
-
-    RUNTOOLS -->|"tool_use blocks"| EXEC
-    QUERY -->|"StreamingToolExecutor"| EXEC
-    CMD -->|"tool deny rules"| REG
-
-    EXEC -->|"permission check"| CANUSE
-    CANUSE -->|"rules lookup"| RULES
-    EXEC -->|"Pre/Post hooks"| HOOKS
-    HOOKS -->|"MCP protocol"| MCPHOOKS
-    MCPHOOKS --> MCPC
-    EXEC -->|"tool.call()"| REG
-    EXEC -->|"large results"| STORAGE
-
-    REG -.->|"isToolSearch"| SEARCH
-
-    EXEC -->|"Bash/File/Agent"| FS
-    EXEC -->|"BashTool"| SHELL
-    EXEC -->|"MCP/WebFetch"| NET
-    EXEC -->|"ComputerUse"| SCREEN
+    section Budget
+    enforceToolResultBudget      :a10, 21, 1
 ```
 
-### Cross-Task Interface Points
+- **图说明**: 并发窗口T=1~T=10，safe tools并行执行；unsafe tool在T=16串行开始。contextModifier在T=15统一应用。关键竞态点在persist阶段共享seenIds
 
-| Interface | Direction | Data Type | Owner Task |
-|-----------|-----------|-----------|-----------|
-| `runTools()` → `runToolUse()` | ML-02 → T-05 | ToolUseBlock[] | T-03 |
-| `canUseTool()` | T-05 → ML-04 | PermissionDecision | T-06 |
-| `MCPClient.callTool()` | T-05 → ML-05 | MCP tool call params | T-08 |
-| `toolPool` registration | T-05 → ML-01 | Tool[] | T-01 |
-| `assembleToolPool()` | T-05 ← ML-05 | MCP tools | T-08 |
-| `query()` (recursive) | T-05 → ML-02 | SubAgentContext | T-03 |
+### Deadlock / Starvation Risk
+
+- [风险低] **Promise.all一个失败全部reject**: 如果某个安全工具抛出未分类错误，Promise.all会reject整个批——但实际代码中每个runToolUse内部均有完整catch，返回ToolResult而非throw，因此不会触发Promise.all reject
+- 未发现死锁或饥饿风险
+
+## Side Effect Inventory
+
+| 函数 | 副作用类型 | 目标 | 可逆性 | file:line |
+|------|-----------|------|--------|-----------|
+| checkPermissionsAndCallTool | Network | LLM API (telemetry) | N/A | toolExecution.ts:L1280 |
+| maybePersistLargeToolResult | FS write | ~/.claude/tool-results/ | 否 | toolResultStorage.ts:L150 |
+| persistToolResult | FS write | project .claude/ dir | 否 | toolResultStorage.ts:L200 |
+| runPreToolUseHooks | Global state mutation | tool input may be modified | 是 | toolExecution.ts:L800 |
+| runPostToolUseHooks | Global state mutation | tool result may be modified | 是 | toolExecution.ts:L1210 |
+| canUseTool | FS read | ~/.claude/permissions/ | N/A | toolExecution.ts:L925 |
+| getTools | FS read | tool module lazy require | N/A | tools.ts:L20 |
+| assembleToolPool | Subprocess | MCP server discovery | 否 | tools.ts:L200 |
+| trackToolUsage | Network | telemetry endpoint | 否 | toolExecution.ts:L1280 |
+| findDeferredTools | Network | MCP server list | N/A | toolSearch.ts:L100 |
 
 ## Acceptance Criteria Status
 
-| # | Criterion | Status | Evidence |
-|---|-----------|--------|----------|
-| AC-1 | 理解工具注册三阶段流程 | ✅ PASS | tools.ts: getAllBaseTools→getTools→assembleToolPool |
-| AC-2 | 理解工具执行管线全阶段 | ✅ PASS | toolExecution.ts: 8-phase pipeline documented |
-| AC-3 | 理解权限决策合并机制 | ✅ PASS | resolveHookPermissionDecision() 5-source merge |
-| AC-4 | 理解 MCP vs 内置工具差异 | ✅ PASS | Post hook ordering, auth handling, result mapping |
-| AC-5 | 理解 AgentTool 多模式架构 | ✅ PASS | 4 isolation modes + recursive query loop |
-| AC-6 | 理解 BashTool 安全架构 | ✅ PASS | 3-layer security + speculative classifier |
-| AC-7 | 理解延迟工具发现机制 | ✅ PASS | ToolSearch + deferred schema + optimistic flag |
+- [x] **工具注册机制完整梳理**: getAllBaseTools() ~45个内置工具条件加载 + getTools()三层过滤(deny/isEnabled/REPL mode) + assembleToolPool()排序去重合并 (tools.ts:L20-L250)
+- [x] **工具统一接口分析**: Tool泛型接口12个字段 + buildTool()工厂 + TOOL_DEFAULTS fail-closed 8字段默认值 (Tool.ts:L1-L792)
+- [x] **多工具编排逻辑**: partitionToolCalls()按isConcurrencySafe分区 → 并发(Promise.all, max 10) / 串行(for-await) (toolOrchestration.ts:L22-L188)
+- [x] **7阶段执行pipeline完整追踪**: Zod validate → validateInput → speculativeClassify → backfillObservable → preHooks → canUseTool → tool.call → persist → postHooks (toolExecution.ts:L599-L1745)
+- [x] **工具结果持久化机制**: maybePersistLargeToolResult阈值判断 + ContentReplacementState去重 + per-message预算控制 (toolResultStorage.ts:L1-L1040)
+- [x] **延迟工具发现机制**: deferred tool当MCP token>10% context window时启用 + findDeferredTools按需加载 (toolSearch.ts:L1-L756)
+- [x] **MCP工具代理模式**: MCPTool薄代理77行 + 运行时动态覆盖name/description/schema (MCPTool.ts:L1-L77)
+- [x] **工具名白/黑名单**: 4个常量定义工具过滤规则 (constants/tools.ts:L1-L112)
 
 ## Identified Problems
 
-### P1-01: checkPermissionsAndCallTool() 过长（1150行）
-- **File**: src/services/tools/toolExecution.ts:599-1745
-- **Severity**: P1 (HIGH)
-- **Description**: 核心执行函数 1150 行，包含 8 个阶段、5 种权限源合并、2 条工具结果路径、大量 analytics 日志。维护和测试极困难。
-- **Impact**: 新增工具执行阶段或修改权限逻辑时，极易引入回归。
-- **Suggestion**: 按 Phase 拆分为独立函数：`validatePhase()`, `hookPhase()`, `executePhase()`, `postHookPhase()`。
+### 风险与热点
+- [事实] **God File toolExecution.ts (1745行)**: checkPermissionsAndCallTool单函数1145行，混杂6+职责(验证/分类/hook/权限/执行/持久化/telemetry)，fan-out 15+，是最复杂的单一函数 (toolExecution.ts:L599)
+- [事实] **TOOL_DEFAULTS fail-closed但无文档**: 8个字段全部默认"最不信任"值，但无注释解释设计意图，新工具开发者可能不理解为什么需要显式opt-in (Tool.ts:L30-L50)
+- [推测] **并发seenIds无保护**: ContentReplacementState.seenIds被并发persistToolResult读写，理论上有竞态窗口——实际因工具参数不同导致ID不同，风险极低 (toolResultStorage.ts:L45)
+- [事实] **MCP/非MCP PostHook执行顺序不一致**: MCP PostHook在addToolResult之前执行（可修改输出内容），非MCP在之后执行——这导致两类工具的hook行为不可互换 (toolExecution.ts:L1180-L1230)
 
-### P2-01: findToolByName() 线性搜索
-- **File**: src/Tool.ts:L50
-- **Severity**: P2 (MEDIUM)
-- **Description**: 每次工具查找都是 O(n) 线性扫描（n≤50）。虽然当前性能足够，但在 MCP 工具数量增长后可能成为瓶颈。
-- **Impact**: 每个工具调用 + alias fallback = 最坏情况 2n 次比较。
-- **Suggestion**: 改用 Map&lt;string, Tool&gt; 索引。
-
-### P2-02: Backfill 输入的分裂视图
-- **File**: src/services/tools/toolExecution.ts:L800-830
-- **Severity**: P2 (MEDIUM)
-- **Description**: `backfillObservableInput()` 创建输入的浅克隆，hooks 看到克隆版本，tool.call() 使用原始版本。这个设计意图是保持 prompt cache 稳定，但增加了理解难度。
-- **Impact**: 开发者修改 hooks 逻辑时可能困惑为什么输入有两个版本。
-- **Suggestion**: 添加更详细的注释或引入显式的 `OriginalInput`/`BackfilledInput` 类型别名。
-
-### P3-01: 投机分类器错误静默吞掉
-- **File**: src/services/tools/toolExecution.ts:L730
-- **Severity**: P3 (LOW)
-- **Description**: 投机分类器（Bash）的异常被静默吞掉，仅 console.error。如果分类器持续崩溃，开发者不会察觉。
-- **Impact**: 安全策略可能退化为仅依赖 rules/hooks，降低安全防御深度。
-- **Suggestion**: 添加 crash 计数器，连续失败时发出 warning。
-
-### P3-02: BashTool 安全层代码重复
-- **File**: src/tools/BashTool/bashSecurity.ts + bashPermissions.ts
-- **Severity**: P3 (LOW)
-- **Description**: bashSecurity (2592L) 和 bashPermissions (2621L) 功能边界模糊，存在重叠的命令解析逻辑。
-- **Impact**: 修改安全策略时可能需要同步更新两个文件。
-- **Suggestion**: 合并为统一的 BashSecurityEngine。
-
-### P3-03: ComputerUseLock 全局互斥粒度
-- **File**: src/utils/computerUse/computerUseLock.ts
-- **Severity**: P3 (LOW)
-- **Description**: 全局 Semaphore(1) 互斥锁阻止所有并发的 ComputerUse 操作，即使操作针对不同屏幕区域。
-- **Impact**: 多 agent 场景下，ComputerUse 成为串行瓶颈。
-- **Suggestion**: 考虑按 screen region 细化锁粒度。
-
-### P4-01: 工具结果持久化的隐式阈值
-- **File**: src/services/tools/toolResultStorage.ts
-- **Severity**: P4 (INFO)
-- **Description**: 大结果持久化使用硬编码的 `maxResultSizeChars` 阈值，用户无法配置。
-- **Impact**: 某些工具结果可能被意外截断。
-- **Suggestion**: 将阈值移至配置文件或环境变量。
+### 反模式或一致性问题
+- **God Function**: checkPermissionsAndCallTool应拆分为独立的验证器/hook管理器/权限检查器/执行器/持久化器
+- **Fire-and-forget telemetry**: trackToolUsage是void async调用，失败被静默吞掉——telemetry数据可能丢失而无人知晓
+- **Magic numbers**: 并发上限10、persist阈值、budget百分比等关键参数散落在代码中，未提取为命名常量
 
 ## Open Questions
-
-| # | Question | Depends On | Status |
-|---|----------|-----------|--------|
-| OQ-1 | AgentTool 的最大递归深度限制是多少？ | T-03 (query.ts depth tracking) | 需确认 |
-| OQ-2 | MCP PostToolUse hooks 修改输出后，原始输出是否保留？ | ML-05 MCP 文档 | 需确认 |
-| OQ-3 | `isToolSearchEnabledOptimistic()` 在什么条件下返回 true？ | Remote config + GrowthBook | 需确认 |
-| OQ-4 | BashTool 投机分类器的训练数据和准确率是多少？ | ML-06 (telemetry) | 需确认 |
-| OQ-5 | toolResultStorage 写入的文件何时被清理？ | ML-01 init/cleanup | 需确认 |
-| OQ-6 | AgentTool worktree isolation 如何处理 concurrent writes？ | ML-09 (bridge) | 需确认 |
-| OQ-7 | ComputerUse 的 screenshot 内容是否发送到外部 API？ | ML-02 (claude.ts) | 需确认 |
-| OQ-8 | `alwaysLoad: true` 的工具列表是否随版本变化？ | Change log | 需确认 |
+- **checkPermissionsAndCallTool拆分策略**: 该函数1145行是否曾有重构计划？是否考虑过pipeline pattern？(depends on T-01 了解init阶段是否配置了tool pipeline)
+- **deferred tool冷启动延迟**: 首次调用deferred tool需要MCP discovery，延迟可能显著——是否有缓存机制？(depends on T-08 MCP生命周期管理)
+- **contextModifier语义**: contextModifier允许工具修改后续工具的context，但具体修改哪些字段？是否有冲突检测？(depends on T-03 queryLoop context管理)
+- **persistToolResult失败后的budget溢出**: 如果文件系统写入失败，结果保留在内存中——大量大结果工具可能超出API消息限制 (toolResultStorage.ts:L200)
+- **speculativeClassify仅BashTool**: 为什么只有BashTool需要speculative classification？其他工具是否有类似需求？(需要看BashTool具体实现，T-09 scope)
 
 ## Complexity Assessment
-
-| Dimension | Rating | Justification |
-|-----------|--------|---------------|
-| **Structural** | VERY HIGH | 50+ tools, 8-phase pipeline, 5-source permission merge |
-| **Control Flow** | HIGH | Multiple branching points (schema→permission→execution→hooks) |
-| **Data Flow** | HIGH | 3 distinct data paths (normal/MCP/agent), result transformation chain |
-| **Concurrency** | MEDIUM | Async pipeline with speculative parallelism, but single-threaded |
-| **Error Handling** | HIGH | 12 error sources, 5 recovery strategies, dual tool result paths |
-| **Security** | VERY HIGH | Multi-layer Bash security, path traversal, injection detection |
-| **Extensibility** | MEDIUM | Well-defined Tool interface, but pipeline phases tightly coupled |
-| **Overall** | **VERY HIGH** | Largest task in scope (142 files, 58K lines), critical system component |
+- **HIGH**
+- 主要复杂度集中在: **toolExecution.ts** — 1745行God File，checkPermissionsAndCallTool单函数1145行、7阶段pipeline、6+职责混杂、fan-out 15+
+- 次要复杂度: **toolResultStorage.ts** — 1040行，ContentReplacementState去重逻辑 + 多层预算控制 + 文件持久化
+- 整体工具系统架构是4层设计(接口→注册→编排→执行)，但执行层过度集中在一个函数中，是系统最大复杂度热点

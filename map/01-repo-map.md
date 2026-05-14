@@ -6,11 +6,11 @@
 - **完整源码树**：2021 个 TypeScript/TSX/JS/JSX 文件，总计 514,927 行
 - **依赖清单**：`package.json`（版本 `999.0.0-restored`，Bun 运行时）
 - **配置文件**：`tsconfig.json`（ESM, strict: false, react-jsx, path alias `src/*`）
-- **入口文件**：[`src/bootstrap-entry.ts`](/src/src/bootstrap-entry.ts.md)（5 行，启动宏入口）→ [`src/entrypoints/cli.tsx`](/src/src/entrypoints/cli.tsx.md)（303 行，快速路径分发）
-- **核心模块**：[`src/main.tsx`](/src/src/main.tsx.md)（4690 行，Commander 注册 + REPL 启动）、[`src/QueryEngine.ts`](/src/src/QueryEngine.ts.md)（1295 行，对话循环引擎）、[`src/query.ts`](/src/src/query.ts.md)（1729 行，底层查询执行）
-- **工具注册表**：[`src/tools.ts`](/src/src/tools.ts.md)（389 行，51 个工具 + ant-only 条件导入）
-- **命令注册表**：[`src/commands.ts`](/src/src/commands.ts.md)（754 行，80+ slash commands）
-- **任务类型定义**：[`src/Task.ts`](/src/src/Task.ts.md)（125 行，7 种 TaskType 枚举）
+- **入口文件**：[`src/bootstrap-entry.ts`](/src/src/bootstrap-entry.ts)（5 行，启动宏入口）→ [`src/entrypoints/cli.tsx`](/src/src/entrypoints/cli.tsx)（303 行，快速路径分发）
+- **核心模块**：[`src/main.tsx`](/src/src/main.tsx)（4690 行，Commander 注册 + REPL 启动）、[`src/QueryEngine.ts`](/src/src/QueryEngine.ts)（1295 行，对话循环引擎）、[`src/query.ts`](/src/src/query.ts)（1729 行，底层查询执行）
+- **工具注册表**：[`src/tools.ts`](/src/src/tools.ts)（389 行，51 个工具 + ant-only 条件导入）
+- **命令注册表**：[`src/commands.ts`](/src/src/commands.ts)（754 行，80+ slash commands）
+- **任务类型定义**：[`src/Task.ts`](/src/src/Task.ts)（125 行，7 种 TaskType 枚举）
 
 ### Missing Materials
 - **无自动化测试套件**：项目内无 test/ 目录，`*.test.ts` 文件被排除（实际不存在）
@@ -189,7 +189,7 @@ QueryEngine detects tool_use block
 
 ## Key Risks and Legacy Hotspots
 
-1. **[`src/main.tsx`](/src/src/main.tsx.md) (4690 行) 巨型文件** — 事实: 包含 Commander 注册 + REPL 启动 + 子命令路由，是最难维护的文件
+1. **[`src/main.tsx`](/src/src/main.tsx) (4690 行) 巨型文件** — 事实: 包含 Commander 注册 + REPL 启动 + 子命令路由，是最难维护的文件
 2. **`src/utils/` (570 文件/180,521 行) 过度膨胀** — 事实: 最大目录，含 permissions(25 文件)、config、diff、api 工具等，职责边界模糊
 3. **`src/ink/` fork 的维护风险** — 推测: fork 了 ink 框架（100 文件），可能与上游严重 diverge，升级困难
 4. **大量条件导入和死代码消除** — 事实: `process.env.USER_TYPE === 'ant'` 和 `feature()` 散布在 tools.ts、commands.ts、cli.tsx 等核心文件中，增加认知复杂度
@@ -199,32 +199,32 @@ QueryEngine detects tool_use block
 
 ## Recommended Reading Order
 
-1. [`src/entrypoints/cli.tsx`](/src/src/entrypoints/cli.tsx.md) → [`src/entrypoints/init.ts`](/src/src/entrypoints/init.ts.md) → 理解启动链
-2. [`src/main.tsx`](/src/src/main.tsx.md) (重点：Commander 定义 + REPL 启动) → 理解命令路由
-3. [`src/QueryEngine.ts`](/src/src/QueryEngine.ts.md) → 理解对话主循环
-4. [`src/query.ts`](/src/src/query.ts.md) → 理解 API 调用和消息处理
-5. [`src/Tool.ts`](/src/src/Tool.ts.md) + [`src/tools.ts`](/src/src/tools.ts.md) → 理解工具类型系统和注册
+1. [`src/entrypoints/cli.tsx`](/src/src/entrypoints/cli.tsx) → [`src/entrypoints/init.ts`](/src/src/entrypoints/init.ts) → 理解启动链
+2. [`src/main.tsx`](/src/src/main.tsx) (重点：Commander 定义 + REPL 启动) → 理解命令路由
+3. [`src/QueryEngine.ts`](/src/src/QueryEngine.ts) → 理解对话主循环
+4. [`src/query.ts`](/src/src/query.ts) → 理解 API 调用和消息处理
+5. [`src/Tool.ts`](/src/src/Tool.ts) + [`src/tools.ts`](/src/src/tools.ts) → 理解工具类型系统和注册
 6. `src/utils/permissions/` → 理解权限系统（自动模式、分类器、规则解析）
-7. [`src/services/api/claude.ts`](/src/src/services/api/claude.ts.md) + [`src/services/api/client.ts`](/src/src/services/api/client.ts.md) → 理解 API 客户端
+7. [`src/services/api/claude.ts`](/src/src/services/api/claude.ts) + [`src/services/api/client.ts`](/src/src/services/api/client.ts) → 理解 API 客户端
 8. `src/services/mcp/` → 理解 MCP 协议集成
 9. `src/bridge/` → 理解远程 IDE 模式
-10. [`src/screens/REPL.tsx`](/src/src/screens/REPL.tsx.md) + `src/components/` → 理解 TUI 层
+10. [`src/screens/REPL.tsx`](/src/src/screens/REPL.tsx) + `src/components/` → 理解 TUI 层
 
 ## Main Lines (主线列表)
 
 ### ML-01: CLI 启动与命令路由
 - **Priority**: P1
-- **Entry**: [`src/bootstrap-entry.ts`](/src/src/bootstrap-entry.ts.md)
-- **Key Modules**: [`src/entrypoints/cli.tsx`](/src/src/entrypoints/cli.tsx.md), [`src/entrypoints/init.ts`](/src/src/entrypoints/init.ts.md), [`src/main.tsx`](/src/src/main.tsx.md), [`src/commands.ts`](/src/src/commands.ts.md)
-- **Exit**: Command execution or REPL launch ([`src/screens/REPL.tsx`](/src/src/screens/REPL.tsx.md))
+- **Entry**: [`src/bootstrap-entry.ts`](/src/src/bootstrap-entry.ts)
+- **Key Modules**: [`src/entrypoints/cli.tsx`](/src/src/entrypoints/cli.tsx), [`src/entrypoints/init.ts`](/src/src/entrypoints/init.ts), [`src/main.tsx`](/src/src/main.tsx), [`src/commands.ts`](/src/src/commands.ts)
+- **Exit**: Command execution or REPL launch ([`src/screens/REPL.tsx`](/src/src/screens/REPL.tsx))
 - **Estimated Files**: ~25
 - **Description**: 从用户终端输入到命令分发/REPL 启动的完整启动链路，包含环境检测、快速路径分发、初始化序列、Commander 注册
 - **Priority Rationale**: 所有用户交互的入口路径，系统可用性的关键路径
 
 ### ML-02: 查询引擎主循环
 - **Priority**: P1
-- **Entry**: [`src/QueryEngine.ts`](/src/src/QueryEngine.ts.md)
-- **Key Modules**: [`src/query.ts`](/src/src/query.ts.md), [`src/services/api/claude.ts`](/src/src/services/api/claude.ts.md), [`src/services/api/client.ts`](/src/src/services/api/client.ts.md), `src/services/compact/`
+- **Entry**: [`src/QueryEngine.ts`](/src/src/QueryEngine.ts)
+- **Key Modules**: [`src/query.ts`](/src/src/query.ts), [`src/services/api/claude.ts`](/src/src/services/api/claude.ts), [`src/services/api/client.ts`](/src/src/services/api/client.ts), `src/services/compact/`
 - **Exit**: API response or tool_use dispatch
 - **Estimated Files**: ~30
 - **Description**: 用户消息 → QueryEngine 状态机 → API 请求构建 → 流式响应处理 → 工具调度循环 → 上下文压缩
@@ -232,8 +232,8 @@ QueryEngine detects tool_use block
 
 ### ML-03: 工具系统注册与调度
 - **Priority**: P1
-- **Entry**: [`src/Tool.ts`](/src/src/Tool.ts.md)
-- **Key Modules**: [`src/tools.ts`](/src/src/tools.ts.md), `src/tools/BashTool/`, `src/tools/AgentTool/`, `src/tools/FileEditTool/`
+- **Entry**: [`src/Tool.ts`](/src/src/Tool.ts)
+- **Key Modules**: [`src/tools.ts`](/src/src/tools.ts), `src/tools/BashTool/`, `src/tools/AgentTool/`, `src/tools/FileEditTool/`
 - **Exit**: Tool result (success/permission-denied/error)
 - **Estimated Files**: ~15 (核心注册) + ~189 (工具实例, catalog)
 - **Description**: Tool 接口定义 → 注册表管理 → 工具发现 → 参数验证 → 权限检查 → 执行 → 结果返回
@@ -241,8 +241,8 @@ QueryEngine detects tool_use block
 
 ### ML-04: 权限系统
 - **Priority**: P1
-- **Entry**: [`src/utils/permissions/permissions.ts`](/src/src/utils/permissions/permissions.ts.md)
-- **Key Modules**: [`src/utils/permissions/autoModeState.ts`](/src/src/utils/permissions/autoModeState.ts.md), [`src/utils/permissions/bashClassifier.ts`](/src/src/utils/permissions/bashClassifier.ts.md), [`src/utils/permissions/yoloClassifier.ts`](/src/src/utils/permissions/yoloClassifier.ts.md), [`src/utils/permissions/permissionRuleParser.ts`](/src/src/utils/permissions/permissionRuleParser.ts.md), [`src/hooks/useCanUseTool.tsx`](/src/src/hooks/useCanUseTool.tsx.md)
+- **Entry**: [`src/utils/permissions/permissions.ts`](/src/src/utils/permissions/permissions.ts)
+- **Key Modules**: [`src/utils/permissions/autoModeState.ts`](/src/src/utils/permissions/autoModeState.ts), [`src/utils/permissions/bashClassifier.ts`](/src/src/utils/permissions/bashClassifier.ts), [`src/utils/permissions/yoloClassifier.ts`](/src/src/utils/permissions/yoloClassifier.ts), [`src/utils/permissions/permissionRuleParser.ts`](/src/src/utils/permissions/permissionRuleParser.ts), [`src/hooks/useCanUseTool.tsx`](/src/src/hooks/useCanUseTool.tsx)
 - **Exit**: Permission allow/deny decision
 - **Estimated Files**: ~40 (25 permission utils + 15 hooks/components)
 - **Description**: 权限模式管理 → bash 命令分类 → 规则解析匹配 → 用户提示决策 → 自动模式/yolo 模式门控
@@ -250,8 +250,8 @@ QueryEngine detects tool_use block
 
 ### ML-05: MCP 服务集成
 - **Priority**: P1
-- **Entry**: [`src/services/mcp/MCPConnectionManager.tsx`](/src/src/services/mcp/MCPConnectionManager.tsx.md)
-- **Key Modules**: [`src/services/mcp/client.ts`](/src/src/services/mcp/client.ts.md), [`src/services/mcp/config.ts`](/src/src/services/mcp/config.ts.md), `src/tools/MCPTool/`, [`src/services/mcp/claudeai.ts`](/src/src/services/mcp/claudeai.ts.md)
+- **Entry**: [`src/services/mcp/MCPConnectionManager.tsx`](/src/src/services/mcp/MCPConnectionManager.tsx)
+- **Key Modules**: [`src/services/mcp/client.ts`](/src/src/services/mcp/client.ts), [`src/services/mcp/config.ts`](/src/src/services/mcp/config.ts), `src/tools/MCPTool/`, [`src/services/mcp/claudeai.ts`](/src/src/services/mcp/claudeai.ts)
 - **Exit**: MCP tool call result
 - **Estimated Files**: ~25
 - **Description**: MCP 服务器发现 → 连接管理 → 工具注册 → OAuth 认证 → 工具调用 → 结果转发
@@ -259,8 +259,8 @@ QueryEngine detects tool_use block
 
 ### ML-06: 认证与会话管理
 - **Priority**: P1
-- **Entry**: [`src/services/oauth/client.ts`](/src/src/services/oauth/client.ts.md)
-- **Key Modules**: [`src/services/api/bootstrap.ts`](/src/src/services/api/bootstrap.ts.md), [`src/bootstrap/state.ts`](/src/src/bootstrap/state.ts.md), `src/utils/config.js`, [`src/entrypoints/init.ts`](/src/src/entrypoints/init.ts.md)
+- **Entry**: [`src/services/oauth/client.ts`](/src/src/services/oauth/client.ts)
+- **Key Modules**: [`src/services/api/bootstrap.ts`](/src/src/services/api/bootstrap.ts), [`src/bootstrap/state.ts`](/src/src/bootstrap/state.ts), `src/utils/config.js`, [`src/entrypoints/init.ts`](/src/src/entrypoints/init.ts)
 - **Exit**: Authenticated API session
 - **Estimated Files**: ~20
 - **Description**: OAuth 流程 → API key 验证 → 会话创建/恢复 → 遥测初始化 → 策略限制加载
@@ -268,7 +268,7 @@ QueryEngine detects tool_use block
 
 ### ML-07: TUI 渲染与交互
 - **Priority**: P2
-- **Entry**: [`src/screens/REPL.tsx`](/src/src/screens/REPL.tsx.md)
+- **Entry**: [`src/screens/REPL.tsx`](/src/src/screens/REPL.tsx)
 - **Key Modules**: `src/ink/`, `src/components/`, `src/hooks/`, `src/state/`, `src/context/`
 - **Exit**: Terminal render output
 - **Estimated Files**: ~600 (ink fork 100 + components 406 + hooks 97)
@@ -277,7 +277,7 @@ QueryEngine detects tool_use block
 
 ### ML-08: 任务系统
 - **Priority**: P2
-- **Entry**: [`src/Task.ts`](/src/src/Task.ts.md)
+- **Entry**: [`src/Task.ts`](/src/src/Task.ts)
 - **Key Modules**: `src/tasks/LocalShellTask/`, `src/tasks/LocalAgentTask/`, `src/tasks/RemoteAgentTask/`, `src/tasks/DreamTask/`, `src/tasks/InProcessTeammateTask/`, `src/tasks/LocalWorkflowTask/`, `src/tasks/MonitorMcpTask/`
 - **Exit**: Task completion/failure
 - **Estimated Files**: ~15
@@ -286,8 +286,8 @@ QueryEngine detects tool_use block
 
 ### ML-09: Bridge 远程模式
 - **Priority**: P2
-- **Entry**: [`src/bridge/initReplBridge.ts`](/src/src/bridge/initReplBridge.ts.md)
-- **Key Modules**: [`src/bridge/replBridge.ts`](/src/src/bridge/replBridge.ts.md), [`src/bridge/remoteBridgeCore.ts`](/src/src/bridge/remoteBridgeCore.ts.md), [`src/bridge/sessionRunner.ts`](/src/src/bridge/sessionRunner.ts.md), [`src/bridge/bridgeApi.ts`](/src/src/bridge/bridgeApi.ts.md)
+- **Entry**: [`src/bridge/initReplBridge.ts`](/src/src/bridge/initReplBridge.ts)
+- **Key Modules**: [`src/bridge/replBridge.ts`](/src/src/bridge/replBridge.ts), [`src/bridge/remoteBridgeCore.ts`](/src/src/bridge/remoteBridgeCore.ts), [`src/bridge/sessionRunner.ts`](/src/src/bridge/sessionRunner.ts), [`src/bridge/bridgeApi.ts`](/src/src/bridge/bridgeApi.ts)
 - **Exit**: IDE plugin response
 - **Estimated Files**: ~33
 - **Description**: IDE 连接建立 → REPL 桥接 → 消息双向传输 → 权限回调 → 会话管理
@@ -295,8 +295,8 @@ QueryEngine detects tool_use block
 
 ### ML-10: API 客户端与重试层
 - **Priority**: P2
-- **Entry**: [`src/services/api/client.ts`](/src/src/services/api/client.ts.md)
-- **Key Modules**: [`src/services/api/claude.ts`](/src/src/services/api/claude.ts.md), [`src/services/api/withRetry.ts`](/src/src/services/api/withRetry.ts.md), [`src/services/api/errors.ts`](/src/src/services/api/errors.ts.md), [`src/services/api/logging.ts`](/src/src/services/api/logging.ts.md)
+- **Entry**: [`src/services/api/client.ts`](/src/src/services/api/client.ts)
+- **Key Modules**: [`src/services/api/claude.ts`](/src/src/services/api/claude.ts), [`src/services/api/withRetry.ts`](/src/src/services/api/withRetry.ts), [`src/services/api/errors.ts`](/src/src/services/api/errors.ts), [`src/services/api/logging.ts`](/src/src/services/api/logging.ts)
 - **Exit**: API response or error
 - **Estimated Files**: ~21
 - **Description**: HTTP 客户端 → 请求构建 → 认证头注入 → 重试策略 → 错误处理 → 使用量跟踪
@@ -304,8 +304,8 @@ QueryEngine detects tool_use block
 
 ### ML-11: 上下文与记忆管理
 - **Priority**: P2
-- **Entry**: [`src/services/compact/autoCompact.ts`](/src/src/services/compact/autoCompact.ts.md)
-- **Key Modules**: [`src/services/compact/compact.ts`](/src/src/services/compact/compact.ts.md), `src/memdir/`, `src/services/contextCollapse/` (feature-gated)
+- **Entry**: [`src/services/compact/autoCompact.ts`](/src/src/services/compact/autoCompact.ts)
+- **Key Modules**: [`src/services/compact/compact.ts`](/src/src/services/compact/compact.ts), `src/memdir/`, `src/services/contextCollapse/` (feature-gated)
 - **Exit**: Compacted context or memory update
 - **Estimated Files**: ~15
 - **Description**: 上下文窗口监控 → 自动压缩触发 → 消息摘要 → CLAUDE.md 记忆管理 → context collapse (experimental)
@@ -314,8 +314,8 @@ QueryEngine detects tool_use block
 
 ### ML-12: Plugin System
 - **Priority**: P2
-- **Entry**: [`src/utils/plugins/pluginLoader.ts`](/src/src/utils/plugins/pluginLoader.ts.md)
-- **Key Modules**: [`src/utils/plugins/pluginLoader.ts`](/src/src/utils/plugins/pluginLoader.ts.md) (3302L), [`src/utils/plugins/marketplaceManager.ts`](/src/src/utils/plugins/marketplaceManager.ts.md) (2643L), [`src/utils/plugins/installedPluginsManager.ts`](/src/src/utils/plugins/installedPluginsManager.ts.md) (1268L), [`src/utils/plugins/schemas.ts`](/src/src/utils/plugins/schemas.ts.md) (1681L), [`src/utils/plugins/validatePlugin.ts`](/src/src/utils/plugins/validatePlugin.ts.md) (903L), [`src/utils/plugins/loadPluginCommands.ts`](/src/src/utils/plugins/loadPluginCommands.ts.md) (946L), [`src/utils/plugins/mcpbHandler.ts`](/src/src/utils/plugins/mcpbHandler.ts.md) (968L), [`src/commands/plugin/ManagePlugins.tsx`](/src/src/commands/plugin/ManagePlugins.tsx.md) (2214L)
+- **Entry**: [`src/utils/plugins/pluginLoader.ts`](/src/src/utils/plugins/pluginLoader.ts)
+- **Key Modules**: [`src/utils/plugins/pluginLoader.ts`](/src/src/utils/plugins/pluginLoader.ts) (3302L), [`src/utils/plugins/marketplaceManager.ts`](/src/src/utils/plugins/marketplaceManager.ts) (2643L), [`src/utils/plugins/installedPluginsManager.ts`](/src/src/utils/plugins/installedPluginsManager.ts) (1268L), [`src/utils/plugins/schemas.ts`](/src/src/utils/plugins/schemas.ts) (1681L), [`src/utils/plugins/validatePlugin.ts`](/src/src/utils/plugins/validatePlugin.ts) (903L), [`src/utils/plugins/loadPluginCommands.ts`](/src/src/utils/plugins/loadPluginCommands.ts) (946L), [`src/utils/plugins/mcpbHandler.ts`](/src/src/utils/plugins/mcpbHandler.ts) (968L), [`src/commands/plugin/ManagePlugins.tsx`](/src/src/commands/plugin/ManagePlugins.tsx) (2214L)
 - **Exit**: Plugin loaded/installed/removed with hooks, commands, agents registered
 - **Estimated Files**: ~49 (25,422 lines)
 - **Description**: Plugin 生命周期管理 — 发现 → 加载验证 → 市场安装 → Agent/Command/Hook 注册 → 自动更新 → Blocklist/Policy 约束
@@ -324,8 +324,8 @@ QueryEngine detects tool_use block
 
 ### ML-13: Bash/Shell Engine
 - **Priority**: P2
-- **Entry**: [`src/utils/bash/bashParser.ts`](/src/src/utils/bash/bashParser.ts.md)
-- **Key Modules**: [`src/utils/bash/bashParser.ts`](/src/src/utils/bash/bashParser.ts.md) (4436L), [`src/utils/bash/ast.ts`](/src/src/utils/bash/ast.ts.md) (2679L), [`src/utils/shell/readOnlyCommandValidation.ts`](/src/src/utils/shell/readOnlyCommandValidation.ts.md) (1893L), [`src/utils/powershell/parser.ts`](/src/src/utils/powershell/parser.ts.md) (1804L), [`src/utils/bash/commands.ts`](/src/src/utils/bash/commands.ts.md) (1339L)
+- **Entry**: [`src/utils/bash/bashParser.ts`](/src/src/utils/bash/bashParser.ts)
+- **Key Modules**: [`src/utils/bash/bashParser.ts`](/src/src/utils/bash/bashParser.ts) (4436L), [`src/utils/bash/ast.ts`](/src/src/utils/bash/ast.ts) (2679L), [`src/utils/shell/readOnlyCommandValidation.ts`](/src/src/utils/shell/readOnlyCommandValidation.ts) (1893L), [`src/utils/powershell/parser.ts`](/src/src/utils/powershell/parser.ts) (1804L), [`src/utils/bash/commands.ts`](/src/src/utils/bash/commands.ts) (1339L)
 - **Exit**: Parsed command AST, validated safety prefix, shell execution provider
 - **Estimated Files**: ~36 (17,680 lines)
 - **Description**: Shell 命令解析引擎 — Bash AST 解析 (tree-sitter 兼容) → 安全验证 → PowerShell 解析 → Shell Provider 抽象 → 命令补全
@@ -334,8 +334,8 @@ QueryEngine detects tool_use block
 
 ### ML-14: Swarm Orchestration
 - **Priority**: P2
-- **Entry**: [`src/utils/swarm/inProcessRunner.ts`](/src/src/utils/swarm/inProcessRunner.ts.md)
-- **Key Modules**: [`src/utils/swarm/inProcessRunner.ts`](/src/src/utils/swarm/inProcessRunner.ts.md) (1552L), [`src/utils/swarm/permissionSync.ts`](/src/src/utils/swarm/permissionSync.ts.md) (928L), [`src/utils/swarm/backends/TmuxBackend.ts`](/src/src/utils/swarm/backends/TmuxBackend.ts.md) (764L), [`src/utils/swarm/teamHelpers.ts`](/src/src/utils/swarm/teamHelpers.ts.md) (683L), [`src/utils/swarm/backends/registry.ts`](/src/src/utils/swarm/backends/registry.ts.md) (464L)
+- **Entry**: [`src/utils/swarm/inProcessRunner.ts`](/src/src/utils/swarm/inProcessRunner.ts)
+- **Key Modules**: [`src/utils/swarm/inProcessRunner.ts`](/src/src/utils/swarm/inProcessRunner.ts) (1552L), [`src/utils/swarm/permissionSync.ts`](/src/src/utils/swarm/permissionSync.ts) (928L), [`src/utils/swarm/backends/TmuxBackend.ts`](/src/src/utils/swarm/backends/TmuxBackend.ts) (764L), [`src/utils/swarm/teamHelpers.ts`](/src/src/utils/swarm/teamHelpers.ts) (683L), [`src/utils/swarm/backends/registry.ts`](/src/src/utils/swarm/backends/registry.ts) (464L)
 - **Exit**: Multi-agent teammate spawned and running in tmux/in-process pane
 - **Estimated Files**: ~22 (7,548 lines)
 - **Description**: 多 Agent 协作编排 — Backend 检测 (Tmux/ITerm/InProcess) → Teammate 启动 → 权限同步 → Reconnection → Layout 管理
@@ -344,8 +344,8 @@ QueryEngine detects tool_use block
 
 ### ML-15: SDK Entry Points
 - **Priority**: P2
-- **Entry**: [`src/entrypoints/sdk/coreSchemas.ts`](/src/src/entrypoints/sdk/coreSchemas.ts.md)
-- **Key Modules**: [`src/entrypoints/sdk/coreSchemas.ts`](/src/src/entrypoints/sdk/coreSchemas.ts.md) (1889L), [`src/entrypoints/sdk/controlSchemas.ts`](/src/src/entrypoints/sdk/controlSchemas.ts.md) (663L)
+- **Entry**: [`src/entrypoints/sdk/coreSchemas.ts`](/src/src/entrypoints/sdk/coreSchemas.ts)
+- **Key Modules**: [`src/entrypoints/sdk/coreSchemas.ts`](/src/src/entrypoints/sdk/coreSchemas.ts) (1889L), [`src/entrypoints/sdk/controlSchemas.ts`](/src/src/entrypoints/sdk/controlSchemas.ts) (663L)
 - **Exit**: Zod-validated SDK types and schemas for external consumption
 - **Estimated Files**: ~9 (2,716 lines)
 - **Description**: SDK 类型定义和 Zod Schema — Core Types (Message/Content/Tool) → Control Schemas → Runtime/Settings Types → 生成类型
@@ -408,25 +408,25 @@ QueryEngine detects tool_use block
 
 ### Path 1: User Request → AI Response (ML-02 核心)
 - **Why it matters**: 这是产品的核心价值链，从用户输入到 AI 响应的完整路径
-- **Likely entry**: [`src/QueryEngine.ts`](/src/src/QueryEngine.ts.md) → `query()` function
+- **Likely entry**: [`src/QueryEngine.ts`](/src/src/QueryEngine.ts) → `query()` function
 - **Key files**: QueryEngine.ts, query.ts, services/api/claude.ts, services/api/client.ts
 
 ### Path 2: Tool Permission Decision (ML-04 安全关键)
 - **Why it matters**: 权限系统决定工具是否可执行，直接影响安全性
-- **Likely entry**: [`src/hooks/useCanUseTool.tsx`](/src/src/hooks/useCanUseTool.tsx.md)
+- **Likely entry**: [`src/hooks/useCanUseTool.tsx`](/src/src/hooks/useCanUseTool.tsx)
 - **Key files**: hooks/useCanUseTool.tsx, utils/permissions/permissions.ts, utils/permissions/bashClassifier.ts
 
 ### Path 3: MCP Server Connection (ML-05 扩展机制)
 - **Why it matters**: MCP 是外部工具扩展的核心协议
-- **Likely entry**: [`src/services/mcp/MCPConnectionManager.tsx`](/src/src/services/mcp/MCPConnectionManager.tsx.md)
+- **Likely entry**: [`src/services/mcp/MCPConnectionManager.tsx`](/src/src/services/mcp/MCPConnectionManager.tsx)
 - **Key files**: services/mcp/MCPConnectionManager.tsx, services/mcp/client.ts, services/mcp/config.ts
 
 ### Path 4: IDE Bridge Communication (ML-09)
 - **Why it matters**: IDE 集成是企业用户的核心使用场景
-- **Likely entry**: [`src/bridge/initReplBridge.ts`](/src/src/bridge/initReplBridge.ts.md)
+- **Likely entry**: [`src/bridge/initReplBridge.ts`](/src/src/bridge/initReplBridge.ts)
 - **Key files**: bridge/initReplBridge.ts, bridge/replBridge.ts, bridge/remoteBridgeCore.ts
 
 ### Path 5: Context Window Management (ML-11)
 - **Why it matters**: 长对话的上下文压缩直接影响 AI 响应质量
-- **Likely entry**: [`src/services/compact/autoCompact.ts`](/src/src/services/compact/autoCompact.ts.md)
+- **Likely entry**: [`src/services/compact/autoCompact.ts`](/src/src/services/compact/autoCompact.ts)
 - **Key files**: services/compact/autoCompact.ts, services/compact/compact.ts

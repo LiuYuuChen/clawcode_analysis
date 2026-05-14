@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-38 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2026-04-19 | mode: full | task: T-38 -->
 # T-38 Analysis: Pattern Audit — cli-transport (PI-23)
 
 ## Scope Confirmation
@@ -9,7 +9,7 @@
 - Pattern Coverage: PI-23 (cli-transport)
 - Scope Files (confirmed): 3 files, 83 lines total
 - Pattern catalog instances: 4 total (3 scope files + 1 additional catalog file)
-- Scope adjustments: Added [`src/cli/ndjsonSafeStringify.ts`](/src/src/cli/ndjsonSafeStringify.ts.md) from PI-23 catalog
+- Scope adjustments: Added [`src/cli/ndjsonSafeStringify.ts`](/src/src/cli/ndjsonSafeStringify.ts) from PI-23 catalog
 - Dependencies: T-14 (Bridge Remote Mode)
 
 ## File Roles （强制节，4 effective scope files = 3 explicit + 1 PI-23 catalog）

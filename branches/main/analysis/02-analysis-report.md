@@ -13,7 +13,7 @@
 ### 1.1 Entry File Verification
 
 - **Status**: ✅ PASS
-- **Evidence**: All 21 ML entry files across 15 mainlines verified to exist on disk. Checked: [`src/bootstrap-entry.ts`](/src/src/bootstrap-entry.ts.md), [`src/QueryEngine.ts`](/src/src/QueryEngine.ts.md), [`src/Tool.ts`](/src/src/Tool.ts.md), [`src/Task.ts`](/src/src/Task.ts.md), [`src/screens/REPL.tsx`](/src/src/screens/REPL.tsx.md), [`src/services/mcp/MCPConnectionManager.tsx`](/src/src/services/mcp/MCPConnectionManager.tsx.md), [`src/services/oauth/client.ts`](/src/src/services/oauth/client.ts.md), [`src/utils/permissions/permissions.ts`](/src/src/utils/permissions/permissions.ts.md), [`src/bridge/initReplBridge.ts`](/src/src/bridge/initReplBridge.ts.md), [`src/services/api/client.ts`](/src/src/services/api/client.ts.md), [`src/services/compact/autoCompact.ts`](/src/src/services/compact/autoCompact.ts.md), [`src/utils/plugins/pluginLoader.ts`](/src/src/utils/plugins/pluginLoader.ts.md), [`src/utils/bash/bashParser.ts`](/src/src/utils/bash/bashParser.ts.md), [`src/utils/swarm/inProcessRunner.ts`](/src/src/utils/swarm/inProcessRunner.ts.md), [`src/entrypoints/sdk/coreSchemas.ts`](/src/src/entrypoints/sdk/coreSchemas.ts.md), and 6 key modules.
+- **Evidence**: All 21 ML entry files across 15 mainlines verified to exist on disk. Checked: [`src/bootstrap-entry.ts`](/src/src/bootstrap-entry.ts), [`src/QueryEngine.ts`](/src/src/QueryEngine.ts), [`src/Tool.ts`](/src/src/Tool.ts), [`src/Task.ts`](/src/src/Task.ts), [`src/screens/REPL.tsx`](/src/src/screens/REPL.tsx), [`src/services/mcp/MCPConnectionManager.tsx`](/src/src/services/mcp/MCPConnectionManager.tsx), [`src/services/oauth/client.ts`](/src/src/services/oauth/client.ts), [`src/utils/permissions/permissions.ts`](/src/src/utils/permissions/permissions.ts), [`src/bridge/initReplBridge.ts`](/src/src/bridge/initReplBridge.ts), [`src/services/api/client.ts`](/src/src/services/api/client.ts), [`src/services/compact/autoCompact.ts`](/src/src/services/compact/autoCompact.ts), [`src/utils/plugins/pluginLoader.ts`](/src/src/utils/plugins/pluginLoader.ts), [`src/utils/bash/bashParser.ts`](/src/src/utils/bash/bashParser.ts), [`src/utils/swarm/inProcessRunner.ts`](/src/src/utils/swarm/inProcessRunner.ts), [`src/entrypoints/sdk/coreSchemas.ts`](/src/src/entrypoints/sdk/coreSchemas.ts), and 6 key modules.
 - **Impact**: None — all entry points are valid.
 
 ### 1.2 Module Map Coverage
@@ -40,7 +40,7 @@
 ### 1.4 ink Dependency Duality
 
 - **Status**: ⚠️ LOW
-- **Evidence**: `ink` appears both as a package.json dependency AND as a fork at `src/ink/` (99 files, 19,879 lines). Source files import from `./ink` or `../ink` (local fork), not from `'ink'` (npm package). The only external import reference is a comment in [`src/ink/hooks/use-input.ts`](/src/src/ink/hooks/use-input.ts.md).
+- **Evidence**: `ink` appears both as a package.json dependency AND as a fork at `src/ink/` (99 files, 19,879 lines). Source files import from `./ink` or `../ink` (local fork), not from `'ink'` (npm package). The only external import reference is a comment in [`src/ink/hooks/use-input.ts`](/src/src/ink/hooks/use-input.ts).
 - **Impact**: LOW — The fork is the actual runtime dependency. The npm package likely provides types or is used during build. This is correctly documented in the Module Map.
 
 ### 1.5 Assumption Freshness
@@ -62,10 +62,10 @@
 - **Status**: ✅ PASS
 - **Evidence**: The repo map describes a "CLI → REPL → QueryEngine → API" layered architecture. The Module Map reflects this:
   - Entry layer: `src/entrypoints/`, `src/bootstrap/`
-  - Command routing: `src/commands/`, [`src/main.tsx`](/src/src/main.tsx.md)
-  - Query engine: [`src/QueryEngine.ts`](/src/src/QueryEngine.ts.md), [`src/query.ts`](/src/src/query.ts.md)
+  - Command routing: `src/commands/`, [`src/main.tsx`](/src/src/main.tsx)
+  - Query engine: [`src/QueryEngine.ts`](/src/src/QueryEngine.ts), [`src/query.ts`](/src/src/query.ts)
   - Service layer: `src/services/` (api, mcp, compact, oauth, etc.)
-  - Tool layer: `src/tools/`, [`src/Tool.ts`](/src/src/Tool.ts.md)
+  - Tool layer: `src/tools/`, [`src/Tool.ts`](/src/src/Tool.ts)
   - Presentation layer: `src/components/`, `src/ink/`, `src/hooks/`
   - Infrastructure: `src/bridge/`, `src/utils/`
 - **Impact**: None — Architecture is consistent.
@@ -74,13 +74,13 @@
 
 - **Status**: ✅ PASS with observations
 - **Evidence**: 23 cross-ML shared files identified in `call-graph.jsonl`. Key shared files:
-  - [`src/Tool.ts`](/src/src/Tool.ts.md) → ML-02, ML-03 (3 segments)
-  - [`src/tools.ts`](/src/src/tools.ts.md) → ML-01, ML-03 (2 segments)
-  - [`src/context.ts`](/src/src/context.ts.md) → ML-01, ML-07, ML-11 (3 MLs)
-  - [`src/entrypoints/init.ts`](/src/src/entrypoints/init.ts.md) → ML-01, ML-06
-  - [`src/services/api/client.ts`](/src/src/services/api/client.ts.md) → ML-02, ML-10
-  - [`src/services/compact/compact.ts`](/src/src/services/compact/compact.ts.md) → ML-02, ML-11
-  - [`src/hooks/useCanUseTool.tsx`](/src/src/hooks/useCanUseTool.tsx.md) → ML-03, ML-04
+  - [`src/Tool.ts`](/src/src/Tool.ts) → ML-02, ML-03 (3 segments)
+  - [`src/tools.ts`](/src/src/tools.ts) → ML-01, ML-03 (2 segments)
+  - [`src/context.ts`](/src/src/context.ts) → ML-01, ML-07, ML-11 (3 MLs)
+  - [`src/entrypoints/init.ts`](/src/src/entrypoints/init.ts) → ML-01, ML-06
+  - [`src/services/api/client.ts`](/src/src/services/api/client.ts) → ML-02, ML-10
+  - [`src/services/compact/compact.ts`](/src/src/services/compact/compact.ts) → ML-02, ML-11
+  - [`src/hooks/useCanUseTool.tsx`](/src/src/hooks/useCanUseTool.tsx) → ML-03, ML-04
 - All referenced files exist and are correctly classified in `mapped-files.jsonl`.
 - **Impact**: None — Cross-references are accurate.
 

@@ -1,4 +1,4 @@
-&lt;!-- analysis-version: 0 | commit: a5179f6 | updated: 2025-07-26 | mode: re-execute | task: T-29 --&gt;
+<!-- analysis-version: 0 | commit: a5179f6 | updated: 2025-07-26 | mode: re-execute | task: T-29 -->
 # T-29 Pattern Audit: bundled-skill (PI-10)
 
 ## Scope Confirmation
@@ -8,13 +8,13 @@
 - Analysis Depth: OVERVIEW
 - Pattern Coverage: PI-10 (bundled-skill)
 - Scope Files (confirmed): 7 PI-10 catalog instances
-  1. [`src/skills/bundled/claudeInChrome.ts`](/src/src/skills/bundled/claudeInChrome.ts.md) (34 lines)
-  2. [`src/skills/bundled/dream.ts`](/src/src/skills/bundled/dream.ts.md) (1 line)
-  3. [`src/skills/bundled/hunter.ts`](/src/src/skills/bundled/hunter.ts.md) (1 line)
-  4. [`src/skills/bundled/runSkillGenerator.ts`](/src/src/skills/bundled/runSkillGenerator.ts.md) (1 line)
-  5. [`src/skills/bundled/verify.ts`](/src/src/skills/bundled/verify.ts.md) (30 lines)
-  6. [`src/skills/bundled/verifyContent.ts`](/src/src/skills/bundled/verifyContent.ts.md) (13 lines)
-  7. [`src/skills/mcpSkillBuilders.ts`](/src/src/skills/mcpSkillBuilders.ts.md) (44 lines)
+  1. [`src/skills/bundled/claudeInChrome.ts`](/src/src/skills/bundled/claudeInChrome.ts) (34 lines)
+  2. [`src/skills/bundled/dream.ts`](/src/src/skills/bundled/dream.ts) (1 line)
+  3. [`src/skills/bundled/hunter.ts`](/src/src/skills/bundled/hunter.ts) (1 line)
+  4. [`src/skills/bundled/runSkillGenerator.ts`](/src/src/skills/bundled/runSkillGenerator.ts) (1 line)
+  5. [`src/skills/bundled/verify.ts`](/src/src/skills/bundled/verify.ts) (30 lines)
+  6. [`src/skills/bundled/verifyContent.ts`](/src/src/skills/bundled/verifyContent.ts) (13 lines)
+  7. [`src/skills/mcpSkillBuilders.ts`](/src/src/skills/mcpSkillBuilders.ts) (44 lines)
 - Scope adjustments: None — all 7 files exist and are readable
 - Re-execute reason: FAIL_0 (file completely missing) + FAIL_5 (role_source not verified)
 
@@ -111,46 +111,46 @@ PI-10 (bundled-skill) defines files that register built-in skills shipped with t
 
 ## Pattern Audit: Full Verification
 
-### Instance 1: [`src/skills/bundled/claudeInChrome.ts`](/src/src/skills/bundled/claudeInChrome.ts.md) (34L) — ✅ PASS
+### Instance 1: [`src/skills/bundled/claudeInChrome.ts`](/src/src/skills/bundled/claudeInChrome.ts) (34L) — ✅ PASS
 
 **Exports**: `registerClaudeInChromeSkill(): void`
 **Pattern compliance**: Calls `registerBundledSkill()` with all required fields (name, description, getPromptForCommand) plus optional fields (allowedTools, whenToUse, userInvocable, isEnabled).
 **Unique aspects**: Imports from external npm package `@ant/claude-for-chrome-mcp` and internal `claudeInChrome/` utils. Has `isEnabled()` callback that gates on `shouldAutoEnableClaudeInChrome()`.
 **role_one_liner update**: "Chrome browser automation skill with MCP tool allowlist and auto-enable gating"
 
-### Instance 2: [`src/skills/bundled/dream.ts`](/src/src/skills/bundled/dream.ts.md) (1L) — ✅ PASS (stub)
+### Instance 2: [`src/skills/bundled/dream.ts`](/src/src/skills/bundled/dream.ts) (1L) — ✅ PASS (stub)
 
 **Exports**: `registerDreamSkill(): void {}` — empty function body.
 **Pattern compliance**: Follows naming convention (`register<Name>Skill`). Stub does not call `registerBundledSkill()` — acceptable as reserved entry point.
 **role_one_liner update**: "Empty stub reserved for future Dream skill registration"
 
-### Instance 3: [`src/skills/bundled/hunter.ts`](/src/src/skills/bundled/hunter.ts.md) (1L) — ✅ PASS (stub)
+### Instance 3: [`src/skills/bundled/hunter.ts`](/src/src/skills/bundled/hunter.ts) (1L) — ✅ PASS (stub)
 
 **Exports**: `registerHunterSkill(): void {}` — empty function body.
 **Pattern compliance**: Same as dream.ts. Follows naming convention.
 **role_one_liner update**: "Empty stub reserved for future Hunter skill registration"
 
-### Instance 4: [`src/skills/bundled/runSkillGenerator.ts`](/src/src/skills/bundled/runSkillGenerator.ts.md) (1L) — ✅ PASS (stub)
+### Instance 4: [`src/skills/bundled/runSkillGenerator.ts`](/src/src/skills/bundled/runSkillGenerator.ts) (1L) — ✅ PASS (stub)
 
 **Exports**: `registerRunSkillGeneratorSkill(): void {}` — empty function body.
 **Pattern compliance**: Same as dream.ts/hunter.ts. Follows naming convention.
 **role_one_liner update**: "Empty stub reserved for future skill generator registration"
 
-### Instance 5: [`src/skills/bundled/verify.ts`](/src/src/skills/bundled/verify.ts.md) (30L) — ✅ PASS
+### Instance 5: [`src/skills/bundled/verify.ts`](/src/src/skills/bundled/verify.ts) (30L) — ✅ PASS
 
 **Exports**: `registerVerifySkill(): void`
 **Pattern compliance**: Calls `registerBundledSkill()` with required fields. Uses `process.env.USER_TYPE !== 'ant'` guard for early return.
 **Unique aspects**: Extracts description from SKILL.md frontmatter via `parseFrontmatter()`. Inlines example files via `files` field.
 **role_one_liner update**: "Verify skill (ant-only) that parses SKILL.md frontmatter and inlines example files"
 
-### Instance 6: [`src/skills/bundled/verifyContent.ts`](/src/src/skills/bundled/verifyContent.ts.md) (13L) — ✅ PASS
+### Instance 6: [`src/skills/bundled/verifyContent.ts`](/src/src/skills/bundled/verifyContent.ts) (13L) — ✅ PASS
 
 **Exports**: `SKILL_MD` (string constant) and `SKILL_FILES` (Record&lt;string, string&gt;)
 **Pattern compliance**: Data-only module — does not export a `register*Skill` function but provides content consumed by verify.ts. Essential supporting file for the verify skill.
 **Unique aspects**: Uses Bun's text loader to import `.md` files as raw strings at build time.
 **role_one_liner update**: "Content module importing SKILL.md and example .md files via Bun text loader"
 
-### Instance 7: [`src/skills/mcpSkillBuilders.ts`](/src/src/skills/mcpSkillBuilders.ts.md) (44L) — ⚠️ DEVIATES
+### Instance 7: [`src/skills/mcpSkillBuilders.ts`](/src/src/skills/mcpSkillBuilders.ts) (44L) — ⚠️ DEVIATES
 
 **Exports**: `registerMCPSkillBuilders()` and `getMCPSkillBuilders()` — NOT a `register*Skill(): void` function.
 **Pattern compliance**: Does NOT call `registerBundledSkill()`. Does NOT follow the naming convention. Serves a different purpose (cycle-breaking registry for MCP skill builders).

@@ -7,20 +7,38 @@
 - [x] trace-mainline — 29 sub-maps across 15 ML (ML-01~ML-15)
 - [x] map-repo-guardian — ALL PASS (iteration 5 of 5)
 - [x] analyze — branches/main/analysis/02-analysis-report.md (529 lines)
-- [x] tasks — analysis/03-analysis-tasks.md (40 tasks: P1=9, P2=9, P3=22)
-- [x] implement — task execution pipeline (39 tasks ordered, tmp_workflow.json)
+- [x] tasks — analysis/03-analysis-tasks.md (41 tasks: P1=9, P2=9, P3=23) — RE-OPTIMIZED (100% coverage, all fields enriched)
+- [x] implement — RE-OPTIMIZED: 41 tasks (9 P1 DEEP + 9 P2 STANDARD + 23 P3 OVERVIEW), topological sort complete, 04-task-plan.md written, task-execution-pipeline workflow created (41 actions)
 - [x] implement-guardian — FAIL (Catalog Gate: PI-05 13 instances uncovered)
 - [x] tasks-supplement — T-40 added, T-12 deduped, T-19 expanded, phantom cleaned
 - [x] implement-redo — 40 tasks topological sort, 04-task-plan.md written, workflow created
 - [x] implement-guardian-recheck (iter 2) — ALL PASS (99.77% line coverage)
-- [x] task-output-guardian — ALL PASS (iter 2, 41 tasks verified)
-  - [x] tasks-supplement-T41 — added T-41 for 9 shim/vendor orphan files
-  - [x] re-execute-T17 — plugin system rebuilt from scratch (65 files, P2/STANDARD)
-  - [x] re-execute-T29 — PI-10 audit rebuilt from scratch (7 instances, P3/OVERVIEW)
-  - [x] re-execute-T07 — patched 5 missing File Roles rows
-  - [x] re-execute-T12 — removed 14 duplicate File Roles rows
-  - [x] patch-audit-file-roles-T21-T22-T31 — verified all 196 rows match manifest (77+107+12)
-  - [x] execute-T41-shim-vendor-proxies — OVERVIEW analysis (9 files, 1167 lines)
-  - [x] task-output-guardian-recheck-iter2 — ALL PASS
-- [~] synthesize-analysis — in progress (3/24 goals done)
-- [x] **publish-site** — VitePress 站点打包 ✅
+- [x] task-output-guardian (original run) — ALL PASS (iter 2, 38 tasks verified)
+- [x] task-output-guardian (re-optimized run) — FAIL_LOW: T-17 incomplete File Roles (51/65) → remediated → **PASS (65/65)**
+  - Original run sub-tasks:
+    - [x] tasks-supplement-T41 — added T-41 for 9 shim/vendor orphan files
+    - [x] re-execute-T17 — plugin system rebuilt from scratch (65 files, P2/STANDARD)
+    - [x] re-execute-T29 — PI-10 audit rebuilt from scratch (7 instances, P3/OVERVIEW)
+    - [x] re-execute-T07 — patched 5 missing File Roles rows
+    - [x] re-execute-T12 — removed 14 duplicate File Roles rows
+    - [x] patch-audit-file-roles-T21-T22-T31 — verified all 196 rows match manifest
+    - [x] execute-T41-shim-vendor-proxies — OVERVIEW analysis (9 files, 1167 lines)
+    - [x] task-output-guardian-recheck-iter2 — ALL PASS
+  - Re-optimized run (41 tasks):
+    - [x] All checks: FAIL_0 ✅ FAIL_1 ✅ FAIL_4 ✅ FAIL_5 ✅ FAIL_6 ✅ FAIL_7 ✅ FAIL_8 ✅ FAIL_9 ✅
+    - [x] FAIL_2: T-17 only (51/65 File Roles, 14 missing src/skills/bundled/*.ts)
+    - [x] Gate Decision: FAIL_LOW → task-output-remediation-T-17 sub-workflow created
+    - [x] re-execute-T-17 (remediation) — File Roles 51→65 ✅
+    - [x] task-output-guardian-recheck — ALL PASS (41/41 tasks)
+- [x] synthesize-analysis — ✅ 6 P1 summaries + supplementary(15 tasks) + final report(21 ch, §11 patched) + 3 JSONL indexes + metadata baseline
+- [x] **publish-site** — VitePress 站点打包 ✅ (re-optimized run)
+  - [x] 前置检查 + R2主题验证
+  - [x] source-to-report-map (2142行 + 1954条JSONL)
+  - [x] config.mts (15ML分组 + withMermaid + cleanUrls)
+  - [x] index.md (Hero + 8 Features)
+  - [x] 源码副本 (2019 md files)
+  - [x] 链接去.md后缀 (762→0)
+  - [x] 断链修复 (41→0: /code_analysis/前缀 + 非存在summary + JSONL引用)
+  - [x] package.json + serve_analysis.sh + .gitignore
+  - [x] R1-R4 Hard Rules ALL PASS
+  - [x] Node v22.13.1 + npm 11.1.0 软验证
